@@ -1,0 +1,19 @@
+{
+  "band": "Metallica",
+  "preset_name": "Metallica Chug Crusher",
+  "genre": "metal",
+  "amp_model": "Recto Modern",
+  "cab_ir": "Oversized V30",
+  "effects": [
+    "Drive",
+    "Gate",
+    "EQ",
+    "Compressor",
+    "Pitch Shifter",
+    "Whammy",
+    "Detune",
+    "Multitap Delay",
+    "Enhancer"
+  ],
+  "summary": "Tight, heavy tone built for palm-muted riffs and searing leads."
+}

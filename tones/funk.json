@@ -1,0 +1,20 @@
+{
+  "band": "Vulfpeck",
+  "preset_name": "Tight Funk Pop",
+  "genre": "funk",
+  "amp_model": "Clean Twin",
+  "cab_ir": "Studio Funk Cab",
+  "effects": [
+    "Compressor",
+    "EQ",
+    "Auto Filter",
+    "Chorus",
+    "Envelope Filter",
+    "Drive",
+    "Delay",
+    "Phaser",
+    "Wah",
+    "Enhancer"
+  ],
+  "summary": "Punchy, rhythmic clean tone with filtered envelope dynamics. Great for percussive funk grooves and tight chordal work."
+}

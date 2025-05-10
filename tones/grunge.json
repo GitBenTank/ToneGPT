@@ -1,0 +1,19 @@
+{
+  "band": "Nirvana",
+  "preset_name": "Grunge Mud Buzz",
+  "genre": "grunge",
+  "amp_model": "JCM800 Modded",
+  "cab_ir": "V30 Slant Cab",
+  "effects": [
+    "Drive",
+    "Distortion",
+    "Gate",
+    "EQ",
+    "Chorus",
+    "Delay",
+    "Reverb",
+    "Enhancer",
+    "Scenes / Controllers"
+  ],
+  "summary": "Raw and gritty tone drenched in angst. Thick, distorted mids with room to breathe for haunting choruses and unpolished solos."
+}

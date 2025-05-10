@@ -1,0 +1,18 @@
+{
+  "band": "Pink Floyd",
+  "preset_name": "PsycheTrip Echo Pad",
+  "genre": "psychedelic",
+  "amp_model": "Hiwatt DR103",
+  "cab_ir": "Vintage Fane 2x12",
+  "effects": [
+    "Tape Delay",
+    "Shimmer Reverb",
+    "Chorus",
+    "Phaser",
+    "Auto Filter",
+    "Enhancer",
+    "EQ",
+    "Scenes / Controllers"
+  ],
+  "summary": "Lush and hypnotic tones built on swirling modulation and ambient trails. Designed for layered atmospheres and expressive solos."
+}

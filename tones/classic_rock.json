@@ -1,0 +1,19 @@
+{
+  "band": "Led Zeppelin",
+  "preset_name": "Zep Stack Crunch",
+  "genre": "classic rock",
+  "amp_model": "Plexi 50W High",
+  "cab_ir": "Brit 4x12 Greenback",
+  "effects": [
+    "Drive",
+    "EQ",
+    "Compressor",
+    "Reverb",
+    "Tape Delay",
+    "Flanger",
+    "Chorus",
+    "Enhancer",
+    "Scenes / Controllers"
+  ],
+  "summary": "Bold, crunchy British tone that channels the golden era of rock. Great for both rhythm grooves and searing solos."
+}

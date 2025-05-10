@@ -1,0 +1,19 @@
+{
+    "band": "Dream Theater",
+    "preset_name": "Prog Metal Precision",
+    "genre": "progressive",
+    "amp_model": "Mark IIC+",
+    "cab_ir": "Recto V30 Stereo",
+    "effects": [
+      "Drive",
+      "Gate",
+      "EQ",
+      "Multitap Delay",
+      "Compressor",
+      "Pitch Shifter",
+      "Enhancer",
+      "Scenes / Controllers"
+    ],
+    "summary": "Articulate and high-fidelity tone crafted for technical riffs and dynamic soloing. Combines tight gain structure with polished clarity."
+  }
+  

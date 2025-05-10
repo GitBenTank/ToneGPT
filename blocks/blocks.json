@@ -1,0 +1,140 @@
+[
+  {
+    "name": "Drive",
+    "description": "Adds harmonic saturation and gain to the input signal.",
+    "required": false,
+    "key_parameters": ["Gain", "Tone", "Level"]
+  },
+  {
+    "name": "Gate",
+    "description": "Reduces noise and hum when you're not playing.",
+    "required": false,
+    "key_parameters": ["Threshold", "Ratio", "Attack", "Release"]
+  },
+  {
+    "name": "EQ",
+    "description": "Shapes the tonal balance of your signal using frequency bands.",
+    "required": false,
+    "key_parameters": ["Low Freq", "Mid Freq", "High Freq", "Gain", "Q"]
+  },
+  {
+    "name": "Compressor",
+    "description": "Balances dynamics by reducing volume peaks and boosting quiet parts.",
+    "required": false,
+    "key_parameters": ["Threshold", "Ratio", "Attack", "Release", "Output Gain"]
+  },
+  {
+    "name": "Pitch Shifter",
+    "description": "Shifts pitch up or down to create harmonies or octave effects.",
+    "required": false,
+    "key_parameters": ["Pitch", "Mix", "Tracking"]
+  },
+  {
+    "name": "Whammy",
+    "description": "Dramatically alters pitch in real-time using an expression pedal.",
+    "required": false,
+    "key_parameters": ["Pitch Range", "Tracking"]
+  },
+  {
+    "name": "Detune",
+    "description": "Adds subtle pitch variation for width and texture.",
+    "required": false,
+    "key_parameters": ["Detune Amount", "Mix"]
+  },
+  {
+    "name": "Multitap Delay",
+    "description": "Creates rhythmic or atmospheric echoes with multiple delay taps.",
+    "required": false,
+    "key_parameters": ["Taps", "Timing", "Feedback", "Mix"]
+  },
+  {
+    "name": "Enhancer",
+    "description": "Adds presence and clarity by boosting certain harmonics.",
+    "required": false,
+    "key_parameters": ["Presence", "Detail", "Blend"]
+  },
+  {
+    "name": "Reverb",
+    "description": "Simulates room or hall acoustics to create space and depth.",
+    "required": false,
+    "key_parameters": ["Decay", "Mix", "Pre-delay", "Room Size"]
+  },
+  {
+    "name": "Delay",
+    "description": "Adds echo to the sound for depth and rhythmic effects.",
+    "required": false,
+    "key_parameters": ["Time", "Feedback", "Mix"]
+  },
+  {
+    "name": "Chorus",
+    "description": "Creates doubling and detuning effects, mimicking multiple guitar signals played simultaneously.",
+    "required": false,
+    "key_parameters": ["Rate", "Depth", "Mix", "Voices"]
+  },
+  {
+    "name": "Flanger",
+    "description": "Creates jet-like sweeping modulation by mixing a delayed signal.",
+    "required": false,
+    "key_parameters": ["Rate", "Depth", "Feedback", "Mix"]
+  },
+  {
+    "name": "Plex Delay",
+    "description": "Complex layered delay with pitch shifting and diffusion.",
+    "required": false,
+    "key_parameters": ["Pitch", "Time", "Mix"]
+  },
+  {
+    "name": "Shimmer Reverb",
+    "description": "Reverb with pitch-shifted trails to create an ethereal sound.",
+    "required": false,
+    "key_parameters": ["Pitch Shift", "Mix", "Decay"]
+  },
+  {
+    "name": "Tape Delay",
+    "description": "Warm analog-style delay with modulation and saturation.",
+    "required": false,
+    "key_parameters": ["Time", "Feedback", "Wow/Flutter", "Mix"]
+  },
+  {
+    "name": "Rotary",
+    "description": "Emulates rotating speaker cabinets like Leslie speakers.",
+    "required": false,
+    "key_parameters": ["Speed", "Acceleration", "Mix"]
+  },
+  {
+    "name": "Phaser",
+    "description": "Swirls the signal through sweeping phase-shift filters.",
+    "required": false,
+    "key_parameters": ["Rate", "Stages", "Feedback", "Mix"]
+  },
+  {
+    "name": "Auto Filter",
+    "description": "Applies dynamic filtering based on playing intensity or LFO.",
+    "required": false,
+    "key_parameters": ["LFO Rate", "Filter Type", "Envelope Sensitivity"]
+  },
+  {
+    "name": "Synth",
+    "description": "Generates synth-like tones from your guitar signal.",
+    "required": false,
+    "key_parameters": ["Waveform", "Attack", "Filter"]
+  },
+  {
+    "name": "Distortion",
+    "description": "Simulates high-gain distortion effects for aggressive tones.",
+    "required": false,
+    "key_parameters": ["Drive", "Tone", "Level"]
+  },
+  {
+    "name": "Harmonizer",
+    "description": "Adds intelligent harmonies based on key and scale.",
+    "required": false,
+    "key_parameters": ["Interval", "Key", "Mix"]
+  },
+  {
+    "name": "Scenes / Controllers",
+    "description": "Handles dynamic switching between different tone scenes or effect settings.",
+    "required": false,
+    "key_parameters": ["Controller Assign", "Scene Levels"]
+  }
+]

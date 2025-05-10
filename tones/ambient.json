@@ -1,0 +1,20 @@
+{
+  "band": "Explosions in the Sky",
+  "preset_name": "Celestial Verbscape",
+  "genre": "ambient",
+  "amp_model": "JC-120 Clean",
+  "cab_ir": "FRFR Cab",
+  "effects": [
+    "Reverb",
+    "Shimmer Reverb",
+    "Delay",
+    "Plex Delay",
+    "Chorus",
+    "Compressor",
+    "EQ",
+    "Auto Filter",
+    "Tape Delay",
+    "Enhancer"
+  ],
+  "summary": "Dreamy and spacious clean tone with long decays and stereo width. Perfect for layering ambient textures."
+}
