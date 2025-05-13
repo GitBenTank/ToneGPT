@@ -1,19 +1,42 @@
 {
-  "band": "Metallica",
-  "preset_name": "Metallica Chug Crusher",
-  "genre": "metal",
-  "amp_model": "Recto Modern",
-  "cab_ir": "Oversized V30",
-  "effects": [
-    "Drive",
-    "Gate",
-    "EQ",
-    "Compressor",
-    "Pitch Shifter",
-    "Whammy",
-    "Detune",
-    "Multitap Delay",
-    "Enhancer"
-  ],
-  "summary": "Tight, heavy tone built for palm-muted riffs and searing leads."
+  "presets": [
+    {
+      "name": "Chug Crusher",
+      "band": "Metallica",
+      "genre": "metal",
+      "amp_model": "5150 III",
+      "cab_ir": "Mesa 4x12 V30",
+      "effects": [
+        "Drive",
+        "Gate",
+        "EQ",
+        "Compressor",
+        "Pitch Shifter",
+        "Whammy",
+        "Detune",
+        "Multitap Delay",
+        "Enhancer"
+      ],
+      "summary": "Aggressive, tight chug tone with boosted mids and layered harmonics. Perfect for palm-muted riffs and articulate solos."
+    },
+    {
+      "name": "Modern Djent Architect",
+      "band": "Periphery",
+      "genre": "metal",
+      "amp_model": "Archon Lead",
+      "cab_ir": "Zilla Fatboy V30",
+      "effects": [
+        "Drive",
+        "Gate",
+        "EQ",
+        "Compressor",
+        "Pitch Shifter",
+        "Detune",
+        "Delay",
+        "Reverb",
+        "Enhancer"
+      ],
+      "summary": "Punchy, percussive high-gain tone with surgical EQ and modern djent characteristics. Designed for complex rhythms and tight low end."
+    }
+  ]
 }

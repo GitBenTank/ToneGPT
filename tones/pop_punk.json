@@ -1,19 +1,41 @@
 {
-  "band": "Blink-182",
-  "preset_name": "Pop Punk Power Boost",
-  "genre": "pop_punk",
-  "amp_model": "5153 Blue",
-  "cab_ir": "Mesa 4x12 V30",
-  "effects": [
-    "Drive",
-    "Gate",
-    "EQ",
-    "Compressor",
-    "Delay",
-    "Reverb",
-    "Enhancer",
-    "Pitch Shifter",
-    "Scenes / Controllers"
-  ],
-  "summary": "High-gain yet clear rhythm tone for palm-muted riffs and wide-open choruses. Tight low end with just enough fizz to punch through the mix."
+  "presets": [
+    {
+      "name": "Pop Punk Power Boost",
+      "band": "Blink-182",
+      "genre": "pop_punk",
+      "amp_model": "5153 Blue",
+      "cab_ir": "Mesa 4x12 V30",
+      "effects": [
+        "Drive",
+        "Gate",
+        "EQ",
+        "Compressor",
+        "Delay",
+        "Reverb",
+        "Enhancer",
+        "Pitch Shifter",
+        "Scenes / Controllers"
+      ],
+      "summary": "High-gain yet clear rhythm tone for palm-muted riffs and wide-open choruses. Tight low end with just enough fizz to punch through the mix."
+    },
+    {
+      "name": "Pop Punk Shimmer Crunch",
+      "band": "Paramore",
+      "genre": "pop_punk",
+      "amp_model": "JCM800 Modded",
+      "cab_ir": "Brit 4x12 V30",
+      "effects": [
+        "Drive",
+        "EQ",
+        "Compressor",
+        "Chorus",
+        "Delay",
+        "Reverb",
+        "Enhancer",
+        "Scenes / Controllers"
+      ],
+      "summary": "A dynamic crunch tone with bright top-end shimmer and midrange punch. Ideal for anthemic choruses and cutting through dense mixes."
+    }
+  ]
 }

@@ -1,10 +1,10 @@
-import os
+from tonegpt.core.recommend import recommend_tone
+from tonegpt.core.tone_loader import load_all_genres
 from rapidfuzz import process
-from core.recommend import recommend_tone
 
 def list_available_genres():
-    tones_dir = os.path.join(os.path.dirname(__file__), "..", "tones")
-    return [f.replace(".json", "") for f in os.listdir(tones_dir) if f.endswith(".json")]
+    genres = load_all_genres()
+    return list(genres.keys())
 
 def main():
     print("\n🎛️  Welcome to ToneGPT for FM9\n")

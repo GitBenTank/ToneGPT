@@ -1,20 +1,43 @@
 {
-  "band": "Explosions in the Sky",
-  "preset_name": "Celestial Verbscape",
-  "genre": "ambient",
-  "amp_model": "JC-120 Clean",
-  "cab_ir": "FRFR Cab",
-  "effects": [
-    "Reverb",
-    "Shimmer Reverb",
-    "Delay",
-    "Plex Delay",
-    "Chorus",
-    "Compressor",
-    "EQ",
-    "Auto Filter",
-    "Tape Delay",
-    "Enhancer"
-  ],
-  "summary": "Dreamy and spacious clean tone with long decays and stereo width. Perfect for layering ambient textures."
+  "presets": [
+    {
+      "name": "Celestial Verbscape",
+      "band": "Explosions in the Sky",
+      "genre": "ambient",
+      "amp_model": "JC-120 Clean",
+      "cab_ir": "FRFR Cab",
+      "effects": [
+        "Reverb",
+        "Shimmer Reverb",
+        "Delay",
+        "Plex Delay",
+        "Chorus",
+        "Compressor",
+        "EQ",
+        "Auto Filter",
+        "Tape Delay",
+        "Enhancer"
+      ],
+      "summary": "Dreamy and spacious clean tone with long decays and stereo width. Perfect for layering ambient textures."
+    },
+    {
+      "name": "Ethereal Cloud Drift",
+      "band": "Hammock",
+      "genre": "ambient",
+      "amp_model": "Twin Reverb",
+      "cab_ir": "Studio Verb Cab",
+      "effects": [
+        "Reverb",
+        "Shimmer Reverb",
+        "Multitap Delay",
+        "EQ",
+        "Compressor",
+        "Chorus",
+        "Auto Filter",
+        "Enhancer",
+        "Scenes / Controllers"
+      ],
+      "summary": "Lush, evolving pads with glistening shimmer tails and layered delays. Designed for cinematic swells and deep soundscapes."
+    }
+  ]
 }

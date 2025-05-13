@@ -1,19 +1,39 @@
 {
-    "band": "Dream Theater",
-    "preset_name": "Prog Metal Precision",
-    "genre": "progressive",
-    "amp_model": "Mark IIC+",
-    "cab_ir": "Recto V30 Stereo",
-    "effects": [
-      "Drive",
-      "Gate",
-      "EQ",
-      "Multitap Delay",
-      "Compressor",
-      "Pitch Shifter",
-      "Enhancer",
-      "Scenes / Controllers"
-    ],
-    "summary": "Articulate and high-fidelity tone crafted for technical riffs and dynamic soloing. Combines tight gain structure with polished clarity."
-  }
-  
+  "presets": [
+    {
+      "name": "Prog Metal Precision",
+      "band": "Dream Theater",
+      "genre": "progressive",
+      "amp_model": "Mark IIC+",
+      "cab_ir": "Recto V30 Stereo",
+      "effects": [
+        "Drive",
+        "Gate",
+        "EQ",
+        "Multitap Delay",
+        "Compressor",
+        "Pitch Shifter",
+        "Enhancer",
+        "Scenes / Controllers"
+      ],
+      "summary": "Articulate and high-fidelity tone crafted for technical riffs and dynamic soloing. Combines tight gain structure with polished clarity."
+    },
+    {
+      "name": "Ambient Prog Flow",
+      "band": "Porcupine Tree",
+      "genre": "progressive",
+      "amp_model": "Archon Clean",
+      "cab_ir": "Studio Flat Cab",
+      "effects": [
+        "Reverb",
+        "Delay",
+        "EQ",
+        "Compressor",
+        "Chorus",
+        "Auto Filter",
+        "Enhancer"
+      ],
+      "summary": "Smooth, atmospheric clean tones with lush modulation and subtle dynamic shaping. Perfect for layered progressive soundscapes."
+    }
+  ]
+}

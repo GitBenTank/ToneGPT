@@ -1,0 +1,23 @@
+#!/bin/bash
+
+echo "🔄 Syncing ToneGPT-FM9 Project..."
+
+# Ensure core folder exists
+if [ ! -d "./core" ]; then
+  echo "⚠️ core/ folder missing. Creating it..."
+  mkdir ./core
+fi
+
+# Move blocks.json if misplaced
+if [ -f "./blocks/blocks.json" ]; then
+  echo "✅ Moving blocks.json to core/"
+  mv ./blocks/blocks.json ./core/blocks.json
+else
+  echo "✅ blocks.json already in place or missing. Skipped."
+fi
+
+# Sanity Check
+echo "📦 Directory Structure:"
+tree -d -L 2 || ls -R | grep ":$"
+
+echo "✅ Sync Complete!"
