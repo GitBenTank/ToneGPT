@@ -7,38 +7,43 @@ from pathlib import Path
 # ──────────────────────────────────────────────────────────────────────────────
 st.set_page_config(page_title="ToneGPT – FM9 Blocks", layout="wide")
 
-
 # ──────────────────────────────────────────────────────────────────────────────
-# 1) Locate your JSON files
+# 1) Locate your JSON files (repo root is parent of /ui)
 # ──────────────────────────────────────────────────────────────────────────────
-BASE_DIR  = Path(__file__).parent.parent          # repo root
+BASE_DIR  = Path(__file__).resolve().parent.parent
 DATA_DIR  = BASE_DIR / "data"
 AMPS_FILE = DATA_DIR / "amps_list.json"
 CABS_FILE = DATA_DIR / "cabs_list.json"
 
-
 # ──────────────────────────────────────────────────────────────────────────────
 # 2) Load & normalize flat lists (strings) or keyed objects
 # ──────────────────────────────────────────────────────────────────────────────
+@st.cache_data(show_spinner=False)
 def load_list(path: Path, key: str):
-    text = path.read_text(encoding="utf-8")
-    raw  = json.loads(text)
+    try:
+        raw = json.loads(path.read_text(encoding="utf-8"))
+    except Exception as e:
+        st.error(f"Failed to load {path.name}: {e}")
+        return []
 
     # If it's already a flat list of strings, return it
-    if isinstance(raw, list) and raw and isinstance(raw[0], str):
-        return raw
+    if isinstance(raw, list) and (not raw or isinstance(raw[0], str)):
+        return [s.strip() for s in raw if isinstance(s, str)]
 
     # Otherwise expect list of dicts and pull out `key`
     out = []
-    for item in raw:
-        if isinstance(item, dict) and key in item:
-            out.append(item[key])
+    if isinstance(raw, list):
+        for item in raw:
+            if isinstance(item, dict) and key in item and item[key]:
+                out.append(str(item[key]).strip())
     return out
 
-# build our dropdown arrays
-amp_models = ["None"] + load_list(AMPS_FILE, "Model")
-cab_models = ["None"] + load_list(CABS_FILE, "Cab")
+# Build dropdown arrays (sorted for sanity)
+amp_models = ["None"] + sorted(load_list(AMPS_FILE, "Model"), key=str.upper)
+cab_models = ["None"] + sorted(load_list(CABS_FILE, "Cab"),   key=str.upper)
 
+# Tiny debug readout so you know it worked
+st.caption(f"Loaded {max(0, len(amp_models)-1)} amps • {max(0, len(cab_models)-1)} cabs")
 
 # ──────────────────────────────────────────────────────────────────────────────
 # 3) Hard-coded FM9 block lists
@@ -47,7 +52,6 @@ drive_blocks  = ["None", "FAS Boost", "TS808 Mod", "Klon", "Rat Distortion"]
 eq_blocks     = ["None", "5 Band EQ", "10 Band EQ", "Parametric EQ"]
 delay_blocks  = ["None", "Digital Stereo Delay", "Tape Delay", "Ping Pong Delay"]
 reverb_blocks = ["None", "Medium Plate", "Large Hall", "Spring Reverb"]
-
 
 # ──────────────────────────────────────────────────────────────────────────────
 # 4) Streamlit UI layout
@@ -84,7 +88,6 @@ with c3:
     bypass_cab = st.checkbox("Bypass Cab", key="bypass_cab")
     sel_cab    = st.selectbox("Select Cab IR", cab_models, key="cab")
 
-
 # Second row
 c4, c5, c6 = st.columns(3)
 
@@ -112,7 +115,6 @@ with c6:
     if sel_rv != "None" and not bypass_rv:
         st.slider("Room Size",  0.0, 10.0, 5.0, key="rv_size")
         st.slider("Mix (%)",    0.0, 100.0,30.0, key="rv_mix")
-
 
 # ──────────────────────────────────────────────────────────────────────────────
 # 5) Signal-chain summary
