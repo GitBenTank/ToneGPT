@@ -1,106 +1,136 @@
 import streamlit as st
 import json
+from pathlib import Path
 
-# Load amps and cabs data
-with open('data/amps_list.json', 'r') as f:
-    amps_data = json.load(f)
+# ──────────────────────────────────────────────────────────────────────────────
+# 0) Page config (must be first Streamlit call)
+# ──────────────────────────────────────────────────────────────────────────────
+st.set_page_config(page_title="ToneGPT – FM9 Blocks", layout="wide")
 
-with open('data/cabs_list.json', 'r') as f:
-    cabs_data = json.load(f)
 
-# Example block options
-drive_blocks = ["None", "FAS Boost", "TS808 Mod", "Klon", "Rat Distortion"]
-delay_blocks = ["None", "Digital Stereo Delay", "Tape Delay", "Ping Pong Delay"]
+# ──────────────────────────────────────────────────────────────────────────────
+# 1) Locate your JSON files
+# ──────────────────────────────────────────────────────────────────────────────
+BASE_DIR  = Path(__file__).parent.parent          # repo root
+DATA_DIR  = BASE_DIR / "data"
+AMPS_FILE = DATA_DIR / "amps_list.json"
+CABS_FILE = DATA_DIR / "cabs_list.json"
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 2) Load & normalize flat lists (strings) or keyed objects
+# ──────────────────────────────────────────────────────────────────────────────
+def load_list(path: Path, key: str):
+    text = path.read_text(encoding="utf-8")
+    raw  = json.loads(text)
+
+    # If it's already a flat list of strings, return it
+    if isinstance(raw, list) and raw and isinstance(raw[0], str):
+        return raw
+
+    # Otherwise expect list of dicts and pull out `key`
+    out = []
+    for item in raw:
+        if isinstance(item, dict) and key in item:
+            out.append(item[key])
+    return out
+
+# build our dropdown arrays
+amp_models = ["None"] + load_list(AMPS_FILE, "Model")
+cab_models = ["None"] + load_list(CABS_FILE, "Cab")
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 3) Hard-coded FM9 block lists
+# ──────────────────────────────────────────────────────────────────────────────
+drive_blocks  = ["None", "FAS Boost", "TS808 Mod", "Klon", "Rat Distortion"]
+eq_blocks     = ["None", "5 Band EQ", "10 Band EQ", "Parametric EQ"]
+delay_blocks  = ["None", "Digital Stereo Delay", "Tape Delay", "Ping Pong Delay"]
 reverb_blocks = ["None", "Medium Plate", "Large Hall", "Spring Reverb"]
-eq_blocks = ["None", "5 Band EQ", "10 Band EQ", "Parametric EQ"]
 
-# Extract amp & cab names
-amp_models = [amp['Model'] for amp in amps_data]
-cab_models = [cab['Cab'] for cab in cabs_data]
 
-# Streamlit Config
-st.set_page_config(page_title="ToneGPT - FM9 Blocks", layout="wide")
-st.title("🎛️ ToneGPT - FM9 Blocks (Bypass Toggles Added)")
+# ──────────────────────────────────────────────────────────────────────────────
+# 4) Streamlit UI layout
+# ──────────────────────────────────────────────────────────────────────────────
+st.title("🎛️ ToneGPT – FM9 Blocks (Bypass Toggles)")
 
-# Layout Grid - Mimic FM9 Edit
-col1, col2, col3 = st.columns(3)
+# First row
+c1, c2, c3 = st.columns(3)
 
-with col1:
+with c1:
     st.header("Drive 1")
-    bypass_drive1 = st.checkbox("Bypass Drive 1", value=False, key="bypass_drive1")
-    selected_drive1 = st.selectbox("Select Drive 1", drive_blocks, key="drive1_select")
-    if selected_drive1 != "None" and not bypass_drive1:
-        drive1_gain = st.slider("Gain", 0.0, 10.0, 5.0, key="drive1_gain")
-        drive1_level = st.slider("Level", 0.0, 10.0, 5.0, key="drive1_level")
+    bypass_d1 = st.checkbox("Bypass Drive 1", key="bypass_d1")
+    sel_d1    = st.selectbox("Select Drive 1", drive_blocks, key="d1")
+    if sel_d1 != "None" and not bypass_d1:
+        st.slider("Gain",  0.0, 10.0, 5.0, key="d1_gain")
+        st.slider("Level", 0.0, 10.0, 5.0, key="d1_lvl")
 
-with col2:
+with c2:
     st.header("Drive 2")
-    bypass_drive2 = st.checkbox("Bypass Drive 2", value=False, key="bypass_drive2")
-    selected_drive2 = st.selectbox("Select Drive 2", drive_blocks, key="drive2_select")
-    if selected_drive2 != "None" and not bypass_drive2:
-        drive2_gain = st.slider("Gain", 0.0, 10.0, 5.0, key="drive2_gain")
-        drive2_level = st.slider("Level", 0.0, 10.0, 5.0, key="drive2_level")
+    bypass_d2 = st.checkbox("Bypass Drive 2", key="bypass_d2")
+    sel_d2    = st.selectbox("Select Drive 2", drive_blocks, key="d2")
+    if sel_d2 != "None" and not bypass_d2:
+        st.slider("Gain",  0.0, 10.0, 5.0, key="d2_gain")
+        st.slider("Level", 0.0, 10.0, 5.0, key="d2_lvl")
 
-with col3:
+with c3:
     st.header("Amp & Cab")
-    bypass_amp = st.checkbox("Bypass Amp", value=False, key="bypass_amp")
-    selected_amp = st.selectbox("Select Amp", amp_models, key="amp_select")
-    amp_gain = st.slider("Amp Gain", 0.0, 10.0, 5.0, key="amp_gain")
-    amp_master = st.slider("Master Volume", 0.0, 10.0, 5.0, key="amp_master")
+    bypass_amp = st.checkbox("Bypass Amp", key="bypass_amp")
+    sel_amp    = st.selectbox("Select Amp", amp_models, key="amp")
+    if sel_amp != "None" and not bypass_amp:
+        st.slider("Amp Gain",   0.0, 10.0, 5.0, key="amp_gain")
+        st.slider("Master Vol", 0.0, 10.0, 5.0, key="amp_master")
 
-    bypass_cab = st.checkbox("Bypass Cab", value=False, key="bypass_cab")
-    selected_cab = st.selectbox("Select Cab IR", cab_models, key="cab_select")
+    bypass_cab = st.checkbox("Bypass Cab", key="bypass_cab")
+    sel_cab    = st.selectbox("Select Cab IR", cab_models, key="cab")
 
-# Second row grid for EQ, Delay, Reverb
-col4, col5, col6 = st.columns(3)
 
-with col4:
+# Second row
+c4, c5, c6 = st.columns(3)
+
+with c4:
     st.header("EQ Block")
-    bypass_eq = st.checkbox("Bypass EQ", value=False, key="bypass_eq")
-    selected_eq = st.selectbox("Select EQ", eq_blocks, key="eq_select")
-    if selected_eq != "None" and not bypass_eq:
-        eq_low = st.slider("Low Freq", -12.0, 12.0, 0.0, key="eq_low")
-        eq_mid = st.slider("Mid Freq", -12.0, 12.0, 0.0, key="eq_mid")
-        eq_high = st.slider("High Freq", -12.0, 12.0, 0.0, key="eq_high")
+    bypass_eq = st.checkbox("Bypass EQ", key="bypass_eq")
+    sel_eq    = st.selectbox("Select EQ", eq_blocks, key="eq")
+    if sel_eq != "None" and not bypass_eq:
+        st.slider("Low (dB)",  -12.0, 12.0, 0.0, key="eq_low")
+        st.slider("Mid (dB)",  -12.0, 12.0, 0.0, key="eq_mid")
+        st.slider("High (dB)", -12.0, 12.0, 0.0, key="eq_high")
 
-with col5:
+with c5:
     st.header("Delay Block")
-    bypass_delay = st.checkbox("Bypass Delay", value=False, key="bypass_delay")
-    selected_delay = st.selectbox("Select Delay", delay_blocks, key="delay_select")
-    if selected_delay != "None" and not bypass_delay:
-        delay_time = st.slider("Delay Time (ms)", 0, 2000, 500, key="delay_time")
-        delay_mix = st.slider("Mix", 0.0, 100.0, 30.0, key="delay_mix")
+    bypass_dl = st.checkbox("Bypass Delay", key="bypass_dl")
+    sel_dl    = st.selectbox("Select Delay", delay_blocks, key="dl")
+    if sel_dl != "None" and not bypass_dl:
+        st.slider("Time (ms)",  0,   2000, 500,   key="dl_time")
+        st.slider("Mix (%)",    0.0, 100.0,30.0, key="dl_mix")
 
-with col6:
+with c6:
     st.header("Reverb Block")
-    bypass_reverb = st.checkbox("Bypass Reverb", value=False, key="bypass_reverb")
-    selected_reverb = st.selectbox("Select Reverb", reverb_blocks, key="reverb_select")
-    if selected_reverb != "None" and not bypass_reverb:
-        reverb_size = st.slider("Room Size", 0.0, 10.0, 5.0, key="reverb_size")
-        reverb_mix = st.slider("Mix", 0.0, 100.0, 30.0, key="reverb_mix")
+    bypass_rv = st.checkbox("Bypass Reverb", key="bypass_rv")
+    sel_rv    = st.selectbox("Select Reverb", reverb_blocks, key="rv")
+    if sel_rv != "None" and not bypass_rv:
+        st.slider("Room Size",  0.0, 10.0, 5.0, key="rv_size")
+        st.slider("Mix (%)",    0.0, 100.0,30.0, key="rv_mix")
 
-# Signal Path Visual
-st.subheader("🧩 Signal Path Chain")
-signal_path = ["Input"]
 
-if selected_drive1 != "None" and not bypass_drive1:
-    signal_path.append(selected_drive1)
-if selected_drive2 != "None" and not bypass_drive2:
-    signal_path.append(selected_drive2)
-if selected_amp != "None" and not bypass_amp:
-    signal_path.append(selected_amp)
-if selected_cab != "None" and not bypass_cab:
-    signal_path.append(selected_cab)
-if selected_eq != "None" and not bypass_eq:
-    signal_path.append(selected_eq)
-if selected_delay != "None" and not bypass_delay:
-    signal_path.append(selected_delay)
-if selected_reverb != "None" and not bypass_reverb:
-    signal_path.append(selected_reverb)
+# ──────────────────────────────────────────────────────────────────────────────
+# 5) Signal-chain summary
+# ──────────────────────────────────────────────────────────────────────────────
+path = ["Input"]
+for name, bypass, sel in [
+    ("Drive 1", bypass_d1, sel_d1),
+    ("Drive 2", bypass_d2, sel_d2),
+    ("Amp",     bypass_amp, sel_amp),
+    ("Cab",     bypass_cab, sel_cab),
+    ("EQ",      bypass_eq, sel_eq),
+    ("Delay",   bypass_dl, sel_dl),
+    ("Reverb",  bypass_rv, sel_rv),
+]:
+    if sel != "None" and not bypass:
+        path.append(sel)
+path.append("Output")
 
-signal_path.append("Output")
-
-path_display = " ➔ ".join(signal_path)
-st.success(path_display)
-
-st.caption("ToneGPT | Fractal FM9 Companion UI with Bypass Toggles")
+st.subheader("🧩 Signal Path")
+st.success(" ➔ ".join(path))
+st.caption("ToneGPT | Fractal FM9 Companion UI")
