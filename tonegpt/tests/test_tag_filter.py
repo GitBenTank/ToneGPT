@@ -1,6 +1,6 @@
 import pathlib
 
-# Base directory of the project (ToneGPT-FM9-V2 root)
+# Base directory of the project (ToneGPT-FM9-V3 root)
 BASE_DIR = pathlib.Path(__file__).parent.resolve()
 
 # Paths to core files & folders

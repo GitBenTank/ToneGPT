@@ -18,7 +18,7 @@ ToneGPT is an AI assistant designed to help guitarists create tone presets for t
 
 ## 📂 Project Structure
 
-ToneGPT-FM9-V2/
+ToneGPT-FM9-V3/
 ├── data/                # Cleaned amps and cabs JSON lists
 │   ├── amps_list.json
 │   └── cabs_list.json
@@ -55,8 +55,8 @@ ToneGPT-FM9-V2/
 ## 🛠️ Installation
 ```bash
 # Clone repo
-git clone https://github.com/GitBenTank/ToneGPT-FM9-V2.git
-cd ToneGPT-FM9-V2
+git clone https://github.com/GitBenTank/ToneGPT-FM9-V3.git
+cd ToneGPT-FM9-V3
 
 # Set up virtual environment
 python3 -m venv venv
