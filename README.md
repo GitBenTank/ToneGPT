@@ -92,7 +92,6 @@ MIT License
 ---
 
 # ToneGPT-FM9-V3
-
 [![GitHub release](https://img.shields.io/github/v/release/GitBenTank/ToneGPT-FM9-V3?style=flat-square)](https://github.com/GitBenTank/ToneGPT-FM9-V3/releases)
 [![GitHub issues](https://img.shields.io/github/issues/GitBenTank/ToneGPT-FM9-V3?style=flat-square)](https://github.com/GitBenTank/ToneGPT-FM9-V3/issues)
 [![GitHub stars](https://img.shields.io/github/stars/GitBenTank/ToneGPT-FM9-V3?style=flat-square)](https://github.com/GitBenTank/ToneGPT-FM9-V3/stargazers)
@@ -101,36 +100,10 @@ MIT License
 ---
 
 ## Changelog
-
-- **v3 (current)**  
-  UI refactor, branding cleanup, dropdown loader integration, and repo rename for clarity.  
-  New branch `v3-dev` for staging features.  
-
-- **v2**  
-  Cleaned tone data, organized structure, UI bypass toggle.  
-
-- **v1**  
-  Initial release with core JSON data and basic backend.  
-
----
-
-# ToneGPT-FM9-V3
-
-[![GitHub release](https://img.shields.io/github/v/release/GitBenTank/ToneGPT-FM9-V3?style=flat-square)](https://github.com/GitBenTank/ToneGPT-FM9-V3/releases)
-[![GitHub issues](https://img.shields.io/github/issues/GitBenTank/ToneGPT-FM9-V3?style=flat-square)](https://github.com/GitBenTank/ToneGPT-FM9-V3/issues)
-[![GitHub stars](https://img.shields.io/github/stars/GitBenTank/ToneGPT-FM9-V3?style=flat-square)](https://github.com/GitBenTank/ToneGPT-FM9-V3/stargazers)
-[![License](https://img.shields.io/github/license/GitBenTank/ToneGPT-FM9-V3?style=flat-square)](LICENSE)
-
----
-
-## Changelog
-
 - **v3 (current)**
   UI refactor, branding cleanup, dropdown loader integration, and repo rename for clarity.
   New branch `v3-dev` for staging features.
-
 - **v2**
   Cleaned tone data, organized structure, UI bypass toggle.
-
 - **v1**
   Initial release with core JSON data and basic backend.
