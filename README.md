@@ -251,7 +251,7 @@ pip install -e .
 - **GitHub**: https://github.com/GitBenTank
 - **Email**: btankersley18@gmail.com
 - **Discord**: Join our community server
-- **Website**: ctrlstrum.com
+- **Website**: https://ctrlstrum.com
 
 ---
 
