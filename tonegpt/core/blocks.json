@@ -1,163 +1,1390 @@
 [
   {
-    "name": "Drive",
-    "category": "Gain",
-    "description": "Adds harmonic saturation and gain to the input signal.",
-    "required": false,
-    "key_parameters": ["Gain", "Tone", "Level"]
+    "name": "Brit 800",
+    "category": "amp",
+    "real_world": "Marshall JCM800",
+    "description": "Classic British high-gain amp with aggressive character",
+    "parameters": {
+      "gain": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "master": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "bass": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "mid": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "treble": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "presence": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "depth": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""}
+    }
   },
   {
-    "name": "Gate",
-    "category": "Dynamics",
-    "description": "Reduces noise and hum when you're not playing.",
-    "required": false,
-    "key_parameters": ["Threshold", "Ratio", "Attack", "Release"]
+    "name": "Brit 800 Pro",
+    "category": "amp",
+    "real_world": "FM9 Marshall JCM800 with Advanced Features",
+    "description": "Professional JCM800 with advanced modeling and controls",
+    "parameters": {
+      "input_trim": {"min": 0.5, "max": 2.0, "default": 1.0, "unit": ""},
+      "gain": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "bass": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "mid": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "treble": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "presence": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "depth": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "master_volume": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "level": {"min": -80.0, "max": 20.0, "default": 0.0, "unit": "dB"},
+      "preamp_type": {"min": 0, "max": 3, "default": 0, "unit": ""},
+      "power_amp_type": {"min": 0, "max": 3, "default": 0, "unit": ""},
+      "speaker_type": {"min": 0, "max": 5, "default": 0, "unit": ""}
+    }
   },
   {
-    "name": "EQ",
-    "category": "EQ",
-    "description": "Shapes the tonal balance of your signal using frequency bands.",
-    "required": false,
-    "key_parameters": ["Low Freq", "Mid Freq", "High Freq", "Gain", "Q"]
+    "name": "Recto Pro",
+    "category": "amp",
+    "real_world": "FM9 Mesa Boogie Dual Rectifier with Advanced Features",
+    "description": "Professional Dual Rectifier with advanced modeling and controls",
+    "parameters": {
+      "input_trim": {"min": 0.5, "max": 2.0, "default": 1.0, "unit": ""},
+      "gain": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "bass": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "mid": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "treble": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "presence": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "depth": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "master_volume": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "level": {"min": -80.0, "max": 20.0, "default": 0.0, "unit": "dB"},
+      "preamp_type": {"min": 0, "max": 3, "default": 1, "unit": ""},
+      "power_amp_type": {"min": 0, "max": 3, "default": 1, "unit": ""},
+      "speaker_type": {"min": 0, "max": 5, "default": 1, "unit": ""}
+    }
   },
   {
-    "name": "Compressor",
-    "category": "Dynamics",
-    "description": "Balances dynamics by reducing volume peaks and boosting quiet parts.",
-    "required": false,
-    "key_parameters": ["Threshold", "Ratio", "Attack", "Release", "Output Gain"]
+    "name": "FAS Modern Pro",
+    "category": "amp",
+    "real_world": "FM9 FAS Modern with Advanced Features",
+    "description": "Professional FAS Modern with advanced modeling and controls",
+    "parameters": {
+      "input_trim": {"min": 0.5, "max": 2.0, "default": 1.0, "unit": ""},
+      "gain": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "bass": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "mid": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "treble": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "presence": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "depth": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "master_volume": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "level": {"min": -80.0, "max": 20.0, "default": 0.0, "unit": "dB"},
+      "preamp_type": {"min": 0, "max": 3, "default": 2, "unit": ""},
+      "power_amp_type": {"min": 0, "max": 3, "default": 2, "unit": ""},
+      "speaker_type": {"min": 0, "max": 5, "default": 2, "unit": ""}
+    }
   },
   {
-    "name": "Pitch Shifter",
-    "category": "Pitch",
-    "description": "Shifts pitch up or down to create harmonies or octave effects.",
-    "required": false,
-    "key_parameters": ["Pitch", "Mix", "Tracking"]
+    "name": "Plexi 1959 Pro",
+    "category": "amp",
+    "real_world": "FM9 Marshall Super Lead Plexi 1959 with Advanced Features",
+    "description": "Professional Plexi with advanced modeling and controls",
+    "parameters": {
+      "input_trim": {"min": 0.5, "max": 2.0, "default": 1.0, "unit": ""},
+      "gain": {"min": 0.0, "max": 10.0, "default": 7.0, "unit": ""},
+      "bass": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "mid": {"min": 0.0, "max": 10.0, "default": 7.0, "unit": ""},
+      "treble": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "presence": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "depth": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "master_volume": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "level": {"min": -80.0, "max": 20.0, "default": 0.0, "unit": "dB"},
+      "preamp_type": {"min": 0, "max": 3, "default": 0, "unit": ""},
+      "power_amp_type": {"min": 0, "max": 3, "default": 0, "unit": ""},
+      "speaker_type": {"min": 0, "max": 5, "default": 0, "unit": ""}
+    }
   },
   {
-    "name": "Whammy",
-    "category": "Pitch",
-    "description": "Dramatically alters pitch in real-time using an expression pedal.",
-    "required": false,
-    "key_parameters": ["Pitch Range", "Tracking"]
+    "name": "EVH 5150 Pro",
+    "category": "amp",
+    "real_world": "FM9 EVH 5150-III with Advanced Features",
+    "description": "Professional EVH 5150 with advanced modeling and controls",
+    "parameters": {
+      "input_trim": {"min": 0.5, "max": 2.0, "default": 1.0, "unit": ""},
+      "gain": {"min": 0.0, "max": 10.0, "default": 8.0, "unit": ""},
+      "bass": {"min": 0.0, "max": 10.0, "default": 7.0, "unit": ""},
+      "mid": {"min": 0.0, "max": 10.0, "default": 4.0, "unit": ""},
+      "treble": {"min": 0.0, "max": 10.0, "default": 7.0, "unit": ""},
+      "presence": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "depth": {"min": 0.0, "max": 10.0, "default": 7.0, "unit": ""},
+      "master_volume": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "level": {"min": -80.0, "max": 20.0, "default": 0.0, "unit": "dB"},
+      "preamp_type": {"min": 0, "max": 3, "default": 1, "unit": ""},
+      "power_amp_type": {"min": 0, "max": 3, "default": 1, "unit": ""},
+      "speaker_type": {"min": 0, "max": 5, "default": 1, "unit": ""}
+    }
   },
   {
-    "name": "Detune",
-    "category": "Pitch",
-    "description": "Adds subtle pitch variation for width and texture.",
-    "required": false,
-    "key_parameters": ["Detune Amount", "Mix"]
+    "name": "Fender Tweed",
+    "category": "amp",
+    "real_world": "Fender Tweed Champ 5F1",
+    "description": "Classic Fender Tweed with warm, vintage character",
+    "parameters": {
+      "gain": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "master": {"min": 0.0, "max": 10.0, "default": 7.0, "unit": ""},
+      "bass": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "mid": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "treble": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "presence": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "depth": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""}
+    }
   },
   {
-    "name": "Multitap Delay",
-    "category": "Delay",
-    "description": "Creates rhythmic or atmospheric echoes with multiple delay taps.",
-    "required": false,
-    "key_parameters": ["Taps", "Timing", "Feedback", "Mix"]
+    "name": "Vox AC30",
+    "category": "amp",
+    "real_world": "Vox AC30 Top Boost",
+    "description": "Classic Vox AC30 with chime and sparkle",
+    "parameters": {
+      "gain": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "master": {"min": 0.0, "max": 10.0, "default": 7.0, "unit": ""},
+      "bass": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "mid": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "treble": {"min": 0.0, "max": 10.0, "default": 7.0, "unit": ""},
+      "presence": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "depth": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""}
+    }
   },
   {
-    "name": "Enhancer",
-    "category": "Dynamics",
-    "description": "Adds presence and clarity by boosting certain harmonics.",
-    "required": false,
-    "key_parameters": ["Presence", "Detail", "Blend"]
+    "name": "Mesa Mark IIC+",
+    "category": "amp",
+    "real_world": "Mesa Boogie Mark IIC+",
+    "description": "Legendary high-gain amp with tight low end and singing leads",
+    "parameters": {
+      "gain": {"min": 0.0, "max": 10.0, "default": 7.0, "unit": ""},
+      "master": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "bass": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "mid": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "treble": {"min": 0.0, "max": 10.0, "default": 7.0, "unit": ""},
+      "presence": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "depth": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""}
+    }
   },
   {
-    "name": "Reverb",
-    "category": "Reverb",
-    "description": "Simulates room or hall acoustics to create space and depth.",
-    "required": false,
-    "key_parameters": ["Decay", "Mix", "Pre-delay", "Room Size"]
+    "name": "Fender Deluxe",
+    "category": "amp",
+    "real_world": "Fender Deluxe Reverb",
+    "description": "Classic Fender clean with spring reverb",
+    "parameters": {
+      "gain": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "master": {"min": 0.0, "max": 10.0, "default": 7.0, "unit": ""},
+      "bass": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "mid": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "treble": {"min": 0.0, "max": 10.0, "default": 7.0, "unit": ""},
+      "presence": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "depth": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""}
+    }
   },
   {
-    "name": "Delay",
-    "category": "Delay",
-    "description": "Adds echo to the sound for depth and rhythmic effects.",
-    "required": false,
-    "key_parameters": ["Time", "Feedback", "Mix"]
+    "name": "Orange Rockerverb",
+    "category": "amp",
+    "real_world": "Orange Rockerverb 100",
+    "description": "British high-gain with massive low end",
+    "parameters": {
+      "gain": {"min": 0.0, "max": 10.0, "default": 8.0, "unit": ""},
+      "master": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "bass": {"min": 0.0, "max": 10.0, "default": 8.0, "unit": ""},
+      "mid": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "treble": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "presence": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "depth": {"min": 0.0, "max": 10.0, "default": 7.0, "unit": ""}
+    }
+  },
+  {
+    "name": "Diezel VH4",
+    "category": "amp",
+    "real_world": "Diezel VH4",
+    "description": "German high-gain with tight articulation",
+    "parameters": {
+      "gain": {"min": 0.0, "max": 10.0, "default": 8.0, "unit": ""},
+      "master": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "bass": {"min": 0.0, "max": 10.0, "default": 7.0, "unit": ""},
+      "mid": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "treble": {"min": 0.0, "max": 10.0, "default": 7.0, "unit": ""},
+      "presence": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "depth": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""}
+    }
+  },
+  {
+    "name": "TS9",
+    "category": "drive",
+    "real_world": "Ibanez TS9 Tube Screamer",
+    "description": "Classic tube screamer overdrive with mid-hump",
+    "parameters": {
+      "drive": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "tone": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "level": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""}
+    }
+  },
+  {
+    "name": "Klon",
+    "category": "drive",
+    "real_world": "Klon Centaur Professional Overdrive",
+    "description": "Transparent overdrive with harmonic enhancement",
+    "parameters": {
+      "gain": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "treble": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "output": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""}
+    }
+  },
+  {
+    "name": "TS9 Pro",
+    "category": "drive",
+    "real_world": "FM9 TS9 with Advanced Features",
+    "description": "Professional tube screamer with mix control and advanced parameters",
+    "parameters": {
+      "drive": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "tone": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "level": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "mix": {"min": 0.0, "max": 100.0, "default": 100.0, "unit": "%"},
+      "mode": {"min": 0, "max": 3, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "Klon Pro",
+    "category": "drive",
+    "real_world": "FM9 Klon with Advanced Features",
+    "description": "Professional Klon with mix control and advanced parameters",
+    "parameters": {
+      "drive": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "tone": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "level": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "mix": {"min": 0.0, "max": 100.0, "default": 100.0, "unit": "%"},
+      "mode": {"min": 0, "max": 3, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "Rat Pro",
+    "category": "drive",
+    "real_world": "FM9 Rat with Advanced Features",
+    "description": "Professional Rat distortion with mix control and advanced parameters",
+    "parameters": {
+      "drive": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "tone": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "level": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "mix": {"min": 0.0, "max": 100.0, "default": 100.0, "unit": "%"},
+      "mode": {"min": 0, "max": 3, "default": 1, "unit": ""}
+    }
+  },
+  {
+    "name": "Fuzz Face Pro",
+    "category": "drive",
+    "real_world": "FM9 Fuzz Face with Advanced Features",
+    "description": "Professional Fuzz Face with mix control and advanced parameters",
+    "parameters": {
+      "drive": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "tone": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "level": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "mix": {"min": 0.0, "max": 100.0, "default": 100.0, "unit": "%"},
+      "mode": {"min": 0, "max": 3, "default": 2, "unit": ""}
+    }
+  },
+  {
+    "name": "Big Muff Pro",
+    "category": "drive",
+    "real_world": "FM9 Big Muff with Advanced Features",
+    "description": "Professional Big Muff with mix control and advanced parameters",
+    "parameters": {
+      "drive": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "tone": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "level": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "mix": {"min": 0.0, "max": 100.0, "default": 100.0, "unit": "%"},
+      "mode": {"min": 0, "max": 3, "default": 2, "unit": ""}
+    }
+  },
+  {
+    "name": "Boss DS-1 Pro",
+    "category": "drive",
+    "real_world": "FM9 Boss DS-1 with Advanced Features",
+    "description": "Professional Boss DS-1 with mix control and advanced parameters",
+    "parameters": {
+      "drive": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "tone": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "level": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "mix": {"min": 0.0, "max": 100.0, "default": 100.0, "unit": "%"},
+      "mode": {"min": 0, "max": 3, "default": 1, "unit": ""}
+    }
+  },
+  {
+    "name": "Clean Boost",
+    "category": "drive",
+    "real_world": "FM9 Clean Boost",
+    "description": "Clean boost for signal enhancement",
+    "parameters": {
+      "drive": {"min": 0.0, "max": 10.0, "default": 0.0, "unit": ""},
+      "tone": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "level": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "mix": {"min": 0.0, "max": 100.0, "default": 100.0, "unit": "%"},
+      "mode": {"min": 0, "max": 3, "default": 3, "unit": ""}
+    }
+  },
+  {
+    "name": "Graphic EQ",
+    "category": "eq",
+    "real_world": "10-band Graphic Equalizer",
+    "description": "10-band graphic equalizer for precise frequency control",
+    "parameters": {
+      "31Hz": {"min": -12.0, "max": 12.0, "default": 0.0, "unit": "dB"},
+      "62Hz": {"min": -12.0, "max": 12.0, "default": 0.0, "unit": "dB"},
+      "125Hz": {"min": -12.0, "max": 12.0, "default": 0.0, "unit": "dB"},
+      "250Hz": {"min": -12.0, "max": 12.0, "default": 0.0, "unit": "dB"},
+      "500Hz": {"min": -12.0, "max": 12.0, "default": 0.0, "unit": "dB"},
+      "1kHz": {"min": -12.0, "max": 12.0, "default": 0.0, "unit": "dB"},
+      "2kHz": {"min": -12.0, "max": 12.0, "default": 0.0, "unit": "dB"},
+      "4kHz": {"min": -12.0, "max": 12.0, "default": 0.0, "unit": "dB"},
+      "8kHz": {"min": -12.0, "max": 12.0, "default": 0.0, "unit": "dB"},
+      "16kHz": {"min": -12.0, "max": 12.0, "default": 0.0, "unit": "dB"}
+    }
+  },
+  {
+    "name": "Parametric EQ",
+    "category": "eq",
+    "real_world": "3-band Parametric Equalizer",
+    "description": "3-band parametric EQ with Q control",
+    "parameters": {
+      "low_freq": {"min": 20.0, "max": 1000.0, "default": 100.0, "unit": "Hz"},
+      "low_gain": {"min": -12.0, "max": 12.0, "default": 0.0, "unit": "dB"},
+      "low_q": {"min": 0.1, "max": 10.0, "default": 1.0, "unit": ""},
+      "mid_freq": {"min": 100.0, "max": 8000.0, "default": 1000.0, "unit": "Hz"},
+      "mid_gain": {"min": -12.0, "max": 12.0, "default": 0.0, "unit": "dB"},
+      "mid_q": {"min": 0.1, "max": 10.0, "default": 1.0, "unit": ""},
+      "high_freq": {"min": 1000.0, "max": 20000.0, "default": 8000.0, "unit": "Hz"},
+      "high_gain": {"min": -12.0, "max": 12.0, "default": 0.0, "unit": "dB"},
+      "high_q": {"min": 0.1, "max": 10.0, "default": 1.0, "unit": ""}
+    }
+  },
+  {
+    "name": "Digital Delay",
+    "category": "delay",
+    "real_world": "Digital Delay Line",
+    "description": "Clean digital delay with precise timing",
+    "parameters": {
+      "time": {"min": 0.0, "max": 2000.0, "default": 500.0, "unit": "ms"},
+      "feedback": {"min": 0.0, "max": 100.0, "default": 20.0, "unit": "%"},
+      "mix": {"min": 0.0, "max": 100.0, "default": 30.0, "unit": "%"},
+      "low_cut": {"min": 20.0, "max": 20000.0, "default": 100.0, "unit": "Hz"},
+      "high_cut": {"min": 20.0, "max": 20000.0, "default": 8000.0, "unit": "Hz"}
+    }
+  },
+  {
+    "name": "Analog Delay",
+    "category": "delay",
+    "real_world": "Bucket Brigade Delay",
+    "description": "Warm analog-style delay with modulation",
+    "parameters": {
+      "time": {"min": 0.0, "max": 2000.0, "default": 500.0, "unit": "ms"},
+      "feedback": {"min": 0.0, "max": 100.0, "default": 20.0, "unit": "%"},
+      "mix": {"min": 0.0, "max": 100.0, "default": 30.0, "unit": "%"},
+      "mod_depth": {"min": 0.0, "max": 10.0, "default": 2.0, "unit": ""},
+      "mod_rate": {"min": 0.1, "max": 10.0, "default": 1.0, "unit": "Hz"}
+    }
+  },
+  {
+    "name": "Digital Delay Pro",
+    "category": "delay",
+    "real_world": "FM9 Digital Delay with Advanced Features",
+    "description": "Professional digital delay with tempo sync and stereo modes",
+    "parameters": {
+      "time": {"min": 1.0, "max": 5000.0, "default": 500.0, "unit": "ms"},
+      "feedback": {"min": 0.0, "max": 100.0, "default": 20.0, "unit": "%"},
+      "mix": {"min": 0.0, "max": 100.0, "default": 30.0, "unit": "%"},
+      "input_gain": {"min": -20.0, "max": 20.0, "default": 0.0, "unit": "dB"},
+      "low_cut": {"min": 20, "max": 20000, "default": 100, "unit": "Hz"},
+      "high_cut": {"min": 20, "max": 20000, "default": 8000, "unit": "Hz"},
+      "tempo_sync": {"min": 0, "max": 1, "default": 0, "unit": ""},
+      "note_division": {"min": 0, "max": 7, "default": 2, "unit": ""},
+      "stereo_mode": {"min": 0, "max": 3, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "Analog Delay Pro",
+    "category": "delay",
+    "real_world": "FM9 Analog Delay with Advanced Features",
+    "description": "Professional analog delay with modulation and filters",
+    "parameters": {
+      "time": {"min": 1.0, "max": 5000.0, "default": 500.0, "unit": "ms"},
+      "feedback": {"min": 0.0, "max": 100.0, "default": 20.0, "unit": "%"},
+      "mix": {"min": 0.0, "max": 100.0, "default": 30.0, "unit": "%"},
+      "input_gain": {"min": -20.0, "max": 20.0, "default": 0.0, "unit": "dB"},
+      "low_cut": {"min": 20, "max": 20000, "default": 100, "unit": "Hz"},
+      "high_cut": {"min": 20, "max": 20000, "default": 8000, "unit": "Hz"},
+      "mod_depth": {"min": 0.0, "max": 10.0, "default": 2.0, "unit": ""},
+      "mod_rate": {"min": 0.1, "max": 10.0, "default": 1.0, "unit": "Hz"},
+      "tempo_sync": {"min": 0, "max": 1, "default": 0, "unit": ""},
+      "note_division": {"min": 0, "max": 7, "default": 2, "unit": ""},
+      "stereo_mode": {"min": 0, "max": 3, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "Tape Delay Pro",
+    "category": "delay",
+    "real_world": "FM9 Tape Delay with Advanced Features",
+    "description": "Professional tape delay with wow/flutter and filters",
+    "parameters": {
+      "time": {"min": 1.0, "max": 5000.0, "default": 500.0, "unit": "ms"},
+      "feedback": {"min": 0.0, "max": 100.0, "default": 20.0, "unit": "%"},
+      "mix": {"min": 0.0, "max": 100.0, "default": 30.0, "unit": "%"},
+      "input_gain": {"min": -20.0, "max": 20.0, "default": 0.0, "unit": "dB"},
+      "low_cut": {"min": 20, "max": 20000, "default": 100, "unit": "Hz"},
+      "high_cut": {"min": 20, "max": 20000, "default": 8000, "unit": "Hz"},
+      "wow": {"min": 0.0, "max": 10.0, "default": 2.0, "unit": ""},
+      "flutter": {"min": 0.0, "max": 10.0, "default": 1.0, "unit": ""},
+      "tempo_sync": {"min": 0, "max": 1, "default": 0, "unit": ""},
+      "note_division": {"min": 0, "max": 7, "default": 2, "unit": ""},
+      "stereo_mode": {"min": 0, "max": 3, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "Multitap Delay Pro",
+    "category": "delay",
+    "real_world": "FM9 Multitap Delay with Advanced Features",
+    "description": "Professional multitap delay with complex patterns",
+    "parameters": {
+      "tap1_time": {"min": 1.0, "max": 5000.0, "default": 100.0, "unit": "ms"},
+      "tap1_level": {"min": 0.0, "max": 100.0, "default": 100.0, "unit": "%"},
+      "tap2_time": {"min": 1.0, "max": 5000.0, "default": 200.0, "unit": "ms"},
+      "tap2_level": {"min": 0.0, "max": 100.0, "default": 80.0, "unit": "%"},
+      "tap3_time": {"min": 1.0, "max": 5000.0, "default": 300.0, "unit": "ms"},
+      "tap3_level": {"min": 0.0, "max": 100.0, "default": 60.0, "unit": "%"},
+      "feedback": {"min": 0.0, "max": 100.0, "default": 20.0, "unit": "%"},
+      "mix": {"min": 0.0, "max": 100.0, "default": 30.0, "unit": "%"},
+      "input_gain": {"min": -20.0, "max": 20.0, "default": 0.0, "unit": "dB"},
+      "low_cut": {"min": 20, "max": 20000, "default": 100, "unit": "Hz"},
+      "high_cut": {"min": 20, "max": 20000, "default": 8000, "unit": "Hz"},
+      "tempo_sync": {"min": 0, "max": 1, "default": 0, "unit": ""},
+      "note_division": {"min": 0, "max": 7, "default": 2, "unit": ""},
+      "stereo_mode": {"min": 0, "max": 3, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "Room Reverb",
+    "category": "reverb",
+    "real_world": "Small Room Acoustics",
+    "description": "Natural room reverb with realistic reflections",
+    "parameters": {
+      "room_size": {"min": 0.0, "max": 10.0, "default": 3.0, "unit": ""},
+      "decay": {"min": 0.0, "max": 10.0, "default": 2.0, "unit": ""},
+      "mix": {"min": 0.0, "max": 100.0, "default": 25.0, "unit": "%"},
+      "pre_delay": {"min": 0.0, "max": 100.0, "default": 10.0, "unit": "ms"},
+      "low_cut": {"min": 20.0, "max": 1000.0, "default": 100.0, "unit": "Hz"},
+      "high_cut": {"min": 1000.0, "max": 20000.0, "default": 8000.0, "unit": "Hz"}
+    }
+  },
+  {
+    "name": "Hall Reverb",
+    "category": "reverb",
+    "real_world": "Concert Hall Acoustics",
+    "description": "Large hall reverb with long decay",
+    "parameters": {
+      "hall_size": {"min": 0.0, "max": 10.0, "default": 7.0, "unit": ""},
+      "decay": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "mix": {"min": 0.0, "max": 100.0, "default": 30.0, "unit": "%"},
+      "pre_delay": {"min": 0.0, "max": 100.0, "default": 20.0, "unit": "ms"},
+      "diffusion": {"min": 0.0, "max": 10.0, "default": 7.0, "unit": ""}
+    }
+  },
+  {
+    "name": "Room Reverb Pro",
+    "category": "reverb",
+    "real_world": "FM9 Room Reverb with Advanced Features",
+    "description": "Professional room reverb with filters and advanced controls",
+    "parameters": {
+      "size": {"min": 0.0, "max": 10.0, "default": 3.0, "unit": ""},
+      "decay": {"min": 0.1, "max": 20.0, "default": 2.0, "unit": "s"},
+      "pre_delay": {"min": 0.0, "max": 500.0, "default": 10.0, "unit": "ms"},
+      "mix": {"min": 0.0, "max": 100.0, "default": 25.0, "unit": "%"},
+      "low_cut": {"min": 20, "max": 20000, "default": 100, "unit": "Hz"},
+      "high_cut": {"min": 20, "max": 20000, "default": 8000, "unit": "Hz"}
+    }
+  },
+  {
+    "name": "Hall Reverb Pro",
+    "category": "reverb",
+    "real_world": "FM9 Hall Reverb with Advanced Features",
+    "description": "Professional hall reverb with filters and advanced controls",
+    "parameters": {
+      "size": {"min": 0.0, "max": 10.0, "default": 7.0, "unit": ""},
+      "decay": {"min": 0.1, "max": 20.0, "default": 6.0, "unit": "s"},
+      "pre_delay": {"min": 0.0, "max": 500.0, "default": 20.0, "unit": "ms"},
+      "mix": {"min": 0.0, "max": 100.0, "default": 30.0, "unit": "%"},
+      "low_cut": {"min": 20, "max": 20000, "default": 100, "unit": "Hz"},
+      "high_cut": {"min": 20, "max": 20000, "default": 8000, "unit": "Hz"}
+    }
+  },
+  {
+    "name": "Plate Reverb Pro",
+    "category": "reverb",
+    "real_world": "FM9 Plate Reverb with Advanced Features",
+    "description": "Professional plate reverb with filters and advanced controls",
+    "parameters": {
+      "size": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "decay": {"min": 0.1, "max": 20.0, "default": 4.0, "unit": "s"},
+      "pre_delay": {"min": 0.0, "max": 500.0, "default": 5.0, "unit": "ms"},
+      "mix": {"min": 0.0, "max": 100.0, "default": 25.0, "unit": "%"},
+      "low_cut": {"min": 20, "max": 20000, "default": 100, "unit": "Hz"},
+      "high_cut": {"min": 20, "max": 20000, "default": 8000, "unit": "Hz"},
+      "damping": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""}
+    }
+  },
+  {
+    "name": "Spring Reverb Pro",
+    "category": "reverb",
+    "real_world": "FM9 Spring Reverb with Advanced Features",
+    "description": "Professional spring reverb with filters and advanced controls",
+    "parameters": {
+      "size": {"min": 0.0, "max": 10.0, "default": 3.0, "unit": ""},
+      "decay": {"min": 0.1, "max": 20.0, "default": 3.0, "unit": "s"},
+      "pre_delay": {"min": 0.0, "max": 500.0, "default": 0.0, "unit": "ms"},
+      "mix": {"min": 0.0, "max": 100.0, "default": 25.0, "unit": "%"},
+      "low_cut": {"min": 20, "max": 20000, "default": 100, "unit": "Hz"},
+      "high_cut": {"min": 20, "max": 20000, "default": 8000, "unit": "Hz"},
+      "spring_count": {"min": 1.0, "max": 10.0, "default": 3.0, "unit": ""},
+      "dwell": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "bounce": {"min": 0.0, "max": 10.0, "default": 3.0, "unit": ""}
+    }
+  },
+  {
+    "name": "Ambience Reverb",
+    "category": "reverb",
+    "real_world": "FM9 Ambience Reverb",
+    "description": "Subtle ambient reverb for natural space",
+    "parameters": {
+      "size": {"min": 0.0, "max": 10.0, "default": 2.0, "unit": ""},
+      "decay": {"min": 0.1, "max": 20.0, "default": 1.5, "unit": "s"},
+      "pre_delay": {"min": 0.0, "max": 500.0, "default": 5.0, "unit": "ms"},
+      "mix": {"min": 0.0, "max": 100.0, "default": 20.0, "unit": "%"},
+      "low_cut": {"min": 20, "max": 20000, "default": 200, "unit": "Hz"},
+      "high_cut": {"min": 20, "max": 20000, "default": 12000, "unit": "Hz"}
+    }
+  },
+  {
+    "name": "Special Reverb",
+    "category": "reverb",
+    "real_world": "FM9 Special Reverb",
+    "description": "Special reverb effects and experimental algorithms",
+    "parameters": {
+      "size": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "decay": {"min": 0.1, "max": 20.0, "default": 4.0, "unit": "s"},
+      "pre_delay": {"min": 0.0, "max": 500.0, "default": 15.0, "unit": "ms"},
+      "mix": {"min": 0.0, "max": 100.0, "default": 35.0, "unit": "%"},
+      "low_cut": {"min": 20, "max": 20000, "default": 100, "unit": "Hz"},
+      "high_cut": {"min": 20, "max": 20000, "default": 8000, "unit": "Hz"},
+      "algorithm": {"min": 0, "max": 5, "default": 0, "unit": ""}
+    }
   },
   {
     "name": "Chorus",
-    "category": "Modulation",
-    "description": "Creates doubling and detuning effects, mimicking multiple guitar signals played simultaneously.",
-    "required": false,
-    "key_parameters": ["Rate", "Depth", "Mix", "Voices"]
+    "category": "modulation",
+    "real_world": "Boss CE-1 Chorus Ensemble",
+    "description": "Classic chorus with lush modulation",
+    "parameters": {
+      "rate": {"min": 0.1, "max": 10.0, "default": 1.5, "unit": "Hz"},
+      "depth": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "mix": {"min": 0.0, "max": 100.0, "default": 50.0, "unit": "%"},
+      "voices": {"min": 1.0, "max": 8.0, "default": 2.0, "unit": ""},
+      "stereo_width": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""}
+    }
   },
   {
     "name": "Flanger",
-    "category": "Modulation",
-    "description": "Creates jet-like sweeping modulation by mixing a delayed signal.",
-    "required": false,
-    "key_parameters": ["Rate", "Depth", "Feedback", "Mix"]
-  },
-  {
-    "name": "Plex Delay",
-    "category": "Delay",
-    "description": "Complex layered delay with pitch shifting and diffusion.",
-    "required": false,
-    "key_parameters": ["Pitch", "Time", "Mix"]
-  },
-  {
-    "name": "Shimmer Reverb",
-    "category": "Reverb",
-    "description": "Reverb with pitch-shifted trails to create an ethereal sound.",
-    "required": false,
-    "key_parameters": ["Pitch Shift", "Mix", "Decay"]
-  },
-  {
-    "name": "Tape Delay",
-    "category": "Delay",
-    "description": "Warm analog-style delay with modulation and saturation.",
-    "required": false,
-    "key_parameters": ["Time", "Feedback", "Wow/Flutter", "Mix"]
-  },
-  {
-    "name": "Rotary",
-    "category": "Modulation",
-    "description": "Emulates rotating speaker cabinets like Leslie speakers.",
-    "required": false,
-    "key_parameters": ["Speed", "Acceleration", "Mix"]
+    "category": "modulation",
+    "real_world": "MXR M-117 Flanger",
+    "description": "Jet-like flanging effect with feedback",
+    "parameters": {
+      "rate": {"min": 0.1, "max": 10.0, "default": 1.0, "unit": "Hz"},
+      "depth": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "mix": {"min": 0.0, "max": 100.0, "default": 50.0, "unit": "%"},
+      "feedback": {"min": 0.0, "max": 100.0, "default": 30.0, "unit": "%"},
+      "manual": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""}
+    }
   },
   {
     "name": "Phaser",
-    "category": "Modulation",
-    "description": "Swirls the signal through sweeping phase-shift filters.",
-    "required": false,
-    "key_parameters": ["Rate", "Stages", "Feedback", "Mix"]
+    "category": "modulation",
+    "real_world": "MXR Phase 90",
+    "description": "Sweeping phase shift effect",
+    "parameters": {
+      "rate": {"min": 0.1, "max": 10.0, "default": 1.0, "unit": "Hz"},
+      "depth": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "mix": {"min": 0.0, "max": 100.0, "default": 50.0, "unit": "%"},
+      "stages": {"min": 2.0, "max": 12.0, "default": 4.0, "unit": ""},
+      "manual": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""}
+    }
   },
   {
-    "name": "Auto Filter",
-    "category": "Modulation",
-    "description": "Applies dynamic filtering based on playing intensity or LFO.",
-    "required": false,
-    "key_parameters": ["LFO Rate", "Filter Type", "Envelope Sensitivity"]
+    "name": "Tremolo",
+    "category": "modulation",
+    "real_world": "Fender Vibrolux",
+    "description": "Amplitude modulation for vintage vibe",
+    "parameters": {
+      "rate": {"min": 0.1, "max": 10.0, "default": 5.0, "unit": "Hz"},
+      "depth": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "mix": {"min": 0.0, "max": 100.0, "default": 50.0, "unit": "%"},
+      "shape": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "sync": {"min": 0.0, "max": 1.0, "default": 0.0, "unit": ""}
+    }
   },
   {
-    "name": "Synth",
-    "category": "Synth",
-    "description": "Generates synth-like tones from your guitar signal.",
-    "required": false,
-    "key_parameters": ["Waveform", "Attack", "Filter"]
+    "name": "Compressor",
+    "category": "dynamics",
+    "real_world": "MXR Dyna Comp",
+    "description": "Dynamic range compression",
+    "parameters": {
+      "threshold": {"min": -60.0, "max": 0.0, "default": -20.0, "unit": "dB"},
+      "ratio": {"min": 1.0, "max": 20.0, "default": 4.0, "unit": ":1"},
+      "attack": {"min": 0.0, "max": 100.0, "default": 10.0, "unit": "ms"},
+      "release": {"min": 0.0, "max": 1000.0, "default": 100.0, "unit": "ms"},
+      "output_gain": {"min": 0.0, "max": 20.0, "default": 5.0, "unit": "dB"}
+    }
   },
   {
-    "name": "Distortion",
-    "category": "Gain",
-    "description": "Simulates high-gain distortion effects for aggressive tones.",
-    "required": false,
-    "key_parameters": ["Drive", "Tone", "Level"]
+    "name": "Gate",
+    "category": "dynamics",
+    "real_world": "MXR Noise Gate",
+    "description": "Noise reduction gate",
+    "parameters": {
+      "threshold": {"min": -60.0, "max": 0.0, "default": -40.0, "unit": "dB"},
+      "ratio": {"min": 1.0, "max": 20.0, "default": 10.0, "unit": ":1"},
+      "attack": {"min": 0.0, "max": 100.0, "default": 1.0, "unit": "ms"},
+      "release": {"min": 0.0, "max": 1000.0, "default": 100.0, "unit": "ms"},
+      "hysteresis": {"min": 0.0, "max": 20.0, "default": 5.0, "unit": "dB"}
+    }
+  },
+  {
+    "name": "Pitch Shifter",
+    "category": "pitch",
+    "real_world": "DigiTech Whammy",
+    "description": "Real-time pitch shifting",
+    "parameters": {
+      "pitch": {"min": -24.0, "max": 24.0, "default": 0.0, "unit": "semitones"},
+      "mix": {"min": 0.0, "max": 100.0, "default": 50.0, "unit": "%"},
+      "tracking": {"min": 0.0, "max": 10.0, "default": 8.0, "unit": ""},
+      "formant": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""}
+    }
   },
   {
     "name": "Harmonizer",
-    "category": "Pitch",
-    "description": "Adds intelligent harmonies based on key and scale.",
-    "required": false,
-    "key_parameters": ["Interval", "Key", "Mix"]
+    "category": "pitch",
+    "real_world": "Eventide H3000",
+    "description": "Intelligent harmony generation",
+    "parameters": {
+      "key": {"min": 0.0, "max": 11.0, "default": 0.0, "unit": "semitones"},
+      "scale": {"min": 0.0, "max": 7.0, "default": 0.0, "unit": ""},
+      "harmony1": {"min": -24.0, "max": 24.0, "default": 3.0, "unit": "semitones"},
+      "harmony2": {"min": -24.0, "max": 24.0, "default": 5.0, "unit": "semitones"},
+      "mix": {"min": 0.0, "max": 100.0, "default": 50.0, "unit": "%"}
+    }
   },
   {
-    "name": "Scenes / Controllers",
-    "category": "Utility",
-    "description": "Handles dynamic switching between different tone scenes or effect settings.",
-    "required": false,
-    "key_parameters": ["Controller Assign", "Scene Levels"]
+    "name": "Pitch Shifter",
+    "category": "pitch",
+    "real_world": "DigiTech Whammy",
+    "description": "Real-time pitch shifting with professional parameters",
+    "parameters": {
+      "shift": {"min": -24.0, "max": 24.0, "default": 0.0, "unit": "semitones"},
+      "detune": {"min": -100.0, "max": 100.0, "default": 0.0, "unit": "cents"},
+      "mix": {"min": 0.0, "max": 100.0, "default": 50.0, "unit": "%"},
+      "level": {"min": -80.0, "max": 20.0, "default": 0.0, "unit": "dB"},
+      "balance": {"min": -100.0, "max": 100.0, "default": 0.0, "unit": "%"},
+      "bypass": {"min": 0, "max": 1, "default": 0, "unit": ""},
+      "bypass_mode": {"min": 0, "max": 3, "default": 0, "unit": ""},
+      "input_gain": {"min": -20.0, "max": 20.0, "default": 0.0, "unit": "dB"},
+      "low_cut": {"min": 20, "max": 20000, "default": 20, "unit": "Hz"},
+      "high_cut": {"min": 20, "max": 20000, "default": 20000, "unit": "Hz"}
+    }
+  },
+  {
+    "name": "Virtual Capo",
+    "category": "pitch",
+    "real_world": "DigiTech Whammy Capo Mode",
+    "description": "Real-time pitch shifting for capo simulation",
+    "parameters": {
+      "shift": {"min": -24.0, "max": 24.0, "default": 0.0, "unit": "semitones"},
+      "detune": {"min": -100.0, "max": 100.0, "default": 0.0, "unit": "cents"},
+      "mix": {"min": 0.0, "max": 100.0, "default": 100.0, "unit": "%"},
+      "level": {"min": -80.0, "max": 20.0, "default": 0.0, "unit": "dB"},
+      "balance": {"min": -100.0, "max": 100.0, "default": 0.0, "unit": "%"},
+      "bypass": {"min": 0, "max": 1, "default": 0, "unit": ""},
+      "bypass_mode": {"min": 0, "max": 3, "default": 0, "unit": ""},
+      "input_gain": {"min": -20.0, "max": 20.0, "default": 0.0, "unit": "dB"},
+      "low_cut": {"min": 20, "max": 20000, "default": 20, "unit": "Hz"},
+      "high_cut": {"min": 20, "max": 20000, "default": 20000, "unit": "Hz"}
+    }
+  },
+  {
+    "name": "Harmonizer Pro",
+    "category": "pitch",
+    "real_world": "Eventide H3000 Professional",
+    "description": "Advanced harmony generation with custom scales",
+    "parameters": {
+      "key": {"min": 0.0, "max": 11.0, "default": 0.0, "unit": "semitones"},
+      "scale": {"min": 0.0, "max": 31.0, "default": 0.0, "unit": ""},
+      "harmony1": {"min": -24.0, "max": 24.0, "default": 3.0, "unit": "semitones"},
+      "harmony2": {"min": -24.0, "max": 24.0, "default": 5.0, "unit": "semitones"},
+      "mix": {"min": 0.0, "max": 100.0, "default": 50.0, "unit": "%"},
+      "level": {"min": -80.0, "max": 20.0, "default": 0.0, "unit": "dB"},
+      "balance": {"min": -100.0, "max": 100.0, "default": 0.0, "unit": "%"},
+      "bypass": {"min": 0, "max": 1, "default": 0, "unit": ""},
+      "bypass_mode": {"min": 0, "max": 3, "default": 0, "unit": ""},
+      "input_gain": {"min": -20.0, "max": 20.0, "default": 0.0, "unit": "dB"},
+      "low_cut": {"min": 20, "max": 20000, "default": 20, "unit": "Hz"},
+      "high_cut": {"min": 20, "max": 20000, "default": 20000, "unit": "Hz"}
+    }
+  },
+  {
+    "name": "Looper",
+    "category": "utility",
+    "real_world": "Boss RC-1 Loop Station",
+    "description": "Audio recording and playback",
+    "parameters": {
+      "record_level": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "playback_level": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "overdub_level": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "reverse": {"min": 0.0, "max": 1.0, "default": 0.0, "unit": ""},
+      "half_speed": {"min": 0.0, "max": 1.0, "default": 0.0, "unit": ""}
+    }
+  },
+  {
+    "name": "Tuner",
+    "category": "utility",
+    "real_world": "Boss TU-3 Tuner",
+    "description": "Precise pitch detection and tuning",
+    "parameters": {
+      "reference": {"min": 430.0, "max": 450.0, "default": 440.0, "unit": "Hz"},
+      "calibration": {"min": -50.0, "max": 50.0, "default": 0.0, "unit": "cents"},
+      "display_mode": {"min": 0.0, "max": 3.0, "default": 0.0, "unit": ""}
+    }
+  },
+  {
+    "name": "Shimmer",
+    "category": "plex",
+    "real_world": "Eventide H3000 Shimmer",
+    "description": "Reverb with pitch-shifted trails for ethereal sound",
+    "parameters": {
+      "pitch_shift": {"min": -24.0, "max": 24.0, "default": 12.0, "unit": "semitones"},
+      "mix": {"min": 0.0, "max": 100.0, "default": 50.0, "unit": "%"},
+      "decay": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "pre_delay": {"min": 0.0, "max": 100.0, "default": 20.0, "unit": "ms"}
+    }
+  },
+  {
+    "name": "Rotary",
+    "category": "modulation",
+    "real_world": "Leslie Speaker",
+    "description": "Rotating speaker simulation",
+    "parameters": {
+      "speed": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "acceleration": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "mix": {"min": 0.0, "max": 100.0, "default": 50.0, "unit": "%"},
+      "horn_rate": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "bass_rate": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""}
+    }
+  },
+  {
+    "name": "Synth",
+    "category": "synth",
+    "real_world": "Synth Tone Generator",
+    "description": "Synthesizer-like tones from guitar signal",
+    "parameters": {
+      "waveform": {"min": 0.0, "max": 4.0, "default": 0.0, "unit": ""},
+      "attack": {"min": 0.0, "max": 1000.0, "default": 10.0, "unit": "ms"},
+      "decay": {"min": 0.0, "max": 1000.0, "default": 100.0, "unit": "ms"},
+      "sustain": {"min": 0.0, "max": 100.0, "default": 50.0, "unit": "%"},
+      "release": {"min": 0.0, "max": 1000.0, "default": 100.0, "unit": "ms"}
+    }
+  },
+  {
+    "name": "Altec 4x12",
+    "category": "cab",
+    "real_world": "Altec Lansing 4x12 Cabinet",
+    "description": "Classic Altec Lansing speakers with warm, vintage character",
+    "parameters": {
+      "lowcut": {"min": 20, "max": 1000, "default": 80, "unit": "Hz"},
+      "highcut": {"min": 2000, "max": 20000, "default": 8000, "unit": "Hz"},
+      "resonance": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "air": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""}
+    }
+  },
+  {
+    "name": "Bass Cabinets",
+    "category": "cab",
+    "real_world": "Bass Cabinet Collection",
+    "description": "Collection of bass-focused cabinet models",
+    "parameters": {
+      "lowcut": {"min": 20, "max": 1000, "default": 60, "unit": "Hz"},
+      "highcut": {"min": 2000, "max": 20000, "default": 6000, "unit": "Hz"},
+      "resonance": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "air": {"min": 0.0, "max": 10.0, "default": 4.0, "unit": ""}
+    }
+  },
+  {
+    "name": "Marshall 4x12",
+    "category": "cab",
+    "real_world": "Marshall 4x12 Cabinet",
+    "description": "Classic Marshall cabinet with Celestion speakers",
+    "parameters": {
+      "lowcut": {"min": 20, "max": 1000, "default": 80, "unit": "Hz"},
+      "highcut": {"min": 2000, "max": 20000, "default": 8000, "unit": "Hz"},
+      "resonance": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "air": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""}
+    }
+  },
+  {
+    "name": "Mesa Boogie",
+    "category": "cab",
+    "real_world": "Mesa Boogie Cabinet",
+    "description": "Mesa Boogie cabinet with tight, focused low end",
+    "parameters": {
+      "lowcut": {"min": 20, "max": 1000, "default": 60, "unit": "Hz"},
+      "highcut": {"min": 2000, "max": 20000, "default": 7000, "unit": "Hz"},
+      "resonance": {"min": 0.0, "max": 10.0, "default": 7.0, "unit": ""},
+      "air": {"min": 0.0, "max": 10.0, "default": 4.0, "unit": ""}
+    }
+  },
+  {
+    "name": "Fender 4x10",
+    "category": "cab",
+    "real_world": "Fender 4x10 Cabinet",
+    "description": "Fender cabinet with bright, clean character",
+    "parameters": {
+      "lowcut": {"min": 20, "max": 1000, "default": 100, "unit": "Hz"},
+      "highcut": {"min": 2000, "max": 20000, "default": 9000, "unit": "Hz"},
+      "resonance": {"min": 0.0, "max": 10.0, "default": 4.0, "unit": ""},
+      "air": {"min": 0.0, "max": 10.0, "default": 7.0, "unit": ""}
+    }
+  },
+  {
+    "name": "Vox 2x12",
+    "category": "cab",
+    "real_world": "Vox 2x12 Cabinet",
+    "description": "Vox cabinet with chime and sparkle",
+    "parameters": {
+      "lowcut": {"min": 20, "max": 1000, "default": 90, "unit": "Hz"},
+      "highcut": {"min": 2000, "max": 20000, "default": 8500, "unit": "Hz"},
+      "resonance": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "air": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""}
+    }
+  },
+  {
+    "name": "DynaCab 4x12 V30",
+    "category": "cab",
+    "real_world": "Fractal DynaCab 4x12 with Celestion V30",
+    "description": "Advanced DynaCab with mic positioning and room simulation",
+    "parameters": {
+      "lowcut": {"min": 20, "max": 1000, "default": 80, "unit": "Hz"},
+      "highcut": {"min": 2000, "max": 20000, "default": 8000, "unit": "Hz"},
+      "resonance": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "air": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "mic_type": {"min": 0, "max": 3, "default": 0, "unit": ""},
+      "mic_distance": {"min": 0.0, "max": 10.0, "default": 2.0, "unit": "cm"},
+      "room_sim": {"min": 0.0, "max": 10.0, "default": 3.0, "unit": ""}
+    }
+  },
+  {
+    "name": "DynaCab 2x12 Greenback",
+    "category": "cab",
+    "real_world": "Fractal DynaCab 2x12 with Celestion Greenback",
+    "description": "DynaCab with British character and mic positioning",
+    "parameters": {
+      "lowcut": {"min": 20, "max": 1000, "default": 90, "unit": "Hz"},
+      "highcut": {"min": 2000, "max": 20000, "default": 7500, "unit": "Hz"},
+      "resonance": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "air": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "mic_type": {"min": 0, "max": 3, "default": 1, "unit": ""},
+      "mic_distance": {"min": 0.0, "max": 10.0, "default": 1.5, "unit": "cm"},
+      "room_sim": {"min": 0.0, "max": 10.0, "default": 2.0, "unit": ""}
+    }
+  },
+  {
+    "name": "DynaCab 4x12 V30",
+    "category": "cab",
+    "real_world": "Fractal DynaCab 4x12 with Celestion V30",
+    "description": "Advanced DynaCab with mic positioning and room simulation",
+    "parameters": {
+      "lowcut": {"min": 20, "max": 1000, "default": 80, "unit": "Hz"},
+      "highcut": {"min": 2000, "max": 20000, "default": 8000, "unit": "Hz"},
+      "resonance": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "air": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "cab_type": {"min": 0, "max": 5, "default": 0, "unit": ""},
+      "mic_type": {"min": 0, "max": 8, "default": 0, "unit": ""},
+      "mic_position": {"min": 0, "max": 1, "default": 0, "unit": ""},
+      "mic_distance": {"min": 0.0, "max": 20.0, "default": 2.0, "unit": "cm"},
+      "level": {"min": -60.0, "max": 20.0, "default": 0.0, "unit": "dB"},
+      "mute": {"min": 0, "max": 1, "default": 0, "unit": ""},
+      "solo": {"min": 0, "max": 1, "default": 0, "unit": ""},
+      "pan": {"min": -100.0, "max": 100.0, "default": 0.0, "unit": "%"}
+    }
+  },
+  {
+    "name": "DynaCab 2x12 Greenback",
+    "category": "cab",
+    "real_world": "Fractal DynaCab 2x12 with Celestion Greenback",
+    "description": "DynaCab with British character and mic positioning",
+    "parameters": {
+      "lowcut": {"min": 20, "max": 1000, "default": 90, "unit": "Hz"},
+      "highcut": {"min": 2000, "max": 20000, "default": 7500, "unit": "Hz"},
+      "resonance": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "air": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "cab_type": {"min": 0, "max": 5, "default": 1, "unit": ""},
+      "mic_type": {"min": 0, "max": 8, "default": 1, "unit": ""},
+      "mic_position": {"min": 0, "max": 1, "default": 0, "unit": ""},
+      "mic_distance": {"min": 0.0, "max": 20.0, "default": 1.5, "unit": "cm"},
+      "level": {"min": -60.0, "max": 20.0, "default": 0.0, "unit": "dB"},
+      "mute": {"min": 0, "max": 1, "default": 0, "unit": ""},
+      "solo": {"min": 0, "max": 1, "default": 0, "unit": ""},
+      "pan": {"min": -100.0, "max": 100.0, "default": 0.0, "unit": "%"}
+    }
+  },
+  {
+    "name": "Legacy 4x12 V30",
+    "category": "cab",
+    "real_world": "Legacy IR 4x12 with Celestion V30",
+    "description": "Legacy IR mode with traditional mic positioning",
+    "parameters": {
+      "lowcut": {"min": 20, "max": 1000, "default": 80, "unit": "Hz"},
+      "highcut": {"min": 2000, "max": 20000, "default": 8000, "unit": "Hz"},
+      "resonance": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "air": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "mic_distance": {"min": 0.0, "max": 50.0, "default": 5.0, "unit": "mm"},
+      "proximity": {"min": 0.0, "max": 100.0, "default": 50.0, "unit": "%"},
+      "level": {"min": -60.0, "max": 20.0, "default": 0.0, "unit": "dB"},
+      "mute": {"min": 0, "max": 1, "default": 0, "unit": ""},
+      "solo": {"min": 0, "max": 1, "default": 0, "unit": ""},
+      "pan": {"min": -100.0, "max": 100.0, "default": 0.0, "unit": "%"}
+    }
+  },
+  {
+    "name": "Legacy 2x12 Greenback",
+    "category": "cab",
+    "real_world": "Legacy IR 2x12 with Celestion Greenback",
+    "description": "Legacy IR mode with British character",
+    "parameters": {
+      "lowcut": {"min": 20, "max": 1000, "default": 90, "unit": "Hz"},
+      "highcut": {"min": 2000, "max": 20000, "default": 7500, "unit": "Hz"},
+      "resonance": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "air": {"min": 0.0, "max": 10.0, "default": 6.0, "unit": ""},
+      "mic_distance": {"min": 0.0, "max": 50.0, "default": 3.0, "unit": "mm"},
+      "proximity": {"min": 0.0, "max": 100.0, "default": 60.0, "unit": "%"},
+      "level": {"min": -60.0, "max": 20.0, "default": 0.0, "unit": "dB"},
+      "mute": {"min": 0, "max": 1, "default": 0, "unit": ""},
+      "solo": {"min": 0, "max": 1, "default": 0, "unit": ""},
+      "pan": {"min": -100.0, "max": 100.0, "default": 0.0, "unit": "%"}
+    }
+  },
+  {
+    "name": "Multiband Compressor",
+    "category": "dynamics",
+    "real_world": "Waves C4 Multiband Compressor",
+    "description": "Advanced multiband compression with 4 bands",
+    "parameters": {
+      "low_threshold": {"min": -60.0, "max": 0.0, "default": -20.0, "unit": "dB"},
+      "low_ratio": {"min": 1.0, "max": 20.0, "default": 4.0, "unit": ":1"},
+      "mid_threshold": {"min": -60.0, "max": 0.0, "default": -25.0, "unit": "dB"},
+      "mid_ratio": {"min": 1.0, "max": 20.0, "default": 3.0, "unit": ":1"},
+      "high_threshold": {"min": -60.0, "max": 0.0, "default": -30.0, "unit": "dB"},
+      "high_ratio": {"min": 1.0, "max": 20.0, "default": 2.0, "unit": ":1"},
+      "output_gain": {"min": 0.0, "max": 20.0, "default": 5.0, "unit": "dB"}
+    }
+  },
+  {
+    "name": "Filter",
+    "category": "eq",
+    "real_world": "Moog Filter",
+    "description": "Resonant filter with cutoff and resonance",
+    "parameters": {
+      "cutoff": {"min": 20.0, "max": 20000.0, "default": 1000.0, "unit": "Hz"},
+      "resonance": {"min": 0.0, "max": 10.0, "default": 2.0, "unit": ""},
+      "filter_type": {"min": 0, "max": 3, "default": 0, "unit": ""},
+      "mix": {"min": 0.0, "max": 100.0, "default": 50.0, "unit": "%"}
+    }
+  },
+  {
+    "name": "Detune",
+    "category": "pitch",
+    "real_world": "Eventide H3000 Detune",
+    "description": "Subtle pitch detuning for chorus-like effect",
+    "parameters": {
+      "detune": {"min": -50.0, "max": 50.0, "default": 0.0, "unit": "cents"},
+      "mix": {"min": 0.0, "max": 100.0, "default": 30.0, "unit": "%"},
+      "voices": {"min": 2.0, "max": 8.0, "default": 4.0, "unit": ""}
+    }
+  },
+  {
+    "name": "Mixer",
+    "category": "utility",
+    "real_world": "Mackie Mixer",
+    "description": "4-channel mixer for signal routing",
+    "parameters": {
+      "ch1_level": {"min": -60.0, "max": 20.0, "default": 0.0, "unit": "dB"},
+      "ch2_level": {"min": -60.0, "max": 20.0, "default": 0.0, "unit": "dB"},
+      "ch3_level": {"min": -60.0, "max": 20.0, "default": 0.0, "unit": "dB"},
+      "ch4_level": {"min": -60.0, "max": 20.0, "default": 0.0, "unit": "dB"},
+      "master_level": {"min": -60.0, "max": 20.0, "default": 0.0, "unit": "dB"}
+    }
+  },
+  {
+    "name": "Send/Return",
+    "category": "utility",
+    "real_world": "Effects Loop",
+    "description": "Effects loop send and return",
+    "parameters": {
+      "send_level": {"min": -60.0, "max": 20.0, "default": 0.0, "unit": "dB"},
+      "return_level": {"min": -60.0, "max": 20.0, "default": 0.0, "unit": "dB"},
+      "pre_post": {"min": 0, "max": 1, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "Shunt",
+    "category": "utility",
+    "real_world": "Direct Connection",
+    "description": "Direct signal connection without processing",
+    "parameters": {
+      "level": {"min": -60.0, "max": 20.0, "default": 0.0, "unit": "dB"}
+    }
+  },
+  {
+    "name": "Volume/Pan",
+    "category": "utility",
+    "real_world": "Volume and Pan Control",
+    "description": "Volume and stereo panning control",
+    "parameters": {
+      "volume": {"min": -60.0, "max": 20.0, "default": 0.0, "unit": "dB"},
+      "pan": {"min": -100.0, "max": 100.0, "default": 0.0, "unit": "%"}
+    }
+  },
+  {
+    "name": "LFO1",
+    "category": "controller",
+    "real_world": "Low Frequency Oscillator 1",
+    "description": "Internal LFO for modulation",
+    "parameters": {
+      "rate": {"min": 0.001, "max": 20.0, "default": 1.0, "unit": "Hz"},
+      "shape": {"min": 0, "max": 4, "default": 0, "unit": ""},
+      "amplitude": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "phase": {"min": 0.0, "max": 360.0, "default": 0.0, "unit": "degrees"}
+    }
+  },
+  {
+    "name": "LFO2",
+    "category": "controller",
+    "real_world": "Low Frequency Oscillator 2",
+    "description": "Second internal LFO for modulation",
+    "parameters": {
+      "rate": {"min": 0.001, "max": 20.0, "default": 2.0, "unit": "Hz"},
+      "shape": {"min": 0, "max": 4, "default": 1, "unit": ""},
+      "amplitude": {"min": 0.0, "max": 10.0, "default": 3.0, "unit": ""},
+      "phase": {"min": 0.0, "max": 360.0, "default": 90.0, "unit": "degrees"}
+    }
+  },
+  {
+    "name": "ADSR1",
+    "category": "controller",
+    "real_world": "Attack Decay Sustain Release 1",
+    "description": "Envelope generator for dynamic control",
+    "parameters": {
+      "attack": {"min": 0.0, "max": 1000.0, "default": 10.0, "unit": "ms"},
+      "decay": {"min": 0.0, "max": 1000.0, "default": 100.0, "unit": "ms"},
+      "sustain": {"min": 0.0, "max": 100.0, "default": 70.0, "unit": "%"},
+      "release": {"min": 0.0, "max": 1000.0, "default": 200.0, "unit": "ms"}
+    }
+  },
+  {
+    "name": "ADSR2",
+    "category": "controller",
+    "real_world": "Attack Decay Sustain Release 2",
+    "description": "Second envelope generator",
+    "parameters": {
+      "attack": {"min": 0.0, "max": 1000.0, "default": 50.0, "unit": "ms"},
+      "decay": {"min": 0.0, "max": 1000.0, "default": 150.0, "unit": "ms"},
+      "sustain": {"min": 0.0, "max": 100.0, "default": 60.0, "unit": "%"},
+      "release": {"min": 0.0, "max": 1000.0, "default": 300.0, "unit": "ms"}
+    }
+  },
+  {
+    "name": "EnvFollower",
+    "category": "controller",
+    "real_world": "Envelope Follower",
+    "description": "Follows input signal amplitude",
+    "parameters": {
+      "attack": {"min": 0.0, "max": 1000.0, "default": 10.0, "unit": "ms"},
+      "release": {"min": 0.0, "max": 1000.0, "default": 100.0, "unit": "ms"},
+      "sensitivity": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""}
+    }
+  },
+  {
+    "name": "PitchFollower",
+    "category": "controller",
+    "real_world": "Pitch Follower",
+    "description": "Follows input signal pitch",
+    "parameters": {
+      "tracking": {"min": 0.0, "max": 10.0, "default": 8.0, "unit": ""},
+      "sensitivity": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""}
+    }
+  },
+  {
+    "name": "Sequencer",
+    "category": "controller",
+    "real_world": "16-Step Sequencer",
+    "description": "16-step modulation sequencer",
+    "parameters": {
+      "rate": {"min": 0.1, "max": 10.0, "default": 2.0, "unit": "Hz"},
+      "steps": {"min": 1, "max": 16, "default": 16, "unit": ""},
+      "amplitude": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""}
+    }
+  },
+  {
+    "name": "SceneController",
+    "category": "controller",
+    "real_world": "Scene Controller",
+    "description": "Controls multiple parameters per scene",
+    "parameters": {
+      "value": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "curve": {"min": 0, "max": 3, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "ControlSwitch",
+    "category": "controller",
+    "real_world": "Control Switch",
+    "description": "On/off control switch",
+    "parameters": {
+      "value": {"min": 0, "max": 1, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "Whammy",
+    "category": "pitch_synth",
+    "real_world": "DigiTech Whammy",
+    "description": "Real-time pitch shifting with expression control",
+    "parameters": {
+      "pitch": {"min": -24.0, "max": 24.0, "default": 0.0, "unit": "semitones"},
+      "mix": {"min": 0.0, "max": 100.0, "default": 50.0, "unit": "%"},
+      "tracking": {"min": 0.0, "max": 10.0, "default": 8.0, "unit": ""},
+      "formant": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""}
+    }
+  },
+  {
+    "name": "Harmony",
+    "category": "pitch_synth",
+    "real_world": "Eventide H3000 Harmony",
+    "description": "Intelligent harmony generation with scale awareness",
+    "parameters": {
+      "key": {"min": 0.0, "max": 11.0, "default": 0.0, "unit": "semitones"},
+      "scale": {"min": 0.0, "max": 7.0, "default": 0.0, "unit": ""},
+      "harmony1": {"min": -24.0, "max": 24.0, "default": 3.0, "unit": "semitones"},
+      "harmony2": {"min": -24.0, "max": 24.0, "default": 5.0, "unit": "semitones"},
+      "mix": {"min": 0.0, "max": 100.0, "default": 50.0, "unit": "%"}
+    }
+  },
+  {
+    "name": "Synth Lead",
+    "category": "pitch_synth",
+    "real_world": "Moog Synth Lead",
+    "description": "Synthesizer lead tones from guitar signal",
+    "parameters": {
+      "waveform": {"min": 0.0, "max": 4.0, "default": 0.0, "unit": ""},
+      "attack": {"min": 0.0, "max": 1000.0, "default": 10.0, "unit": "ms"},
+      "decay": {"min": 0.0, "max": 1000.0, "default": 100.0, "unit": "ms"},
+      "sustain": {"min": 0.0, "max": 100.0, "default": 50.0, "unit": "%"},
+      "release": {"min": 0.0, "max": 1000.0, "default": 100.0, "unit": "ms"},
+      "filter_cutoff": {"min": 20.0, "max": 20000.0, "default": 1000.0, "unit": "Hz"}
+    }
+  },
+  {
+    "name": "Synth Bass",
+    "category": "pitch_synth",
+    "real_world": "Moog Synth Bass",
+    "description": "Synthesizer bass tones from guitar signal",
+    "parameters": {
+      "waveform": {"min": 0.0, "max": 4.0, "default": 1.0, "unit": ""},
+      "attack": {"min": 0.0, "max": 1000.0, "default": 5.0, "unit": "ms"},
+      "decay": {"min": 0.0, "max": 1000.0, "default": 200.0, "unit": "ms"},
+      "sustain": {"min": 0.0, "max": 100.0, "default": 70.0, "unit": "%"},
+      "release": {"min": 0.0, "max": 1000.0, "default": 300.0, "unit": "ms"},
+      "filter_cutoff": {"min": 20.0, "max": 20000.0, "default": 500.0, "unit": "Hz"}
+    }
+  },
+  {
+    "name": "Manual1",
+    "category": "controller",
+    "real_world": "Manual Controller 1",
+    "description": "Manual controller for parameter adjustment",
+    "parameters": {
+      "value": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "curve": {"min": 0, "max": 3, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "Manual2",
+    "category": "controller",
+    "real_world": "Manual Controller 2",
+    "description": "Manual controller for parameter adjustment",
+    "parameters": {
+      "value": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "curve": {"min": 0, "max": 3, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "Manual3",
+    "category": "controller",
+    "real_world": "Manual Controller 3",
+    "description": "Manual controller for parameter adjustment",
+    "parameters": {
+      "value": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "curve": {"min": 0, "max": 3, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "Manual4",
+    "category": "controller",
+    "real_world": "Manual Controller 4",
+    "description": "Manual controller for parameter adjustment",
+    "parameters": {
+      "value": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "curve": {"min": 0, "max": 3, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "Manual5",
+    "category": "controller",
+    "real_world": "Manual Controller 5",
+    "description": "Manual controller for parameter adjustment",
+    "parameters": {
+      "value": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "curve": {"min": 0, "max": 3, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "SceneController1",
+    "category": "controller",
+    "real_world": "Scene Controller 1",
+    "description": "Controls multiple parameters per scene",
+    "parameters": {
+      "value": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "curve": {"min": 0, "max": 3, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "SceneController2",
+    "category": "controller",
+    "real_world": "Scene Controller 2",
+    "description": "Controls multiple parameters per scene",
+    "parameters": {
+      "value": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "curve": {"min": 0, "max": 3, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "SceneController3",
+    "category": "controller",
+    "real_world": "Scene Controller 3",
+    "description": "Controls multiple parameters per scene",
+    "parameters": {
+      "value": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "curve": {"min": 0, "max": 3, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "SceneController4",
+    "category": "controller",
+    "real_world": "Scene Controller 4",
+    "description": "Controls multiple parameters per scene",
+    "parameters": {
+      "value": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "curve": {"min": 0, "max": 3, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "ControlSwitch1",
+    "category": "controller",
+    "real_world": "Control Switch 1",
+    "description": "On/off control switch",
+    "parameters": {
+      "value": {"min": 0, "max": 1, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "ControlSwitch2",
+    "category": "controller",
+    "real_world": "Control Switch 2",
+    "description": "On/off control switch",
+    "parameters": {
+      "value": {"min": 0, "max": 1, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "ControlSwitch3",
+    "category": "controller",
+    "real_world": "Control Switch 3",
+    "description": "On/off control switch",
+    "parameters": {
+      "value": {"min": 0, "max": 1, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "ControlSwitch4",
+    "category": "controller",
+    "real_world": "Control Switch 4",
+    "description": "On/off control switch",
+    "parameters": {
+      "value": {"min": 0, "max": 1, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "ControlSwitch5",
+    "category": "controller",
+    "real_world": "Control Switch 5",
+    "description": "On/off control switch",
+    "parameters": {
+      "value": {"min": 0, "max": 1, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "ControlSwitch6",
+    "category": "controller",
+    "real_world": "Control Switch 6",
+    "description": "On/off control switch",
+    "parameters": {
+      "value": {"min": 0, "max": 1, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "External1",
+    "category": "controller",
+    "real_world": "External Controller 1",
+    "description": "External controller (MIDI CC, Expression Pedal, FC)",
+    "parameters": {
+      "value": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "source": {"min": 0, "max": 3, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "External2",
+    "category": "controller",
+    "real_world": "External Controller 2",
+    "description": "External controller (MIDI CC, Expression Pedal, FC)",
+    "parameters": {
+      "value": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "source": {"min": 0, "max": 3, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "External3",
+    "category": "controller",
+    "real_world": "External Controller 3",
+    "description": "External controller (MIDI CC, Expression Pedal, FC)",
+    "parameters": {
+      "value": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "source": {"min": 0, "max": 3, "default": 0, "unit": ""}
+    }
+  },
+  {
+    "name": "External4",
+    "category": "controller",
+    "real_world": "External Controller 4",
+    "description": "External controller (MIDI CC, Expression Pedal, FC)",
+    "parameters": {
+      "value": {"min": 0.0, "max": 10.0, "default": 5.0, "unit": ""},
+      "source": {"min": 0, "max": 3, "default": 0, "unit": ""}
+    }
   }
 ]
