@@ -248,10 +248,10 @@ pip install -e .
 
 ## 📞 Contact
 
-- **GitHub**: [@yourusername](https://github.com/yourusername)
-- **Email**: your.email@example.com
+- **GitHub**: https://github.com/GitBenTank
+- **Email**: btankersley18@gmail.com
 - **Discord**: Join our community server
-- **Website**: [tonegpt.ai](https://tonegpt.ai)
+- **Website**: ctrlstrum.com
 
 ---
 
