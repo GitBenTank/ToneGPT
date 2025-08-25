@@ -6,10 +6,12 @@
 [![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen.svg)](https://github.com/yourusername/ToneGPT-AI)
 [![FM9](https://img.shields.io/badge/FM9-Native%20Support-orange.svg)](https://www.fractalaudio.com/fm9/)
 [![AI](https://img.shields.io/badge/AI-Powered%20Generation-purple.svg)](https://github.com/yourusername/ToneGPT-AI)
+[![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)](https://github.com/yourusername/ToneGPT-AI/releases)
+[![Build](https://img.shields.io/badge/Build-2025--01--27-lightgrey.svg)](https://github.com/yourusername/ToneGPT-AI/commits/main)
 
 ## 🚀 Project Overview
 
-**ToneGPT AI** is a cutting-edge, AI-powered tone generation platform designed specifically for Fractal Audio's FM9 hardware. This project demonstrates advanced AI implementation, real-time audio analysis, and professional-grade software architecture for the music technology industry.
+**ToneGPT AI v1.0.0** is a cutting-edge, AI-powered tone generation platform designed specifically for Fractal Audio's FM9 hardware. This project demonstrates advanced AI implementation, real-time audio analysis, and professional-grade software architecture for the music technology industry.
 
 ### 🎯 Key Features
 

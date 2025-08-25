@@ -13,6 +13,7 @@ from datetime import datetime
 sys.path.append(str(Path(__file__).parent.parent))
 
 from tonegpt.core.ai_tone_generator import AIToneGenerator
+from tonegpt import __version__, VERSION_INFO, is_production, get_fm9_compatibility
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Page Configuration
@@ -22,6 +23,23 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Sidebar Version Info
+# ──────────────────────────────────────────────────────────────────────────────
+with st.sidebar:
+    st.markdown("---")
+    st.markdown(f"**🎸 ToneGPT AI v{__version__}**")
+    st.markdown(f"**📅 Build:** {VERSION_INFO['build_date']}")
+    st.markdown(f"**🎛️ FM9:** {get_fm9_compatibility()}")
+    st.markdown(f"**🐍 Python:** {VERSION_INFO['python_version']}")
+    
+    if is_production():
+        st.success("**🟢 PRODUCTION RELEASE**")
+    else:
+        st.warning("**🟡 DEVELOPMENT VERSION**")
+    
+    st.markdown("---")
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Initialize AI Tone Generator
