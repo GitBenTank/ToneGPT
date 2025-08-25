@@ -295,59 +295,81 @@ class AIToneGenerator:
         return patch
     
     def _generate_drive_block(self, position: int, structure: Dict) -> Dict:
-        """Generate a drive block with appropriate parameters"""
+        """Generate a drive block with appropriate parameters and X/Y channels"""
         # Get drive types from blocks data or use defaults
         drive_types = []
-        if "gain" in self.blocks_data:  # Use "gain" category from blocks.json
+        if "gain" in self.blocks_data:
             drive_types = [block.get("name", "") for block in self.blocks_data["gain"]]
         
         if not drive_types:
             drive_types = ["FAS Boost", "TS808 Mod", "Klon", "Rat Distortion", "Fuzz Face"]
         
-        drive_type = random.choice(drive_types)
-        
-        # Adjust drive type based on genre
-        if structure["genre"] == "metal":
-            # Use available drive types if they exist, otherwise fall back to defaults
-            if drive_types:
-                metal_drives = [d for d in drive_types if any(word in d.lower() for word in ["distortion", "drive"])]
-                if metal_drives:
+        # Generate 4 channels (A, B, C, D) for X/Y switching
+        channels = {}
+        for channel in ["A", "B", "C", "D"]:
+            drive_type = random.choice(drive_types)
+            
+            # Adjust drive type based on genre and channel
+            if structure["genre"] == "metal":
+                if drive_types:
+                    metal_drives = [d for d in drive_types if any(word in d.lower() for word in ["distortion", "drive"])]
+                    if metal_drives:
+                        drive_type = random.choice(metal_drives)
+                else:
+                    metal_drives = ["Rat Distortion", "Fuzz Face", "FAS Boost"]
                     drive_type = random.choice(metal_drives)
-            else:
-                metal_drives = ["Rat Distortion", "Fuzz Face", "FAS Boost"]
-                drive_type = random.choice(metal_drives)
+            
+            # Vary parameters per channel
+            base_gain = random.uniform(3.0, 8.0)
+            channels[channel] = {
+                "type": drive_type,
+                "parameters": {
+                    "gain": round(base_gain + (ord(channel) - ord("A")) * 0.5, 1),
+                    "level": round(random.uniform(4.0, 7.0), 1),
+                    "tone": round(random.uniform(4.0, 7.0), 1)
+                }
+            }
         
         return {
             "enabled": True,
-            "type": drive_type,
-            "parameters": {
-                "gain": round(random.uniform(3.0, 8.0), 1),
-                "level": round(random.uniform(4.0, 7.0), 1),
-                "tone": round(random.uniform(4.0, 7.0), 1)
-            }
+            "current_channel": "A",
+            "channels": channels
         }
     
     def _generate_amp_block(self, structure: Dict) -> Dict:
-        """Generate an amp block with appropriate parameters"""
-        amp_types = self.amp_models[:10]  # Limit to first 10 for variety
-        amp_type = random.choice(amp_types)
+        """Generate an amp block with appropriate parameters and X/Y channels"""
+        amp_types = self.amp_models[:20]  # Use more variety for channels
         
-        # Adjust amp type based on genre
-        if structure["genre"] == "metal":
-            metal_amps = [amp for amp in amp_types if any(word in amp.lower() for word in ["modern", "lead", "brown", "mesa"])]
-            if metal_amps:
-                amp_type = random.choice(metal_amps)
+        # Generate 4 channels (A, B, C, D) for X/Y switching
+        channels = {}
+        for channel in ["A", "B", "C", "D"]:
+            amp_type = random.choice(amp_types)
+            
+            # Adjust amp type based on genre and channel
+            if structure["genre"] == "metal":
+                metal_amps = [amp for amp in amp_types if any(word in amp.lower() for word in ["modern", "lead", "brown", "mesa"])]
+                if metal_amps:
+                    amp_type = random.choice(metal_amps)
+            
+            # Vary gain per channel (A=clean, B=crunch, C=lead, D=high gain)
+            channel_gains = {"A": (2.0, 4.0), "B": (4.0, 6.0), "C": (6.0, 8.0), "D": (7.0, 9.0)}
+            gain_range = channel_gains.get(channel, (4.0, 7.0))
+            
+            channels[channel] = {
+                "type": amp_type,
+                "parameters": {
+                    "gain": round(random.uniform(*gain_range), 1),
+                    "master": round(random.uniform(3.0, 7.0), 1),
+                    "bass": round(random.uniform(4.0, 8.0), 1),
+                    "mid": round(random.uniform(3.0, 8.0), 1),
+                    "treble": round(random.uniform(4.0, 8.0), 1)
+                }
+            }
         
         return {
             "enabled": True,
-            "type": amp_type,
-            "parameters": {
-                "gain": round(random.uniform(4.0, 9.0), 1),
-                "master": round(random.uniform(3.0, 7.0), 1),
-                "bass": round(random.uniform(4.0, 8.0), 1),
-                "mid": round(random.uniform(3.0, 8.0), 1),
-                "treble": round(random.uniform(4.0, 8.0), 1)
-            }
+            "current_channel": "A",
+            "channels": channels
         }
     
     def _generate_cab_block(self, structure: Dict) -> Dict:
@@ -466,10 +488,25 @@ class AIToneGenerator:
         elif "rhythm" in characteristics:
             desc_parts.append("designed for rhythm work")
         
+        # Handle X/Y channel descriptions
         if tone_patch["drive_1"]["enabled"]:
-            desc_parts.append(f"with {tone_patch['drive_1']['type']} drive")
+            drive_info = tone_patch['drive_1']
+            if "channels" in drive_info:
+                current_channel = drive_info.get("current_channel", "A")
+                drive_type = drive_info["channels"][current_channel]["type"]
+                desc_parts.append(f"with {drive_type} drive (Ch.{current_channel})")
+            else:
+                desc_parts.append(f"with {drive_info['type']} drive")
         
-        desc_parts.append(f"using {tone_patch['amp']['type']} amp")
+        # Handle amp channels
+        amp_info = tone_patch['amp']
+        if "channels" in amp_info:
+            current_channel = amp_info.get("current_channel", "A")
+            amp_type = amp_info["channels"][current_channel]["type"]
+            desc_parts.append(f"using {amp_type} amp (Ch.{current_channel})")
+        else:
+            desc_parts.append(f"using {amp_info['type']} amp")
+        
         desc_parts.append(f"and {tone_patch['cab']['type']} cabinet")
         
         if tone_patch["eq"]["enabled"]:
@@ -480,6 +517,9 @@ class AIToneGenerator:
         
         if tone_patch["reverb"]["enabled"]:
             desc_parts.append("with reverb ambience")
+        
+        # Add X/Y switching info
+        desc_parts.append("with X/Y switching")
         
         return " ".join(desc_parts) + "."
     

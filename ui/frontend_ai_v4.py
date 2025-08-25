@@ -297,6 +297,22 @@ with col1:
                 gain = st.slider("Gain", 0.0, 10.0, params.get('gain', 5.0), key="d1_gain")
                 level = st.slider("Level", 0.0, 10.0, params.get('level', 5.0), key="d1_level")
                 tone_param = st.slider("Tone", 0.0, 10.0, params.get('tone', 5.0), key="d1_tone")
+                
+                # Show all channels info
+                with st.expander(f"All Channels (Current: {channel})"):
+                    for ch, data in drive1['channels'].items():
+                        ch_params = data['parameters']
+                        st.write(f"**Ch.{ch}**: {data['type']} - Gain:{ch_params['gain']}, Level:{ch_params['level']}")
+            else:
+                # Legacy single channel
+                sel_d1 = st.selectbox("Drive Type", ["None"] + ai_generator.blocks_data.get("gain", []), 
+                                     index=0 if drive1.get('type') == "None" else 1, key="d1_type")
+                
+                if sel_d1 != "None":
+                    params = drive1.get('parameters', {})
+                    gain = st.slider("Gain", 0.0, 10.0, params.get('gain', 5.0), key="d1_gain")
+                    level = st.slider("Level", 0.0, 10.0, params.get('level', 5.0), key="d1_level")
+                    tone_param = st.slider("Tone", 0.0, 10.0, params.get('tone', 5.0), key="d1_tone")
         else:
             st.info("Drive 1 is bypassed")
 
@@ -331,19 +347,45 @@ with col3:
         amp = tone.get('amp', {})
         cab = tone.get('cab', {})
         
-        # Amp
+        # Amp with X/Y Channels
         bypass_amp = st.checkbox("Bypass Amp", value=not amp.get('enabled', False), key="bypass_amp")
         if not bypass_amp and amp.get('enabled'):
-            sel_amp = st.selectbox("Amp Model", amp_models, 
-                                 index=amp_models.index(amp.get('type', 'None')) if amp.get('type') in amp_models else 0, key="amp_type")
-            
-            if sel_amp != "None":
-                params = amp.get('parameters', {})
+            # X/Y Channel Selection for Amp
+            if 'channels' in amp:
+                current_ch = amp.get('current_channel', 'A')
+                channel = st.selectbox("Amp Channel", ["A", "B", "C", "D"], 
+                                     index=ord(current_ch) - ord('A'), key="amp_channel")
+                
+                # Show current channel info
+                ch_data = amp['channels'][channel]
+                st.selectbox("Amp Model", [ch_data['type']], index=0, key="amp_type", disabled=True)
+                
+                # Parameters for current channel
+                params = ch_data.get('parameters', {})
                 gain = st.slider("Amp Gain", 0.0, 10.0, params.get('gain', 5.0), key="amp_gain")
                 master = st.slider("Master Vol", 0.0, 10.0, params.get('master', 5.0), key="amp_master")
                 bass = st.slider("Bass", 0.0, 10.0, params.get('bass', 5.0), key="amp_bass")
                 mid = st.slider("Mid", 0.0, 10.0, params.get('mid', 5.0), key="amp_mid")
                 treble = st.slider("Treble", 0.0, 10.0, params.get('treble', 5.0), key="amp_treble")
+                
+                # Show all channels info
+                with st.expander(f"All Amp Channels (Current: {channel})"):
+                    for ch, data in amp['channels'].items():
+                        ch_params = data['parameters']
+                        gain_level = "Clean" if ch_params['gain'] < 4 else "Crunch" if ch_params['gain'] < 6 else "Lead" if ch_params['gain'] < 8 else "High Gain"
+                        st.write(f"**Ch.{ch}**: {data['type']} - Gain:{ch_params['gain']} ({gain_level})")
+            else:
+                # Legacy single channel
+                sel_amp = st.selectbox("Amp Model", amp_models, 
+                                     index=amp_models.index(amp.get('type', 'None')) if amp.get('type') in amp_models else 0, key="amp_type")
+                
+                if sel_amp != "None":
+                    params = amp.get('parameters', {})
+                    gain = st.slider("Amp Gain", 0.0, 10.0, params.get('gain', 5.0), key="amp_gain")
+                    master = st.slider("Master Vol", 0.0, 10.0, params.get('master', 5.0), key="amp_master")
+                    bass = st.slider("Bass", 0.0, 10.0, params.get('bass', 5.0), key="amp_bass")
+                    mid = st.slider("Mid", 0.0, 10.0, params.get('mid', 5.0), key="amp_mid")
+                    treble = st.slider("Treble", 0.0, 10.0, params.get('treble', 5.0), key="amp_treble")
         
         # Cab
         bypass_cab = st.checkbox("Bypass Cab", value=not cab.get('enabled', False), key="bypass_cab")
