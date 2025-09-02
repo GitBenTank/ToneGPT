@@ -12,8 +12,21 @@ from datetime import datetime
 # Add the parent directory to the path so we can import tonegpt modules
 sys.path.append(str(Path(__file__).parent.parent))
 
-from tonegpt.core.ai_tone_generator import AIToneGenerator
+from tonegpt.core.clean_ai_tone_generator import CleanAIToneGenerator
 from tonegpt import __version__, VERSION_INFO, is_production, get_fm9_compatibility
+
+def safe_float(value, default=0.0):
+    """Safely convert value to float for sliders"""
+    try:
+        return float(value)
+    except (ValueError, TypeError):
+        return default
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Constants
+# ──────────────────────────────────────────────────────────────────────────────
+DRIVE_TYPE_LABEL = "Drive Type"
+TRANSPARENT_BG = 'rgba(0,0,0,0)'
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Page Configuration
@@ -47,7 +60,7 @@ with st.sidebar:
 @st.cache_resource
 def get_ai_generator():
     """Initialize the AI tone generator"""
-    return AIToneGenerator()
+    return CleanAIToneGenerator()
 
 ai_generator = get_ai_generator()
 
@@ -77,9 +90,31 @@ def load_list(path: Path, key: str):
                 out.append(str(item[key]).strip())
     return out
 
-# Build dropdown arrays
-amp_models = ["None"] + sorted(load_list(AMPS_FILE, "Model"), key=str.upper)
-cab_models = ["None"] + sorted(load_list(CABS_FILE, "Cab"), key=str.upper)
+# Build dropdown arrays - use full blocks data instead of limited files
+try:
+    # Get full amp and cab data from blocks
+    ai_generator_temp = CleanAIToneGenerator()
+    
+    # Get all amp names from blocks data
+    amp_blocks = [block for block in ai_generator_temp.blocks_data if block.get('category') == 'amp']
+    if amp_blocks:
+        amp_names = [block.get('name', str(block)) for block in amp_blocks if isinstance(block, dict) and block.get('name')]
+        amp_models = ["None"] + sorted(list(set(amp_names)), key=str.upper)  # Remove duplicates and sort
+    else:
+        amp_models = ["None"] + sorted(load_list(AMPS_FILE, "Model"), key=str.upper)
+    
+    # Get all cab names from blocks data
+    cab_blocks = [block for block in ai_generator_temp.blocks_data if block.get('category') == 'cab']
+    if cab_blocks:
+        cab_names = [block.get('name', str(block)) for block in cab_blocks if isinstance(block, dict) and block.get('name')]
+        cab_models = ["None"] + sorted(list(set(cab_names)), key=str.upper)  # Remove duplicates and sort
+    else:
+        cab_models = ["None"] + sorted(load_list(CABS_FILE, "Cab"), key=str.upper)
+        
+except Exception as e:
+    # Fallback to original method if blocks data fails
+    amp_models = ["None"] + sorted(load_list(AMPS_FILE, "Model"), key=str.upper)
+    cab_models = ["None"] + sorted(load_list(CABS_FILE, "Cab"), key=str.upper)
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Session State Management
@@ -94,8 +129,8 @@ if 'ai_query' not in st.session_state:
 # ──────────────────────────────────────────────────────────────────────────────
 # Main UI Layout
 # ──────────────────────────────────────────────────────────────────────────────
-st.title("🎛️ ToneGPT AI - FM9 Tone Generator")
-st.markdown("**AI-powered tone creation for Fractal FM9 - Create tones with natural language!**")
+st.title("🎛️ ToneGPT AI - Professional FM9 Tone Generator")
+st.markdown("**AI-powered professional tone creation for Fractal FM9 - Create studio-quality tones with natural language!**")
 
 # System Status Indicator
 status_col1, status_col2, status_col3 = st.columns([1, 2, 1])
@@ -150,7 +185,7 @@ with col1:
     ai_query = st.text_input(
         "Describe the tone you want:",
         placeholder="e.g., 'Give me a Deftones-style metal tone' or 'Clean ambient lead with delay'",
-        value=st.session_state.ai_query,
+        value=st.session_state.get("ai_query", ""),
         key="ai_query_input"
     )
 
@@ -172,8 +207,8 @@ with col2:
             st.warning("Please enter a tone description!")
 
 # Display generated tone info
-if st.session_state.current_tone:
-    tone = st.session_state.current_tone
+if st.session_state.get("current_tone"):
+    tone = st.session_state.get("current_tone")
     
     st.subheader("🎵 Generated Tone")
     
@@ -204,8 +239,8 @@ st.header("🎛️ FM9 Tone Builder")
 
 # Signal Chain Visualization
 st.subheader("🔗 Professional Signal Chain")
-if st.session_state.current_tone:
-    tone = st.session_state.current_tone['tone_patch']
+if st.session_state.get("current_tone"):
+    tone = st.session_state.get("current_tone", {}).get('tone_patch', {})
     
     # Create enhanced signal chain
     chain = []
@@ -217,6 +252,31 @@ if st.session_state.current_tone:
     for block_name, block_data in tone.items():
         if block_data.get('enabled', False):
             block_type = block_data.get('type', 'Unknown')
+            # Handle empty or None type values
+            if not block_type or block_type == 'None' or block_type.strip() == '':
+                # Try to infer type from block name
+                if 'drive' in block_name.lower():
+                    block_type = 'Drive'
+                elif 'amp' in block_name.lower():
+                    block_type = 'Amp'
+                elif 'cab' in block_name.lower():
+                    block_type = 'Cab'
+                elif 'eq' in block_name.lower():
+                    block_type = 'EQ'
+                elif 'delay' in block_name.lower():
+                    block_type = 'Delay'
+                elif 'reverb' in block_name.lower():
+                    block_type = 'Reverb'
+                elif 'modulation' in block_name.lower():
+                    block_type = 'Modulation'
+                elif 'pitch' in block_name.lower():
+                    block_type = 'Pitch'
+                elif 'dynamics' in block_name.lower():
+                    block_type = 'Dynamics'
+                elif 'utility' in block_name.lower():
+                    block_type = 'Utility'
+                else:
+                    block_type = 'Effect'
             icon = "🎛️"
             
             # Determine block type and icon
@@ -280,7 +340,7 @@ if st.session_state.current_tone:
         active_blocks = len([b for b in chain if b['type'] not in ['input', 'output']])
         st.metric("Active Blocks", active_blocks)
     with col_summary2:
-        signal_types = set([b['type'] for b in chain if b['type'] not in ['input', 'output']])
+        signal_types = {b['type'] for b in chain if b['type'] not in ['input', 'output']}
         st.metric("Signal Types", len(signal_types))
     with col_summary3:
         total_params = sum(len(b.get('details', {}).get('parameters', {})) for b in chain if 'details' in b)
@@ -291,77 +351,347 @@ st.divider()
 # Block Configuration Interface
 st.subheader("⚙️ Block Configuration")
 
-# Row 1: Drive Blocks
+# Advanced Parameter Controls Tab System
+st.markdown("---")
+st.markdown("### 🎛️ Advanced Parameter Controls")
+
+# Create tabs for different parameter categories
+param_tab1, param_tab2, param_tab3, param_tab4, param_tab5, param_tab6, param_tab7, param_tab8 = st.tabs([
+    "🔥 Drive", "⚡ Amp", "🔊 Speaker", "✨ Effects", "🎶 Modulation", "🎵 Pitch", "📈 Dynamics", "🌐 Global"
+])
+
+with param_tab1:
+    st.markdown("#### 🔥 Drive Block Controls")
+    
+    # Drive 1 Controls
+    with st.expander("Drive 1 - Main Overdrive", expanded=True):
+        if st.session_state.get("current_tone"):
+            tone = st.session_state.get("current_tone", {}).get('tone_patch', {})
+            drive1 = tone.get('drive_1', {})
+        else:
+            drive1 = {'enabled': False, 'type': 'None', 'parameters': {}}
+        
+        bypass_d1 = st.checkbox("Bypass", value=not drive1.get('enabled', False), key="tab_d1_bypass")
+        if not bypass_d1:
+            # Get drive types from blocks data
+            drive_types = ["None"]
+            drive_blocks = [block for block in ai_generator.blocks_data if block.get('category') == 'drive']
+            if drive_blocks:
+                drive_types.extend([block.get('name', '') for block in drive_blocks if block.get('name')])
+            
+            # Ensure we have valid options and index
+            if not drive_types:
+                drive_types = ["None"]
+            max_index = len(drive_types) - 1
+            default_index = 0 if drive1.get('type') == "None" else min(1, max_index)
+            
+            sel_d1 = st.selectbox(DRIVE_TYPE_LABEL, drive_types, 
+                                 index=default_index, key="tab_d1_type")
+            
+            if sel_d1 != "None":
+                params = drive1.get('parameters', {})
+                col1, col2, col3 = st.columns(3)
+                with col1:
+                    gain = st.slider("Gain", 0.0, 10.0, safe_float(params.get('gain', 5.0), 5.0), key="tab_d1_gain")
+                    level = st.slider("Level", 0.0, 10.0, safe_float(params.get('level', 5.0), 5.0), key="tab_d1_level")
+                with col2:
+                    tone_param = st.slider("Tone", 0.0, 10.0, safe_float(params.get('tone', 5.0), 5.0), key="tab_d1_tone")
+                with col3:
+                    st.button("🔄 UPDATE DRIVE 1", key="tab_d1_update")
+        else:
+            # Use actual drive blocks from the full blocks data
+            drive_blocks = [block for block in ai_generator.blocks_data if block.get('category') == 'drive']
+            if drive_blocks:
+                drive_types = [block.get('name', str(block)) for block in drive_blocks if isinstance(block, dict)]
+            else:
+                # Fallback to basic drive types
+                default_blocks = ai_generator._get_default_blocks()
+                amp_blocks = default_blocks.get("gain", {})
+                drive_types = amp_blocks.get('types', ['FAS Boost', 'TS808 Mod', 'Klon', 'Fuzz Face'])
+            
+            sel_d1 = st.selectbox(DRIVE_TYPE_LABEL, ["None"] + drive_types, 
+                                 index=0, key="tab_d1_type")
+            
+            if sel_d1 != "None":
+                # Find the selected drive block and get its parameters
+                selected_drive = next((block for block in drive_blocks if block.get('name') == sel_d1), {})
+                params = selected_drive.get('parameters', {})
+                col1, col2, col3 = st.columns(3)
+                with col1:
+                    gain = st.slider("Gain", 0.0, 10.0, safe_float(params.get('gain', 5.0), 5.0), key="tab_d1_gain")
+                    level = st.slider("Level", 0.0, 10.0, safe_float(params.get('level', 5.0), 5.0), key="tab_d1_level")
+                with col2:
+                    tone_param = st.slider("Tone", 0.0, 10.0, safe_float(params.get('tone', 5.0), 5.0), key="tab_d1_tone")
+                with col3:
+                    st.button("🔄 UPDATE DRIVE 1", key="tab_d1_update")
+    
+    # Drive 2 Controls
+    with st.expander("Drive 2 - Secondary Drive", expanded=False):
+        if st.session_state.get("current_tone"):
+            tone = st.session_state.get("current_tone", {}).get('tone_patch', {})
+            drive2 = tone.get('drive_2', {})
+        else:
+            drive2 = {'enabled': False, 'type': 'None', 'parameters': {}}
+        
+        bypass_d2 = st.checkbox("Bypass", value=not drive2.get('enabled', False), key="tab_d2_bypass")
+        if not bypass_d2:
+            # Get drive types from blocks data
+            drive_types = ["None"]
+            drive_blocks = [block for block in ai_generator.blocks_data if block.get('category') == 'drive']
+            if drive_blocks:
+                drive_types.extend([block.get('name', '') for block in drive_blocks if block.get('name')])
+            
+            sel_d2 = st.selectbox(DRIVE_TYPE_LABEL, drive_types, 
+                                 index=0 if drive2.get('type') == "None" else 1, key="tab_d2_type")
+            
+            if sel_d2 != "None":
+                params = drive2.get('parameters', {})
+                col1, col2, col3 = st.columns(3)
+                with col1:
+                    gain = st.slider("Gain", 0.0, 10.0, safe_float(params.get('gain', 5.0), 5.0), key="tab_d2_gain")
+                    level = st.slider("Level", 0.0, 10.0, safe_float(params.get('level', 5.0), 5.0), key="tab_d2_level")
+                with col2:
+                    tone_param = st.slider("Tone", 0.0, 10.0, safe_float(params.get('tone', 5.0), 5.0), key="tab_d2_tone")
+                with col3:
+                    st.button("🔄 UPDATE DRIVE 2", key="tab_d2_update")
+        else:
+            # Use actual drive blocks from the full blocks data
+            drive_blocks = [block for block in ai_generator.blocks_data if block.get('category') == 'drive']
+            if drive_blocks:
+                drive_types = [block.get('name', str(block)) for block in drive_blocks if isinstance(block, dict)]
+            else:
+                # Fallback to basic drive types
+                default_blocks = ai_generator._get_default_blocks()
+                amp_blocks = default_blocks.get("gain", {})
+                drive_types = amp_blocks.get('types', ['FAS Boost', 'TS808 Mod', 'Klon', 'Fuzz Face'])
+            
+            sel_d2 = st.selectbox(DRIVE_TYPE_LABEL, ["None"] + drive_types, 
+                                 index=0, key="tab_d2_type")
+            
+            if sel_d2 != "None":
+                # Find the selected drive block and get its parameters
+                selected_drive = next((block for block in drive_blocks if block.get('name') == sel_d2), {})
+                params = selected_drive.get('parameters', {})
+                col1, col2, col3 = st.columns(3)
+                with col1:
+                    gain = st.slider("Gain", 0.0, 10.0, safe_float(params.get('gain', 5.0), 5.0), key="tab_d2_gain")
+                    level = st.slider("Level", 0.0, 10.0, safe_float(params.get('level', 5.0), 5.0), key="tab_d2_level")
+                with col2:
+                    tone_param = st.slider("Tone", 0.0, 10.0, safe_float(params.get('tone', 5.0), 5.0), key="tab_d2_tone")
+                with col3:
+                    st.button("🔄 UPDATE DRIVE 2", key="tab_d2_update")
+
+with param_tab2:
+    st.markdown("#### ⚡ Amplifier Controls")
+    
+    with st.expander("Main Amplifier", expanded=True):
+        if st.session_state.get("current_tone"):
+            tone = st.session_state.get("current_tone", {}).get('tone_patch', {})
+            amp = tone.get('amp', {})
+        else:
+            amp = {'enabled': False, 'type': 'None', 'parameters': {}}
+        
+        bypass_amp = st.checkbox("Bypass", value=not amp.get('enabled', False), key="tab_amp_bypass")
+        if not bypass_amp:
+            # Amp controls
+            params = amp.get('parameters', {})
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                gain = st.slider("Gain", 0.0, 10.0, safe_float(params.get('gain', 5.0), 5.0), key="tab_amp_gain")
+                master = st.slider("Master Vol", 0.0, 10.0, safe_float(params.get('master', 5.0), 5.0), key="tab_amp_master")
+            with col2:
+                bass = st.slider("Bass", 0.0, 10.0, safe_float(params.get('bass', 5.0), 5.0), key="tab_amp_bass")
+                mid = st.slider("Mid", 0.0, 10.0, safe_float(params.get('mid', 5.0), 5.0), key="tab_amp_mid")
+            with col3:
+                treble = st.slider("Treble", 0.0, 10.0, safe_float(params.get('treble', 5.0), 5.0), key="tab_amp_treble")
+                st.button("🔄 UPDATE AMP", key="tab_amp_update")
+        else:
+            # Use actual amp blocks from the full blocks data
+            amp_blocks = [block for block in ai_generator.blocks_data if block.get('category') == 'amp']
+            if amp_blocks:
+                # Get parameters from the first amp block as template
+                first_amp = amp_blocks[0] if amp_blocks else {}
+                params = first_amp.get('parameters', {})
+            else:
+                # Fallback to default amp parameters
+                default_blocks = ai_generator._get_default_blocks()
+                amp_blocks = default_blocks.get("amp", {})
+                params = amp_blocks.get('parameters', {})
+            
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                gain = st.slider("Gain", 0.0, 10.0, safe_float(params.get('gain', 5.0), 5.0), key="tab_amp_gain")
+                master = st.slider("Master Vol", 0.0, 10.0, safe_float(params.get('master', 5.0), 5.0), key="tab_amp_master")
+            with col2:
+                bass = st.slider("Bass", 0.0, 10.0, safe_float(params.get('bass', 5.0), 5.0), key="tab_amp_bass")
+                mid = st.slider("Mid", 0.0, 10.0, safe_float(params.get('mid', 5.0), 5.0), key="tab_amp_mid")
+            with col3:
+                treble = st.slider("Treble", 0.0, 10.0, safe_float(params.get('treble', 5.0), 5.0), key="tab_amp_treble")
+                st.button("🔄 UPDATE AMP", key="tab_amp_update")
+
+with param_tab3:
+    st.markdown("#### 🔊 Speaker Cabinet Controls")
+    
+    with st.expander("Speaker Cabinet", expanded=True):
+        if st.session_state.get("current_tone"):
+            tone = st.session_state.get("current_tone", {}).get('tone_patch', {})
+            cab = tone.get('cab', {})
+        else:
+            cab = {'enabled': False, 'type': 'None', 'parameters': {}}
+        
+        bypass_cab = st.checkbox("Bypass", value=not cab.get('enabled', False), key="tab_cab_bypass")
+        if not bypass_cab:
+            # Cab controls
+            params = cab.get('parameters', {})
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                level = st.slider("Level", -20.0, 20.0, safe_float(params.get('level', 0.0), 0.0), key="tab_cab_level")
+                lowcut = st.slider("Low Cut (Hz)", 20, 1000, int(safe_float(params.get('lowcut', 80), 80)), key="tab_cab_lowcut")
+            with col2:
+                highcut = st.slider("High Cut (Hz)", 2000, 20000, int(safe_float(params.get('highcut', 8000), 8000)), key="tab_cab_highcut")
+                air = st.slider("Air", 0.0, 10.0, safe_float(params.get('air', 5.0), 5.0), key="tab_cab_air")
+            with col3:
+                proximity = st.slider("Proximity", 0.0, 10.0, safe_float(params.get('proximity', 5.0), 5.0), key="tab_cab_proximity")
+                room = st.slider("Room", 0.0, 10.0, safe_float(params.get('room', 5.0), 5.0), key="tab_cab_room")
+                st.button("🔄 UPDATE CABINET", key="tab_cab_update")
+        else:
+            # Fallback to default cab parameters
+            default_blocks = ai_generator._get_default_blocks()
+            cab_blocks = default_blocks.get("cab", {})
+            params = cab_blocks.get('parameters', {})
+            
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                level = st.slider("Level", -20.0, 20.0, safe_float(params.get('level', 0.0), 0.0), key="tab_cab_level")
+                lowcut = st.slider("Low Cut (Hz)", 20, 1000, int(safe_float(params.get('low_cut', 80), 80)), key="tab_cab_lowcut")
+            with col2:
+                highcut = st.slider("High Cut (Hz)", 2000, 20000, int(safe_float(params.get('high_cut', 8000), 8000)), key="tab_cab_highcut")
+                air = st.slider("Air", 0.0, 10.0, 5.0, key="tab_cab_air")
+            with col3:
+                proximity = st.slider("Proximity", 0.0, 10.0, 5.0, key="tab_cab_proximity")
+                room = st.slider("Room", 0.0, 10.0, 5.0, key="tab_cab_room")
+                st.button("🔄 UPDATE CABINET", key="tab_cab_update")
+
+# Row 1: Drive Blocks (Original section - keeping for compatibility)
 col1, col2, col3 = st.columns(3)
 
 with col1:
     st.markdown("**🔥 Drive 1**")
-    if st.session_state.current_tone:
-        tone = st.session_state.current_tone['tone_patch']
+    if st.session_state.get("current_tone"):
+        tone = st.session_state.get("current_tone", {}).get('tone_patch', {})
         drive1 = tone.get('drive_1', {})
+    else:
+        # Default values when no tone is loaded
+        tone = {}
+        drive1 = {'enabled': False, 'type': 'None', 'parameters': {}}
+    
+    bypass_d1 = st.checkbox("Bypass", value=not drive1.get('enabled', False), key="bypass_d1")
+    if not bypass_d1 and drive1.get('enabled'):
+        # Get drive types from blocks data
+        drive_types = ["None"]
+        drive_blocks = [block for block in ai_generator.blocks_data if block.get('category') == 'drive']
+        if drive_blocks:
+            drive_types.extend([block.get('name', '') for block in drive_blocks if block.get('name')])
         
-        bypass_d1 = st.checkbox("Bypass", value=not drive1.get('enabled', False), key="bypass_d1")
-        if not bypass_d1 and drive1.get('enabled'):
-            # Get drive types from blocks data
+        # Ensure we have valid options and index
+        if not drive_types:
             drive_types = ["None"]
-            if "drive" in ai_generator.blocks_data:
-                drive_types.extend([block["name"] for block in ai_generator.blocks_data["drive"]])
+        max_index = len(drive_types) - 1
+        default_index = 0 if drive1.get('type') == "None" else min(1, max_index)
+        
+        sel_d1 = st.selectbox(DRIVE_TYPE_LABEL, drive_types, 
+                             index=default_index, key="d1_type")
+        
+        if sel_d1 != "None":
+            params = drive1.get('parameters', {})
+            gain = st.slider("Gain", 0.0, 10.0, safe_float(params.get('gain', 5.0), 5.0), key="d1_gain")
+            level = st.slider("Level", 0.0, 10.0, safe_float(params.get('level', 5.0), 5.0), key="d1_level")
+            tone_param = st.slider("Tone", 0.0, 10.0, safe_float(params.get('tone', 5.0), 5.0), key="d1_tone")
             
-            sel_d1 = st.selectbox("Drive Type", drive_types, 
-                                 index=0 if drive1.get('type') == "None" else 1, key="d1_type")
-            
-            if sel_d1 != "None":
-                params = drive1.get('parameters', {})
-                gain = st.slider("Gain", 0.0, 10.0, params.get('gain', 5.0), key="d1_gain")
-                level = st.slider("Level", 0.0, 10.0, params.get('level', 5.0), key="d1_level")
-                tone_param = st.slider("Tone", 0.0, 10.0, params.get('tone', 5.0), key="d1_tone")
-                
-                # Show all channels info
-                with st.expander(f"All Channels (Current: {channel})"):
+            # Show all channels info if available
+            if 'channels' in drive1:
+                with st.expander(f"All Channels"):
                     for ch, data in drive1['channels'].items():
                         ch_params = data['parameters']
                         st.write(f"**Ch.{ch}**: {data['type']} - Gain:{ch_params['gain']}, Level:{ch_params['level']}")
-            else:
-                # Legacy single channel
-                sel_d1 = st.selectbox("Drive Type", ["None"] + ai_generator.blocks_data.get("gain", []), 
-                                     index=0 if drive1.get('type') == "None" else 1, key="d1_type")
-                
-                if sel_d1 != "None":
-                    params = drive1.get('parameters', {})
-                    gain = st.slider("Gain", 0.0, 10.0, params.get('gain', 5.0), key="d1_gain")
-                    level = st.slider("Level", 0.0, 10.0, params.get('level', 5.0), key="d1_level")
-                    tone_param = st.slider("Tone", 0.0, 10.0, params.get('tone', 5.0), key="d1_tone")
+    else:
+        # Use actual drive blocks from the full blocks data
+        drive_blocks = [block for block in ai_generator.blocks_data if block.get('category') == 'drive']
+        if drive_blocks:
+            drive_types = [block.get('name', str(block)) for block in drive_blocks if isinstance(block, dict)]
+        else:
+            # Fallback to basic drive types
+            default_blocks = ai_generator._get_default_blocks()
+            amp_blocks = default_blocks.get("gain", {})
+            drive_types = amp_blocks.get('types', ['FAS Boost', 'TS808 Mod', 'Klon', 'Fuzz Face'])
+        
+        sel_d1 = st.selectbox(DRIVE_TYPE_LABEL, ["None"] + drive_types, 
+                             index=0, key="d1_type")
+        
+        if sel_d1 != "None":
+            # Find the selected drive block and get its parameters
+            selected_drive = next((block for block in drive_blocks if block.get('name') == sel_d1), {})
+            params = selected_drive.get('parameters', {})
+            gain = st.slider("Gain", 0.0, 10.0, safe_float(params.get('gain', 5.0), 5.0), key="d1_gain")
+            level = st.slider("Level", 0.0, 10.0, safe_float(params.get('level', 5.0), 5.0), key="d1_level")
+            tone_param = st.slider("Tone", 0.0, 10.0, safe_float(params.get('tone', 5.0), 5.0), key="d1_tone")
         else:
             st.info("Drive 1 is bypassed")
 
 with col2:
     st.markdown("**🔥 Drive 2**")
-    if st.session_state.current_tone:
-        tone = st.session_state.current_tone['tone_patch']
+    if st.session_state.get("current_tone"):
+        tone = st.session_state.get("current_tone", {}).get('tone_patch', {})
         drive2 = tone.get('drive_2', {})
+    else:
+        # Default values when no tone is loaded
+        tone = {}
+        drive2 = {'enabled': False, 'type': 'None', 'parameters': {}}
+    
+    bypass_d2 = st.checkbox("Bypass", value=not drive2.get('enabled', False), key="bypass_d2")
+    if not bypass_d2 and drive2.get('enabled'):
+        # Get drive types from blocks data
+        drive_types = ["None"]
+        drive_blocks = [block for block in ai_generator.blocks_data if block.get('category') == 'drive']
+        if drive_blocks:
+            drive_types.extend([block.get('name', '') for block in drive_blocks if block.get('name')])
         
-        bypass_d2 = st.checkbox("Bypass", value=not drive2.get('enabled', False), key="bypass_d2")
-        if not bypass_d2 and drive2.get('enabled'):
-            # Get drive types from blocks data
-            drive_types = ["None"]
-            if "drive" in ai_generator.blocks_data:
-                drive_types.extend([block["name"] for block in ai_generator.blocks_data["drive"]])
-            
-            sel_d2 = st.selectbox("Drive Type", drive_types, 
-                                 index=0 if drive2.get('type') == "None" else 1, key="d2_type")
-            
-            if sel_d2 != "None":
-                params = drive2.get('parameters', {})
-                gain = st.slider("Gain", 0.0, 10.0, params.get('gain', 5.0), key="d2_gain")
-                level = st.slider("Level", 0.0, 10.0, params.get('level', 5.0), key="d2_level")
-                tone_param = st.slider("Tone", 0.0, 10.0, params.get('tone', 5.0), key="d2_tone")
+        sel_d2 = st.selectbox(DRIVE_TYPE_LABEL, drive_types, 
+                             index=0 if drive2.get('type') == "None" else 1, key="d2_type")
+        
+        if sel_d2 != "None":
+            params = drive2.get('parameters', {})
+            gain = st.slider("Gain", 0.0, 10.0, safe_float(params.get('gain', 5.0), 5.0), key="d2_gain")
+            level = st.slider("Level", 0.0, 10.0, safe_float(params.get('level', 5.0), 5.0), key="d2_level")
+            tone_param = st.slider("Tone", 0.0, 10.0, safe_float(params.get('tone', 5.0), 5.0), key="d2_tone")
+    else:
+        # Use actual drive blocks from the full blocks data
+        drive_blocks = [block for block in ai_generator.blocks_data if block.get('category') == 'drive']
+        if drive_blocks:
+            drive_types = [block.get('name', str(block)) for block in drive_blocks if isinstance(block, dict)]
+        else:
+            # Fallback to basic drive types
+            default_blocks = ai_generator._get_default_blocks()
+            amp_blocks = default_blocks.get("gain", {})
+            drive_types = amp_blocks.get('types', ['FAS Boost', 'TS808 Mod', 'Klon', 'Fuzz Face'])
+        
+        sel_d2 = st.selectbox(DRIVE_TYPE_LABEL, ["None"] + drive_types, 
+                             index=0, key="d2_type")
+        
+        if sel_d2 != "None":
+            # Find the selected drive block and get its parameters
+            selected_drive = next((block for block in drive_blocks if block.get('name') == sel_d2), {})
+            params = selected_drive.get('parameters', {})
+            gain = st.slider("Gain", 0.0, 10.0, safe_float(params.get('gain', 5.0), 5.0), key="d2_gain")
+            level = st.slider("Level", 0.0, 10.0, safe_float(params.get('level', 5.0), 5.0), key="d2_level")
+            tone_param = st.slider("Tone", 0.0, 10.0, safe_float(params.get('tone', 5.0), 5.0), key="d2_tone")
         else:
             st.info("Drive 2 is bypassed")
 
 with col3:
     st.markdown("**🎸 Amp & Cab**")
-    if st.session_state.current_tone:
-        tone = st.session_state.current_tone['tone_patch']
+    if st.session_state.get("current_tone"):
+        tone = st.session_state.get("current_tone", {}).get('tone_patch', {})
         amp = tone.get('amp', {})
         cab = tone.get('cab', {})
         
@@ -380,11 +710,11 @@ with col3:
                 
                 # Parameters for current channel
                 params = ch_data.get('parameters', {})
-                gain = st.slider("Amp Gain", 0.0, 10.0, params.get('gain', 5.0), key="amp_gain")
-                master = st.slider("Master Vol", 0.0, 10.0, params.get('master', 5.0), key="amp_master")
-                bass = st.slider("Bass", 0.0, 10.0, params.get('bass', 5.0), key="amp_bass")
-                mid = st.slider("Mid", 0.0, 10.0, params.get('mid', 5.0), key="amp_mid")
-                treble = st.slider("Treble", 0.0, 10.0, params.get('treble', 5.0), key="amp_treble")
+                gain = st.slider("Amp Gain", 0.0, 10.0, safe_float(params.get('gain', 5.0), 5.0), key="amp_gain")
+                master = st.slider("Master Vol", 0.0, 10.0, safe_float(params.get('master', 5.0), 5.0), key="amp_master")
+                bass = st.slider("Bass", 0.0, 10.0, safe_float(params.get('bass', 5.0), 5.0), key="amp_bass")
+                mid = st.slider("Mid", 0.0, 10.0, safe_float(params.get('mid', 5.0), 5.0), key="amp_mid")
+                treble = st.slider("Treble", 0.0, 10.0, safe_float(params.get('treble', 5.0), 5.0), key="amp_treble")
                 
                 # Show all channels info
                 with st.expander(f"All Amp Channels (Current: {channel})"):
@@ -399,11 +729,33 @@ with col3:
                 
                 if sel_amp != "None":
                     params = amp.get('parameters', {})
-                    gain = st.slider("Amp Gain", 0.0, 10.0, params.get('gain', 5.0), key="amp_gain")
-                    master = st.slider("Master Vol", 0.0, 10.0, params.get('master', 5.0), key="amp_master")
-                    bass = st.slider("Bass", 0.0, 10.0, params.get('bass', 5.0), key="amp_bass")
-                    mid = st.slider("Mid", 0.0, 10.0, params.get('mid', 5.0), key="amp_mid")
-                    treble = st.slider("Treble", 0.0, 10.0, params.get('treble', 5.0), key="amp_treble")
+                    gain = st.slider("Amp Gain", 0.0, 10.0, safe_float(params.get('gain', 5.0), 5.0), key="amp_gain")
+                    master = st.slider("Master Vol", 0.0, 10.0, safe_float(params.get('master', 5.0), 5.0), key="amp_master")
+                    bass = st.slider("Bass", 0.0, 10.0, safe_float(params.get('bass', 5.0), 5.0), key="amp_bass")
+                    mid = st.slider("Mid", 0.0, 10.0, safe_float(params.get('mid', 5.0), 5.0), key="amp_mid")
+                    treble = st.slider("Treble", 0.0, 10.0, safe_float(params.get('treble', 5.0), 5.0), key="amp_treble")
+                
+                # Advanced Amp Parameters
+                with st.expander("🔧 Advanced Amp Parameters", expanded=False):
+                    st.markdown("**Power Tube Modeling**")
+                    if 'power_tube_modeling_grid_bias' in params:
+                        grid_bias = st.slider("Grid Bias (%)", 0.0, 100.0, safe_float(params.get('power_tube_modeling_grid_bias', 58.9), 58.9), key="amp_grid_bias")
+                    if 'power_tube_modeling_hardness' in params:
+                        hardness = st.slider("Hardness", 0.0, 10.0, safe_float(params.get('power_tube_modeling_hardness', 5.0), 5.0), key="amp_hardness")
+                    if 'power_tube_modeling_mismatch' in params:
+                        mismatch = st.slider("Mismatch", 0.0, 1.0, safe_float(params.get('power_tube_modeling_mismatch', 0.0), 0.0), key="amp_mismatch")
+                    
+                    st.markdown("**Power Supply Modeling**")
+                    if 'power_supply_modeling_supply_sag' in params:
+                        supply_sag = st.slider("Supply Sag", 0.0, 10.0, safe_float(params.get('power_supply_modeling_supply_sag', 1.51), 1.51), key="amp_supply_sag")
+                    if 'power_supply_modeling_variac' in params:
+                        variac = st.slider("Variac (%)", 0.0, 100.0, safe_float(params.get('power_supply_modeling_variac', 100.0), 100.0), key="amp_variac")
+                    
+                    st.markdown("**Advanced Controls**")
+                    if 'advanced_controls_bias_tremolo_frequency' in params:
+                        tremolo_freq = st.slider("Bias Tremolo Freq", 0.0, 10.0, safe_float(params.get('advanced_controls_bias_tremolo_frequency', 5.0), 5.0), key="amp_tremolo_freq")
+                    if 'advanced_controls_bias_tremolo_depth' in params:
+                        tremolo_depth = st.slider("Bias Tremolo Depth (%)", 0.0, 100.0, safe_float(params.get('advanced_controls_bias_tremolo_depth', 0.0), 0.0), key="amp_tremolo_depth")
         
         # Cab
         bypass_cab = st.checkbox("Bypass Cab", value=not cab.get('enabled', False), key="bypass_cab")
@@ -413,83 +765,166 @@ with col3:
             
             if sel_cab != "None":
                 params = cab.get('parameters', {})
-                lowcut = st.slider("Low Cut (Hz)", 20, 1000, params.get('lowcut', 80), key="cab_lowcut")
-                highcut = st.slider("High Cut (Hz)", 2000, 20000, params.get('highcut', 8000), key="cab_highcut")
+                lowcut = st.slider("Low Cut (Hz)", 20, 1000, int(safe_float(params.get('lowcut', 80), 80)), key="cab_lowcut")
+                highcut = st.slider("High Cut (Hz)", 2000, 20000, int(safe_float(params.get('highcut', 8000), 8000)), key="cab_highcut")
 
 # Row 2: Effects
 col4, col5, col6 = st.columns(3)
 
 with col4:
     st.markdown("**🎛️ EQ Block**")
-    if st.session_state.current_tone:
-        tone = st.session_state.current_tone['tone_patch']
+    if st.session_state.get("current_tone"):
+        tone = st.session_state.get("current_tone", {}).get('tone_patch', {})
         eq = tone.get('eq', {})
         
         bypass_eq = st.checkbox("Bypass EQ", value=not eq.get('enabled', False), key="bypass_eq")
         if not bypass_eq and eq.get('enabled'):
             # Get EQ types from blocks data
             eq_types = ["None"]
-            if "eq" in ai_generator.blocks_data:
-                eq_types.extend([block["name"] for block in ai_generator.blocks_data["eq"]])
+            eq_blocks = [block for block in ai_generator.blocks_data if block.get('category') == 'eq']
+            if eq_blocks:
+                eq_types.extend([block.get('name', '') for block in eq_blocks if block.get('name')])
+            
+            # Ensure we have valid options and index
+            if not eq_types:
+                eq_types = ["None"]
+            max_index = len(eq_types) - 1
+            default_index = 0 if eq.get('type') == "None" else min(1, max_index)
             
             sel_eq = st.selectbox("EQ Type", eq_types, 
-                                 index=0 if eq.get('type') == "None" else 1, key="eq_type")
+                                 index=default_index, key="eq_type")
             
             if sel_eq != "None":
                 params = eq.get('parameters', {})
-                low = st.slider("Low (dB)", -12.0, 12.0, params.get('low', 0.0), key="eq_low")
-                mid = st.slider("Mid (dB)", -12.0, 12.0, params.get('mid', 0.0), key="eq_mid")
-                high = st.slider("High (dB)", -12.0, 12.0, params.get('high', 0.0), key="eq_high")
+                low = st.slider("Low (dB)", -12.0, 12.0, safe_float(params.get('low', 0.0), 0.0), key="eq_low")
+                mid = st.slider("Mid (dB)", -12.0, 12.0, safe_float(params.get('mid', 0.0), 0.0), key="eq_mid")
+                high = st.slider("High (dB)", -12.0, 12.0, safe_float(params.get('high', 0.0), 0.0), key="eq_high")
         else:
             st.info("EQ is bypassed")
 
 with col5:
     st.markdown("**⏰ Delay Block**")
-    if st.session_state.current_tone:
-        tone = st.session_state.current_tone['tone_patch']
+    if st.session_state.get("current_tone"):
+        tone = st.session_state.get("current_tone", {}).get('tone_patch', {})
         delay = tone.get('delay', {})
         
         bypass_delay = st.checkbox("Bypass Delay", value=not delay.get('enabled', False), key="bypass_delay")
         if not bypass_delay and delay.get('enabled'):
             # Get delay types from blocks data
             delay_types = ["None"]
-            if "delay" in ai_generator.blocks_data:
-                delay_types.extend([block["name"] for block in ai_generator.blocks_data["delay"]])
+            delay_blocks = [block for block in ai_generator.blocks_data if block.get('category') == 'delay']
+            if delay_blocks:
+                delay_types.extend([block.get('name', '') for block in delay_blocks if block.get('name')])
+            
+            # Ensure we have valid options and index
+            if not delay_types:
+                delay_types = ["None"]
+            max_index = len(delay_types) - 1
+            default_index = 0 if delay.get('type') == "None" else min(1, max_index)
             
             sel_delay = st.selectbox("Delay Type", delay_types, 
-                                    index=0 if delay.get('type') == "None" else 1, key="delay_type")
+                                    index=default_index, key="delay_type")
             
             if sel_delay != "None":
                 params = delay.get('parameters', {})
-                time = st.slider("Time (ms)", 0, 2000, params.get('time', 500), key="delay_time")
-                mix = st.slider("Mix (%)", 0.0, 100.0, params.get('mix', 30.0), key="delay_mix")
-                feedback = st.slider("Feedback (%)", 0.0, 100.0, params.get('feedback', 20.0), key="delay_feedback")
+                time = st.slider("Time (ms)", 0, 2000, int(safe_float(params.get('time', 500), 500)), key="delay_time")
+                mix = st.slider("Mix (%)", 0.0, 100.0, safe_float(params.get('mix', 30.0), 30.0), key="delay_mix")
+                feedback = st.slider("Feedback (%)", 0.0, 100.0, safe_float(params.get('feedback', 20.0), 20.0), key="delay_feedback")
         else:
             st.info("Delay is bypassed")
 
 with col6:
     st.markdown("**🌊 Reverb Block**")
-    if st.session_state.current_tone:
-        tone = st.session_state.current_tone['tone_patch']
+    if st.session_state.get("current_tone"):
+        tone = st.session_state.get("current_tone", {}).get('tone_patch', {})
         reverb = tone.get('reverb', {})
         
         bypass_reverb = st.checkbox("Bypass Reverb", value=not reverb.get('enabled', False), key="bypass_reverb")
         if not bypass_reverb and reverb.get('enabled'):
             # Get reverb types from blocks data
             reverb_types = ["None"]
-            if "reverb" in ai_generator.blocks_data:
-                reverb_types.extend([block["name"] for block in ai_generator.blocks_data["reverb"]])
+            reverb_blocks = [block for block in ai_generator.blocks_data if block.get('category') == 'reverb']
+            if reverb_blocks:
+                reverb_types.extend([block.get('name', '') for block in reverb_blocks if block.get('name')])
+            
+            # Ensure we have valid options and index
+            if not reverb_types:
+                reverb_types = ["None"]
+            max_index = len(reverb_types) - 1
+            default_index = 0 if reverb.get('type') == "None" else min(1, max_index)
             
             sel_reverb = st.selectbox("Reverb Type", reverb_types, 
-                                     index=0 if reverb.get('type') == "None" else 1, key="reverb_type")
+                                     index=default_index, key="reverb_type")
             
             if sel_reverb != "None":
                 params = reverb.get('parameters', {})
-                room_size = st.slider("Room Size", 0.0, 10.0, params.get('room_size', 5.0), key="reverb_size")
-                mix = st.slider("Mix (%)", 0.0, 100.0, params.get('mix', 30.0), key="reverb_mix")
-                decay = st.slider("Decay", 0.0, 10.0, params.get('decay', 5.0), key="reverb_decay")
+                room_size = st.slider("Room Size", 0.0, 10.0, safe_float(params.get('room_size', 5.0), 5.0), key="reverb_size")
+                mix = st.slider("Mix (%)", 0.0, 100.0, safe_float(params.get('mix', 30.0), 30.0), key="reverb_mix")
+                decay = st.slider("Decay", 0.0, 10.0, safe_float(params.get('decay', 5.0), 5.0), key="reverb_decay")
         else:
             st.info("Reverb is bypassed")
+
+# Row 3: Advanced Effects
+st.markdown("---")
+st.markdown("### 🎛️ Advanced Effects")
+
+col7, col8, col9 = st.columns(3)
+
+with col7:
+    st.markdown("**🎵 Pitch Effects**")
+    
+    # Get pitch blocks from the generator
+    default_blocks = ai_generator._get_default_blocks()
+    pitch_blocks = default_blocks.get('pitch', {})
+    pitch_types = pitch_blocks.get('types', ['Pitch Shifter', 'Harmonizer', 'Whammy'])
+    
+    sel_pitch = st.selectbox("Pitch Type", ["None"] + pitch_types, key="pitch_type")
+    
+    if sel_pitch != "None":
+        pitch_params = pitch_blocks.get('parameters', {})
+        if 'pitch' in pitch_params:
+            pitch = st.slider("Pitch (semitones)", -24, 24, int(safe_float(pitch_params.get('pitch', 0), 0)), key="pitch_value")
+        if 'mix' in pitch_params:
+            pitch_mix = st.slider("Pitch Mix (%)", 0.0, 100.0, safe_float(pitch_params.get('mix', 50.0), 50.0), key="pitch_mix")
+        if 'level' in pitch_params:
+            pitch_level = st.slider("Pitch Level (dB)", -20.0, 20.0, safe_float(params.get('level', 0.0), 0.0), key="pitch_level")
+    else:
+        st.info("Pitch effects are bypassed")
+
+with col8:
+    st.markdown("**🎼 Harmonizer**")
+    
+    harmonizer_blocks = default_blocks.get('harmonizer', {})
+    harmonizer_types = harmonizer_blocks.get('types', ['Harmonizer', 'Intelligent Harmony'])
+    
+    sel_harmonizer = st.selectbox("Harmonizer Type", ["None"] + harmonizer_types, key="harmonizer_type")
+    
+    if sel_harmonizer != "None":
+        harmonizer_params = harmonizer_blocks.get('parameters', {})
+        if 'pitch1' in harmonizer_params:
+            pitch1 = st.slider("Pitch 1 (semitones)", -24, 24, int(safe_float(harmonizer_params.get('pitch1', 0), 0)), key="harmonizer_pitch1")
+        if 'pitch2' in harmonizer_params:
+            pitch2 = st.slider("Pitch 2 (semitones)", -24, 24, int(safe_float(harmonizer_params.get('pitch2', 0), 0)), key="harmonizer_pitch2")
+        if 'mix' in harmonizer_params:
+            harmonizer_mix = st.slider("Harmonizer Mix (%)", 0.0, 100.0, safe_float(harmonizer_params.get('mix', 50.0), 50.0), key="harmonizer_mix")
+    else:
+        st.info("Harmonizer is bypassed")
+
+with col9:
+    st.markdown("**🎤 Formant Filter**")
+    
+    formant_blocks = default_blocks.get('formant', {})
+    formant_params = formant_blocks.get('parameters', {})
+    
+    if formant_params:
+        if 'formant_1_freq' in formant_params:
+            formant1_freq = st.slider("Formant 1 Freq (Hz)", 200, 1000, int(safe_float(formant_params.get('formant_1_freq', 500), 500)), key="formant1_freq")
+        if 'formant_2_freq' in formant_params:
+            formant2_freq = st.slider("Formant 2 Freq (Hz)", 800, 3000, int(safe_float(formant_params.get('formant_2_freq', 1500), 1500)), key="formant2_freq")
+        if 'formant_mix' in formant_params:
+            formant_mix = st.slider("Formant Mix (%)", 0.0, 100.0, safe_float(formant_params.get('formant_mix', 50.0), 50.0), key="formant_mix")
+    else:
+        st.info("Formant filter not available")
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Tone Management
@@ -501,7 +936,7 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
     if st.button("💾 Save Current Tone", use_container_width=True):
-        if st.session_state.current_tone:
+        if st.session_state.get("current_tone"):
             # Save to session state for now (could be extended to save to file)
             st.success("Tone saved to session!")
         else:
@@ -509,7 +944,7 @@ with col1:
 
 with col2:
     if st.button("📋 Export to FM9", use_container_width=True):
-        if st.session_state.current_tone:
+        if st.session_state.get("current_tone"):
             st.info("Export functionality coming soon! This will generate FM9-compatible files.")
         else:
             st.warning("No tone to export!")
@@ -522,11 +957,11 @@ with col3:
 # ──────────────────────────────────────────────────────────────────────────────
 # Tone History
 # ──────────────────────────────────────────────────────────────────────────────
-if st.session_state.tone_history:
+if st.session_state.get("tone_history"):
     st.divider()
     st.header("📚 Tone History")
     
-    for i, tone in enumerate(reversed(st.session_state.tone_history[-5:])):  # Show last 5
+    for i, tone in enumerate(reversed(st.session_state.get("tone_history", [])[-5:])):  # Show last 5
         with st.expander(f"🎵 {tone['description']} (Query: '{tone['query']}')"):
             col1, col2 = st.columns([3, 1])
             with col1:
@@ -546,35 +981,34 @@ if st.session_state.tone_history:
 st.divider()
 st.caption("🎸 ToneGPT AI | AI-powered FM9 tone generation | Built with ❤️ for guitarists")
 
-# Sidebar for additional features
+# Sidebar for debug info only
 with st.sidebar:
-    st.header("🎛️ Quick Actions")
+    st.header("🔧 Debug Info")
     
-    st.subheader("🎯 Popular Tones")
-    popular_queries = [
-        "Deftones-style metal tone",
-        "Clean ambient lead",
-        "Blues rhythm tone",
-        "Classic rock lead",
-        "Funk rhythm groove"
-    ]
-    
-    for query in popular_queries:
-        if st.button(query, use_container_width=True):
-            st.session_state.ai_query = query
-            st.rerun()
-    
-    st.divider()
-    
-    st.subheader("⚙️ Settings")
-    st.checkbox("Auto-save tones", value=True)
-    st.checkbox("Show parameter ranges", value=True)
-    
-    st.divider()
-    
-    st.subheader("📊 Stats")
-    st.metric("Tones Generated", len(st.session_state.tone_history))
-    st.metric("Current Session", "Active")
+    # Debug: Show blocks data
+    if st.checkbox("Show Blocks Debug Info"):
+        st.subheader("🔧 Blocks Debug Info")
+        st.write(f"**Total Blocks Categories:** {len(ai_generator.blocks_data)}")
+        for category, blocks in ai_generator.blocks_data.items():
+            if isinstance(blocks, list):
+                st.write(f"**{category.title()}:** {len(blocks)} blocks")
+                if category in ['amp', 'drive', 'cab'] and blocks:
+                    sample_names = [b.get('name', 'No name') for b in blocks[:3]]
+                    st.write(f"  Sample: {', '.join(sample_names)}")
+            else:
+                st.write(f"**{category.title()}:** {type(blocks).__name__}")
+        
+        # Show current tone patch debug info
+        if st.session_state.get("current_tone"):
+            st.subheader("🎵 Current Tone Patch Debug")
+            tone_patch = st.session_state.get("current_tone", {}).get('tone_patch', {})
+            for block_name, block_data in tone_patch.items():
+                if isinstance(block_data, dict):
+                    enabled = block_data.get('enabled', False)
+                    block_type = block_data.get('type', 'None')
+                    st.write(f"**{block_name}:** enabled={enabled}, type='{block_type}'")
+                    if enabled and (not block_type or block_type == 'None' or block_type.strip() == ''):
+                        st.error(f"⚠️ {block_name} is enabled but has no type!")
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Project Roadmap & Technical Overview
@@ -795,8 +1229,8 @@ with tab5:
 st.divider()
 st.header("🔊 Audio Analysis & Visualization")
 
-if st.session_state.current_tone:
-    tone = st.session_state.current_tone['tone_patch']
+if st.session_state.get("current_tone"):
+    tone = st.session_state.get("current_tone", {}).get('tone_patch', {})
     
     # Create tabs for different visualizations
     viz_tab1, viz_tab2, viz_tab3 = st.tabs(["📊 Tone Analysis", "🎵 Frequency Spectrum", "📈 Parameter Charts"])
@@ -804,8 +1238,8 @@ if st.session_state.current_tone:
     with viz_tab1:
         st.subheader("📊 Tone Analysis")
         
-        if st.session_state.current_tone:
-            tone = st.session_state.current_tone['tone_patch']
+        if st.session_state.get("current_tone"):
+            tone = st.session_state.get("current_tone", {}).get('tone_patch', {})
             intent = st.session_state.current_tone.get('intent', {})
             
             # Create a comprehensive tone analysis dashboard
@@ -857,7 +1291,8 @@ if st.session_state.current_tone:
             # Create a radar chart for tone characteristics
             if intent and intent.get('characteristics'):
                 categories = intent['characteristics'][:6]  # Limit to 6 for readability
-                values = np.random.uniform(0.3, 1.0, len(categories))  # Simulated values
+                rng = np.random.default_rng()
+                values = rng.uniform(0.3, 1.0, len(categories))  # Simulated values
                 
                 fig = go.Figure()
                 fig.add_trace(go.Scatterpolar(
@@ -877,8 +1312,8 @@ if st.session_state.current_tone:
                         )),
                     showlegend=False,
                     title="Tone Characteristic Profile",
-                    plot_bgcolor='rgba(0,0,0,0)',
-                    paper_bgcolor='rgba(0,0,0,0)',
+                    plot_bgcolor=TRANSPARENT_BG,
+                    paper_bgcolor=TRANSPARENT_BG,
                     font=dict(color='white')
                 )
                 
@@ -902,8 +1337,8 @@ if st.session_state.current_tone:
                 )
                 
                 fig.update_layout(
-                    plot_bgcolor='rgba(0,0,0,0)',
-                    paper_bgcolor='rgba(0,0,0,0)',
+                    plot_bgcolor=TRANSPARENT_BG,
+                    paper_bgcolor=TRANSPARENT_BG,
                     font=dict(color='white')
                 )
                 
@@ -920,8 +1355,8 @@ if st.session_state.current_tone:
         All measurements use industry-standard algorithms for frequency response, harmonic analysis, and spectral characteristics.
         """)
         
-        if st.session_state.current_tone:
-            tone = st.session_state.current_tone['tone_patch']
+        if st.session_state.get("current_tone"):
+            tone = st.session_state.get("current_tone", {}).get('tone_patch', {})
             
             # Create professional audio analysis interface
             col1, col2 = st.columns([3, 1])
@@ -939,9 +1374,9 @@ if st.session_state.current_tone:
                 # Apply professional audio engineering analysis
                 if 'eq' in tone and tone['eq'].get('enabled', False):
                     eq_params = tone['eq'].get('parameters', {})
-                    low_gain = eq_params.get('low', 0.0) / 12.0
-                    mid_gain = eq_params.get('mid', 0.0) / 12.0
-                    high_gain = eq_params.get('high', 0.0) / 12.0
+                    low_gain = safe_float(params.get('low', 0.0), 0.0) / 12.0
+                    mid_gain = safe_float(params.get('mid', 0.0), 0.0) / 12.0
+                    high_gain = safe_float(params.get('high', 0.0), 0.0) / 12.0
                     
                     # Professional EQ transfer functions
                     for i, freq in enumerate(freq_array):
@@ -987,7 +1422,7 @@ if st.session_state.current_tone:
                 # Professional amp modeling with real frequency response
                 if 'amp' in tone and tone['amp'].get('enabled', False):
                     amp_params = tone['amp'].get('parameters', {})
-                    amp_gain = amp_params.get('gain', 5.0) / 10.0
+                    amp_gain = safe_float(params.get('gain', 5.0), 5.0) / 10.0
                     
                     # Real amp frequency response characteristics
                     for i, freq in enumerate(freq_array):
@@ -1009,8 +1444,8 @@ if st.session_state.current_tone:
                 # Professional cabinet modeling
                 if 'cab' in tone and tone['cab'].get('enabled', False):
                     cab_params = tone['cab'].get('parameters', {})
-                    lowcut = cab_params.get('lowcut', 80)
-                    highcut = cab_params.get('highcut', 8000)
+                    lowcut = int(safe_float(params.get('lowcut', 80), 80))
+                    highcut = int(safe_float(params.get('highcut', 8000), 8000))
                     
                     # Real cabinet filter characteristics
                     for i, freq in enumerate(freq_array):
@@ -1140,8 +1575,8 @@ if st.session_state.current_tone:
     with viz_tab3:
         st.subheader("📈 Parameter Charts")
         
-        if st.session_state.current_tone:
-            tone = st.session_state.current_tone['tone_patch']
+        if st.session_state.get("current_tone"):
+            tone = st.session_state.get("current_tone", {}).get('tone_patch', {})
             
             # Collect all parameters from active blocks
             all_params = {}
@@ -1181,8 +1616,8 @@ if st.session_state.current_tone:
                 
                 fig.update_layout(
                     title="Parameter Values by Block",
-                    plot_bgcolor='rgba(0,0,0,0)',
-                    paper_bgcolor='rgba(0,0,0,0)',
+                    plot_bgcolor=TRANSPARENT_BG,
+                    paper_bgcolor=TRANSPARENT_BG,
                     font=dict(color='white'),
                     height=500
                 )
