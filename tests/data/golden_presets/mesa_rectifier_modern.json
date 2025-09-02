@@ -1,0 +1,182 @@
+{
+  "query": "Mesa Boogie Rectifier modern high gain tone",
+  "intent": {
+    "genre": "rock",
+    "characteristics": [],
+    "query": "Mesa Boogie Rectifier modern high gain tone"
+  },
+  "tone_patch": {
+    "drive_1": {
+      "enabled": true,
+      "type": "Fuzz Face Germanium Pro",
+      "parameters": {
+        "drive": 5.9,
+        "tone": 5.8,
+        "level": 3.4
+      }
+    },
+    "drive_2": {
+      "enabled": true,
+      "type": "Screamer Pro",
+      "parameters": {
+        "drive": 7.7,
+        "tone": 6.4,
+        "level": 3.7
+      }
+    },
+    "amp": {
+      "enabled": true,
+      "type": "Recto1: original 2-channel Rectifier, Orange channel, Modern mode",
+      "parameters": {
+        "gain": 5.8,
+        "bass": 7.2,
+        "mid": 7.4,
+        "treble": 6.1,
+        "presence": 5.3,
+        "master": 4.7
+      }
+    },
+    "cab": {
+      "enabled": true,
+      "type": "Legacy 4x12 V30",
+      "parameters": {
+        "low_cut": 110.2,
+        "high_cut": 12509.7,
+        "level": 2.5
+      }
+    },
+    "eq": {
+      "enabled": true,
+      "type": "High Pass Filter",
+      "parameters": {
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "low_mid_freq": 500.0,
+        "low_mid_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
+        "high_freq": 8000.0,
+        "high_gain": 0.0
+      }
+    },
+    "delay": {
+      "enabled": true,
+      "type": "Quad Delay Pro",
+      "parameters": {
+        "time": 707.4973977145933,
+        "feedback": 22.149588705200312,
+        "mix": 34.63787995336808
+      }
+    },
+    "reverb": {
+      "enabled": true,
+      "type": "Studio Reverb",
+      "parameters": {
+        "room_size": 51.98111128246327,
+        "decay": 2.1315867930625902,
+        "mix": 38.96634621249005
+      }
+    },
+    "pitch": {
+      "enabled": true,
+      "type": "Resonator Pitch",
+      "parameters": {
+        "pitch": 8.596289348821578,
+        "mix": 57.54699625389578
+      }
+    },
+    "dynamics": {
+      "enabled": true,
+      "type": "VCA Compressor",
+      "parameters": {
+        "threshold": -9.93622892056144,
+        "ratio": 4.527662587284155,
+        "attack": 7.771556767857399,
+        "release": 126.00555126103103
+      }
+    }
+  },
+  "description": "A rock tone, using Recto1: original 2-channel Rectifier, Orange channel, Modern mode with Fuzz Face Germanium Pro and Screamer Pro with Quad Delay Pro, Studio Reverb, Resonator Pitch and VCA Compressor.",
+  "gear_used": {
+    "drive_1": {
+      "type": "Fuzz Face Germanium Pro",
+      "parameters": {
+        "drive": 5.9,
+        "tone": 5.8,
+        "level": 3.4
+      }
+    },
+    "drive_2": {
+      "type": "Screamer Pro",
+      "parameters": {
+        "drive": 7.7,
+        "tone": 6.4,
+        "level": 3.7
+      }
+    },
+    "amp": {
+      "type": "Recto1: original 2-channel Rectifier, Orange channel, Modern mode",
+      "parameters": {
+        "gain": 5.8,
+        "bass": 7.2,
+        "mid": 7.4,
+        "treble": 6.1,
+        "presence": 5.3,
+        "master": 4.7
+      }
+    },
+    "cab": {
+      "type": "Legacy 4x12 V30",
+      "parameters": {
+        "low_cut": 110.2,
+        "high_cut": 12509.7,
+        "level": 2.5
+      }
+    },
+    "eq": {
+      "type": "High Pass Filter",
+      "parameters": {
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "low_mid_freq": 500.0,
+        "low_mid_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
+        "high_freq": 8000.0,
+        "high_gain": 0.0
+      }
+    },
+    "delay": {
+      "type": "Quad Delay Pro",
+      "parameters": {
+        "time": 707.4973977145933,
+        "feedback": 22.149588705200312,
+        "mix": 34.63787995336808
+      }
+    },
+    "reverb": {
+      "type": "Studio Reverb",
+      "parameters": {
+        "room_size": 51.98111128246327,
+        "decay": 2.1315867930625902,
+        "mix": 38.96634621249005
+      }
+    },
+    "pitch": {
+      "type": "Resonator Pitch",
+      "parameters": {
+        "pitch": 8.596289348821578,
+        "mix": 57.54699625389578
+      }
+    },
+    "dynamics": {
+      "type": "VCA Compressor",
+      "parameters": {
+        "threshold": -9.93622892056144,
+        "ratio": 4.527662587284155,
+        "attack": 7.771556767857399,
+        "release": 126.00555126103103
+      }
+    }
+  }
+}

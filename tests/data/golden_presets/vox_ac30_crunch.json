@@ -1,0 +1,182 @@
+{
+  "query": "Vox AC30 crunch tone with overdrive",
+  "intent": {
+    "genre": "rock",
+    "characteristics": [],
+    "query": "Vox AC30 crunch tone with overdrive"
+  },
+  "tone_patch": {
+    "drive_1": {
+      "enabled": true,
+      "type": "HM-2",
+      "parameters": {
+        "drive": 4.3,
+        "tone": 4.4,
+        "level": 5.4
+      }
+    },
+    "drive_2": {
+      "enabled": true,
+      "type": "Suhr Shiba Reloaded",
+      "parameters": {
+        "drive": 7.0,
+        "tone": 5.9,
+        "level": 5.3
+      }
+    },
+    "amp": {
+      "enabled": true,
+      "type": "RECTO2 ORANGE MODERN",
+      "parameters": {
+        "gain": 5.8,
+        "bass": 5.7,
+        "mid": 6.9,
+        "treble": 5.6,
+        "presence": 5.2,
+        "master": 6.7
+      }
+    },
+    "cab": {
+      "enabled": true,
+      "type": "F131 4x12 TV Mix #1",
+      "parameters": {
+        "low_cut": 128.9,
+        "high_cut": 8051.0,
+        "level": 5.5
+      }
+    },
+    "eq": {
+      "enabled": true,
+      "type": "Mid Cut",
+      "parameters": {
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "low_mid_freq": 500.0,
+        "low_mid_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
+        "high_freq": 8000.0,
+        "high_gain": 0.0
+      }
+    },
+    "delay": {
+      "enabled": true,
+      "type": "Digital Delay Pro",
+      "parameters": {
+        "time": 516.1989163923688,
+        "feedback": 32.62104425869197,
+        "mix": 23.549283425870673
+      }
+    },
+    "reverb": {
+      "enabled": true,
+      "type": "Convolution Reverb Pro",
+      "parameters": {
+        "room_size": 79.99012093767499,
+        "decay": 1.9860340231386566,
+        "mix": 27.84131645403641
+      }
+    },
+    "pitch": {
+      "enabled": true,
+      "type": "Micro Pitch",
+      "parameters": {
+        "pitch": 3.330172757294447,
+        "mix": 37.58148968662669
+      }
+    },
+    "dynamics": {
+      "enabled": true,
+      "type": "Gate",
+      "parameters": {
+        "threshold": -15.559481183170007,
+        "ratio": 5.7069789470651004,
+        "attack": 9.996618735355362,
+        "release": 55.54282444307225
+      }
+    }
+  },
+  "description": "A rock tone, using RECTO2 ORANGE MODERN with HM-2 and Suhr Shiba Reloaded with Digital Delay Pro, Convolution Reverb Pro, Micro Pitch and Gate.",
+  "gear_used": {
+    "drive_1": {
+      "type": "HM-2",
+      "parameters": {
+        "drive": 4.3,
+        "tone": 4.4,
+        "level": 5.4
+      }
+    },
+    "drive_2": {
+      "type": "Suhr Shiba Reloaded",
+      "parameters": {
+        "drive": 7.0,
+        "tone": 5.9,
+        "level": 5.3
+      }
+    },
+    "amp": {
+      "type": "RECTO2 ORANGE MODERN",
+      "parameters": {
+        "gain": 5.8,
+        "bass": 5.7,
+        "mid": 6.9,
+        "treble": 5.6,
+        "presence": 5.2,
+        "master": 6.7
+      }
+    },
+    "cab": {
+      "type": "F131 4x12 TV Mix #1",
+      "parameters": {
+        "low_cut": 128.9,
+        "high_cut": 8051.0,
+        "level": 5.5
+      }
+    },
+    "eq": {
+      "type": "Mid Cut",
+      "parameters": {
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "low_mid_freq": 500.0,
+        "low_mid_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
+        "high_freq": 8000.0,
+        "high_gain": 0.0
+      }
+    },
+    "delay": {
+      "type": "Digital Delay Pro",
+      "parameters": {
+        "time": 516.1989163923688,
+        "feedback": 32.62104425869197,
+        "mix": 23.549283425870673
+      }
+    },
+    "reverb": {
+      "type": "Convolution Reverb Pro",
+      "parameters": {
+        "room_size": 79.99012093767499,
+        "decay": 1.9860340231386566,
+        "mix": 27.84131645403641
+      }
+    },
+    "pitch": {
+      "type": "Micro Pitch",
+      "parameters": {
+        "pitch": 3.330172757294447,
+        "mix": 37.58148968662669
+      }
+    },
+    "dynamics": {
+      "type": "Gate",
+      "parameters": {
+        "threshold": -15.559481183170007,
+        "ratio": 5.7069789470651004,
+        "attack": 9.996618735355362,
+        "release": 55.54282444307225
+      }
+    }
+  }
+}

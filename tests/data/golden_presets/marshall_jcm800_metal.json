@@ -1,0 +1,182 @@
+{
+  "query": "Marshall JCM800 metal tone with high gain and tight bass",
+  "intent": {
+    "genre": "metal",
+    "characteristics": [],
+    "query": "Marshall JCM800 metal tone with high gain and tight bass"
+  },
+  "tone_patch": {
+    "drive_1": {
+      "enabled": true,
+      "type": "Suhr Koko Boost Pro",
+      "parameters": {
+        "drive": 8.5,
+        "tone": 6.2,
+        "level": 7.8
+      }
+    },
+    "drive_2": {
+      "enabled": true,
+      "type": "Fuzz Face",
+      "parameters": {
+        "drive": 7.3,
+        "tone": 5.5,
+        "level": 6.6
+      }
+    },
+    "amp": {
+      "enabled": true,
+      "type": "Brit 800",
+      "parameters": {
+        "gain": 9.2,
+        "bass": 6.8,
+        "mid": 3.4,
+        "treble": 7.3,
+        "presence": 7.1,
+        "master": 4.9
+      }
+    },
+    "cab": {
+      "enabled": true,
+      "type": "Marshall 4x12",
+      "parameters": {
+        "low_cut": 157.2,
+        "high_cut": 11666.2,
+        "level": -1.2
+      }
+    },
+    "eq": {
+      "enabled": true,
+      "type": "Low Cut",
+      "parameters": {
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "low_mid_freq": 500.0,
+        "low_mid_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
+        "high_freq": 8000.0,
+        "high_gain": 0.0
+      }
+    },
+    "delay": {
+      "enabled": true,
+      "type": "Analog Delay Pro",
+      "parameters": {
+        "time": 743.0111242188509,
+        "feedback": 36.178374250120896,
+        "mix": 30.517437030879556
+      }
+    },
+    "reverb": {
+      "enabled": true,
+      "type": "Reverse Reverb Pro",
+      "parameters": {
+        "room_size": 75.82656560710132,
+        "decay": 1.6767882042240732,
+        "mix": 22.23921007097083
+      }
+    },
+    "pitch": {
+      "enabled": true,
+      "type": "Virtual Capo Pro",
+      "parameters": {
+        "pitch": 6.42184347049475,
+        "mix": 50.62572013647092
+      }
+    },
+    "dynamics": {
+      "enabled": true,
+      "type": "Modern Compressor Pro",
+      "parameters": {
+        "threshold": -9.568112195380698,
+        "ratio": 2.864136102267561,
+        "attack": 5.149920480711226,
+        "release": 169.2680750212337
+      }
+    }
+  },
+  "description": "A metal tone, using Brit 800 with Suhr Koko Boost Pro and Fuzz Face with Analog Delay Pro, Reverse Reverb Pro, Virtual Capo Pro and Modern Compressor Pro.",
+  "gear_used": {
+    "drive_1": {
+      "type": "Suhr Koko Boost Pro",
+      "parameters": {
+        "drive": 8.5,
+        "tone": 6.2,
+        "level": 7.8
+      }
+    },
+    "drive_2": {
+      "type": "Fuzz Face",
+      "parameters": {
+        "drive": 7.3,
+        "tone": 5.5,
+        "level": 6.6
+      }
+    },
+    "amp": {
+      "type": "Brit 800",
+      "parameters": {
+        "gain": 9.2,
+        "bass": 6.8,
+        "mid": 3.4,
+        "treble": 7.3,
+        "presence": 7.1,
+        "master": 4.9
+      }
+    },
+    "cab": {
+      "type": "Marshall 4x12",
+      "parameters": {
+        "low_cut": 157.2,
+        "high_cut": 11666.2,
+        "level": -1.2
+      }
+    },
+    "eq": {
+      "type": "Low Cut",
+      "parameters": {
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "low_mid_freq": 500.0,
+        "low_mid_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
+        "high_freq": 8000.0,
+        "high_gain": 0.0
+      }
+    },
+    "delay": {
+      "type": "Analog Delay Pro",
+      "parameters": {
+        "time": 743.0111242188509,
+        "feedback": 36.178374250120896,
+        "mix": 30.517437030879556
+      }
+    },
+    "reverb": {
+      "type": "Reverse Reverb Pro",
+      "parameters": {
+        "room_size": 75.82656560710132,
+        "decay": 1.6767882042240732,
+        "mix": 22.23921007097083
+      }
+    },
+    "pitch": {
+      "type": "Virtual Capo Pro",
+      "parameters": {
+        "pitch": 6.42184347049475,
+        "mix": 50.62572013647092
+      }
+    },
+    "dynamics": {
+      "type": "Modern Compressor Pro",
+      "parameters": {
+        "threshold": -9.568112195380698,
+        "ratio": 2.864136102267561,
+        "attack": 5.149920480711226,
+        "release": 169.2680750212337
+      }
+    }
+  }
+}

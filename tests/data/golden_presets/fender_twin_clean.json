@@ -1,0 +1,135 @@
+{
+  "query": "Fender Twin Reverb clean tone with reverb",
+  "intent": {
+    "genre": "jazz",
+    "characteristics": [
+      "clean"
+    ],
+    "query": "Fender Twin Reverb clean tone with reverb"
+  },
+  "tone_patch": {
+    "amp": {
+      "enabled": true,
+      "type": "5F1 TWEED EC",
+      "parameters": {
+        "gain": 1.4,
+        "bass": 5.3,
+        "mid": 6.2,
+        "treble": 5.4,
+        "presence": 4.9,
+        "master": 8.3
+      }
+    },
+    "cab": {
+      "enabled": true,
+      "type": "Legacy 2x12 Greenback",
+      "parameters": {
+        "low_cut": 170.3,
+        "high_cut": 9294.8,
+        "level": 5.6
+      }
+    },
+    "eq": {
+      "enabled": true,
+      "type": "Mid Cut Pro",
+      "parameters": {
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "low_mid_freq": 500.0,
+        "low_mid_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
+        "high_freq": 8000.0,
+        "high_gain": 0.0
+      }
+    },
+    "reverb": {
+      "enabled": true,
+      "type": "Chamber Reverb",
+      "parameters": {
+        "room_size": 59.107578603593154,
+        "decay": 2.710523200620126,
+        "mix": 30.585421705155156
+      }
+    },
+    "modulation": {
+      "enabled": true,
+      "type": "Step Tremolo Pro",
+      "parameters": {
+        "rate": 1.2460436489499414,
+        "depth": 59.81145290202506,
+        "mix": 39.45802751990432
+      }
+    },
+    "dynamics": {
+      "enabled": true,
+      "type": "Quad Compressor",
+      "parameters": {
+        "threshold": -13.876374745761328,
+        "ratio": 7.967677899687104,
+        "attack": 2.8381929548474147,
+        "release": 75.14470360760012
+      }
+    }
+  },
+  "description": "A jazz tone, using 5F1 TWEED EC with Chamber Reverb, Step Tremolo Pro and Quad Compressor, featuring clean.",
+  "gear_used": {
+    "amp": {
+      "type": "5F1 TWEED EC",
+      "parameters": {
+        "gain": 1.4,
+        "bass": 5.3,
+        "mid": 6.2,
+        "treble": 5.4,
+        "presence": 4.9,
+        "master": 8.3
+      }
+    },
+    "cab": {
+      "type": "Legacy 2x12 Greenback",
+      "parameters": {
+        "low_cut": 170.3,
+        "high_cut": 9294.8,
+        "level": 5.6
+      }
+    },
+    "eq": {
+      "type": "Mid Cut Pro",
+      "parameters": {
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "low_mid_freq": 500.0,
+        "low_mid_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
+        "high_freq": 8000.0,
+        "high_gain": 0.0
+      }
+    },
+    "reverb": {
+      "type": "Chamber Reverb",
+      "parameters": {
+        "room_size": 59.107578603593154,
+        "decay": 2.710523200620126,
+        "mix": 30.585421705155156
+      }
+    },
+    "modulation": {
+      "type": "Step Tremolo Pro",
+      "parameters": {
+        "rate": 1.2460436489499414,
+        "depth": 59.81145290202506,
+        "mix": 39.45802751990432
+      }
+    },
+    "dynamics": {
+      "type": "Quad Compressor",
+      "parameters": {
+        "threshold": -13.876374745761328,
+        "ratio": 7.967677899687104,
+        "attack": 2.8381929548474147,
+        "release": 75.14470360760012
+      }
+    }
+  }
+}

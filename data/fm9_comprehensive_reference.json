@@ -1,0 +1,192 @@
+{
+  "amp_block": {
+    "models": 329,
+    "description": "Official amp models including Fender Twin, Marshall Plexi, Mesa Rectifier, Vox AC30, ENGL, Peavey 5150, Bogner, Friedman, Fractal Originals",
+    "key_parameters": {
+      "gain": {"min": 0.0, "max": 10.0, "description": "Preamp gain control"},
+      "bass": {"min": 0.0, "max": 10.0, "description": "Bass frequency control"},
+      "mid": {"min": 0.0, "max": 10.0, "description": "Mid frequency control"},
+      "treble": {"min": 0.0, "max": 10.0, "description": "Treble frequency control"},
+      "presence": {"min": 0.0, "max": 10.0, "description": "Presence control"},
+      "depth": {"min": 0.0, "max": 10.0, "description": "Depth control"},
+      "resonance": {"min": 0.0, "max": 10.0, "description": "Resonance control"},
+      "master": {"min": 0.0, "max": 10.0, "description": "Master volume"},
+      "input_drive": {"min": 0.0, "max": 10.0, "description": "Input drive (preamp gain)"},
+      "level": {"min": -80.0, "max": 20.0, "description": "Output level"},
+      "bright_switch": {"type": "boolean", "description": "Bright switch"},
+      "saturation_switch": {"type": "boolean", "description": "Saturation switch"},
+      "bias": {"min": 0.0, "max": 10.0, "description": "Bias control"},
+      "sag": {"min": 0.0, "max": 10.0, "description": "Sag control"},
+      "damping": {"min": 0.0, "max": 10.0, "description": "Damping control"},
+      "transformer_match": {"min": 0.0, "max": 10.0, "description": "Transformer match"},
+      "speaker_impedance": {"min": 0.0, "max": 10.0, "description": "Speaker impedance curve"},
+      "dynamic_depth": {"min": 0.0, "max": 10.0, "description": "Dynamic depth"},
+      "dynamic_presence": {"min": 0.0, "max": 10.0, "description": "Dynamic presence"},
+      "fat_boost": {"type": "boolean", "description": "Fat boost"},
+      "bright_boost": {"type": "boolean", "description": "Bright boost"},
+      "cut_boost": {"type": "boolean", "description": "Cut boost"},
+      "input_trim": {"min": -12.0, "max": 12.0, "description": "Input trim control"},
+      "output_trim": {"min": -12.0, "max": 12.0, "description": "Output trim control"},
+      "bias_x": {"min": 0.0, "max": 10.0, "description": "Bias X control"},
+      "bias_y": {"min": 0.0, "max": 10.0, "description": "Bias Y control"},
+      "sag_x": {"min": 0.0, "max": 10.0, "description": "Sag X control"},
+      "sag_y": {"min": 0.0, "max": 10.0, "description": "Sag Y control"},
+      "master_volume": {"min": 0.0, "max": 10.0, "description": "Master volume control"},
+      "preamp_type": {"type": "select", "options": ["Clean", "Crunch", "Lead"], "description": "Preamp type selection"}
+    }
+  },
+  "cab_block": {
+    "models": 226,
+    "description": "Official cabinet models including Fender, Marshall, Mesa, Vox, Orange, and many more",
+    "key_parameters": {
+      "level": {"min": -80.0, "max": 20.0, "description": "Output level"},
+      "low_cut": {"min": 20.0, "max": 20000.0, "description": "Low frequency cutoff"},
+      "high_cut": {"min": 20.0, "max": 20000.0, "description": "High frequency cutoff"},
+      "mic_type": {"type": "select", "options": ["Dynamic", "Condenser", "Ribbon"], "description": "Microphone type"},
+      "mic_distance": {"min": 0.0, "max": 10.0, "description": "Microphone distance from speaker"},
+      "room_size": {"min": 0.0, "max": 10.0, "description": "Room size simulation"},
+      "room_decay": {"min": 0.0, "max": 10.0, "description": "Room decay time"},
+      "room_damping": {"min": 0.0, "max": 10.0, "description": "Room damping"},
+      "room_predelay": {"min": 0.0, "max": 100.0, "description": "Room pre-delay"},
+      "room_early_level": {"min": -80.0, "max": 20.0, "description": "Early reflections level"},
+      "room_late_level": {"min": -80.0, "max": 20.0, "description": "Late reflections level"}
+    }
+  },
+  "drive_block": {
+    "models": 79,
+    "description": "Drive effects including overdrive, distortion, fuzz, and boost pedals",
+    "key_parameters": {
+      "drive": {"min": 0.0, "max": 10.0, "description": "Drive amount"},
+      "tone": {"min": 0.0, "max": 10.0, "description": "Tone control"},
+      "level": {"min": -80.0, "max": 20.0, "description": "Output level"},
+      "mix": {"min": 0.0, "max": 100.0, "description": "Wet/dry mix"},
+      "bass": {"min": 0.0, "max": 10.0, "description": "Bass control"},
+      "mid": {"min": 0.0, "max": 10.0, "description": "Mid control"},
+      "treble": {"min": 0.0, "max": 10.0, "description": "Treble control"},
+      "presence": {"min": 0.0, "max": 10.0, "description": "Presence control"},
+      "attack": {"min": 0.0, "max": 10.0, "description": "Attack control"},
+      "release": {"min": 0.0, "max": 10.0, "description": "Release control"},
+      "threshold": {"min": -80.0, "max": 20.0, "description": "Threshold control"},
+      "ratio": {"min": 1.0, "max": 20.0, "description": "Compression ratio"},
+      "knee": {"min": 0.0, "max": 10.0, "description": "Knee control"},
+      "makeup": {"min": 0.0, "max": 20.0, "description": "Makeup gain"},
+      "sidechain": {"type": "boolean", "description": "Sidechain enable"},
+      "bypass": {"type": "boolean", "description": "Bypass switch"}
+    }
+  },
+  "modulation_block": {
+    "models": 54,
+    "description": "Modulation effects including chorus, flanger, phaser, tremolo, and vibrato",
+    "key_parameters": {
+      "rate": {"min": 0.0, "max": 20.0, "description": "Modulation rate"},
+      "depth": {"min": 0.0, "max": 100.0, "description": "Modulation depth"},
+      "mix": {"min": 0.0, "max": 100.0, "description": "Wet/dry mix"},
+      "level": {"min": -80.0, "max": 20.0, "description": "Output level"},
+      "feedback": {"min": -100.0, "max": 100.0, "description": "Feedback amount"},
+      "delay": {"min": 0.0, "max": 100.0, "description": "Delay time"},
+      "spread": {"min": 0.0, "max": 100.0, "description": "Stereo spread"},
+      "phase": {"min": 0.0, "max": 360.0, "description": "Phase offset"},
+      "sync": {"type": "boolean", "description": "Tempo sync"},
+      "tempo": {"min": 30.0, "max": 300.0, "description": "Tempo in BPM"},
+      "waveform": {"type": "select", "options": ["Sine", "Triangle", "Square", "Saw"], "description": "Modulation waveform"},
+      "bypass": {"type": "boolean", "description": "Bypass switch"}
+    }
+  },
+  "delay_block": {
+    "models": 53,
+    "description": "Delay effects including digital, analog, tape, and multi-tap delays",
+    "key_parameters": {
+      "time": {"min": 0.0, "max": 2000.0, "description": "Delay time in milliseconds"},
+      "feedback": {"min": 0.0, "max": 100.0, "description": "Feedback amount"},
+      "mix": {"min": 0.0, "max": 100.0, "description": "Wet/dry mix"},
+      "level": {"min": -80.0, "max": 20.0, "description": "Output level"},
+      "low_cut": {"min": 20.0, "max": 20000.0, "description": "Low frequency cutoff"},
+      "high_cut": {"min": 20.0, "max": 20000.0, "description": "High frequency cutoff"},
+      "mod_rate": {"min": 0.0, "max": 20.0, "description": "Modulation rate"},
+      "mod_depth": {"min": 0.0, "max": 100.0, "description": "Modulation depth"},
+      "sync": {"type": "boolean", "description": "Tempo sync"},
+      "tempo": {"min": 30.0, "max": 300.0, "description": "Tempo in BPM"},
+      "tap_tempo": {"type": "boolean", "description": "Tap tempo enable"},
+      "bypass": {"type": "boolean", "description": "Bypass switch"}
+    }
+  },
+  "reverb_block": {
+    "models": 54,
+    "description": "Reverb effects including hall, room, plate, spring, and ambient reverbs",
+    "key_parameters": {
+      "room_size": {"min": 0.0, "max": 100.0, "description": "Room size"},
+      "decay": {"min": 0.0, "max": 100.0, "description": "Decay time"},
+      "mix": {"min": 0.0, "max": 100.0, "description": "Wet/dry mix"},
+      "level": {"min": -80.0, "max": 20.0, "description": "Output level"},
+      "predelay": {"min": 0.0, "max": 100.0, "description": "Pre-delay time"},
+      "damping": {"min": 0.0, "max": 100.0, "description": "High frequency damping"},
+      "low_cut": {"min": 20.0, "max": 20000.0, "description": "Low frequency cutoff"},
+      "high_cut": {"min": 20.0, "max": 20000.0, "description": "High frequency cutoff"},
+      "early_level": {"min": -80.0, "max": 20.0, "description": "Early reflections level"},
+      "late_level": {"min": -80.0, "max": 20.0, "description": "Late reflections level"},
+      "mod_rate": {"min": 0.0, "max": 20.0, "description": "Modulation rate"},
+      "mod_depth": {"min": 0.0, "max": 100.0, "description": "Modulation depth"},
+      "bypass": {"type": "boolean", "description": "Bypass switch"}
+    }
+  },
+  "pitch_block": {
+    "models": 54,
+    "description": "Pitch effects including pitch shifter, harmonizer, and virtual capo",
+    "key_parameters": {
+      "pitch": {"min": -24.0, "max": 24.0, "description": "Pitch shift in semitones"},
+      "mix": {"min": 0.0, "max": 100.0, "description": "Wet/dry mix"},
+      "level": {"min": -80.0, "max": 20.0, "description": "Output level"},
+      "feedback": {"min": 0.0, "max": 100.0, "description": "Feedback amount"},
+      "detune": {"min": -50.0, "max": 50.0, "description": "Detune amount in cents"},
+      "formant": {"min": 0.0, "max": 100.0, "description": "Formant control"},
+      "tracking": {"min": 0.0, "max": 100.0, "description": "Pitch tracking"},
+      "bypass": {"type": "boolean", "description": "Bypass switch"}
+    }
+  },
+  "dynamics_block": {
+    "models": 58,
+    "description": "Dynamics effects including compressors, limiters, and gates",
+    "key_parameters": {
+      "threshold": {"min": -80.0, "max": 20.0, "description": "Threshold level"},
+      "ratio": {"min": 1.0, "max": 20.0, "description": "Compression ratio"},
+      "attack": {"min": 0.0, "max": 100.0, "description": "Attack time"},
+      "release": {"min": 0.0, "max": 100.0, "description": "Release time"},
+      "knee": {"min": 0.0, "max": 10.0, "description": "Knee control"},
+      "makeup": {"min": 0.0, "max": 20.0, "description": "Makeup gain"},
+      "mix": {"min": 0.0, "max": 100.0, "description": "Wet/dry mix"},
+      "level": {"min": -80.0, "max": 20.0, "description": "Output level"},
+      "sidechain": {"type": "boolean", "description": "Sidechain enable"},
+      "bypass": {"type": "boolean", "description": "Bypass switch"}
+    }
+  },
+  "eq_block": {
+    "models": 54,
+    "description": "EQ effects including parametric, graphic, and filter EQs",
+    "key_parameters": {
+      "low_freq": {"min": 20.0, "max": 20000.0, "description": "Low frequency"},
+      "low_gain": {"min": -20.0, "max": 20.0, "description": "Low frequency gain"},
+      "low_q": {"min": 0.1, "max": 10.0, "description": "Low frequency Q"},
+      "mid_freq": {"min": 20.0, "max": 20000.0, "description": "Mid frequency"},
+      "mid_gain": {"min": -20.0, "max": 20.0, "description": "Mid frequency gain"},
+      "mid_q": {"min": 0.1, "max": 10.0, "description": "Mid frequency Q"},
+      "high_freq": {"min": 20.0, "max": 20000.0, "description": "High frequency"},
+      "high_gain": {"min": -20.0, "max": 20.0, "description": "High frequency gain"},
+      "high_q": {"min": 0.1, "max": 10.0, "description": "High frequency Q"},
+      "level": {"min": -80.0, "max": 20.0, "description": "Output level"},
+      "bypass": {"type": "boolean", "description": "Bypass switch"}
+    }
+  },
+  "utility_block": {
+    "models": 76,
+    "description": "Utility effects including volume, pan, mixer, and routing utilities",
+    "key_parameters": {
+      "level": {"min": -80.0, "max": 20.0, "description": "Output level"},
+      "pan": {"min": -100.0, "max": 100.0, "description": "Pan position"},
+      "balance": {"min": -100.0, "max": 100.0, "description": "Stereo balance"},
+      "width": {"min": 0.0, "max": 200.0, "description": "Stereo width"},
+      "phase": {"type": "boolean", "description": "Phase invert"},
+      "mute": {"type": "boolean", "description": "Mute switch"},
+      "bypass": {"type": "boolean", "description": "Bypass switch"}
+    }
+  }
+}
