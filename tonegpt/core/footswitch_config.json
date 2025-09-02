@@ -1,0 +1,151 @@
+{
+  "footswitch_hardware": {
+    "total_footswitches": 9,
+    "configurable": true,
+    "led_indicators": true,
+    "pressure_sensitive": false,
+    "midi_assignable": true
+  },
+  "function_categories": {
+    "scene_control": [
+      "scene",
+      "preset",
+      "bank",
+      "up",
+      "down",
+      "next",
+      "previous"
+    ],
+    "block_control": [
+      "bypass",
+      "engage",
+      "toggle",
+      "on",
+      "off",
+      "switch"
+    ],
+    "effect_control": [
+      "tap",
+      "hold",
+      "momentary",
+      "latch",
+      "auto",
+      "manual"
+    ],
+    "performance": [
+      "looper",
+      "tuner",
+      "metronome",
+      "tempo",
+      "beat",
+      "rhythm"
+    ],
+    "routing": [
+      "input",
+      "output",
+      "fx loop",
+      "parallel",
+      "series",
+      "split"
+    ]
+  },
+  "common_functions": {
+    "Only one": {
+      "name": "Only one",
+      "category": "block_control",
+      "capabilities": [
+        {
+          "type": "switch",
+          "value": "be either “Latching” or “Momentary”, depending on which of two functions you use .",
+          "fractal_verified": true,
+          "source": "Fractal Footswitch Guide"
+        },
+        {
+          "type": "switch",
+          "value": "simultaneously control the Axe-Fx III/FM9/FM3 and",
+          "fractal_verified": true,
+          "source": "Fractal Footswitch Guide"
+        }
+      ],
+      "description": "Only one footswitch function from Fractal Audio Guide",
+      "source": "Fractal Footswitch Guide",
+      "footswitch_compatible": true
+    },
+    "Scene": {
+      "name": "Scene",
+      "category": "scene_control",
+      "capabilities": [
+        {
+          "type": "scene",
+          "value": "set any Control switch ON or OFF . Here’s how:",
+          "fractal_verified": true,
+          "source": "Fractal Footswitch Guide"
+        }
+      ],
+      "description": "Scene footswitch function from Fractal Audio Guide",
+      "source": "Fractal Footswitch Guide",
+      "footswitch_compatible": true
+    },
+    "Preset": {
+      "name": "Preset",
+      "category": "scene_control",
+      "capabilities": [],
+      "description": "Preset footswitch function from Fractal Audio Guide",
+      "source": "Fractal Footswitch Guide",
+      "footswitch_compatible": true
+    },
+    "Bank": {
+      "name": "Bank",
+      "category": "scene_control",
+      "capabilities": [],
+      "description": "Bank footswitch function from Fractal Audio Guide",
+      "source": "Fractal Footswitch Guide",
+      "footswitch_compatible": true
+    },
+    "Bypass": {
+      "name": "Bypass",
+      "category": "block_control",
+      "capabilities": [],
+      "description": "Bypass footswitch function from Fractal Audio Guide",
+      "source": "Fractal Footswitch Guide",
+      "footswitch_compatible": true
+    },
+    "Tap": {
+      "name": "Tap",
+      "category": "effect_control",
+      "capabilities": [
+        {
+          "type": "hold",
+          "value": "be either momentary or latching . The Latching mode stays active",
+          "fractal_verified": true,
+          "source": "Fractal Footswitch Guide"
+        }
+      ],
+      "description": "Tap footswitch function from Fractal Audio Guide",
+      "source": "Fractal Footswitch Guide",
+      "footswitch_compatible": true
+    },
+    "Hold": {
+      "name": "Hold",
+      "category": "effect_control",
+      "capabilities": [],
+      "description": "Hold footswitch function from Fractal Audio Guide",
+      "source": "Fractal Footswitch Guide",
+      "footswitch_compatible": true
+    },
+    "Looper": {
+      "name": "Looper",
+      "category": "performance",
+      "capabilities": [],
+      "description": "Looper footswitch function from Fractal Audio Guide",
+      "source": "Fractal Footswitch Guide",
+      "footswitch_compatible": true
+    }
+  },
+  "performance_features": {},
+  "metadata": {
+    "source": "Fractal Audio Footswitch Functions Guide",
+    "integration_date": "2025-08-30",
+    "version": "Footswitch Integration v1.0"
+  }
+}

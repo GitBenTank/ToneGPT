@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FM9 Blocks (All Models) with Featured Params & Real-World Mapping",
+  "type": "object",
+  "properties": {
+    "blocks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "block": { "type": "string" },
+          "featured_parameters": { "type": "array", "items": { "type": "string" } },
+          "models": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "fm9_name": { "type": "string" },
+                "real_world": { "type": ["string","null"] },
+                "aliases": { "type": "array", "items": { "type": "string" } }
+              },
+              "required": ["fm9_name"]
+            }
+          }
+        },
+        "required": ["block","featured_parameters","models"]
+      }
+    }
+  },
+  "required": ["blocks"]
+}

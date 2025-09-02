@@ -16,6 +16,7 @@ Constraints:
 # Future multi-device support flag
 # When enabled, allows support for devices other than FM9
 # Currently disabled to maintain single-mode FM9 focus
+# TODO: Enable when FM9 → other Fractal devices are supported
 FEATURE_MULTI_DEVICE: bool = False  # reserved for future; do not use in core
 
 # Future advanced features flag (if ever needed)

@@ -9,6 +9,7 @@ ToneGPT is a single-mode, FM9-focused AI tone generation platform that provides 
 - **FM9-only focus**: No dual-mode logic in core modules
 - **Future multi-device**: Behind `FEATURE_MULTI_DEVICE` flag in adapters only
 - **Clean separation**: Core logic separate from device-specific implementations
+- **TODO**: Enable `FEATURE_MULTI_DEVICE` when FM9 → other Fractal devices are supported
 
 ### **Data Source Hierarchy**
 1. **Primary**: `/data/fm9_comprehensive_reference.json` - Official FM9 parameters

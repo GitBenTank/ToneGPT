@@ -1,0 +1,215 @@
+{
+  "blocks": [
+    {
+      "block": "AMP",
+      "featured_parameters": [
+        "gain",
+        "bass",
+        "mid",
+        "treble",
+        "presence",
+        "master",
+        "level",
+        "input_trim",
+        "bright",
+        "sag",
+        "depth"
+      ]
+    },
+    {
+      "block": "CAB",
+      "featured_parameters": [
+        "ir",
+        "mic_type",
+        "mic_distance",
+        "low_cut",
+        "high_cut",
+        "proximity",
+        "level",
+        "pan"
+      ]
+    },
+    {
+      "block": "DRV",
+      "featured_parameters": [
+        "drive",
+        "tone",
+        "level",
+        "mix",
+        "low_cut",
+        "high_cut"
+      ]
+    },
+    {
+      "block": "MOD",
+      "featured_parameters": [
+        "rate",
+        "depth",
+        "mix",
+        "level",
+        "waveform"
+      ]
+    },
+    {
+      "block": "DLY",
+      "featured_parameters": [
+        "time",
+        "feedback",
+        "mix",
+        "level",
+        "tempo_sync",
+        "low_cut",
+        "high_cut"
+      ]
+    },
+    {
+      "block": "REV",
+      "featured_parameters": [
+        "size",
+        "decay",
+        "predelay",
+        "mix",
+        "level",
+        "low_cut",
+        "high_cut"
+      ]
+    },
+    {
+      "block": "PITCH",
+      "featured_parameters": [
+        "interval",
+        "detune",
+        "mix",
+        "level",
+        "tracking"
+      ]
+    },
+    {
+      "block": "DYNAMICS",
+      "featured_parameters": [
+        "threshold",
+        "ratio",
+        "attack",
+        "release",
+        "mix",
+        "level"
+      ]
+    },
+    {
+      "block": "EQ",
+      "featured_parameters": [
+        "low_gain",
+        "mid_gain",
+        "high_gain",
+        "low_freq",
+        "mid_freq",
+        "high_freq",
+        "level"
+      ]
+    },
+    {
+      "block": "UTILITY",
+      "featured_parameters": [
+        "level",
+        "pan",
+        "balance",
+        "width",
+        "bypass"
+      ]
+    },
+    {
+      "block": "DRIVE",
+      "featured_parameters": [
+        "drive",
+        "tone",
+        "level",
+        "mix",
+        "low_cut",
+        "high_cut"
+      ]
+    },
+    {
+      "block": "DELAY",
+      "featured_parameters": [
+        "time",
+        "feedback",
+        "mix",
+        "level",
+        "tempo_sync",
+        "low_cut",
+        "high_cut"
+      ]
+    },
+    {
+      "block": "REVERB",
+      "featured_parameters": [
+        "size",
+        "decay",
+        "predelay",
+        "mix",
+        "level",
+        "low_cut",
+        "high_cut"
+      ]
+    },
+    {
+      "block": "MODULATION",
+      "featured_parameters": [
+        "rate",
+        "depth",
+        "mix",
+        "level",
+        "waveform"
+      ]
+    },
+    {
+      "block": "PLEX",
+      "featured_parameters": [
+        "level",
+        "bypass"
+      ]
+    },
+    {
+      "block": "SYNTH",
+      "featured_parameters": [
+        "level",
+        "mix",
+        "bypass"
+      ]
+    },
+    {
+      "block": "CONTROLLER",
+      "featured_parameters": [
+        "level",
+        "bypass"
+      ]
+    },
+    {
+      "block": "PITCH_SYNTH",
+      "featured_parameters": [
+        "level",
+        "mix",
+        "bypass"
+      ]
+    },
+    {
+      "block": "EFFECT",
+      "featured_parameters": [
+        "level",
+        "mix",
+        "bypass"
+      ]
+    },
+    {
+      "block": "FIRMWARE_INFO",
+      "featured_parameters": []
+    },
+    {
+      "block": "BLOCK_DATA",
+      "featured_parameters": [
+        "level",
+        "bypass"
+      ]
+    }
+  ]
+}

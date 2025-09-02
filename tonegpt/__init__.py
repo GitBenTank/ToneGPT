@@ -24,21 +24,25 @@ VERSION_INFO = {
     "release": "production",
     "build_date": "2025-01-27",
     "fm9_compatibility": "Firmware 3.x+",
-    "python_version": "3.8+"
+    "python_version": "3.8+",
 }
+
 
 def get_version():
     """Get the full version string"""
     return f"{VERSION_INFO['major']}.{VERSION_INFO['minor']}.{VERSION_INFO['patch']}"
 
+
 def get_version_info():
     """Get detailed version information"""
     return VERSION_INFO.copy()
 
+
 def is_production():
     """Check if this is a production release"""
-    return VERSION_INFO['release'] == 'production'
+    return VERSION_INFO["release"] == "production"
+
 
 def get_fm9_compatibility():
     """Get FM9 compatibility information"""
-    return VERSION_INFO['fm9_compatibility']
+    return VERSION_INFO["fm9_compatibility"]

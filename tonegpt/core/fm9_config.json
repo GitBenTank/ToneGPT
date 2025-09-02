@@ -1,0 +1,28 @@
+{
+  "hardware": {
+    "model": "FM9",
+    "grid_size": "6x14",
+    "scenes": 8,
+    "channels_per_block": 4,
+    "foot_controllers": true,
+    "midi_control": true,
+    "audio_quality": "24-bit/48kHz"
+  },
+  "routing": {
+    "max_blocks": 84,
+    "parallel_routing": true,
+    "series_routing": true,
+    "split_merge": true
+  },
+  "blocks": {
+    "categories": [
+      "drive",
+      "amp",
+      "cab",
+      "effect",
+      "eq",
+      "utility"
+    ],
+    "total_types": 17
+  }
+}

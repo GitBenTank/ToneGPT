@@ -24,6 +24,40 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         
+    - name: Build blocks_featured
+      run: |
+        python tools/build_blocks_featured.py
+        test -s data/blocks_featured.json
+        
+    - name: Validate completeness (non-blocking)
+      run: |
+        python - <<'PY'
+        import json, sys
+        from pathlib import Path
+        
+        # Load source and output data
+        src = json.loads(Path("tonegpt/core/blocks_with_footswitch.json").read_text())
+        out = json.loads(Path("data/blocks_featured.json").read_text())
+        
+        # Count models
+        src_models = len(src)  # src is an array of blocks
+        out_models = sum(len(b["models"]) for b in out["blocks"])
+        
+        print(f"Source blocks: {src_models}")
+        print(f"Output models: {out_models}")
+        
+        if out_models < src_models:
+            print(f"⚠️  WARNING: some models missing in output ({out_models}/{src_models})")
+            # Don't fail the build, just warn
+        else:
+            print("✅ OK: all models represented")
+            
+        # Check for blocks with no featured parameters
+        for block in out["blocks"]:
+            if not block["featured_parameters"]:
+                print(f"⚠️  WARNING: {block['block']} has no featured parameters")
+        PY
+        
     - name: Run FM9 Parameter Audit
       run: |
         python fm9_param_audit.py \
