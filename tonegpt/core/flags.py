@@ -1,8 +1,16 @@
 """
 Feature flags for ToneGPT system
 
-This module defines feature flags for future functionality while maintaining
-the current single-mode FM9-focused architecture.
+TL;DR: Feature flags for future expansion while maintaining FM9 single-mode focus.
+- FEATURE_MULTI_DEVICE: Reserved for future multi-device support (adapters only)
+- All flags default to False to maintain current single-mode architecture
+- No advanced mode flags (single-mode only per Cursor Rules)
+- Feature flags only used in adapters, never in core modules
+
+Constraints:
+- FM9 single-mode only (docs/ground-truth.md#Invariants)
+- Feature flags in adapters only (docs/ground-truth.md#Future-proofing)
+- No advanced mode logic (docs/ground-truth.md#Invariants)
 """
 
 # Future multi-device support flag

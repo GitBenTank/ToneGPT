@@ -1,6 +1,18 @@
 """
 Clean AI Tone Generator for FM9 Partnership
-Focuses on accurate real-world gear modeling without dual mode complexity
+
+TL;DR: Single-mode FM9 AI tone generator with real-world gear mapping.
+- Generates complete FM9 patches from natural language queries
+- Uses authentic FM9 block names and parameters (no advanced mode complexity)
+- Sources all parameters from data/fm9_config.json → data/fm9_comprehensive_reference.json
+- Maps real-world gear (Marshall, Mesa, Fender, Vox) to FM9 models
+- No network calls, no parameter invention, fail-fast on missing data
+
+Constraints:
+- FM9 single-mode only (docs/ground-truth.md#Invariants)
+- Params from data/fm9_config.json -> fm9_comprehensive_reference.json
+- No network calls (pure function)
+- Raises ValueError if required param missing (cite file+key)
 """
 
 import json
