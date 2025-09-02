@@ -1,0 +1,370 @@
+{
+  "fm9_reference": {
+    "amp_block": {
+      "models": 329,
+      "description": "Official amp models including Fender Twin, Marshall Plexi, Mesa Rectifier, Vox AC30, ENGL, Peavey 5150, Bogner, Friedman, Fractal Originals",
+      "key_parameters": {
+        "gain": {"min": 0.0, "max": 10.0, "description": "Preamp gain control"},
+        "bass": {"min": 0.0, "max": 10.0, "description": "Bass frequency control"},
+        "mid": {"min": 0.0, "max": 10.0, "description": "Mid frequency control"},
+        "treble": {"min": 0.0, "max": 10.0, "description": "Treble frequency control"},
+        "presence": {"min": 0.0, "max": 10.0, "description": "Presence control"},
+        "depth": {"min": 0.0, "max": 10.0, "description": "Depth control"},
+        "resonance": {"min": 0.0, "max": 10.0, "description": "Resonance control"},
+        "master": {"min": 0.0, "max": 10.0, "description": "Master volume"},
+        "input_drive": {"min": 0.0, "max": 10.0, "description": "Input drive (preamp gain)"},
+        "level": {"min": -80.0, "max": 20.0, "description": "Output level"},
+        "bright_switch": {"type": "boolean", "description": "Bright switch"},
+        "saturation_switch": {"type": "boolean", "description": "Saturation switch"},
+        "bias": {"min": 0.0, "max": 10.0, "description": "Bias control"},
+        "sag": {"min": 0.0, "max": 10.0, "description": "Sag control"},
+        "damping": {"min": 0.0, "max": 10.0, "description": "Damping control"},
+        "transformer_match": {"min": 0.0, "max": 10.0, "description": "Transformer match"},
+        "speaker_impedance": {"min": 0.0, "max": 10.0, "description": "Speaker impedance curve"},
+        "dynamic_depth": {"min": 0.0, "max": 10.0, "description": "Dynamic depth"},
+        "dynamic_presence": {"min": 0.0, "max": 10.0, "description": "Dynamic presence"},
+        "fat_boost": {"type": "boolean", "description": "Fat boost"},
+        "bright_boost": {"type": "boolean", "description": "Bright boost"},
+        "cut_boost": {"type": "boolean", "description": "Cut boost"},
+        "input_trim": {"min": -12.0, "max": 12.0, "description": "Input trim control"},
+        "output_trim": {"min": -12.0, "max": 12.0, "description": "Output trim control"},
+        "bias_x": {"min": 0.0, "max": 10.0, "description": "Bias X control"},
+        "bias_y": {"min": 0.0, "max": 10.0, "description": "Bias Y control"},
+        "sag_x": {"min": 0.0, "max": 10.0, "description": "Sag X control"},
+        "sag_y": {"min": 0.0, "max": 10.0, "description": "Sag Y control"},
+        "master_volume": {"min": 0.0, "max": 10.0, "description": "Master volume control"}
+      }
+    },
+    "cab_block": {
+      "models": 1024,
+      "user_slots": 2048,
+      "description": "Factory cabs + user slots including OwnHammer, ML Sound Lab, York Audio, AustinBuddy, FAS, Celestion",
+      "mic_options": ["SM57", "R121", "U87", "MD421", "C414", "E609", "D112"],
+      "key_parameters": {
+        "mic_selection": {"type": "select", "options": "mic_options", "description": "Microphone selection"},
+        "mic_distance": {"min": 0.0, "max": 10.0, "description": "Microphone distance"},
+        "room_level": {"min": 0.0, "max": 10.0, "description": "Room level"},
+        "room_type": {"type": "select", "options": ["Small", "Medium", "Large", "Hall"], "description": "Room type"},
+        "low_cut": {"min": 20.0, "max": 2000.0, "description": "Low cut filter"},
+        "high_cut": {"min": 2000.0, "max": 20000.0, "description": "High cut filter"},
+        "proximity": {"min": 0.0, "max": 10.0, "description": "Proximity effect"},
+        "delay": {"min": 0.0, "max": 10.0, "description": "Phase alignment delay"},
+        "level": {"min": -80.0, "max": 20.0, "description": "Level control"},
+        "pan": {"min": -100.0, "max": 100.0, "description": "Pan control"},
+        "stereo_mixing": {"max_irs": 4, "description": "Up to 4 IRs per block"},
+        "speaker_compression": {"min": 0.0, "max": 10.0, "description": "Speaker compression"}
+      }
+    },
+    "drive_block": {
+      "overdrives": ["TS808", "TS9", "SD-1", "Klon", "Bluesbreaker", "OD-1"],
+      "distortions": ["Rat", "DS-1", "Dist+", "Metal Zone", "OCD"],
+      "fuzzes": ["Big Muff Pi", "Fuzz Face Si", "Fuzz Face Ge", "Octavia", "Tone Bender"],
+      "boosts": ["Clean Boost", "Treble Booster", "FAS Boost"],
+      "key_parameters": {
+        "drive": {"min": 0.0, "max": 10.0, "description": "Drive amount"},
+        "tone": {"min": 0.0, "max": 10.0, "description": "Tone control"},
+        "filter": {"min": 0.0, "max": 10.0, "description": "Filter control"},
+        "level": {"min": 0.0, "max": 10.0, "description": "Output level"},
+        "bass": {"min": 0.0, "max": 10.0, "description": "Bass control (some models)"},
+        "treble": {"min": 0.0, "max": 10.0, "description": "Treble control (some models)"},
+        "clipping_type": {"type": "select", "options": ["Soft", "Hard", "Asymmetric"], "description": "Clipping type"},
+        "bypass_mode": {"type": "select", "options": ["True Bypass", "DSP Bypass"], "description": "Bypass mode"},
+        "mix": {"min": 0.0, "max": 100.0, "description": "Dry/wet mix control"}
+      }
+    },
+    "delay_block": {
+      "types": ["Analog", "Tape", "Digital Stereo", "Ping Pong", "Dual", "Multi-Tap", "Plex", "Reverse", "Diffused Delay", "Slapback"],
+      "key_parameters": {
+        "time": {"min": 1.0, "max": 8000.0, "description": "Delay time in ms or note value"},
+        "feedback": {"min": 0.0, "max": 100.0, "description": "Feedback amount"},
+        "mix": {"min": 0.0, "max": 100.0, "description": "Wet/dry mix"},
+        "tone": {"min": 0.0, "max": 10.0, "description": "Tone control (Hi/Lo Cut)"},
+        "modulation_depth": {"min": 0.0, "max": 10.0, "description": "Modulation depth"},
+        "modulation_rate": {"min": 0.0, "max": 10.0, "description": "Modulation rate"},
+        "diffusion": {"min": 0.0, "max": 10.0, "description": "Diffusion amount"},
+        "drive": {"min": 0.0, "max": 10.0, "description": "Drive (for tape)"},
+        "wow_flutter": {"min": 0.0, "max": 10.0, "description": "Wow & Flutter (for tape)"},
+        "phase_reverse": {"type": "boolean", "description": "Phase reverse"},
+        "duck": {"min": 0.0, "max": 10.0, "description": "Dynamic delay ducking"}
+      }
+    },
+    "reverb_block": {
+      "types": ["Spring", "Plate", "Room", "Hall", "Church", "Arena", "Shimmer", "Plex Verb", "Bloom", "Cloud", "Ambience"],
+      "key_parameters": {
+        "type": {"type": "select", "options": "types", "description": "Reverb type"},
+        "time": {"min": 0.1, "max": 20.0, "description": "Decay time"},
+        "size": {"min": 0.0, "max": 10.0, "description": "Room size"},
+        "mix": {"min": 0.0, "max": 100.0, "description": "Wet/dry mix"},
+        "pre_delay": {"min": 0.0, "max": 500.0, "description": "Pre-delay in ms"},
+        "low_cut": {"min": 20.0, "max": 2000.0, "description": "Low cut filter"},
+        "high_cut": {"min": 2000.0, "max": 20000.0, "description": "High cut filter"},
+        "diffusion": {"min": 0.0, "max": 10.0, "description": "Diffusion amount"},
+        "density": {"min": 0.0, "max": 10.0, "description": "Density"},
+        "modulation_depth": {"min": 0.0, "max": 10.0, "description": "Modulation depth"},
+        "modulation_rate": {"min": 0.0, "max": 10.0, "description": "Modulation rate"},
+        "early_reflections": {"min": 0.0, "max": 10.0, "description": "Early reflections level"}
+      }
+    },
+    "modulation_effects": {
+      "chorus": {
+        "types": ["Analog", "Dimension", "Tri-Chorus", "MicroPitch"],
+        "parameters": {
+          "rate": {"min": 0.0, "max": 10.0, "description": "Modulation rate"},
+          "depth": {"min": 0.0, "max": 10.0, "description": "Modulation depth"},
+          "mix": {"min": 0.0, "max": 100.0, "description": "Wet/dry mix"},
+          "tone": {"min": 0.0, "max": 10.0, "description": "Tone control"},
+          "voice_count": {"min": 1, "max": 4, "description": "Number of voices"}
+        }
+      },
+      "flanger": {
+        "types": ["Analog", "Thru-Zero", "Tape"],
+        "parameters": {
+          "rate": {"min": 0.0, "max": 10.0, "description": "Modulation rate"},
+          "depth": {"min": 0.0, "max": 10.0, "description": "Modulation depth"},
+          "feedback": {"min": 0.0, "max": 100.0, "description": "Feedback amount"},
+          "manual": {"min": 0.0, "max": 10.0, "description": "Manual control"},
+          "mix": {"min": 0.0, "max": 100.0, "description": "Wet/dry mix"}
+        }
+      },
+      "phaser": {
+        "types": ["4-stage", "6-stage", "8-stage", "12-stage", "Barberpole", "Univibe"],
+        "parameters": {
+          "rate": {"min": 0.0, "max": 10.0, "description": "Modulation rate"},
+          "depth": {"min": 0.0, "max": 10.0, "description": "Modulation depth"},
+          "stages": {"min": 4, "max": 12, "description": "Number of stages"},
+          "feedback": {"min": 0.0, "max": 100.0, "description": "Feedback amount"},
+          "mix": {"min": 0.0, "max": 100.0, "description": "Wet/dry mix"}
+        }
+      },
+      "tremolo": {
+        "parameters": {
+          "rate": {"min": 0.0, "max": 10.0, "description": "Modulation rate"},
+          "depth": {"min": 0.0, "max": 100.0, "description": "Modulation depth"},
+          "shape": {"type": "select", "options": ["Sine", "Square", "Triangle", "Saw"], "description": "Waveform shape"},
+          "duty": {"min": 0.0, "max": 100.0, "description": "Duty cycle"},
+          "stereo_spread": {"min": 0.0, "max": 10.0, "description": "Stereo spread"}
+        }
+      },
+      "rotary_speaker": {
+        "parameters": {
+          "speed": {"type": "select", "options": ["Slow", "Fast"], "description": "Rotation speed"},
+          "accel_time": {"min": 0.0, "max": 10.0, "description": "Acceleration time"},
+          "balance": {"min": 0.0, "max": 10.0, "description": "Balance control"},
+          "mic_distance": {"min": 0.0, "max": 10.0, "description": "Microphone distance"}
+        }
+      },
+      "vibrato": {
+        "parameters": {
+          "rate": {"min": 0.0, "max": 10.0, "description": "Modulation rate"},
+          "depth": {"min": 0.0, "max": 10.0, "description": "Modulation depth"},
+          "waveform": {"type": "select", "options": ["Sine", "Triangle", "Square"], "description": "Waveform"}
+        }
+      },
+      "ring_modulator": {
+        "parameters": {
+          "frequency": {"min": 0.0, "max": 10.0, "description": "Modulation frequency"},
+          "mix": {"min": 0.0, "max": 100.0, "description": "Wet/dry mix"}
+        }
+      },
+      "resonator": {
+        "parameters": {
+          "resonance_frequency": {"min": 0.0, "max": 10.0, "description": "Resonance frequency"},
+          "gain": {"min": 0.0, "max": 10.0, "description": "Gain control"},
+          "mix": {"min": 0.0, "max": 100.0, "description": "Wet/dry mix"}
+        }
+      }
+    },
+    "dynamics_blocks": {
+      "compressor": {
+        "types": ["Studio", "Pedal", "Optical", "Multiband"],
+        "parameters": {
+          "threshold": {"min": -60.0, "max": 0.0, "description": "Compression threshold"},
+          "ratio": {"min": 1.0, "max": 20.0, "description": "Compression ratio"},
+          "attack": {"min": 0.0, "max": 100.0, "description": "Attack time"},
+          "release": {"min": 0.0, "max": 1000.0, "description": "Release time"},
+          "mix": {"min": 0.0, "max": 100.0, "description": "Wet/dry mix"},
+          "knee": {"min": 0.0, "max": 10.0, "description": "Knee control"}
+        }
+      },
+      "gate": {
+        "parameters": {
+          "threshold": {"min": -60.0, "max": 0.0, "description": "Gate threshold"},
+          "ratio": {"min": 1.0, "max": 20.0, "description": "Gate ratio"},
+          "hold": {"min": 0.0, "max": 1000.0, "description": "Hold time"},
+          "release": {"min": 0.0, "max": 1000.0, "description": "Release time"},
+          "sidechain": {"type": "boolean", "description": "Sidechain control"}
+        }
+      },
+      "limiter": {
+        "parameters": {
+          "threshold": {"min": -60.0, "max": 0.0, "description": "Limiter threshold"},
+          "release": {"min": 0.0, "max": 1000.0, "description": "Release time"},
+          "ceiling": {"min": -60.0, "max": 0.0, "description": "Output ceiling"}
+        }
+      },
+      "multiband_compressor": {
+        "parameters": {
+          "crossovers": {"min": 2, "max": 4, "description": "Number of crossover points"},
+          "thresholds": {"type": "array", "description": "Threshold per band"},
+          "ratios": {"type": "array", "description": "Ratio per band"}
+        }
+      }
+    },
+    "eq": {
+      "types": ["Graphic 5-band", "Graphic 10-band", "Parametric", "Dynamic EQ", "Tilt EQ", "Tone Match"],
+      "parameters": {
+        "frequency": {"min": 20.0, "max": 20000.0, "description": "Frequency per band"},
+        "q": {"min": 0.1, "max": 10.0, "description": "Q factor per band"},
+        "gain": {"min": -20.0, "max": 20.0, "description": "Gain per band"},
+        "low_cut": {"min": 20.0, "max": 2000.0, "description": "Low cut frequency"},
+        "high_cut": {"min": 2000.0, "max": 20000.0, "description": "High cut frequency"},
+        "slope": {"min": 6, "max": 48, "description": "Filter slope in dB/octave"},
+        "global_eq": {"type": "boolean", "description": "Global EQ per output"}
+      }
+    },
+    "pitch_harmony": {
+      "types": ["Whammy", "Virtual Capo", "Detune", "Octaver", "Intelligent Harmonizer", "Dual Shift", "Crystal Pitch"],
+      "parameters": {
+        "shift_amount": {"min": -24, "max": 24, "description": "Shift amount in semitones"},
+        "mix": {"min": 0.0, "max": 100.0, "description": "Wet/dry mix"},
+        "detune_cents": {"min": -50, "max": 50, "description": "Detune in cents"},
+        "tracking_mode": {"type": "select", "options": ["Poly", "Mono"], "description": "Tracking mode"},
+        "key": {"type": "select", "options": ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"], "description": "Key for harmonizer"},
+        "scale": {"type": "select", "options": ["Major", "Minor", "Pentatonic", "Blues", "Dorian", "Mixolydian"], "description": "Scale for harmonizer"},
+        "formant_preservation": {"type": "boolean", "description": "Formant preservation"}
+      }
+    },
+    "synth_generator": {
+      "types": ["Synth", "Sub-Synth", "Drone/Pad Builder"],
+      "waveforms": ["Sine", "Square", "Saw", "Triangle", "Noise"],
+      "parameters": {
+        "waveform": {"type": "select", "options": "waveforms", "description": "Waveform type"},
+        "pitch": {"min": -24, "max": 24, "description": "Pitch in semitones"},
+        "filter_cutoff": {"min": 0.0, "max": 10.0, "description": "Filter cutoff"},
+        "filter_resonance": {"min": 0.0, "max": 10.0, "description": "Filter resonance"},
+        "adsr_attack": {"min": 0.0, "max": 10.0, "description": "ADSR attack"},
+        "adsr_decay": {"min": 0.0, "max": 10.0, "description": "ADSR decay"},
+        "adsr_sustain": {"min": 0.0, "max": 10.0, "description": "ADSR sustain"},
+        "adsr_release": {"min": 0.0, "max": 10.0, "description": "ADSR release"},
+        "mix": {"min": 0.0, "max": 100.0, "description": "Wet/dry mix"}
+      }
+    },
+    "filter_wah": {
+      "types": ["Auto-Wah", "CryBaby", "Vox", "Clyde", "Envelope Filter", "Formant Filter"],
+      "parameters": {
+        "frequency_range": {"min": 0.0, "max": 10.0, "description": "Frequency range"},
+        "resonance": {"min": 0.0, "max": 10.0, "description": "Resonance (Q)"},
+        "mix": {"min": 0.0, "max": 100.0, "description": "Wet/dry mix"},
+        "controller_source": {"type": "select", "options": ["Pedal", "LFO", "Envelope"], "description": "Controller source"}
+      }
+    },
+    "looper": {
+      "modes": ["Mono (5 min)", "Stereo (2.5 min)"],
+      "functions": ["Record", "Play", "Overdub", "Undo", "Half Speed", "Reverse", "Quantize"],
+      "parameters": {
+        "level": {"min": 0.0, "max": 10.0, "description": "Level control"},
+        "play_mode": {"type": "select", "options": ["Once", "Repeat"], "description": "Play mode"},
+        "fade_in": {"min": 0.0, "max": 10.0, "description": "Fade in time"},
+        "fade_out": {"min": 0.0, "max": 10.0, "description": "Fade out time"}
+      }
+    },
+    "utility_blocks": {
+      "types": ["Mixer", "Balance/Volume", "Pan", "Send/Return", "Multiplexer", "Crossover"],
+      "parameters": {
+        "gain": {"min": -80.0, "max": 20.0, "description": "Gain control"},
+        "pan": {"min": -100.0, "max": 100.0, "description": "Pan control"},
+        "level": {"min": -80.0, "max": 20.0, "description": "Level control"},
+        "balance": {"min": -100.0, "max": 100.0, "description": "Balance control"},
+        "send_level": {"min": -80.0, "max": 20.0, "description": "Send level"},
+        "return_level": {"min": -80.0, "max": 20.0, "description": "Return level"},
+        "crossover_frequency": {"min": 20.0, "max": 20000.0, "description": "Crossover frequency"}
+      }
+    },
+    "controllers_modifiers": {
+      "internal": {
+        "lfo": {
+          "count": 2,
+          "parameters": {
+            "rate": {"min": 0.0, "max": 10.0, "description": "LFO rate"},
+            "depth": {"min": 0.0, "max": 10.0, "description": "LFO depth"},
+            "shape": {"type": "select", "options": ["Sine", "Triangle", "Square", "Saw", "Random"], "description": "LFO shape"},
+            "sync": {"type": "boolean", "description": "Sync to tempo"}
+          }
+        },
+        "adsr": {
+          "count": 2,
+          "parameters": {
+            "attack": {"min": 0.0, "max": 10.0, "description": "Attack time"},
+            "decay": {"min": 0.0, "max": 10.0, "description": "Decay time"},
+            "sustain": {"min": 0.0, "max": 10.0, "description": "Sustain level"},
+            "release": {"min": 0.0, "max": 10.0, "description": "Release time"}
+          }
+        },
+        "envelope_follower": {
+          "parameters": {
+            "attack": {"min": 0.0, "max": 10.0, "description": "Attack time"},
+            "release": {"min": 0.0, "max": 10.0, "description": "Release time"},
+            "scale": {"min": 0.0, "max": 10.0, "description": "Scale factor"}
+          }
+        },
+        "sequencer": {
+          "parameters": {
+            "steps": {"min": 1, "max": 64, "description": "Number of steps"},
+            "rate": {"min": 0.0, "max": 10.0, "description": "Step rate"},
+            "sync": {"type": "boolean", "description": "Sync to tempo"},
+            "range": {"min": 0.0, "max": 10.0, "description": "Output range"}
+          }
+        },
+        "pitch_detector": {
+          "description": "Tracks input pitch for modulation"
+        }
+      },
+      "external": {
+        "pedals": ["Expression", "Volume", "Wah"],
+        "midi_cc": {"range": "0-127", "description": "MIDI CC control"},
+        "control_switches": {"count": 8, "description": "Assignable control switches"}
+      },
+      "advanced": {
+        "min_max_ranges": {"description": "Min/Max ranges per parameter"},
+        "curves": {"options": ["Linear", "Log", "Exp", "S-curve"], "description": "Parameter curves"},
+        "invert": {"type": "boolean", "description": "Invert parameter response"}
+      }
+    },
+    "scenes_channels": {
+      "scenes": {"count": 8, "description": "8 scenes per preset (snapshot of block states)"},
+      "channels": {"count": 4, "description": "4 channels per block (different models/settings)"},
+      "instant_switching": {"description": "Seamless switching between scenes"}
+    },
+    "global_functions": {
+      "global_blocks": {"description": "Share settings across presets"},
+      "spillover": {"description": "Carry delay/reverb between presets"},
+      "global_eq": {"description": "Global EQ per output"},
+      "tempo": {"description": "Global or preset-based tempo"},
+      "tap_tempo": {"description": "Tap tempo functionality"},
+      "tuner": {"description": "High-accuracy tuner"},
+      "setlist_song_mode": {"description": "Setlist/Song mode"}
+    },
+    "io_hardware": {
+      "usb": {"description": "8x8 audio interface + MIDI"},
+      "analog": {
+        "inputs": 4,
+        "outputs": 4,
+        "description": "4 instrument inputs, 4 stereo outputs, send/return loop"
+      },
+      "digital": {"types": ["SPDIF", "AES"], "description": "Digital I/O"},
+      "control": {
+        "expression_inputs": 2,
+        "midi": ["In", "Out", "Thru"],
+        "faslink_ii": {"description": "For FC controllers"},
+        "headphone_out": {"description": "Headphone output"},
+        "footswitches": {"count": 9, "description": "Onboard LED color/status"}
+      }
+    },
+    "advanced_features": {
+      "tone_match": {"description": "Analyze sample → EQ curve"},
+      "ir_capture": {"description": "Mic + reference → new cab IR"},
+      "cpu_meter": {"description": "CPU meter & auto balancing across DSP cores"},
+      "firmware_updates": {"description": "Regular model expansions"}
+    }
+  }
+}

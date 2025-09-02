@@ -1,0 +1,29 @@
+{
+  "fm9_config": {
+    "version": "1.0.0",
+    "description": "FM9 configuration overrides and settings",
+    "data_sources": {
+      "primary": "tonegpt/data/fm9_comprehensive_reference.json",
+      "secondary": "tonegpt/core/blocks_with_footswitch.json",
+      "fallback": "never_invent_parameters"
+    },
+    "parameter_validation": {
+      "strict_mode": true,
+      "require_official_ranges": true,
+      "stop_on_missing": true
+    },
+    "architecture": {
+      "single_mode": true,
+      "fm9_focused": true,
+      "future_multi_device": {
+        "enabled": false,
+        "feature_flag": "FEATURE_MULTI_DEVICE"
+      }
+    },
+    "constraints": {
+      "no_network_calls_in_core": true,
+      "read_only_data_sources": true,
+      "no_firmware_modification": true
+    }
+  }
+}
