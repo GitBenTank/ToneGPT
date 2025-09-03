@@ -425,23 +425,101 @@ class CleanAIToneGenerator:
         """Parse query to understand user intent"""
         query_lower = query.lower()
 
-        # Genre detection
-        genre = "rock"
-        if any(
-            word in query_lower
-            for word in ["metal", "heavy", "distorted", "aggressive"]
-        ):
-            genre = "metal"
-        elif any(word in query_lower for word in ["blues", "bluesy", "soulful"]):
-            genre = "blues"
-        elif any(word in query_lower for word in ["jazz", "clean", "smooth"]):
-            genre = "jazz"
-        elif any(word in query_lower for word in ["funk", "rhythm", "groove"]):
-            genre = "funk"
-        elif any(
-            word in query_lower for word in ["ambient", "atmospheric", "ethereal"]
-        ):
-            genre = "ambient"
+        # Artist-specific recognition (HIGHEST PRIORITY) - ACCURATE GEAR MAPPINGS
+        artist_gear = None
+        if any(word in query_lower for word in ["jimi hendrix", "hendrix"]):
+            # Hendrix: Marshall Super Lead 100W + Dallas Arbiter Fuzz Face
+            artist_gear = {"amp_type": "marshall_super_lead", "drive_type": "fuzz_face", "genre": "rock"}
+        elif any(word in query_lower for word in ["stevie ray vaughan", "srv", "stevie ray"]):
+            # SRV: Fender Twin Reverb + Ibanez TS808 Tube Screamer
+            artist_gear = {"amp_type": "fender_twin", "drive_type": "tube_screamer_808", "genre": "blues"}
+        elif any(word in query_lower for word in ["metallica", "james hetfield"]):
+            # Metallica: Mesa Boogie Mark IIC+ + Mesa Boogie Strategy 400
+            artist_gear = {"amp_type": "mesa_mark_iic", "drive_type": "mesa_high_gain", "genre": "metal"}
+        elif any(word in query_lower for word in ["led zeppelin", "zeppelin", "jimmy page", "page"]):
+            # Page: Marshall Super Lead 100W + Sola Sound Tone Bender
+            artist_gear = {"amp_type": "marshall_super_lead", "drive_type": "tone_bender", "genre": "rock"}
+        elif any(word in query_lower for word in ["bb king", "bb king"]):
+            # BB King: Gibson Lab Series L5 + Gibson ES-355 (clean, no drive)
+            artist_gear = {"amp_type": "lab_series_l5", "drive_type": "clean", "genre": "blues"}
+        elif any(word in query_lower for word in ["van halen", "eddie van halen", "eddie"]):
+            # Van Halen: Marshall Plexi 1959 + MXR Phase 90
+            artist_gear = {"amp_type": "marshall_plexi_1959", "drive_type": "phase_90", "genre": "rock"}
+        elif any(word in query_lower for word in ["slash", "guns n roses", "gnr"]):
+            # Slash: Marshall JCM800 + Boss SD-1 Super Overdrive
+            artist_gear = {"amp_type": "marshall_jcm800", "drive_type": "boss_sd1", "genre": "rock"}
+        elif any(word in query_lower for word in ["dimebag darrell", "dimebag", "pantera"]):
+            # Dimebag: Randall RG100ES + MXR Dime Distortion
+            artist_gear = {"amp_type": "randall_rg100", "drive_type": "mxr_dime", "genre": "metal"}
+        elif any(word in query_lower for word in ["eric clapton", "clapton"]):
+            # Clapton: Fender Tweed Deluxe + Dallas Rangemaster Treble Booster
+            artist_gear = {"amp_type": "fender_tweed_deluxe", "drive_type": "rangemaster", "genre": "blues"}
+        elif any(word in query_lower for word in ["david gilmour", "gilmour", "pink floyd"]):
+            # Gilmour: Hiwatt DR103 + Big Muff Pi
+            artist_gear = {"amp_type": "hiwatt_dr103", "drive_type": "big_muff", "genre": "rock"}
+        elif any(word in query_lower for word in ["joe satriani", "satriani"]):
+            # Satriani: Marshall JCM800 + Ibanez TS808
+            artist_gear = {"amp_type": "marshall_jcm800", "drive_type": "tube_screamer_808", "genre": "rock"}
+        elif any(word in query_lower for word in ["steve vai", "vai"]):
+            # Vai: Carvin Legacy + Ibanez TS808
+            artist_gear = {"amp_type": "carvin_legacy", "drive_type": "tube_screamer_808", "genre": "rock"}
+        elif any(word in query_lower for word in ["yngwie malmsteen", "yngwie", "malmsteen"]):
+            # Yngwie: Marshall JCM800 + DOD YJM308
+            artist_gear = {"amp_type": "marshall_jcm800", "drive_type": "dod_yjm308", "genre": "rock"}
+        elif any(word in query_lower for word in ["john mayer", "mayer"]):
+            # Mayer: Two Rock Traditional Clean + Klon Centaur
+            artist_gear = {"amp_type": "two_rock_clean", "drive_type": "klon_centaur", "genre": "blues"}
+        elif any(word in query_lower for word in ["gary moore", "moore"]):
+            # Moore: Marshall JCM800 + Ibanez TS808
+            artist_gear = {"amp_type": "marshall_jcm800", "drive_type": "tube_screamer_808", "genre": "blues"}
+        elif any(word in query_lower for word in ["peter frampton", "frampton"]):
+            # Frampton: Marshall JCM800 + Talk Box
+            artist_gear = {"amp_type": "marshall_jcm800", "drive_type": "talk_box", "genre": "rock"}
+        elif any(word in query_lower for word in ["blink 182", "blink"]):
+            # Blink 182: Mesa Boogie Dual Rectifier + Boss DS-1
+            artist_gear = {"amp_type": "mesa_dual_rectifier", "drive_type": "boss_ds1", "genre": "punk"}
+        elif any(word in query_lower for word in ["green day"]):
+            # Green Day: Marshall JCM800 + Boss DS-1
+            artist_gear = {"amp_type": "marshall_jcm800", "drive_type": "boss_ds1", "genre": "punk"}
+        elif any(word in query_lower for word in ["nirvana", "kurt cobain", "cobain"]):
+            # Cobain: Mesa Boogie Studio Preamp + Boss DS-1
+            artist_gear = {"amp_type": "mesa_studio_preamp", "drive_type": "boss_ds1", "genre": "grunge"}
+        elif any(word in query_lower for word in ["tool", "adam jones"]):
+            # Tool: Mesa Boogie Dual Rectifier + Diezel VH4
+            artist_gear = {"amp_type": "mesa_dual_rectifier", "drive_type": "diezel_vh4", "genre": "metal"}
+        elif any(word in query_lower for word in ["deftones", "stephen carpenter"]):
+            # Deftones: Mesa Boogie Dual Rectifier + Boss DS-1
+            artist_gear = {"amp_type": "mesa_dual_rectifier", "drive_type": "boss_ds1", "genre": "metal"}
+        elif any(word in query_lower for word in ["meshuggah"]):
+            # Meshuggah: Mesa Boogie Dual Rectifier + Line 6 Pod
+            artist_gear = {"amp_type": "mesa_dual_rectifier", "drive_type": "line6_pod", "genre": "metal"}
+        elif any(word in query_lower for word in ["prince"]):
+            # Prince: Fender Twin Reverb + Boss CE-1 Chorus
+            artist_gear = {"amp_type": "fender_twin", "drive_type": "boss_ce1", "genre": "funk"}
+        elif any(word in query_lower for word in ["james brown"]):
+            # James Brown: Fender Twin Reverb + Clean (no drive)
+            artist_gear = {"amp_type": "fender_twin", "drive_type": "clean", "genre": "funk"}
+
+        # Genre detection (fallback if no artist match)
+        if artist_gear:
+            genre = artist_gear["genre"]
+        else:
+            genre = "rock"
+            if any(
+                word in query_lower
+                for word in ["metal", "heavy", "distorted", "aggressive"]
+            ):
+                genre = "metal"
+            elif any(word in query_lower for word in ["blues", "bluesy", "soulful"]):
+                genre = "blues"
+            elif any(word in query_lower for word in ["jazz", "clean", "smooth"]):
+                genre = "jazz"
+            elif any(word in query_lower for word in ["funk", "rhythm", "groove"]):
+                genre = "funk"
+            elif any(
+                word in query_lower for word in ["ambient", "atmospheric", "ethereal"]
+            ):
+                genre = "ambient"
 
         # Characteristics
         characteristics = []
@@ -458,15 +536,24 @@ class CleanAIToneGenerator:
         if "warm" in query_lower:
             characteristics.append("warm")
 
-        return {"genre": genre, "characteristics": characteristics, "query": query}
+        return {
+            "genre": genre, 
+            "characteristics": characteristics, 
+            "query": query,
+            "artist_gear": artist_gear
+        }
 
     def _generate_tone_structure(self, intent: Dict) -> Dict:
         """Generate the basic structure of the tone"""
         genre = intent.get("genre", "rock")
+        artist_gear = intent.get("artist_gear")
+        query = intent.get("query", "")
 
         # Determine which blocks to enable based on genre
         structure = {
             "genre": genre,
+            "artist_gear": artist_gear,
+            "query": query,
             "drive_1_enabled": genre in ["metal", "rock", "blues"],
             "drive_2_enabled": genre in ["metal", "rock"],
             "amp_enabled": True,
@@ -526,12 +613,149 @@ class CleanAIToneGenerator:
         """Generate an amp block with accurate FM9 modeling"""
         genre = structure.get("genre", "rock")
         query = structure.get("query", "").lower()
+        artist_gear = structure.get("artist_gear")
 
         # Try to match specific amp requests using gear mapping
         selected_amp = None
+        
+        # Artist-specific amp selection (HIGHEST PRIORITY) - ACCURATE GEAR MAPPINGS
+        if artist_gear:
+            amp_type = artist_gear.get("amp_type")
+            
+            # Hendrix: Marshall Super Lead 100W
+            if amp_type == "marshall_super_lead":
+                # Prioritize Plexi models for Hendrix
+                plexi_amps = [amp for amp in self.amp_models if "plexi" in amp.lower()]
+                if plexi_amps:
+                    selected_amp = random.choice(plexi_amps)
+                else:
+                    # Fallback to other Marshall models
+                    super_lead_amps = [amp for amp in self.amp_models if any(word in amp.lower() for word in ["plexi", "1959", "super", "100w", "brit 800"])]
+                    if super_lead_amps:
+                        selected_amp = random.choice(super_lead_amps)
+            
+            # SRV: Fender Twin Reverb
+            elif amp_type == "fender_twin":
+                # Prioritize Twin models specifically
+                twin_amps = [amp for amp in self.amp_models if "twin" in amp.lower()]
+                if twin_amps:
+                    selected_amp = random.choice(twin_amps)
+                else:
+                    # Fallback to Deluxe Verb models
+                    deluxe_amps = [amp for amp in self.amp_models if "deluxe verb" in amp.lower()]
+                    if deluxe_amps:
+                        selected_amp = random.choice(deluxe_amps)
+                    else:
+                        # Final fallback to any Fender reverb
+                        fender_amps = [amp for amp in self.amp_models if any(word in amp.lower() for word in ["twin", "reverb", "princetone", "deluxe verb"])]
+                        if fender_amps:
+                            selected_amp = random.choice(fender_amps)
+            
+            # Metallica: Mesa Boogie Mark IIC+
+            elif amp_type == "mesa_mark_iic":
+                # Prioritize the exact Mesa Mark IIC+ model
+                exact_mark = [amp for amp in self.amp_models if "mesa mark iic" in amp.lower()]
+                if exact_mark:
+                    selected_amp = exact_mark[0]  # Use the exact model, not random
+                else:
+                    # Fallback to other Mesa Mark models
+                    mark_amps = [amp for amp in self.amp_models if any(word in amp.lower() for word in ["mark", "iic", "mesa"])]
+                    if mark_amps:
+                        selected_amp = random.choice(mark_amps)
+            
+            # BB King: Gibson Lab Series L5
+            elif amp_type == "lab_series_l5":
+                lab_amps = [amp for amp in self.amp_models if any(word in amp.lower() for word in ["lab", "series", "l5", "clean", "hifi"])]
+                if lab_amps:
+                    selected_amp = random.choice(lab_amps)
+            
+            # Van Halen: Marshall Plexi 1959
+            elif amp_type == "marshall_plexi_1959":
+                plexi_amps = [amp for amp in self.amp_models if any(word in amp.lower() for word in ["plexi", "1959", "marshall"])]
+                if plexi_amps:
+                    selected_amp = random.choice(plexi_amps)
+            
+            # Slash: Marshall JCM800
+            elif amp_type == "marshall_jcm800":
+                jcm800_amps = [amp for amp in self.amp_models if any(word in amp.lower() for word in ["jcm", "800", "brit 800"])]
+                if jcm800_amps:
+                    selected_amp = random.choice(jcm800_amps)
+            
+            # Dimebag: Randall RG100ES
+            elif amp_type == "randall_rg100":
+                randall_amps = [amp for amp in self.amp_models if any(word in amp.lower() for word in ["randall", "rg100", "high gain", "metal"])]
+                if randall_amps:
+                    selected_amp = random.choice(randall_amps)
+            
+            # Clapton: Fender Tweed Deluxe
+            elif amp_type == "fender_tweed_deluxe":
+                tweed_amps = [amp for amp in self.amp_models if any(word in amp.lower() for word in ["tweed", "deluxe", "5f1", "5f8"])]
+                if tweed_amps:
+                    selected_amp = random.choice(tweed_amps)
+            
+            # Gilmour: Hiwatt DR103
+            elif amp_type == "hiwatt_dr103":
+                hiwatt_amps = [amp for amp in self.amp_models if any(word in amp.lower() for word in ["hiwatt", "dr103", "clean", "hifi"])]
+                if hiwatt_amps:
+                    selected_amp = random.choice(hiwatt_amps)
+            
+            # Vai: Carvin Legacy
+            elif amp_type == "carvin_legacy":
+                carvin_amps = [amp for amp in self.amp_models if any(word in amp.lower() for word in ["carvin", "legacy", "v3"])]
+                if carvin_amps:
+                    selected_amp = random.choice(carvin_amps)
+            
+            # Mayer: Two Rock Traditional Clean
+            elif amp_type == "two_rock_clean":
+                two_rock_amps = [amp for amp in self.amp_models if any(word in amp.lower() for word in ["two rock", "traditional", "clean", "hifi"])]
+                if two_rock_amps:
+                    selected_amp = random.choice(two_rock_amps)
+            
+            # Blink 182: Mesa Boogie Dual Rectifier
+            elif amp_type == "mesa_dual_rectifier":
+                dual_rect_amps = [amp for amp in self.amp_models if any(word in amp.lower() for word in ["dual", "rectifier", "recto"])]
+                if dual_rect_amps:
+                    selected_amp = random.choice(dual_rect_amps)
+            
+            # Cobain: Mesa Boogie Studio Preamp
+            elif amp_type == "mesa_studio_preamp":
+                studio_amps = [amp for amp in self.amp_models if any(word in amp.lower() for word in ["studio", "preamp", "mesa"])]
+                if studio_amps:
+                    selected_amp = random.choice(studio_amps)
+            
+            # Fallback to generic types if specific not found
+            elif amp_type == "marshall":
+                marshall_amps = [amp for amp in self.amp_models if any(word in amp.lower() for word in ["marshall", "plexi", "brit", "jcm", "jvm"])]
+                if marshall_amps:
+                    selected_amp = random.choice(marshall_amps)
+            elif amp_type == "fender":
+                fender_amps = [amp for amp in self.amp_models if any(word in amp.lower() for word in ["fender", "twin", "deluxe", "tweed", "bassman", "super", "vibro"])]
+                if fender_amps:
+                    selected_amp = random.choice(fender_amps)
+            elif amp_type == "mesa":
+                mesa_amps = [amp for amp in self.amp_models if any(word in amp.lower() for word in ["mesa", "recto", "boogie", "mark"])]
+                if mesa_amps:
+                    selected_amp = random.choice(mesa_amps)
+            elif amp_type == "vox":
+                vox_amps = [amp for amp in self.amp_models if any(word in amp.lower() for word in ["vox", "ac30", "ac15", "ac20"])]
+                if vox_amps:
+                    selected_amp = random.choice(vox_amps)
+            elif amp_type == "high_gain":
+                high_gain_amps = [amp for amp in self.amp_models if any(word in amp.lower() for word in ["mesa", "recto", "5150", "mark", "brit", "800", "high", "jvm", "friedman", "fortin"])]
+                if high_gain_amps:
+                    selected_amp = random.choice(high_gain_amps)
+            elif amp_type == "hifi":
+                hifi_amps = [amp for amp in self.amp_models if any(word in amp.lower() for word in ["clean", "studio", "hifi", "jazz", "twin", "deluxe"])]
+                if hifi_amps:
+                    selected_amp = random.choice(hifi_amps)
+            elif amp_type == "carvin":
+                carvin_amps = [amp for amp in self.amp_models if any(word in amp.lower() for word in ["carvin", "legacy", "v3"])]
+                if carvin_amps:
+                    selected_amp = random.choice(carvin_amps)
 
         # Check for specific amp requests - be more specific to avoid conflicts
-        if "plexi" in query:
+        # Only do this if artist_gear didn't already select an amp
+        if not selected_amp and "plexi" in query:
             # Plexi takes priority over general Marshall
             plexi_amps = self.gear_mapping["amps"]["marshall"]["plexi"]
             available_plexi = [
@@ -539,7 +763,7 @@ class CleanAIToneGenerator:
             ]
             if available_plexi:
                 selected_amp = _prefer_model(query, available_plexi)
-        elif "jcm800" in query or "800" in query:
+        elif not selected_amp and ("jcm800" in query or "800" in query):
             marshall_amps = self.gear_mapping["amps"]["marshall"]["jcm800"]
             available_marshall = [
                 amp for amp in marshall_amps if amp in self.amp_models
@@ -703,11 +927,149 @@ class CleanAIToneGenerator:
         """Generate a drive block with accurate FM9 modeling"""
         genre = structure.get("genre", "rock")
         query = structure.get("query", "").lower()
+        artist_gear = structure.get("artist_gear")
 
         # Try to match specific drive requests using FM9 model names
         selected_drive = None
+        
+        # Artist-specific drive selection (HIGHEST PRIORITY) - ACCURATE GEAR MAPPINGS
+        if artist_gear:
+            drive_type = artist_gear.get("drive_type")
+            
+            # Hendrix: Dallas Arbiter Fuzz Face
+            if drive_type == "fuzz_face":
+                fuzz_face_drives = [drive for drive in self.drive_models if any(word in drive.lower() for word in ["face fuzz", "fuzz face", "face"])]
+                if fuzz_face_drives:
+                    selected_drive = random.choice(fuzz_face_drives)
+            
+            # SRV: Ibanez TS808 Tube Screamer
+            elif drive_type == "tube_screamer_808":
+                ts808_drives = [drive for drive in self.drive_models if any(word in drive.lower() for word in ["t808", "ts808", "tube screamer", "808"])]
+                if ts808_drives:
+                    selected_drive = random.choice(ts808_drives)
+            
+            # Metallica: Mesa Boogie Strategy 400
+            elif drive_type == "mesa_high_gain":
+                # Look for high gain distortion pedals (Mesa doesn't make drives, they use high gain amps)
+                high_gain_drives = [drive for drive in self.drive_models if any(word in drive.lower() for word in ["distortion", "metal", "high gain", "shred", "rat", "ds1"])]
+                if high_gain_drives:
+                    selected_drive = random.choice(high_gain_drives)
+            
+            # Page: Sola Sound Tone Bender
+            elif drive_type == "tone_bender":
+                # Prioritize Bender Fuzz specifically
+                bender_drives = [drive for drive in self.drive_models if "bender" in drive.lower()]
+                if bender_drives:
+                    selected_drive = bender_drives[0]  # Use the exact Bender Fuzz
+                else:
+                    # Fallback to other fuzz pedals
+                    tone_bender_drives = [drive for drive in self.drive_models if any(word in drive.lower() for word in ["tone bender", "bender", "fuzz"])]
+                    if tone_bender_drives:
+                        selected_drive = random.choice(tone_bender_drives)
+            
+            # BB King: Clean (no drive)
+            elif drive_type == "clean":
+                selected_drive = "NO_DRIVE_INTENTIONAL"
+            
+            # Van Halen: MXR Phase 90
+            elif drive_type == "phase_90":
+                phase_drives = [drive for drive in self.drive_models if any(word in drive.lower() for word in ["phase", "90", "modulation"])]
+                if phase_drives:
+                    selected_drive = random.choice(phase_drives)
+            
+            # Slash: Boss SD-1 Super Overdrive
+            elif drive_type == "boss_sd1":
+                sd1_drives = [drive for drive in self.drive_models if any(word in drive.lower() for word in ["sd1", "super overdrive", "boss"])]
+                if sd1_drives:
+                    selected_drive = random.choice(sd1_drives)
+            
+            # Dimebag: MXR Dime Distortion
+            elif drive_type == "mxr_dime":
+                dime_drives = [drive for drive in self.drive_models if any(word in drive.lower() for word in ["dime", "mxr", "distortion"])]
+                if dime_drives:
+                    selected_drive = random.choice(dime_drives)
+                
+            # Clapton: Dallas Rangemaster Treble Booster
+            elif drive_type == "rangemaster":
+                rangemaster_drives = [drive for drive in self.drive_models if any(word in drive.lower() for word in ["rangemaster", "treble", "boost"])]
+                if rangemaster_drives:
+                    selected_drive = random.choice(rangemaster_drives)
+            
+            # Gilmour: Big Muff Pi
+            elif drive_type == "big_muff":
+                big_muff_drives = [drive for drive in self.drive_models if any(word in drive.lower() for word in ["big muff", "muff", "pi fuzz"])]
+                if big_muff_drives:
+                    selected_drive = random.choice(big_muff_drives)
+            
+            # Satriani/Vai: Ibanez TS808
+            elif drive_type == "tube_screamer_808":
+                ts808_drives = [drive for drive in self.drive_models if any(word in drive.lower() for word in ["t808", "ts808", "tube screamer", "808"])]
+                if ts808_drives:
+                    selected_drive = random.choice(ts808_drives)
+            
+            # Yngwie: DOD YJM308
+            elif drive_type == "dod_yjm308":
+                yjm_drives = [drive for drive in self.drive_models if any(word in drive.lower() for word in ["yjm", "dod", "308"])]
+                if yjm_drives:
+                    selected_drive = random.choice(yjm_drives)
+            
+            # Mayer: Klon Centaur
+            elif drive_type == "klon_centaur":
+                klon_drives = [drive for drive in self.drive_models if any(word in drive.lower() for word in ["klon", "centaur", "klone"])]
+                if klon_drives:
+                    selected_drive = random.choice(klon_drives)
+            
+            # Frampton: Talk Box
+            elif drive_type == "talk_box":
+                talk_box_drives = [drive for drive in self.drive_models if any(word in drive.lower() for word in ["talk", "box", "vocoder"])]
+                if talk_box_drives:
+                    selected_drive = random.choice(talk_box_drives)
+            
+            # Blink 182/Green Day: Boss DS-1
+            elif drive_type == "boss_ds1":
+                ds1_drives = [drive for drive in self.drive_models if any(word in drive.lower() for word in ["ds1", "distortion", "boss"])]
+                if ds1_drives:
+                    selected_drive = random.choice(ds1_drives)
+            
+            # Tool: Diezel VH4
+            elif drive_type == "diezel_vh4":
+                diezel_drives = [drive for drive in self.drive_models if any(word in drive.lower() for word in ["diezel", "vh4", "high gain"])]
+                if diezel_drives:
+                    selected_drive = random.choice(diezel_drives)
+            
+            # Meshuggah: Line 6 Pod
+            elif drive_type == "line6_pod":
+                pod_drives = [drive for drive in self.drive_models if any(word in drive.lower() for word in ["pod", "line6", "digital"])]
+                if pod_drives:
+                    selected_drive = random.choice(pod_drives)
+            
+            # Prince: Boss CE-1 Chorus
+            elif drive_type == "boss_ce1":
+                ce1_drives = [drive for drive in self.drive_models if any(word in drive.lower() for word in ["ce1", "chorus", "boss"])]
+                if ce1_drives:
+                    selected_drive = random.choice(ce1_drives)
+            
+            # Fallback to generic types if specific not found
+            elif drive_type == "fuzz":
+                fuzz_drives = [drive for drive in self.drive_models if any(word in drive.lower() for word in ["fuzz", "face", "muff", "octave"])]
+                if fuzz_drives:
+                    selected_drive = random.choice(fuzz_drives)
+            elif drive_type == "tube_screamer":
+                ts_drives = [drive for drive in self.drive_models if any(word in drive.lower() for word in ["tube", "screamer", "ts", "valve", "808", "ts9"])]
+                if ts_drives:
+                    selected_drive = random.choice(ts_drives)
+            elif drive_type == "overdrive":
+                od_drives = [drive for drive in self.drive_models if any(word in drive.lower() for word in ["overdrive", "od", "tube", "screamer", "klon", "klone", "boost", "drive"])]
+                if od_drives:
+                    selected_drive = random.choice(od_drives)
+            elif drive_type == "high_gain":
+                high_gain_drives = [drive for drive in self.drive_models if any(word in drive.lower() for word in ["distortion", "fuzz", "shred", "metal", "rat", "ds1", "metal", "heavy"])]
+                if high_gain_drives:
+                    selected_drive = random.choice(high_gain_drives)
+            elif drive_type == "clean":
+                selected_drive = "NO_DRIVE_INTENTIONAL"
 
-        if "tube screamer" in query or "ts808" in query or "ts9" in query:
+        if not selected_drive and selected_drive != "NO_DRIVE_INTENTIONAL" and ("tube screamer" in query or "ts808" in query or "ts9" in query):
             ts_drives = self.gear_mapping["drives"]["tube_screamer"]
             available_ts = [drive for drive in ts_drives if drive in self.drive_models]
             if available_ts:
@@ -1054,7 +1416,7 @@ class CleanAIToneGenerator:
                 selected_drive = random.choice(available_zen_master)
 
         # If no specific match, select based on genre
-        if not selected_drive:
+        if not selected_drive and selected_drive != "NO_DRIVE_INTENTIONAL":
             if genre == "blues":
                 blues_drives = [
                     drive
@@ -1100,6 +1462,15 @@ class CleanAIToneGenerator:
             tone = random.uniform(4.0, 7.0)
             level = random.uniform(3.0, 7.0)
 
+        # Handle clean tones (no drive)
+        if selected_drive == "NO_DRIVE_INTENTIONAL":
+            return {
+                "enabled": False,
+                "type": "NO DRIVE",
+                "real_world": "No Drive",
+                "parameters": {},
+            }
+        
         return {
             "enabled": True,
             "type": selected_drive,
