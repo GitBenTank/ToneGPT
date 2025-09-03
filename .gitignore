@@ -1,37 +1,28 @@
-# Business Strategy Documents (Keep Private)
-FM9_ACQUISITION_PACKAGE.md
-REBRANDING_SYSTEM.md
-FM9_DEMO_SCRIPT.md
-rebrand.sh
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Personal/Private Files
-*.personal
-*.private
-*.confidential
-business_plan.*
-acquisition_notes.*
-demo_notes.*
+# Production builds
+dist/
+build/
 
-# Development Files
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-env/
-venv/
-.venv/
-pip-log.txt
-pip-delete-this-directory.txt
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# IDE Files
+# IDE files
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# OS Files
+# OS generated files
 .DS_Store
 .DS_Store?
 ._*
@@ -41,35 +32,18 @@ ehthumbs.db
 Thumbs.db
 
 # Logs
+logs
 *.log
-logs/
 
-# Temporary Files
-*.tmp
-*.temp
-temp/
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Temporary folders
 tmp/
-
-# Backup Files
-*.bak
-*.backup
-*.old
-
-# Environment Variables
-.env
-.env.local
-.env.production
-
-# Database Files
-*.db
-*.sqlite
-*.sqlite3
-
-# Test Coverage
-.coverage
-htmlcov/
-.pytest_cache/
-
-# Documentation Build
-docs/_build/
-site/
+temp/
