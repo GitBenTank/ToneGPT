@@ -274,9 +274,18 @@ def render_signal_chain_tab(tone_data: Dict[str, Any], blocks_featured: Dict[str
         # Block management section
         st.markdown("### 🎛️ Block Management")
         
+        # Define the same order as signal chain for consistency
+        block_order = [
+            "drive_1", "drive_2", "amp", "cab", "eq", 
+            "delay", "reverb", "modulation", "pitch", "dynamics", "utility"
+        ]
+        
+        # Get blocks in the correct signal chain order
+        ordered_blocks = [(block_name, tone_patch[block_name]) for block_name in block_order if block_name in tone_patch]
+        
         # Create a grid of block cards
         cols = st.columns(3)
-        for i, (block_name, block_data) in enumerate(tone_patch.items()):
+        for i, (block_name, block_data) in enumerate(ordered_blocks):
             with cols[i % 3]:
                 block_type = block_name.split("_")[0].upper() if "_" in block_name else block_name.upper()
                 model_name = block_data.get("type", "Unknown")
