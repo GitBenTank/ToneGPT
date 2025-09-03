@@ -1,0 +1,75 @@
+# Business Strategy Documents (Keep Private)
+FM9_ACQUISITION_PACKAGE.md
+REBRANDING_SYSTEM.md
+FM9_DEMO_SCRIPT.md
+rebrand.sh
+
+# Personal/Private Files
+*.personal
+*.private
+*.confidential
+business_plan.*
+acquisition_notes.*
+demo_notes.*
+
+# Development Files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# IDE Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary Files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Backup Files
+*.bak
+*.backup
+*.old
+
+# Environment Variables
+.env
+.env.local
+.env.production
+
+# Database Files
+*.db
+*.sqlite
+*.sqlite3
+
+# Test Coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Documentation Build
+docs/_build/
+site/
