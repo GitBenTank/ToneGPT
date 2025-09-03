@@ -1,6 +1,9 @@
 """
 Clean AI Tone Generator for FM9 Partnership
 
+Copyright (c) 2025 Ben Tankersley. All rights reserved.
+PROPRIETARY SOFTWARE - Unauthorized use, copying, or distribution is strictly prohibited.
+
 TL;DR: Single-mode FM9 AI tone generator with real-world gear mapping.
 - Generates complete FM9 patches from natural language queries
 - Uses authentic FM9 block names and parameters (no advanced mode complexity)

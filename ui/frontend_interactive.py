@@ -2,6 +2,9 @@
 """
 Interactive Tone Editor Frontend
 
+Copyright (c) 2025 Ben Tankersley. All rights reserved.
+PROPRIETARY SOFTWARE - Unauthorized use, copying, or distribution is strictly prohibited.
+
 Professional interactive frontend for ToneGPT with:
 - Compact chain canvas (Input → [Blocks] → Output) with drag-reorder + bypass toggles
 - Knob widgets for featured params only (blocks_featured spec)
