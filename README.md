@@ -1,8 +1,10 @@
 # 🎸 ToneGPT AI - AI-Powered FM9 Tone Generation Platform
 
+> **⚠️ PROPRIETARY SOFTWARE** - This software is proprietary and confidential. All rights reserved. Unauthorized use, copying, or distribution is strictly prohibited.
+
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red.svg)](https://streamlit.io/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-Proprietary-red.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen.svg)](https://github.com/yourusername/ToneGPT-AI)
 [![FM9](https://img.shields.io/badge/FM9-Native%20Support-orange.svg)](https://www.fractalaudio.com/fm9/)
 [![AI](https://img.shields.io/badge/AI-Powered%20Generation-purple.svg)](https://github.com/yourusername/ToneGPT-AI)
