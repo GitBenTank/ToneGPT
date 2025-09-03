@@ -171,6 +171,9 @@ def render_chain_canvas(blocks: List[Dict[str, Any]], tone_patch: Dict[str, Any]
     """Render a compact signal chain canvas with actual model names."""
     st.markdown("### 🔗 Signal Chain")
     
+    # DEBUG: Show what we're working with
+    st.write("🔍 DEBUG - tone_patch keys:", list(tone_patch.keys()) if tone_patch else "None")
+    
     # Create a compact horizontal chain
     chain_elements = ["🎸 Input"]
     
@@ -187,6 +190,9 @@ def render_chain_canvas(blocks: List[Dict[str, Any]], tone_patch: Dict[str, Any]
                 block_data = tone_patch[block_key]
                 model_name = block_data.get("type", "Unknown")
                 enabled = block_data.get("enabled", True)
+                
+                # DEBUG: Show each block as we process it
+                st.write(f"🔍 Processing {block_key}: {model_name}")
                 
                 if enabled:
                     chain_elements.append(f"🔧 {model_name}")
