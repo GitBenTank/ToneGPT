@@ -321,6 +321,9 @@ def render_block_editors_tab(tone_data: Dict[str, Any], blocks_featured: Dict[st
     
     tone_patch = tone_data.get("tone_patch", {})
     
+    # DEBUG: Show what blocks we actually have
+    st.write("🔍 DEBUG - Available blocks:", list(tone_patch.keys()))
+    
     # Define the same order as signal chain for consistency
     block_order = [
         "drive_1", "drive_2", "amp", "cab", "eq", 
@@ -329,6 +332,9 @@ def render_block_editors_tab(tone_data: Dict[str, Any], blocks_featured: Dict[st
     
     # Get blocks in the correct signal chain order
     block_names = [block_name for block_name in block_order if block_name in tone_patch]
+    
+    # DEBUG: Show the ordered block names
+    st.write("🔍 DEBUG - Ordered block names:", block_names)
     
     if not block_names:
         st.warning("No blocks available for editing")
