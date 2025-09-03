@@ -17,9 +17,81 @@ Constraints:
 
 import json
 import random
+import hashlib
 from pathlib import Path
 from typing import Dict, List, Any
 from tonegpt.config import BLOCKS_FILE
+from tonegpt.core.canonicalize import canonicalize_preset
+from tonegpt.core.validate_and_clamp import enforce_ref_ranges
+
+
+def _seed_from_query(query: str) -> None:
+    """
+    Generate intelligent seed for varied but contextually appropriate results.
+    
+    Args:
+        query: The input query string to base variations on
+    """
+    # Create a seed that varies but maintains query context
+    # This gives different results each time while keeping them relevant to the query
+    import time
+    import os
+    
+    # Base seed from query (for context)
+    h = int(hashlib.sha1(query.encode("utf-8")).hexdigest(), 16) % (2**31)
+    
+    # Add variation factors that change each time
+    time_factor = int(time.time() * 1000) % 1000  # Changes every second
+    process_factor = os.getpid() % 1000  # Different for each process
+    random_factor = random.randint(0, 999)  # Pure randomness
+    
+    # Combine for intelligent variation
+    intelligent_seed = (h + time_factor + process_factor + random_factor) % (2**31)
+    random.seed(intelligent_seed)
+
+
+from dataclasses import dataclass
+
+
+@dataclass(frozen=True)
+class PrefRule:
+    keywords: tuple[str, ...]   # ALL must appear (case-insensitive)
+    fm9_name: str               # exact FM9 model string to prefer
+
+
+# Precise, keyword-scoped preferred model rules
+PREFERRED_RULES: tuple[PrefRule, ...] = (
+    PrefRule(("rectifier",), "Recto1: original 2-channel Rectifier, Orange channel, Modern mode"),
+    PrefRule(("mesa", "rectifier"), "Recto1: original 2-channel Rectifier, Orange channel, Modern mode"),
+    PrefRule(("marshall", "jcm800"), "Brit 800"),
+    PrefRule(("jcm800",), "Brit 800"),
+    PrefRule(("marshall", "plexi"), "Brit 800"),  # Marshall Plexi queries should use Brit 800
+    PrefRule(("plexi",), "Plexi 1959"),  # Standalone Plexi queries use Plexi 1959
+    PrefRule(("vox", "ac30"), "AC-30 TB"),
+    PrefRule(("fender", "twin"), "Double Verb"),
+)
+
+
+def _prefer_model(query: str, candidates: list[str]) -> str:
+    """
+    Select preferred FM9 model based on precise keyword matching for deterministic results.
+    
+    Args:
+        query: The input query string
+        candidates: List of available FM9 model names
+        
+    Returns:
+        Preferred FM9 model name or deterministic fallback
+    """
+    q = query.lower()
+    for rule in PREFERRED_RULES:
+        if all(k in q for k in rule.keywords) and rule.fm9_name in candidates:
+            return rule.fm9_name
+    # deterministic fallback
+    if candidates:
+        idx = int(hashlib.sha1(q.encode()).hexdigest(), 16) % len(candidates)
+        return candidates[idx]
+    return ""
 
 
 class CleanAIToneGenerator:
@@ -73,22 +145,43 @@ class CleanAIToneGenerator:
         return []
 
     def _load_drive_models(self) -> List[str]:
-        """Load available drive models from real FM9 data"""
-        drive_blocks = [
-            block for block in self.blocks_data if block.get("category") == "drive"
-        ]
-        if drive_blocks:
-            drive_names = [
-                block.get("name", "") for block in drive_blocks if block.get("name")
+        """Load available drive models from real FM9 data - prioritize blocks_featured.json"""
+        drive_names = []
+        
+        # First try to load from blocks_featured.json (real FM9 names)
+        try:
+            with open("data/blocks_featured.json", "r") as f:
+                featured_data = json.load(f)
+            
+            blocks = featured_data.get("blocks", [])
+            for block_data in blocks:
+                if block_data.get("block") == "DRIVE":
+                    featured_models = block_data.get("models", [])
+                    for model in featured_models:
+                        fm9_name = model.get("fm9_name")
+                        if fm9_name:
+                            drive_names.append(fm9_name)
+                    break
+        except Exception as e:
+            print(f"Warning: Could not load featured drive models: {e}")
+        
+        # Fallback to blocks_data if blocks_featured.json fails
+        if not drive_names:
+            drive_blocks = [
+                block for block in self.blocks_data if block.get("category") == "drive"
             ]
-            print(
-                f"🔧 Loaded {len(drive_names)} real drive models from FM9 blocks data"
-            )
-            return drive_names
-        return []
+            if drive_blocks:
+                drive_names = [
+                    block.get("name", "") for block in drive_blocks if block.get("name")
+                ]
+        
+        print(
+            f"🔧 Loaded {len(drive_names)} real drive models from FM9 blocks data"
+        )
+        return drive_names
 
     def _load_effect_models(self) -> Dict[str, List[str]]:
-        """Load available effect models by category"""
+        """Load available effect models by category from both sources"""
         effects = {}
         effect_categories = [
             "delay",
@@ -101,21 +194,49 @@ class CleanAIToneGenerator:
         ]
 
         for category in effect_categories:
+            # Load from blocks_data (existing source)
             category_blocks = [
                 block for block in self.blocks_data if block.get("category") == category
             ]
+            effect_names = []
             if category_blocks:
                 effect_names = [
                     block.get("name", "")
                     for block in category_blocks
                     if block.get("name")
                 ]
-                effects[category] = effect_names
-                print(
-                    f"🔧 Loaded {len(effect_names)} {category} effects from FM9 blocks data"
-                )
+            
+            # Also load from blocks_featured.json (new comprehensive source)
+            try:
+                with open("data/blocks_featured.json", "r") as f:
+                    featured_data = json.load(f)
+                
+                blocks = featured_data.get("blocks", [])
+                for block_data in blocks:
+                    block_name = block_data.get("block", "").upper()
+                    if block_name == category.upper():
+                        featured_models = block_data.get("models", [])
+                        for model in featured_models:
+                            fm9_name = model.get("fm9_name")
+                            if fm9_name and fm9_name not in effect_names:
+                                effect_names.append(fm9_name)
+                        break
+            except Exception as e:
+                print(f"Warning: Could not load featured {category} models: {e}")
+            
+            effects[category] = effect_names
+            print(
+                f"🔧 Loaded {len(effect_names)} {category} effects from FM9 blocks data"
+            )
 
         return effects
+
+    def _get_real_world_name(self, fm9_name: str) -> str:
+        """Get the real-world name for a given FM9 name"""
+        for block in self.blocks_data:
+            if block.get("name") == fm9_name:
+                return block.get("real_world", fm9_name)
+        return fm9_name
 
     def _load_gear_mapping(self) -> Dict:
         """Load real-world gear mapping for accurate modeling"""
@@ -128,9 +249,9 @@ class CleanAIToneGenerator:
                         "BRIT 800 2204 HIGH",
                         "BRIT 800 2203 HIGH",
                     ],
-                    "jcm900": ["Brit 900", "Brit 900 Pro"],
-                    "plexi": ["Brit Plexi", "Brit Plexi Pro", "Brit 800 #34"],
-                    "jvm": ["Brit JVM", "Brit JVM Pro"],
+                    "jcm900": ["Crunch Orange: based on a JCM 2203", "Crunch Red: based on a modded JCM 2203"],
+                    "plexi": ["Plexi 1959 Pro", "PLEXI 100W 1970", "PLEXI 100W HIGH", "PLEXI 50W NORMAL"],
+                    "jvm": ["BRIT JVM OD1 GREEN", "BRIT JVM OD1 ORANGE", "BRIT JVM OD1 RED", "BRIT JVM OD2 GREEN"],
                 },
                 "mesa": {
                     "dual_rectifier": [
@@ -160,9 +281,9 @@ class CleanAIToneGenerator:
                         "DELUXE VERB VIBRATO",
                     ],
                     "twin": [
-                        "TWIN REVERB",
-                        "TWIN REVERB NORMAL",
-                        "TWIN REVERB VIBRATO",
+                        "Normal: based on 1966 blackface Fender Reverb, tuned by Andy Fuchs, AB763 circuit,",
+                        "PRINCETONE REVERB",
+                        "231PRINCE TONE REVERB",
                     ],
                     "bassman": ["BASSMAN", "BASSMAN 59", "BASSMAN 59 EC"],
                 },
@@ -172,12 +293,63 @@ class CleanAIToneGenerator:
                 },
             },
             "drives": {
-                "tube_screamer": ["TS808", "TS808 Mod", "TS9", "TS9 Mod"],
-                "klon": ["Klon", "Klon Pro"],
-                "rat": ["Rat Distortion", "Rat Distortion Pro"],
-                "fuzz_face": ["Fuzz Face", "Fuzz Face Pro"],
-                "big_muff": ["Big Muff", "Big Muff Pro"],
+                "tube_screamer": ["TS808", "TS808 Mod", "TS9", "TS9 Pro", "T808 Mod", "T808 OD", "TS9DX +", "TS9DX Hot", "Valve Screamer VS9"],
+                "klon": ["Klon", "Klon Pro", "Klone Chiron"],
+                "rat": ["Rat Distortion", "Rat Pro", "Rat 2", "Rat 2 Pro", "Fat Rat"],
+                "fuzz_face": ["Fuzz Face", "Fuzz Face Pro", "Fuzz Face Germanium", "Fuzz Face Germanium Pro"],
+                "big_muff": ["Big Muff", "Big Muff Pro", "Big Muff Russian", "Big Muff Russian Pro"],
                 "blues_driver": ["Blues Driver", "Blues Driver Pro"],
+                "super_od": ["Super OD"],
+                "bb_pre": ["BB Pre"],
+                "blackglass": ["Blackglass 7K"],
+                "compulsion": ["Compulsion Distortion HP/LP"],
+                "bender_fuzz": ["Bender Fuzz"],
+                "bit_crusher": ["Bit Crusher"],
+                "blues_od": ["Blues OD"],
+                "bosom_boost": ["Bosom Boost"],
+                "colortone": ["Colortone Booster", "Colortone OD"],
+                "ds1": ["DS1 Distortion/Mod"],
+                "esoteric": ["Esoteric ACB/RCB"],
+                "eternal_love": ["Eternal Love"],
+                "face_fuzz": ["Face Fuzz"],
+                "fas_led_drive": ["FAS LED-Drive"],
+                "fet_boost": ["FET Boost"],
+                "fet_preamp": ["FET Preamp"],
+                "full_od": ["Full OD"],
+                "gauss_drive": ["Gauss Drive"],
+                "griddle_cake": ["Griddle Cake"],
+                "hard_fuzz": ["Hard Fuzz"],
+                "heartpedal": ["Heartpedal 11"],
+                "hoodoo": ["Hoodoo Drive"],
+                "horizon": ["Horizon Precision Drive"],
+                "integral": ["Integral Pre"],
+                "jam_ray": ["Jam Ray"],
+                "m_zone": ["M-Zone Distortion"],
+                "master_fuzz": ["Master Fuzz"],
+                "maxoff": ["Maxoff 808"],
+                "mcmlxxxi": ["MCMLXXXI Drive"],
+                "micro_boost": ["Micro Boost"],
+                "mid_boost": ["Mid Boost"],
+                "mosfet": ["MOSFET Distortion"],
+                "nobelium": ["Nobelium OVD-1"],
+                "octave": ["Octave Distortion"],
+                "od_250": ["OD 250/Gray"],
+                "od_one": ["OD-One Overdrive"],
+                "pi_fuzz": ["PI Fuzz"],
+                "plus_distortion": ["Plus Distortion"],
+                "sdd_preamp": ["SDD Preamp"],
+                "shimmer": ["Shimmer Drive"],
+                "shred": ["Shred Distortion"],
+                "sonic": ["Sonic Drive"],
+                "suhr_riot": ["Suhr Riot Ge/LED"],
+                "sunrise": ["Sunrise Splendor/Hi-Cut"],
+                "super_fuzz": ["Super Fuzz"],
+                "tape_distortion": ["Tape Distortion"],
+                "timothy": ["Timothy Down/Mid/Up"],
+                "tone_of_kings": ["Tone of Kings"],
+                "treble_boost": ["Treble Boost"],
+                "tube_drive": ["Tube Drive 3-Knob", "Tube Drive 4-Knob", "Tube Drive 5-Knob"],
+                "zen_master": ["Zen Master"],
             },
             "cabs": {
                 "marshall_4x12": [
@@ -202,6 +374,9 @@ class CleanAIToneGenerator:
     def generate_tone_from_query(self, query: str) -> Dict:
         """Generate a tone patch from a natural language query"""
         try:
+            # Seed random number generator for deterministic output
+            _seed_from_query(query)
+            
             # Parse the query to understand intent
             intent = self._parse_query_intent(query)
 
@@ -215,13 +390,29 @@ class CleanAIToneGenerator:
             # Generate description
             description = self._generate_tone_description(tone_patch, intent)
 
-            return {
+            # Create blocks list from tone_patch
+            blocks_list = [
+                {"type": k, "parameters": v.get("parameters", {})}
+                for k, v in tone_patch.items()
+                if isinstance(v, dict) and "parameters" in v
+            ]
+
+            result = {
                 "query": query,
                 "intent": intent,
                 "tone_patch": tone_patch,
                 "description": description,
                 "gear_used": self._extract_gear_used(tone_patch),
+                "blocks": blocks_list
             }
+
+            # Normalize names & ensure `blocks` exists
+            result = canonicalize_preset(result)
+            
+            # Enforce parameter ranges and clamp values
+            result = enforce_ref_ranges(result)
+            
+            return result
 
         except Exception as e:
             print(f"❌ Error generating tone: {e}")
@@ -336,14 +527,44 @@ class CleanAIToneGenerator:
         # Try to match specific amp requests using gear mapping
         selected_amp = None
 
-        # Check for specific amp requests
-        if "marshall" in query or "jcm" in query or "800" in query:
+        # Check for specific amp requests - be more specific to avoid conflicts
+        if "plexi" in query:
+            # Plexi takes priority over general Marshall
+            plexi_amps = self.gear_mapping["amps"]["marshall"]["plexi"]
+            available_plexi = [
+                amp for amp in plexi_amps if amp in self.amp_models
+            ]
+            if available_plexi:
+                selected_amp = _prefer_model(query, available_plexi)
+        elif "jcm800" in query or "800" in query:
             marshall_amps = self.gear_mapping["amps"]["marshall"]["jcm800"]
             available_marshall = [
                 amp for amp in marshall_amps if amp in self.amp_models
             ]
             if available_marshall:
-                selected_amp = random.choice(available_marshall)
+                selected_amp = _prefer_model(query, available_marshall)
+        elif "jcm900" in query or "900" in query:
+            marshall_amps = self.gear_mapping["amps"]["marshall"]["jcm900"]
+            available_marshall = [
+                amp for amp in marshall_amps if amp in self.amp_models
+            ]
+            if available_marshall:
+                selected_amp = _prefer_model(query, available_marshall)
+        elif "jvm" in query:
+            marshall_amps = self.gear_mapping["amps"]["marshall"]["jvm"]
+            available_marshall = [
+                amp for amp in marshall_amps if amp in self.amp_models
+            ]
+            if available_marshall:
+                selected_amp = _prefer_model(query, available_marshall)
+        elif "marshall" in query:
+            # Generic Marshall - try JCM800 as default
+            marshall_amps = self.gear_mapping["amps"]["marshall"]["jcm800"]
+            available_marshall = [
+                amp for amp in marshall_amps if amp in self.amp_models
+            ]
+            if available_marshall:
+                selected_amp = _prefer_model(query, available_marshall)
 
         elif (
             "mesa" in query
@@ -364,9 +585,21 @@ class CleanAIToneGenerator:
             mesa_amps = list(set(mesa_amps))
             available_mesa = [amp for amp in mesa_amps if amp in self.amp_models]
             if available_mesa:
-                selected_amp = random.choice(available_mesa)
+                selected_amp = _prefer_model(query, available_mesa)
 
-        elif "fender" in query or "tweed" in query or "deluxe" in query:
+        elif "twin" in query:
+            # Twin takes priority over general Fender
+            twin_amps = self.gear_mapping["amps"]["fender"]["twin"]
+            available_twin = [amp for amp in twin_amps if amp in self.amp_models]
+            if available_twin:
+                selected_amp = _prefer_model(query, available_twin)
+        elif "deluxe" in query:
+            # Deluxe takes priority over general Fender
+            deluxe_amps = self.gear_mapping["amps"]["fender"]["deluxe"]
+            available_deluxe = [amp for amp in deluxe_amps if amp in self.amp_models]
+            if available_deluxe:
+                selected_amp = _prefer_model(query, available_deluxe)
+        elif "fender" in query or "tweed" in query:
             fender_amps = self.gear_mapping["amps"]["fender"]["tweed"]
             available_fender = [amp for amp in fender_amps if amp in self.amp_models]
             if available_fender:
@@ -452,6 +685,7 @@ class CleanAIToneGenerator:
         return {
             "enabled": True,
             "type": selected_amp,
+            "real_world": self._get_real_world_name(selected_amp),
             "parameters": {
                 "gain": round(gain, 1),
                 "bass": round(bass, 1),
@@ -467,7 +701,7 @@ class CleanAIToneGenerator:
         genre = structure.get("genre", "rock")
         query = structure.get("query", "").lower()
 
-        # Try to match specific drive requests
+        # Try to match specific drive requests using FM9 model names
         selected_drive = None
 
         if "tube screamer" in query or "ts808" in query or "ts9" in query:
@@ -491,6 +725,330 @@ class CleanAIToneGenerator:
             ]
             if available_rat:
                 selected_drive = random.choice(available_rat)
+
+        elif "super" in query and "od" in query:
+            super_drives = self.gear_mapping["drives"]["super_od"]
+            available_super = [drive for drive in super_drives if drive in self.drive_models]
+            if available_super:
+                selected_drive = random.choice(available_super)
+
+        elif "bb pre" in query or "bbpre" in query:
+            bb_drives = self.gear_mapping["drives"]["bb_pre"]
+            available_bb = [drive for drive in bb_drives if drive in self.drive_models]
+            if available_bb:
+                selected_drive = random.choice(available_bb)
+
+        elif "blackglass" in query:
+            blackglass_drives = self.gear_mapping["drives"]["blackglass"]
+            available_blackglass = [drive for drive in blackglass_drives if drive in self.drive_models]
+            if available_blackglass:
+                selected_drive = random.choice(available_blackglass)
+
+        elif "compulsion" in query:
+            compulsion_drives = self.gear_mapping["drives"]["compulsion"]
+            available_compulsion = [drive for drive in compulsion_drives if drive in self.drive_models]
+            if available_compulsion:
+                selected_drive = random.choice(available_compulsion)
+
+        elif "bender" in query:
+            bender_drives = self.gear_mapping["drives"]["bender_fuzz"]
+            available_bender = [drive for drive in bender_drives if drive in self.drive_models]
+            if available_bender:
+                selected_drive = random.choice(available_bender)
+
+        elif "bit crusher" in query:
+            bit_drives = self.gear_mapping["drives"]["bit_crusher"]
+            available_bit = [drive for drive in bit_drives if drive in self.drive_models]
+            if available_bit:
+                selected_drive = random.choice(available_bit)
+
+        elif "blues od" in query:
+            blues_od_drives = self.gear_mapping["drives"]["blues_od"]
+            available_blues_od = [drive for drive in blues_od_drives if drive in self.drive_models]
+            if available_blues_od:
+                selected_drive = random.choice(available_blues_od)
+
+        elif "bosom" in query:
+            bosom_drives = self.gear_mapping["drives"]["bosom_boost"]
+            available_bosom = [drive for drive in bosom_drives if drive in self.drive_models]
+            if available_bosom:
+                selected_drive = random.choice(available_bosom)
+
+        elif "colortone" in query:
+            colortone_drives = self.gear_mapping["drives"]["colortone"]
+            available_colortone = [drive for drive in colortone_drives if drive in self.drive_models]
+            if available_colortone:
+                selected_drive = random.choice(available_colortone)
+
+        elif "ds1" in query:
+            ds1_drives = self.gear_mapping["drives"]["ds1"]
+            available_ds1 = [drive for drive in ds1_drives if drive in self.drive_models]
+            if available_ds1:
+                selected_drive = random.choice(available_ds1)
+
+        elif "esoteric" in query:
+            esoteric_drives = self.gear_mapping["drives"]["esoteric"]
+            available_esoteric = [drive for drive in esoteric_drives if drive in self.drive_models]
+            if available_esoteric:
+                selected_drive = random.choice(available_esoteric)
+
+        elif "eternal love" in query:
+            eternal_drives = self.gear_mapping["drives"]["eternal_love"]
+            available_eternal = [drive for drive in eternal_drives if drive in self.drive_models]
+            if available_eternal:
+                selected_drive = random.choice(available_eternal)
+
+        elif "face fuzz" in query:
+            face_drives = self.gear_mapping["drives"]["face_fuzz"]
+            available_face = [drive for drive in face_drives if drive in self.drive_models]
+            if available_face:
+                selected_drive = random.choice(available_face)
+
+        elif "fas led" in query:
+            fas_led_drives = self.gear_mapping["drives"]["fas_led_drive"]
+            available_fas_led = [drive for drive in fas_led_drives if drive in self.drive_models]
+            if available_fas_led:
+                selected_drive = random.choice(available_fas_led)
+
+        elif "fat rat" in query:
+            fat_rat_drives = self.gear_mapping["drives"]["rat"]
+            available_fat_rat = [drive for drive in fat_rat_drives if "Fat Rat" in drive and drive in self.drive_models]
+            if available_fat_rat:
+                selected_drive = random.choice(available_fat_rat)
+
+        elif "fet boost" in query:
+            fet_boost_drives = self.gear_mapping["drives"]["fet_boost"]
+            available_fet_boost = [drive for drive in fet_boost_drives if drive in self.drive_models]
+            if available_fet_boost:
+                selected_drive = random.choice(available_fet_boost)
+
+        elif "fet preamp" in query:
+            fet_preamp_drives = self.gear_mapping["drives"]["fet_preamp"]
+            available_fet_preamp = [drive for drive in fet_preamp_drives if drive in self.drive_models]
+            if available_fet_preamp:
+                selected_drive = random.choice(available_fet_preamp)
+
+        elif "full od" in query:
+            full_od_drives = self.gear_mapping["drives"]["full_od"]
+            available_full_od = [drive for drive in full_od_drives if drive in self.drive_models]
+            if available_full_od:
+                selected_drive = random.choice(available_full_od)
+
+        elif "gauss" in query:
+            gauss_drives = self.gear_mapping["drives"]["gauss_drive"]
+            available_gauss = [drive for drive in gauss_drives if drive in self.drive_models]
+            if available_gauss:
+                selected_drive = random.choice(available_gauss)
+
+        elif "griddle" in query:
+            griddle_drives = self.gear_mapping["drives"]["griddle_cake"]
+            available_griddle = [drive for drive in griddle_drives if drive in self.drive_models]
+            if available_griddle:
+                selected_drive = random.choice(available_griddle)
+
+        elif "hard fuzz" in query:
+            hard_fuzz_drives = self.gear_mapping["drives"]["hard_fuzz"]
+            available_hard_fuzz = [drive for drive in hard_fuzz_drives if drive in self.drive_models]
+            if available_hard_fuzz:
+                selected_drive = random.choice(available_hard_fuzz)
+
+        elif "heartpedal" in query:
+            heartpedal_drives = self.gear_mapping["drives"]["heartpedal"]
+            available_heartpedal = [drive for drive in heartpedal_drives if drive in self.drive_models]
+            if available_heartpedal:
+                selected_drive = random.choice(available_heartpedal)
+
+        elif "hoodoo" in query:
+            hoodoo_drives = self.gear_mapping["drives"]["hoodoo"]
+            available_hoodoo = [drive for drive in hoodoo_drives if drive in self.drive_models]
+            if available_hoodoo:
+                selected_drive = random.choice(available_hoodoo)
+
+        elif "horizon" in query:
+            horizon_drives = self.gear_mapping["drives"]["horizon"]
+            available_horizon = [drive for drive in horizon_drives if drive in self.drive_models]
+            if available_horizon:
+                selected_drive = random.choice(available_horizon)
+
+        elif "integral" in query:
+            integral_drives = self.gear_mapping["drives"]["integral"]
+            available_integral = [drive for drive in integral_drives if drive in self.drive_models]
+            if available_integral:
+                selected_drive = random.choice(available_integral)
+
+        elif "jam ray" in query:
+            jam_ray_drives = self.gear_mapping["drives"]["jam_ray"]
+            available_jam_ray = [drive for drive in jam_ray_drives if drive in self.drive_models]
+            if available_jam_ray:
+                selected_drive = random.choice(available_jam_ray)
+
+        elif "klone chiron" in query:
+            klone_chiron_drives = self.gear_mapping["drives"]["klon"]
+            available_klone_chiron = [drive for drive in klone_chiron_drives if "Klone Chiron" in drive and drive in self.drive_models]
+            if available_klone_chiron:
+                selected_drive = random.choice(available_klone_chiron)
+
+        elif "m-zone" in query:
+            m_zone_drives = self.gear_mapping["drives"]["m_zone"]
+            available_m_zone = [drive for drive in m_zone_drives if drive in self.drive_models]
+            if available_m_zone:
+                selected_drive = random.choice(available_m_zone)
+
+        elif "master fuzz" in query:
+            master_fuzz_drives = self.gear_mapping["drives"]["master_fuzz"]
+            available_master_fuzz = [drive for drive in master_fuzz_drives if drive in self.drive_models]
+            if available_master_fuzz:
+                selected_drive = random.choice(available_master_fuzz)
+
+        elif "maxoff" in query:
+            maxoff_drives = self.gear_mapping["drives"]["maxoff"]
+            available_maxoff = [drive for drive in maxoff_drives if drive in self.drive_models]
+            if available_maxoff:
+                selected_drive = random.choice(available_maxoff)
+
+        elif "mcmlxxxi" in query:
+            mcmlxxxi_drives = self.gear_mapping["drives"]["mcmlxxxi"]
+            available_mcmlxxxi = [drive for drive in mcmlxxxi_drives if drive in self.drive_models]
+            if available_mcmlxxxi:
+                selected_drive = random.choice(available_mcmlxxxi)
+
+        elif "micro boost" in query:
+            micro_boost_drives = self.gear_mapping["drives"]["micro_boost"]
+            available_micro_boost = [drive for drive in micro_boost_drives if drive in self.drive_models]
+            if available_micro_boost:
+                selected_drive = random.choice(available_micro_boost)
+
+        elif "mid boost" in query:
+            mid_boost_drives = self.gear_mapping["drives"]["mid_boost"]
+            available_mid_boost = [drive for drive in mid_boost_drives if drive in self.drive_models]
+            if available_mid_boost:
+                selected_drive = random.choice(available_mid_boost)
+
+        elif "mosfet" in query:
+            mosfet_drives = self.gear_mapping["drives"]["mosfet"]
+            available_mosfet = [drive for drive in mosfet_drives if drive in self.drive_models]
+            if available_mosfet:
+                selected_drive = random.choice(available_mosfet)
+
+        elif "nobelium" in query:
+            nobelium_drives = self.gear_mapping["drives"]["nobelium"]
+            available_nobelium = [drive for drive in nobelium_drives if drive in self.drive_models]
+            if available_nobelium:
+                selected_drive = random.choice(available_nobelium)
+
+        elif "octave" in query:
+            octave_drives = self.gear_mapping["drives"]["octave"]
+            available_octave = [drive for drive in octave_drives if drive in self.drive_models]
+            if available_octave:
+                selected_drive = random.choice(available_octave)
+
+        elif "od 250" in query:
+            od_250_drives = self.gear_mapping["drives"]["od_250"]
+            available_od_250 = [drive for drive in od_250_drives if drive in self.drive_models]
+            if available_od_250:
+                selected_drive = random.choice(available_od_250)
+
+        elif "od-one" in query:
+            od_one_drives = self.gear_mapping["drives"]["od_one"]
+            available_od_one = [drive for drive in od_one_drives if drive in self.drive_models]
+            if available_od_one:
+                selected_drive = random.choice(available_od_one)
+
+        elif "pi fuzz" in query:
+            pi_fuzz_drives = self.gear_mapping["drives"]["pi_fuzz"]
+            available_pi_fuzz = [drive for drive in pi_fuzz_drives if drive in self.drive_models]
+            if available_pi_fuzz:
+                selected_drive = random.choice(available_pi_fuzz)
+
+        elif "plus distortion" in query:
+            plus_distortion_drives = self.gear_mapping["drives"]["plus_distortion"]
+            available_plus_distortion = [drive for drive in plus_distortion_drives if drive in self.drive_models]
+            if available_plus_distortion:
+                selected_drive = random.choice(available_plus_distortion)
+
+        elif "sdd preamp" in query:
+            sdd_preamp_drives = self.gear_mapping["drives"]["sdd_preamp"]
+            available_sdd_preamp = [drive for drive in sdd_preamp_drives if drive in self.drive_models]
+            if available_sdd_preamp:
+                selected_drive = random.choice(available_sdd_preamp)
+
+        elif "shimmer" in query:
+            shimmer_drives = self.gear_mapping["drives"]["shimmer"]
+            available_shimmer = [drive for drive in shimmer_drives if drive in self.drive_models]
+            if available_shimmer:
+                selected_drive = random.choice(available_shimmer)
+
+        elif "shred" in query:
+            shred_drives = self.gear_mapping["drives"]["shred"]
+            available_shred = [drive for drive in shred_drives if drive in self.drive_models]
+            if available_shred:
+                selected_drive = random.choice(available_shred)
+
+        elif "sonic" in query:
+            sonic_drives = self.gear_mapping["drives"]["sonic"]
+            available_sonic = [drive for drive in sonic_drives if drive in self.drive_models]
+            if available_sonic:
+                selected_drive = random.choice(available_sonic)
+
+        elif "suhr riot" in query:
+            suhr_riot_drives = self.gear_mapping["drives"]["suhr_riot"]
+            available_suhr_riot = [drive for drive in suhr_riot_drives if drive in self.drive_models]
+            if available_suhr_riot:
+                selected_drive = random.choice(available_suhr_riot)
+
+        elif "sunrise" in query:
+            sunrise_drives = self.gear_mapping["drives"]["sunrise"]
+            available_sunrise = [drive for drive in sunrise_drives if drive in self.drive_models]
+            if available_sunrise:
+                selected_drive = random.choice(available_sunrise)
+
+        elif "super fuzz" in query:
+            super_fuzz_drives = self.gear_mapping["drives"]["super_fuzz"]
+            available_super_fuzz = [drive for drive in super_fuzz_drives if drive in self.drive_models]
+            if available_super_fuzz:
+                selected_drive = random.choice(available_super_fuzz)
+
+        elif "tape distortion" in query:
+            tape_distortion_drives = self.gear_mapping["drives"]["tape_distortion"]
+            available_tape_distortion = [drive for drive in tape_distortion_drives if drive in self.drive_models]
+            if available_tape_distortion:
+                selected_drive = random.choice(available_tape_distortion)
+
+        elif "timothy" in query:
+            timothy_drives = self.gear_mapping["drives"]["timothy"]
+            available_timothy = [drive for drive in timothy_drives if drive in self.drive_models]
+            if available_timothy:
+                selected_drive = random.choice(available_timothy)
+
+        elif "tone of kings" in query:
+            tone_of_kings_drives = self.gear_mapping["drives"]["tone_of_kings"]
+            available_tone_of_kings = [drive for drive in tone_of_kings_drives if drive in self.drive_models]
+            if available_tone_of_kings:
+                selected_drive = random.choice(available_tone_of_kings)
+
+        elif "treble boost" in query:
+            treble_boost_drives = self.gear_mapping["drives"]["treble_boost"]
+            available_treble_boost = [drive for drive in treble_boost_drives if drive in self.drive_models]
+            if available_treble_boost:
+                selected_drive = random.choice(available_treble_boost)
+
+        elif "tube drive" in query:
+            tube_drive_drives = self.gear_mapping["drives"]["tube_drive"]
+            available_tube_drive = [drive for drive in tube_drive_drives if drive in self.drive_models]
+            if available_tube_drive:
+                selected_drive = random.choice(available_tube_drive)
+
+        elif "valve screamer" in query:
+            valve_screamer_drives = self.gear_mapping["drives"]["tube_screamer"]
+            available_valve_screamer = [drive for drive in valve_screamer_drives if "Valve Screamer" in drive and drive in self.drive_models]
+            if available_valve_screamer:
+                selected_drive = random.choice(available_valve_screamer)
+
+        elif "zen master" in query:
+            zen_master_drives = self.gear_mapping["drives"]["zen_master"]
+            available_zen_master = [drive for drive in zen_master_drives if drive in self.drive_models]
+            if available_zen_master:
+                selected_drive = random.choice(available_zen_master)
 
         # If no specific match, select based on genre
         if not selected_drive:
@@ -542,6 +1100,7 @@ class CleanAIToneGenerator:
         return {
             "enabled": True,
             "type": selected_drive,
+            "real_world": self._get_real_world_name(selected_drive),
             "parameters": {
                 "drive": round(drive, 1),
                 "tone": round(tone, 1),
@@ -626,6 +1185,7 @@ class CleanAIToneGenerator:
         return {
             "enabled": True,
             "type": selected_cab,
+            "real_world": self._get_real_world_name(selected_cab),
             "parameters": {
                 "low_cut": round(low_cut, 1),
                 "high_cut": round(high_cut, 1),
@@ -641,6 +1201,7 @@ class CleanAIToneGenerator:
         return {
             "enabled": True,
             "type": selected_eq,
+            "real_world": self._get_real_world_name(selected_eq),
             "parameters": {
                 "low_freq": 80.0,
                 "low_gain": 0.0,
@@ -663,6 +1224,7 @@ class CleanAIToneGenerator:
         return {
             "enabled": True,
             "type": selected_delay,
+            "real_world": self._get_real_world_name(selected_delay),
             "parameters": {
                 "time": random.uniform(200.0, 800.0),
                 "feedback": random.uniform(20.0, 40.0),
@@ -680,6 +1242,7 @@ class CleanAIToneGenerator:
         return {
             "enabled": True,
             "type": selected_reverb,
+            "real_world": self._get_real_world_name(selected_reverb),
             "parameters": {
                 "room_size": random.uniform(50.0, 80.0),
                 "decay": random.uniform(1.5, 3.0),
@@ -697,6 +1260,7 @@ class CleanAIToneGenerator:
         return {
             "enabled": True,
             "type": selected_mod,
+            "real_world": self._get_real_world_name(selected_mod),
             "parameters": {
                 "rate": random.uniform(0.5, 2.0),
                 "depth": random.uniform(30.0, 70.0),
@@ -714,6 +1278,7 @@ class CleanAIToneGenerator:
         return {
             "enabled": True,
             "type": selected_pitch,
+            "real_world": self._get_real_world_name(selected_pitch),
             "parameters": {
                 "pitch": random.uniform(-12.0, 12.0),
                 "mix": random.uniform(30.0, 70.0),
@@ -730,6 +1295,7 @@ class CleanAIToneGenerator:
         return {
             "enabled": True,
             "type": selected_dynamics,
+            "real_world": self._get_real_world_name(selected_dynamics),
             "parameters": {
                 "threshold": random.uniform(-20.0, -5.0),
                 "ratio": random.uniform(2.0, 8.0),
@@ -746,6 +1312,7 @@ class CleanAIToneGenerator:
         return {
             "enabled": True,
             "type": selected_utility,
+            "real_world": self._get_real_world_name(selected_utility),
             "parameters": {"volume": random.uniform(-6.0, 6.0)},
         }
 
@@ -831,31 +1398,52 @@ class CleanAIToneGenerator:
 
     def _get_fallback_tone(self, query: str) -> Dict:
         """Get a fallback tone if generation fails"""
-        return {
-            "query": query,
-            "intent": {"genre": "rock", "characteristics": []},
-            "tone_patch": {
-                "amp": {
-                    "enabled": True,
-                    "type": "Brit 800",
-                    "parameters": {
-                        "gain": 6.0,
-                        "bass": 6.0,
-                        "mid": 6.0,
-                        "treble": 6.0,
-                        "presence": 6.0,
-                        "master": 5.0,
-                    },
-                },
-                "cab": {
-                    "enabled": True,
-                    "type": "Legacy 4x12 V30",
-                    "parameters": {"low_cut": 100.0, "high_cut": 10000.0, "level": 0.0},
+        # Seed random number generator for deterministic fallback
+        _seed_from_query(query)
+        
+        tone_patch = {
+            "amp": {
+                "enabled": True,
+                "type": "Brit 800",
+                "parameters": {
+                    "gain": 6.0,
+                    "bass": 6.0,
+                    "mid": 6.0,
+                    "treble": 6.0,
+                    "presence": 6.0,
+                    "master": 5.0,
                 },
             },
+            "cab": {
+                "enabled": True,
+                "type": "Legacy 4x12 V30",
+                "parameters": {"low_cut": 100.0, "high_cut": 10000.0, "level": 0.0},
+            },
+        }
+
+        # Create blocks list from tone_patch
+        blocks_list = [
+            {"type": k, "parameters": v.get("parameters", {})}
+            for k, v in tone_patch.items()
+            if isinstance(v, dict) and "parameters" in v
+        ]
+
+        result = {
+            "query": query,
+            "intent": {"genre": "rock", "characteristics": []},
+            "tone_patch": tone_patch,
             "description": "A rock tone using Brit 800 with Legacy 4x12 V30",
             "gear_used": {},
+            "blocks": blocks_list
         }
+
+        # Normalize names & ensure `blocks` exists
+        result = canonicalize_preset(result)
+        
+        # Enforce parameter ranges and clamp values
+        result = enforce_ref_ranges(result)
+        
+        return result
 
     def _get_default_blocks(self) -> Dict:
         """Get default blocks data for fallback purposes"""

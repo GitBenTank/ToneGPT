@@ -1,182 +1,262 @@
 {
-  "query": "Marshall Plexi with Tube Screamer, delay, and reverb for classic rock",
-  "intent": {
-    "genre": "rock",
-    "characteristics": [],
-    "query": "Marshall Plexi with Tube Screamer, delay, and reverb for classic rock"
-  },
-  "tone_patch": {
-    "drive_1": {
-      "enabled": true,
-      "type": "TS808 Mod",
+  "blocks": [
+    {
       "parameters": {
-        "drive": 4.4,
-        "tone": 6.5,
-        "level": 5.1
-      }
+        "drive": 5.7,
+        "level": 3.8,
+        "tone": 5.7
+      },
+      "type": "DRV"
     },
-    "drive_2": {
-      "enabled": true,
-      "type": "TS808",
+    {
       "parameters": {
-        "drive": 6.1,
-        "tone": 4.6,
-        "level": 5.4
-      }
+        "drive": 6.2,
+        "level": 6.2,
+        "tone": 6.5
+      },
+      "type": "DRV"
     },
+    {
+      "parameters": {
+        "bass": 6.9,
+        "gain": 7.8,
+        "master": 6.6,
+        "mid": 5.9,
+        "presence": 5.4,
+        "treble": 5.7
+      },
+      "type": "AMP"
+    },
+    {
+      "parameters": {
+        "high_cut": 11274.1,
+        "level": 5.1,
+        "low_cut": 74.7
+      },
+      "type": "CAB"
+    },
+    {
+      "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "mid_freq": 500.0,
+        "mid_gain": 0.0
+      },
+      "type": "EQ"
+    },
+    {
+      "parameters": {
+        "feedback": 24.8,
+        "mix": 24.7,
+        "time": 692.4
+      },
+      "type": "DLY"
+    },
+    {
+      "parameters": {
+        "decay": 2.7,
+        "mix": 34.0,
+        "room_size": 52.4
+      },
+      "type": "REV"
+    },
+    {
+      "parameters": {
+        "mix": 43.7,
+        "pitch": 9.6
+      },
+      "type": "PITCH"
+    },
+    {
+      "parameters": {
+        "attack": 6.2,
+        "ratio": 4.2,
+        "release": 52.6,
+        "threshold": -13.8
+      },
+      "type": "DYNAMICS"
+    }
+  ],
+  "description": "A rock tone, using Brit 800 with TS9 and TS808 with Diffusion Delay, Ambient Reverb, Custom Harmony and Mastering Compressor Pro.",
+  "gear_used": {
     "amp": {
-      "enabled": true,
-      "type": "Brit 800 Pro",
       "parameters": {
-        "gain": 7.3,
-        "bass": 8.0,
-        "mid": 7.2,
-        "treble": 7.2,
-        "presence": 4.5,
-        "master": 3.3
-      }
+        "bass": 6.9,
+        "gain": 7.8,
+        "master": 6.6,
+        "mid": 5.9,
+        "presence": 5.4,
+        "treble": 5.7
+      },
+      "type": "Brit 800"
     },
     "cab": {
-      "enabled": true,
-      "type": "DynaCab 4x12 V30",
       "parameters": {
-        "low_cut": 136.4,
-        "high_cut": 13599.1,
-        "level": 5.4
-      }
+        "high_cut": 11274.1,
+        "level": 5.1,
+        "low_cut": 74.7
+      },
+      "type": "DynaCab 4x12 V30"
+    },
+    "delay": {
+      "parameters": {
+        "feedback": 24.761994819007143,
+        "mix": 24.727886488313736,
+        "time": 692.4441953366407
+      },
+      "type": "Diffusion Delay"
+    },
+    "drive_1": {
+      "parameters": {
+        "drive": 5.7,
+        "level": 3.8,
+        "tone": 5.7
+      },
+      "type": "TS9"
+    },
+    "drive_2": {
+      "parameters": {
+        "drive": 6.2,
+        "level": 6.2,
+        "tone": 6.5
+      },
+      "type": "TS808"
+    },
+    "dynamics": {
+      "parameters": {
+        "attack": 6.215218264132593,
+        "ratio": 4.161183473724731,
+        "release": 52.598576239881695,
+        "threshold": -13.807446225248524
+      },
+      "type": "Mastering Compressor Pro"
     },
     "eq": {
-      "enabled": true,
-      "type": "Tilt EQ Pro",
       "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
         "low_freq": 80.0,
         "low_gain": 0.0,
         "low_mid_freq": 500.0,
-        "low_mid_gain": 0.0,
-        "high_mid_freq": 2000.0,
-        "high_mid_gain": 0.0,
-        "high_freq": 8000.0,
-        "high_gain": 0.0
-      }
-    },
-    "delay": {
-      "enabled": true,
-      "type": "Ping Pong Delay",
-      "parameters": {
-        "time": 241.8761922382929,
-        "feedback": 21.57889671757794,
-        "mix": 28.060171675504687
-      }
-    },
-    "reverb": {
-      "enabled": true,
-      "type": "Special Reverb",
-      "parameters": {
-        "room_size": 62.795174707684,
-        "decay": 1.5093496603375876,
-        "mix": 31.894401609912283
-      }
+        "low_mid_gain": 0.0
+      },
+      "type": "Graphic EQ Pro"
     },
     "pitch": {
-      "enabled": true,
-      "type": "Chromatic Harmony Pro",
       "parameters": {
-        "pitch": -2.8483898725487258,
-        "mix": 54.91725679995979
-      }
+        "mix": 43.65267869279521,
+        "pitch": 9.618012702493555
+      },
+      "type": "Custom Harmony"
     },
-    "dynamics": {
-      "enabled": true,
-      "type": "Sidechain Compressor",
+    "reverb": {
       "parameters": {
-        "threshold": -14.040813941976964,
-        "ratio": 7.211291747505969,
-        "attack": 8.786447155058601,
-        "release": 155.18964309133128
-      }
+        "decay": 2.7173936310756788,
+        "mix": 33.95226000743025,
+        "room_size": 52.412831673669146
+      },
+      "type": "Ambient Reverb"
     }
   },
-  "description": "A rock tone, using Brit 800 Pro with TS808 Mod and TS808 with Ping Pong Delay, Special Reverb, Chromatic Harmony Pro and Sidechain Compressor.",
-  "gear_used": {
-    "drive_1": {
-      "type": "TS808 Mod",
-      "parameters": {
-        "drive": 4.4,
-        "tone": 6.5,
-        "level": 5.1
-      }
-    },
-    "drive_2": {
-      "type": "TS808",
-      "parameters": {
-        "drive": 6.1,
-        "tone": 4.6,
-        "level": 5.4
-      }
-    },
+  "intent": {
+    "characteristics": [],
+    "genre": "rock",
+    "query": "Marshall Plexi with Tube Screamer, delay, and reverb for classic rock"
+  },
+  "query": "Marshall Plexi with Tube Screamer, delay, and reverb for classic rock",
+  "tone_patch": {
     "amp": {
-      "type": "Brit 800 Pro",
+      "enabled": true,
       "parameters": {
-        "gain": 7.3,
-        "bass": 8.0,
-        "mid": 7.2,
-        "treble": 7.2,
-        "presence": 4.5,
-        "master": 3.3
-      }
+        "bass": 6.9,
+        "gain": 7.8,
+        "master": 6.6,
+        "mid": 5.9,
+        "presence": 5.4,
+        "treble": 5.7
+      },
+      "type": "Brit 800"
     },
     "cab": {
-      "type": "DynaCab 4x12 V30",
+      "enabled": true,
       "parameters": {
-        "low_cut": 136.4,
-        "high_cut": 13599.1,
-        "level": 5.4
-      }
+        "high_cut": 11274.1,
+        "level": 5.1,
+        "low_cut": 74.7
+      },
+      "type": "DynaCab 4x12 V30"
+    },
+    "delay": {
+      "enabled": true,
+      "parameters": {
+        "feedback": 24.761994819007143,
+        "mix": 24.727886488313736,
+        "time": 692.4441953366407
+      },
+      "type": "Diffusion Delay"
+    },
+    "drive_1": {
+      "enabled": true,
+      "parameters": {
+        "drive": 5.7,
+        "level": 3.8,
+        "tone": 5.7
+      },
+      "type": "TS9"
+    },
+    "drive_2": {
+      "enabled": true,
+      "parameters": {
+        "drive": 6.2,
+        "level": 6.2,
+        "tone": 6.5
+      },
+      "type": "TS808"
+    },
+    "dynamics": {
+      "enabled": true,
+      "parameters": {
+        "attack": 6.215218264132593,
+        "ratio": 4.161183473724731,
+        "release": 52.598576239881695,
+        "threshold": -13.807446225248524
+      },
+      "type": "Mastering Compressor Pro"
     },
     "eq": {
-      "type": "Tilt EQ Pro",
+      "enabled": true,
       "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
         "low_freq": 80.0,
         "low_gain": 0.0,
         "low_mid_freq": 500.0,
-        "low_mid_gain": 0.0,
-        "high_mid_freq": 2000.0,
-        "high_mid_gain": 0.0,
-        "high_freq": 8000.0,
-        "high_gain": 0.0
-      }
-    },
-    "delay": {
-      "type": "Ping Pong Delay",
-      "parameters": {
-        "time": 241.8761922382929,
-        "feedback": 21.57889671757794,
-        "mix": 28.060171675504687
-      }
-    },
-    "reverb": {
-      "type": "Special Reverb",
-      "parameters": {
-        "room_size": 62.795174707684,
-        "decay": 1.5093496603375876,
-        "mix": 31.894401609912283
-      }
+        "low_mid_gain": 0.0
+      },
+      "type": "Graphic EQ Pro"
     },
     "pitch": {
-      "type": "Chromatic Harmony Pro",
+      "enabled": true,
       "parameters": {
-        "pitch": -2.8483898725487258,
-        "mix": 54.91725679995979
-      }
+        "mix": 43.65267869279521,
+        "pitch": 9.618012702493555
+      },
+      "type": "Custom Harmony"
     },
-    "dynamics": {
-      "type": "Sidechain Compressor",
+    "reverb": {
+      "enabled": true,
       "parameters": {
-        "threshold": -14.040813941976964,
-        "ratio": 7.211291747505969,
-        "attack": 8.786447155058601,
-        "release": 155.18964309133128
-      }
+        "decay": 2.7173936310756788,
+        "mix": 33.95226000743025,
+        "room_size": 52.412831673669146
+      },
+      "type": "Ambient Reverb"
     }
   }
 }

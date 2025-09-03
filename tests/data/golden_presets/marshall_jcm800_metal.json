@@ -1,182 +1,262 @@
 {
-  "query": "Marshall JCM800 metal tone with high gain and tight bass",
-  "intent": {
-    "genre": "metal",
-    "characteristics": [],
-    "query": "Marshall JCM800 metal tone with high gain and tight bass"
-  },
-  "tone_patch": {
-    "drive_1": {
-      "enabled": true,
-      "type": "Suhr Koko Boost Pro",
+  "blocks": [
+    {
       "parameters": {
-        "drive": 8.5,
-        "tone": 6.2,
-        "level": 7.8
-      }
+        "drive": 8.4,
+        "level": 5.2,
+        "tone": 5.5
+      },
+      "type": "DRV"
     },
-    "drive_2": {
-      "enabled": true,
-      "type": "Fuzz Face",
+    {
       "parameters": {
         "drive": 7.3,
-        "tone": 5.5,
-        "level": 6.6
-      }
+        "level": 5.0,
+        "tone": 6.5
+      },
+      "type": "DRV"
     },
-    "amp": {
-      "enabled": true,
-      "type": "Brit 800",
+    {
       "parameters": {
+        "bass": 7.5,
         "gain": 9.2,
-        "bass": 6.8,
-        "mid": 3.4,
-        "treble": 7.3,
-        "presence": 7.1,
-        "master": 4.9
-      }
+        "master": 3.6,
+        "mid": 3.5,
+        "presence": 7.6,
+        "treble": 7.6
+      },
+      "type": "AMP"
+    },
+    {
+      "parameters": {
+        "high_cut": 10373.4,
+        "level": -1.0,
+        "low_cut": 63.5
+      },
+      "type": "CAB"
+    },
+    {
+      "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "mid_freq": 500.0,
+        "mid_gain": 0.0
+      },
+      "type": "EQ"
+    },
+    {
+      "parameters": {
+        "feedback": 30.1,
+        "mix": 20.7,
+        "time": 282.7
+      },
+      "type": "DLY"
+    },
+    {
+      "parameters": {
+        "decay": 2.8,
+        "mix": 24.0,
+        "room_size": 51.8
+      },
+      "type": "REV"
+    },
+    {
+      "parameters": {
+        "mix": 49.3,
+        "pitch": 8.4
+      },
+      "type": "PITCH"
+    },
+    {
+      "parameters": {
+        "attack": 3.9,
+        "ratio": 4.7,
+        "release": 84.0,
+        "threshold": -10.5
+      },
+      "type": "DYNAMICS"
+    }
+  ],
+  "description": "A metal tone, using Brit 800 with Rat Pro and Suhr Koko Boost Reloaded Pro with Chorus Delay, Stadium Reverb Pro, Micro Pitch and Studio Compressor Pro.",
+  "gear_used": {
+    "amp": {
+      "parameters": {
+        "bass": 7.5,
+        "gain": 9.2,
+        "master": 3.6,
+        "mid": 3.5,
+        "presence": 7.6,
+        "treble": 7.6
+      },
+      "type": "Brit 800"
     },
     "cab": {
-      "enabled": true,
-      "type": "Marshall 4x12",
       "parameters": {
-        "low_cut": 157.2,
-        "high_cut": 11666.2,
-        "level": -1.2
-      }
+        "high_cut": 10373.4,
+        "level": -1.0,
+        "low_cut": 63.5
+      },
+      "type": "Marshall 4x12"
+    },
+    "delay": {
+      "parameters": {
+        "feedback": 30.061911916011617,
+        "mix": 20.737684670131202,
+        "time": 282.70886671150686
+      },
+      "type": "Chorus Delay"
+    },
+    "drive_1": {
+      "parameters": {
+        "drive": 8.4,
+        "level": 5.2,
+        "tone": 5.5
+      },
+      "type": "Rat Pro"
+    },
+    "drive_2": {
+      "parameters": {
+        "drive": 7.3,
+        "level": 5.0,
+        "tone": 6.5
+      },
+      "type": "Suhr Koko Boost Reloaded Pro"
+    },
+    "dynamics": {
+      "parameters": {
+        "attack": 3.862567353226331,
+        "ratio": 4.685888337084134,
+        "release": 83.97274717258092,
+        "threshold": -10.500322076782945
+      },
+      "type": "Studio Compressor Pro"
     },
     "eq": {
-      "enabled": true,
-      "type": "Low Cut",
       "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
         "low_freq": 80.0,
         "low_gain": 0.0,
         "low_mid_freq": 500.0,
-        "low_mid_gain": 0.0,
-        "high_mid_freq": 2000.0,
-        "high_mid_gain": 0.0,
-        "high_freq": 8000.0,
-        "high_gain": 0.0
-      }
-    },
-    "delay": {
-      "enabled": true,
-      "type": "Analog Delay Pro",
-      "parameters": {
-        "time": 743.0111242188509,
-        "feedback": 36.178374250120896,
-        "mix": 30.517437030879556
-      }
-    },
-    "reverb": {
-      "enabled": true,
-      "type": "Reverse Reverb Pro",
-      "parameters": {
-        "room_size": 75.82656560710132,
-        "decay": 1.6767882042240732,
-        "mix": 22.23921007097083
-      }
+        "low_mid_gain": 0.0
+      },
+      "type": "Graphic EQ"
     },
     "pitch": {
-      "enabled": true,
-      "type": "Virtual Capo Pro",
       "parameters": {
-        "pitch": 6.42184347049475,
-        "mix": 50.62572013647092
-      }
+        "mix": 49.31187214605795,
+        "pitch": 8.409160271925344
+      },
+      "type": "Micro Pitch"
     },
-    "dynamics": {
-      "enabled": true,
-      "type": "Modern Compressor Pro",
+    "reverb": {
       "parameters": {
-        "threshold": -9.568112195380698,
-        "ratio": 2.864136102267561,
-        "attack": 5.149920480711226,
-        "release": 169.2680750212337
-      }
+        "decay": 2.821076914086384,
+        "mix": 24.039012614093068,
+        "room_size": 51.75459205020261
+      },
+      "type": "Stadium Reverb Pro"
     }
   },
-  "description": "A metal tone, using Brit 800 with Suhr Koko Boost Pro and Fuzz Face with Analog Delay Pro, Reverse Reverb Pro, Virtual Capo Pro and Modern Compressor Pro.",
-  "gear_used": {
-    "drive_1": {
-      "type": "Suhr Koko Boost Pro",
-      "parameters": {
-        "drive": 8.5,
-        "tone": 6.2,
-        "level": 7.8
-      }
-    },
-    "drive_2": {
-      "type": "Fuzz Face",
-      "parameters": {
-        "drive": 7.3,
-        "tone": 5.5,
-        "level": 6.6
-      }
-    },
+  "intent": {
+    "characteristics": [],
+    "genre": "metal",
+    "query": "Marshall JCM800 metal tone with high gain and tight bass"
+  },
+  "query": "Marshall JCM800 metal tone with high gain and tight bass",
+  "tone_patch": {
     "amp": {
-      "type": "Brit 800",
+      "enabled": true,
       "parameters": {
+        "bass": 7.5,
         "gain": 9.2,
-        "bass": 6.8,
-        "mid": 3.4,
-        "treble": 7.3,
-        "presence": 7.1,
-        "master": 4.9
-      }
+        "master": 3.6,
+        "mid": 3.5,
+        "presence": 7.6,
+        "treble": 7.6
+      },
+      "type": "Brit 800"
     },
     "cab": {
-      "type": "Marshall 4x12",
+      "enabled": true,
       "parameters": {
-        "low_cut": 157.2,
-        "high_cut": 11666.2,
-        "level": -1.2
-      }
+        "high_cut": 10373.4,
+        "level": -1.0,
+        "low_cut": 63.5
+      },
+      "type": "Marshall 4x12"
+    },
+    "delay": {
+      "enabled": true,
+      "parameters": {
+        "feedback": 30.061911916011617,
+        "mix": 20.737684670131202,
+        "time": 282.70886671150686
+      },
+      "type": "Chorus Delay"
+    },
+    "drive_1": {
+      "enabled": true,
+      "parameters": {
+        "drive": 8.4,
+        "level": 5.2,
+        "tone": 5.5
+      },
+      "type": "Rat Pro"
+    },
+    "drive_2": {
+      "enabled": true,
+      "parameters": {
+        "drive": 7.3,
+        "level": 5.0,
+        "tone": 6.5
+      },
+      "type": "Suhr Koko Boost Reloaded Pro"
+    },
+    "dynamics": {
+      "enabled": true,
+      "parameters": {
+        "attack": 3.862567353226331,
+        "ratio": 4.685888337084134,
+        "release": 83.97274717258092,
+        "threshold": -10.500322076782945
+      },
+      "type": "Studio Compressor Pro"
     },
     "eq": {
-      "type": "Low Cut",
+      "enabled": true,
       "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
         "low_freq": 80.0,
         "low_gain": 0.0,
         "low_mid_freq": 500.0,
-        "low_mid_gain": 0.0,
-        "high_mid_freq": 2000.0,
-        "high_mid_gain": 0.0,
-        "high_freq": 8000.0,
-        "high_gain": 0.0
-      }
-    },
-    "delay": {
-      "type": "Analog Delay Pro",
-      "parameters": {
-        "time": 743.0111242188509,
-        "feedback": 36.178374250120896,
-        "mix": 30.517437030879556
-      }
-    },
-    "reverb": {
-      "type": "Reverse Reverb Pro",
-      "parameters": {
-        "room_size": 75.82656560710132,
-        "decay": 1.6767882042240732,
-        "mix": 22.23921007097083
-      }
+        "low_mid_gain": 0.0
+      },
+      "type": "Graphic EQ"
     },
     "pitch": {
-      "type": "Virtual Capo Pro",
+      "enabled": true,
       "parameters": {
-        "pitch": 6.42184347049475,
-        "mix": 50.62572013647092
-      }
+        "mix": 49.31187214605795,
+        "pitch": 8.409160271925344
+      },
+      "type": "Micro Pitch"
     },
-    "dynamics": {
-      "type": "Modern Compressor Pro",
+    "reverb": {
+      "enabled": true,
       "parameters": {
-        "threshold": -9.568112195380698,
-        "ratio": 2.864136102267561,
-        "attack": 5.149920480711226,
-        "release": 169.2680750212337
-      }
+        "decay": 2.821076914086384,
+        "mix": 24.039012614093068,
+        "room_size": 51.75459205020261
+      },
+      "type": "Stadium Reverb Pro"
     }
   }
 }

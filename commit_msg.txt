@@ -1,0 +1,44 @@
+Implement Clean Data Structure: Featured Parameters & Real-World Mapping
+
+🎯 COMPLETED: Introduced a clean, future-proof data structure for ToneGPT blocks
+- Created JSON schema for featured blocks (tone-critical params only)
+- Added defaults file for block parameter coverage
+- Introduced real-world gear mapping via CSV (human-editable)
+- Built transformer script for automated generation
+- Integrated CI validation for schema + coverage checks
+
+📋 NEW DATA STRUCTURE:
+- data/blocks_featured.schema.json → JSON schema for validation
+- data/blocks_featured.defaults.json → Tone-critical parameters per block type
+- data/fm9_model_map.csv → Real-world gear mapping and aliases
+- data/blocks_featured.json → Generated full blocks data
+- tools/build_blocks_featured.py → Transformer script
+
+🔧 FEATURED PARAMETERS (Tone-Critical Only):
+- AMP: gain, bass, mid, treble, presence, master, level, input_trim, bright, sag, depth
+- CAB: ir, mic_type, mic_distance, low_cut, high_cut, proximity, level, pan
+- DRV: drive, tone, level, mix, low_cut, high_cut
+- DLY: time, feedback, mix, level, tempo_sync, low_cut, high_cut
+- REV: size, decay, predelay, mix, level, low_cut, high_cut
+- MOD: rate, depth, mix, level, waveform
+- PITCH: interval, detune, mix, level, tracking
+- DYNAMICS: threshold, ratio, attack, release, mix, level
+- EQ: low_gain, mid_gain, high_gain, low_freq, mid_freq, high_freq, level
+- UTILITY: level, pan, balance, width, bypass
+
+📊 COVERAGE:
+- 17 block categories
+- 1,631 total models
+- Real-world mappings for 100+ models
+- Aliases for easy gear matching
+- Preserves exact FM9 names for accuracy
+
+✅ VALIDATION & CI:
+- Schema validation
+- Model count verification
+- Featured parameters coverage
+- Non-blocking completeness checks
+- Added `just build-blocks` command
+
+🚀 RESULT:
+ToneGPT now has a clean, maintainable data structure that preserves all FM9 blocks while focusing only on tone-critical parameters. This unlocks easier maintenance, real-world gear accuracy, and a strong foundation for future expansion.

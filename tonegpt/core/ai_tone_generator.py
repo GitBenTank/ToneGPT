@@ -5,6 +5,9 @@ from typing import Dict, List, Optional, Tuple
 import openai
 from tonegpt.config import BLOCKS_FILE
 
+# Constants
+DEFAULT_DRIVE_TYPES = ["FAS Boost", "TS808 Mod", "Klon", "Rat Distortion", "Fuzz Face"]
+
 
 class AIToneGenerator:
     """
@@ -17,7 +20,9 @@ class AIToneGenerator:
         self.blocks_data = self._load_blocks()
         self.amp_models = self._load_amp_models()
         self.cab_models = self._load_cab_models()
-
+ random
+ 
+ 
         if openai_api_key:
             openai.api_key = openai_api_key
 

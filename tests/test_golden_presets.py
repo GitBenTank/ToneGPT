@@ -18,6 +18,7 @@ import json
 import pytest
 from pathlib import Path
 from tonegpt.core.clean_ai_tone_generator import CleanAIToneGenerator
+from tonegpt.core.canonicalize import canonicalize_preset
 
 # Test data directory
 TEST_DATA_DIR = Path(__file__).parent / "data" / "golden_presets"
@@ -42,6 +43,10 @@ class TestGoldenPresets:
             with open(golden_file, "r") as f:
                 expected = json.load(f)
 
+            # Canonicalize both result and expected before comparison
+            result = canonicalize_preset(result)
+            expected = canonicalize_preset(expected)
+
             # Assert exact match
             assert (
                 result == expected
@@ -63,6 +68,10 @@ class TestGoldenPresets:
         if golden_file.exists():
             with open(golden_file, "r") as f:
                 expected = json.load(f)
+
+            # Canonicalize both result and expected before comparison
+            result = canonicalize_preset(result)
+            expected = canonicalize_preset(expected)
 
             # Assert exact match
             assert (
@@ -86,6 +95,10 @@ class TestGoldenPresets:
             with open(golden_file, "r") as f:
                 expected = json.load(f)
 
+            # Canonicalize both result and expected before comparison
+            result = canonicalize_preset(result)
+            expected = canonicalize_preset(expected)
+
             # Assert exact match
             assert (
                 result == expected
@@ -107,6 +120,10 @@ class TestGoldenPresets:
         if golden_file.exists():
             with open(golden_file, "r") as f:
                 expected = json.load(f)
+
+            # Canonicalize both result and expected before comparison
+            result = canonicalize_preset(result)
+            expected = canonicalize_preset(expected)
 
             # Assert exact match
             assert (
@@ -130,6 +147,140 @@ class TestGoldenPresets:
             with open(golden_file, "r") as f:
                 expected = json.load(f)
 
+            # Canonicalize both result and expected before comparison
+            result = canonicalize_preset(result)
+            expected = canonicalize_preset(expected)
+
+            # Assert exact match
+            assert (
+                result == expected
+            ), f"Generated tone doesn't match golden preset: {golden_file}"
+        else:
+            # Create golden preset if it doesn't exist
+            TEST_DATA_DIR.mkdir(parents=True, exist_ok=True)
+            with open(golden_file, "w") as f:
+                json.dump(result, f, indent=2)
+            pytest.skip(f"Created golden preset: {golden_file}")
+
+    def test_u2_edge_delay_tone(self, generator):
+        """Test U2 Edge delay tone generation"""
+        query = "U2 Edge delay tone with dotted eighth note delay and shimmer reverb"
+        result = generator.generate_tone_from_query(query)
+
+        # Load expected golden preset
+        golden_file = TEST_DATA_DIR / "u2_edge_delay.json"
+        if golden_file.exists():
+            with open(golden_file, "r") as f:
+                expected = json.load(f)
+
+            # Canonicalize both result and expected before comparison
+            result = canonicalize_preset(result)
+            expected = canonicalize_preset(expected)
+
+            # Assert exact match
+            assert (
+                result == expected
+            ), f"Generated tone doesn't match golden preset: {golden_file}"
+        else:
+            # Create golden preset if it doesn't exist
+            TEST_DATA_DIR.mkdir(parents=True, exist_ok=True)
+            with open(golden_file, "w") as f:
+                json.dump(result, f, indent=2)
+            pytest.skip(f"Created golden preset: {golden_file}")
+
+    def test_gilmour_ambient_tone(self, generator):
+        """Test Gilmour ambient tone generation"""
+        query = "Gilmour ambient tone with long reverb and delay for atmospheric sound"
+        result = generator.generate_tone_from_query(query)
+
+        # Load expected golden preset
+        golden_file = TEST_DATA_DIR / "gilmour_ambient.json"
+        if golden_file.exists():
+            with open(golden_file, "r") as f:
+                expected = json.load(f)
+
+            # Canonicalize both result and expected before comparison
+            result = canonicalize_preset(result)
+            expected = canonicalize_preset(expected)
+
+            # Assert exact match
+            assert (
+                result == expected
+            ), f"Generated tone doesn't match golden preset: {golden_file}"
+        else:
+            # Create golden preset if it doesn't exist
+            TEST_DATA_DIR.mkdir(parents=True, exist_ok=True)
+            with open(golden_file, "w") as f:
+                json.dump(result, f, indent=2)
+            pytest.skip(f"Created golden preset: {golden_file}")
+
+    def test_srv_blues_tone(self, generator):
+        """Test Stevie Ray Vaughan blues tone generation"""
+        query = "Stevie Ray Vaughan blues tone with Tube Screamer and Fender amp"
+        result = generator.generate_tone_from_query(query)
+
+        # Load expected golden preset
+        golden_file = TEST_DATA_DIR / "srv_blues.json"
+        if golden_file.exists():
+            with open(golden_file, "r") as f:
+                expected = json.load(f)
+
+            # Canonicalize both result and expected before comparison
+            result = canonicalize_preset(result)
+            expected = canonicalize_preset(expected)
+
+            # Assert exact match
+            assert (
+                result == expected
+            ), f"Generated tone doesn't match golden preset: {golden_file}"
+        else:
+            # Create golden preset if it doesn't exist
+            TEST_DATA_DIR.mkdir(parents=True, exist_ok=True)
+            with open(golden_file, "w") as f:
+                json.dump(result, f, indent=2)
+            pytest.skip(f"Created golden preset: {golden_file}")
+
+    def test_metalcore_modern_tone(self, generator):
+        """Test modern metalcore tone generation"""
+        query = "Modern metalcore tone with high gain amp and tight bass response"
+        result = generator.generate_tone_from_query(query)
+
+        # Load expected golden preset
+        golden_file = TEST_DATA_DIR / "metalcore_modern.json"
+        if golden_file.exists():
+            with open(golden_file, "r") as f:
+                expected = json.load(f)
+
+            # Canonicalize both result and expected before comparison
+            result = canonicalize_preset(result)
+            expected = canonicalize_preset(expected)
+
+            # Assert exact match
+            assert (
+                result == expected
+            ), f"Generated tone doesn't match golden preset: {golden_file}"
+        else:
+            # Create golden preset if it doesn't exist
+            TEST_DATA_DIR.mkdir(parents=True, exist_ok=True)
+            with open(golden_file, "w") as f:
+                json.dump(result, f, indent=2)
+            pytest.skip(f"Created golden preset: {golden_file}")
+
+    def test_funk_clean_tone(self, generator):
+        """Test funk clean tone generation"""
+        query = "Funk clean tone with bright Fender amp and compression"
+        result = generator.generate_tone_from_query(query)
+
+        # Load expected golden preset
+        golden_file = TEST_DATA_DIR / "funk_clean.json"
+        if golden_file.exists():
+            with open(golden_file, "r") as f:
+                expected = json.load(f)
+
+            # Canonicalize both result and expected before comparison
+            result = canonicalize_preset(result)
+            expected = canonicalize_preset(expected)
+
             # Assert exact match
             assert (
                 result == expected
@@ -146,12 +297,17 @@ class TestGoldenPresets:
         query = "Test tone for structure validation"
         result = generator.generate_tone_from_query(query)
 
+        # Canonicalize before validation
+        result = canonicalize_preset(result)
+
         # Validate required structure
         assert "query" in result, "Tone must have query"
         assert "description" in result, "Tone must have description"
         assert "tone_patch" in result, "Tone must have tone_patch"
         assert "gear_used" in result, "Tone must have gear_used"
+        assert "blocks" in result, "Tone must have blocks"
         assert isinstance(result["tone_patch"], dict), "Tone patch must be a dict"
+        assert isinstance(result["blocks"], list), "Blocks must be a list"
 
         # Validate tone_patch has required blocks
         tone_patch = result["tone_patch"]
@@ -171,6 +327,9 @@ class TestGoldenPresets:
         query = "Test tone for parameter range validation"
         result = generator.generate_tone_from_query(query)
 
+        # Canonicalize before validation
+        result = canonicalize_preset(result)
+
         # Load FM9 reference for validation
         ref_file = (
             Path(__file__).parent.parent / "data" / "fm9_comprehensive_reference.json"
@@ -179,10 +338,10 @@ class TestGoldenPresets:
             with open(ref_file, "r") as f:
                 fm9_ref = json.load(f)
 
-            # Validate parameter ranges for each block
-            tone_patch = result["tone_patch"]
-            for block_name, block in tone_patch.items():
-                block_type = block_name.lower()
+            # Validate parameter ranges for each block (check blocks section after clamping)
+            blocks = result["blocks"]
+            for block in blocks:
+                block_type = block["type"].lower()
                 if f"{block_type}_block" in fm9_ref:
                     block_ref = fm9_ref[f"{block_type}_block"]
                     if "key_parameters" in block_ref:

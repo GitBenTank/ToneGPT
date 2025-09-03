@@ -3986,403 +3986,395 @@
         "tone",
         "level",
         "mix",
-        "low_cut",
-        "high_cut"
+        "bass",
+        "mid",
+        "treble",
+        "presence"
       ],
       "models": [
         {
-          "fm9_name": "TS9",
-          "real_world": "Ibanez TS9 Tube Screamer",
+          "fm9_name": "77 Custom OD",
+          "real_world": "77 Custom Overdrive",
           "aliases": []
         },
         {
-          "fm9_name": "Klon",
-          "real_world": "Klon Centaur Professional Overdrive",
+          "fm9_name": "BB Pre",
+          "real_world": "Xotic BB Preamp",
           "aliases": []
         },
         {
-          "fm9_name": "TS9 Pro",
-          "real_world": "FM9 TS9 with Advanced Features",
+          "fm9_name": "Bender Fuzz",
+          "real_world": "Tone Bender Fuzz",
           "aliases": []
         },
         {
-          "fm9_name": "Klon Pro",
-          "real_world": "FM9 Klon with Advanced Features",
+          "fm9_name": "Bit Crusher",
+          "real_world": "Bit Crusher Distortion",
           "aliases": []
         },
         {
-          "fm9_name": "Rat Pro",
-          "real_world": "FM9 Rat with Advanced Features",
+          "fm9_name": "Blackglass 7K",
+          "real_world": "Blackglass 7K Preamp",
           "aliases": []
         },
         {
-          "fm9_name": "Fuzz Face Pro",
-          "real_world": "FM9 Fuzz Face with Advanced Features",
+          "fm9_name": "Blues OD",
+          "real_world": "Blues Overdrive",
           "aliases": []
         },
         {
-          "fm9_name": "Big Muff Pro",
-          "real_world": "FM9 Big Muff with Advanced Features",
+          "fm9_name": "Bosom Boost",
+          "real_world": "Bosom Boost Pedal",
           "aliases": []
         },
         {
-          "fm9_name": "Boss DS-1 Pro",
-          "real_world": "FM9 Boss DS-1 with Advanced Features",
+          "fm9_name": "Box o' Crunch",
+          "real_world": "Box o' Crunch",
           "aliases": []
         },
         {
-          "fm9_name": "Clean Boost",
-          "real_world": "FM9 Clean Boost",
+          "fm9_name": "Colortone Booster",
+          "real_world": "Colortone Booster",
           "aliases": []
         },
         {
-          "fm9_name": "screen Wah Control",
-          "real_world": "FM9 screen Wah Control",
+          "fm9_name": "Colortone OD",
+          "real_world": "Colortone Overdrive",
           "aliases": []
         },
         {
-          "fm9_name": "Drive",
-          "real_world": "FM9 Drive",
+          "fm9_name": "Compulsion Distortion HP",
+          "real_world": "Compulsion Distortion High Pass",
           "aliases": []
         },
         {
-          "fm9_name": "Wah",
-          "real_world": "FM9 Wah",
+          "fm9_name": "Compulsion Distortion LP",
+          "real_world": "Compulsion Distortion Low Pass",
           "aliases": []
         },
         {
-          "fm9_name": "FAS Boost",
-          "real_world": null,
+          "fm9_name": "DS1 Distortion",
+          "real_world": "Boss DS-1 Distortion",
           "aliases": []
         },
         {
-          "fm9_name": "TS808 Mod",
-          "real_world": null,
+          "fm9_name": "DS1 Distortion Mod",
+          "real_world": "Boss DS-1 Distortion Modified",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Esoteric ACB",
+          "real_world": "Esoteric ACB Preamp",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Esoteric Bass RCB",
+          "real_world": "Esoteric Bass RCB Preamp",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Esoteric RCB",
+          "real_world": "Esoteric RCB Preamp",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Eternal Love",
+          "real_world": "Eternal Love Overdrive",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Face Fuzz",
+          "real_world": "Face Fuzz",
+          "aliases": []
+        },
+        {
+          "fm9_name": "FAS LED-Drive",
+          "real_world": "Fractal Audio Systems LED Drive",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Fat Rat",
+          "real_world": "Pro Co Fat Rat",
+          "aliases": []
+        },
+        {
+          "fm9_name": "FET Boost",
+          "real_world": "FET Boost Pedal",
+          "aliases": []
+        },
+        {
+          "fm9_name": "FET Preamp",
+          "real_world": "FET Preamp",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Full OD",
+          "real_world": "Full Overdrive",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Gauss Drive",
+          "real_world": "Gauss Drive",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Griddle Cake",
+          "real_world": "Griddle Cake Overdrive",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Hard Fuzz",
+          "real_world": "Hard Fuzz",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Heartpedal 11",
+          "real_world": "Heartpedal 11 Overdrive",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Hoodoo Drive",
+          "real_world": "Hoodoo Drive",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Horizon Precision Drive",
+          "real_world": "Horizon Precision Drive",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Integral Pre",
+          "real_world": "Integral Preamp",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Jam Ray",
+          "real_world": "Jam Ray Overdrive",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Klone Chiron",
+          "real_world": "Klone Chiron Overdrive",
+          "aliases": []
+        },
+        {
+          "fm9_name": "M-Zone Distortion",
+          "real_world": "M-Zone Distortion",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Master Fuzz",
+          "real_world": "Master Fuzz",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Maxoff 808",
+          "real_world": "Maxoff 808 Overdrive",
+          "aliases": []
+        },
+        {
+          "fm9_name": "MCMLXXXI Drive",
+          "real_world": "MCMLXXXI Drive",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Micro Boost",
+          "real_world": "Micro Boost",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Mid Boost",
+          "real_world": "Mid Boost",
+          "aliases": []
+        },
+        {
+          "fm9_name": "MOSFET Distortion",
+          "real_world": "MOSFET Distortion",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Nobelium OVD-1",
+          "real_world": "Nobelium OVD-1 Overdrive",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Octave Distortion",
+          "real_world": "Octave Distortion",
+          "aliases": []
+        },
+        {
+          "fm9_name": "OD 250",
+          "real_world": "DOD OD 250",
+          "aliases": []
+        },
+        {
+          "fm9_name": "OD 250 Gray",
+          "real_world": "DOD OD 250 Gray",
+          "aliases": []
+        },
+        {
+          "fm9_name": "OD-One Overdrive",
+          "real_world": "OD-One Overdrive",
+          "aliases": []
+        },
+        {
+          "fm9_name": "PI Fuzz",
+          "real_world": "PI Fuzz",
+          "aliases": []
+        },
+        {
+          "fm9_name": "PI Fuzz - Ram's Head",
+          "real_world": "PI Fuzz Ram's Head",
+          "aliases": []
+        },
+        {
+          "fm9_name": "PI Fuzz - Russian",
+          "real_world": "PI Fuzz Russian",
+          "aliases": []
+        },
+        {
+          "fm9_name": "PI Fuzz - Triangle",
+          "real_world": "PI Fuzz Triangle",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Plus Distortion",
+          "real_world": "Plus Distortion",
           "aliases": []
         },
         {
           "fm9_name": "Rat Distortion",
-          "real_world": null,
+          "real_world": "Pro Co Rat",
           "aliases": []
         },
         {
-          "fm9_name": "Fuzz Face",
-          "real_world": null,
+          "fm9_name": "SDD Preamp",
+          "real_world": "SDD Preamp",
           "aliases": []
         },
         {
-          "fm9_name": "FAS Boost Pro",
-          "real_world": null,
+          "fm9_name": "Shimmer Drive",
+          "real_world": "Shimmer Drive",
           "aliases": []
         },
         {
-          "fm9_name": "FAS Drive",
-          "real_world": null,
+          "fm9_name": "Shred Distortion",
+          "real_world": "Shred Distortion",
           "aliases": []
         },
         {
-          "fm9_name": "FAS Drive Pro",
-          "real_world": null,
+          "fm9_name": "Sonic Drive",
+          "real_world": "Sonic Drive",
           "aliases": []
         },
         {
-          "fm9_name": "TS808",
-          "real_world": null,
+          "fm9_name": "Suhr Riot Ge (R)",
+          "real_world": "Suhr Riot Germanium Right",
           "aliases": []
         },
         {
-          "fm9_name": "TS10",
-          "real_world": null,
+          "fm9_name": "Suhr Riot LED (L)",
+          "real_world": "Suhr Riot LED Left",
           "aliases": []
         },
         {
-          "fm9_name": "TS10 Pro",
-          "real_world": null,
+          "fm9_name": "Suhr Riot LED/Si (M)",
+          "real_world": "Suhr Riot LED/Silicon Middle",
           "aliases": []
         },
         {
-          "fm9_name": "Klon Centaur",
-          "real_world": null,
+          "fm9_name": "Sunrise Splendor",
+          "real_world": "Sunrise Splendor",
           "aliases": []
         },
         {
-          "fm9_name": "Klon Centaur Pro",
-          "real_world": null,
+          "fm9_name": "Sunrise Splendor Hi-Cut",
+          "real_world": "Sunrise Splendor with Hi-Cut",
           "aliases": []
         },
         {
-          "fm9_name": "Rat 2",
-          "real_world": null,
+          "fm9_name": "Super Fuzz",
+          "real_world": "Super Fuzz",
           "aliases": []
         },
         {
-          "fm9_name": "Rat 2 Pro",
-          "real_world": null,
+          "fm9_name": "Super OD",
+          "real_world": "Super Overdrive",
           "aliases": []
         },
         {
-          "fm9_name": "Fuzz Face Germanium",
-          "real_world": null,
+          "fm9_name": "T808 Mod",
+          "real_world": "Modified Ibanez T808 Tube Screamer",
           "aliases": []
         },
         {
-          "fm9_name": "Fuzz Face Germanium Pro",
-          "real_world": null,
+          "fm9_name": "T808 OD",
+          "real_world": "Ibanez T808 Overdrive",
           "aliases": []
         },
         {
-          "fm9_name": "Big Muff",
-          "real_world": null,
+          "fm9_name": "Tape Distortion",
+          "real_world": "Tape Distortion",
           "aliases": []
         },
         {
-          "fm9_name": "Big Muff Russian",
-          "real_world": null,
+          "fm9_name": "Timothy Down",
+          "real_world": "Timothy Overdrive Down",
           "aliases": []
         },
         {
-          "fm9_name": "Big Muff Russian Pro",
-          "real_world": null,
+          "fm9_name": "Timothy Mid",
+          "real_world": "Timothy Overdrive Mid",
           "aliases": []
         },
         {
-          "fm9_name": "Distortion+",
-          "real_world": null,
+          "fm9_name": "Timothy Up",
+          "real_world": "Timothy Overdrive Up",
           "aliases": []
         },
         {
-          "fm9_name": "Distortion+ Pro",
-          "real_world": null,
+          "fm9_name": "Tone of Kings",
+          "real_world": "Tone of Kings Overdrive",
           "aliases": []
         },
         {
-          "fm9_name": "DS-1",
-          "real_world": null,
+          "fm9_name": "Treble Boost",
+          "real_world": "Treble Boost",
           "aliases": []
         },
         {
-          "fm9_name": "DS-1 Pro",
-          "real_world": null,
+          "fm9_name": "TS9DX +",
+          "real_world": "Ibanez TS9DX Plus",
           "aliases": []
         },
         {
-          "fm9_name": "Metal Zone",
-          "real_world": null,
+          "fm9_name": "TS9DX Hot",
+          "real_world": "Ibanez TS9DX Hot",
           "aliases": []
         },
         {
-          "fm9_name": "Metal Zone Pro",
-          "real_world": null,
+          "fm9_name": "Tube Drive 3-Knob",
+          "real_world": "Tube Drive 3-Knob",
           "aliases": []
         },
         {
-          "fm9_name": "HM-2",
-          "real_world": null,
+          "fm9_name": "Tube Drive 4-Knob",
+          "real_world": "Tube Drive 4-Knob",
           "aliases": []
         },
         {
-          "fm9_name": "HM-2 Pro",
-          "real_world": null,
+          "fm9_name": "Tube Drive 5-Knob",
+          "real_world": "Tube Drive 5-Knob",
           "aliases": []
         },
         {
-          "fm9_name": "SD-1",
-          "real_world": null,
+          "fm9_name": "Valve Screamer VS9",
+          "real_world": "Valve Screamer VS9",
           "aliases": []
         },
         {
-          "fm9_name": "SD-1 Pro",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "OD-1",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "OD-1 Pro",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "OD-2",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "OD-2 Pro",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "OCD",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "OCD Pro",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Timmy",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Timmy Pro",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Zen Drive",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Zen Drive Pro",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Screamer",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Screamer Pro",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Blues Driver",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Blues Driver Pro",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Tube Screamer",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Tube Screamer Pro",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Super Overdrive",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Super Overdrive Pro",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Dirty Shirley",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Dirty Shirley Pro",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Suhr Riot",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Suhr Riot Pro",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Suhr Shiba",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Suhr Shiba Pro",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Suhr Eclipse",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Suhr Eclipse Pro",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Suhr Koko Boost",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Suhr Koko Boost Pro",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Suhr Shiba Drive",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Suhr Shiba Drive Pro",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Suhr Riot Reloaded",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Suhr Riot Reloaded Pro",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Suhr Shiba Reloaded",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Suhr Shiba Reloaded Pro",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Suhr Eclipse Reloaded",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Suhr Eclipse Reloaded Pro",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Suhr Koko Boost Reloaded",
-          "real_world": null,
-          "aliases": []
-        },
-        {
-          "fm9_name": "Suhr Koko Boost Reloaded Pro",
-          "real_world": null,
+          "fm9_name": "Zen Master",
+          "real_world": "Zen Master Overdrive",
           "aliases": []
         }
       ]

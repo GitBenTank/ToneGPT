@@ -2,20 +2,20 @@
   "blocks": [
     {
       "parameters": {
-        "bass": 6.5,
-        "gain": 2.9,
-        "master": 7.4,
-        "mid": 7.9,
-        "presence": 4.7,
+        "bass": 4.5,
+        "gain": 2.1,
+        "master": 8.9,
+        "mid": 6.9,
+        "presence": 4.5,
         "treble": 4.7
       },
       "type": "AMP"
     },
     {
       "parameters": {
-        "high_cut": 12075.6,
-        "level": -2.9,
-        "low_cut": 88.6
+        "high_cut": 11693.0,
+        "level": 5.0,
+        "low_cut": 77.3
       },
       "type": "CAB"
     },
@@ -32,59 +32,59 @@
     },
     {
       "parameters": {
-        "decay": 2.9,
-        "mix": 28.0,
-        "room_size": 76.0
+        "decay": 2.2,
+        "mix": 37.2,
+        "room_size": 70.7
       },
       "type": "REV"
     },
     {
       "parameters": {
-        "depth": 54.0,
-        "mix": 49.9,
-        "rate": 0.9
+        "depth": 64.6,
+        "mix": 44.5,
+        "rate": 1.8
       },
       "type": "MODULATION"
     },
     {
       "parameters": {
-        "attack": 4.5,
-        "ratio": 7.5,
-        "release": 7.3,
-        "threshold": -13.3
+        "attack": 4.0,
+        "ratio": 4.4,
+        "release": 77.6,
+        "threshold": -8.6
       },
       "type": "DYNAMICS"
     }
   ],
-  "description": "A jazz tone, using 5F1 TWEED EC with Impulse Reverb Pro, Quad Tremolo and Quad Compressor Pro, featuring clean.",
+  "description": "A jazz tone, using 5F1 TWEED EC with Cab Reverb, Multi Tremolo Pro and Ducker Pro, featuring clean, bright.",
   "gear_used": {
     "amp": {
       "parameters": {
-        "bass": 6.5,
-        "gain": 2.9,
-        "master": 7.4,
-        "mid": 7.9,
-        "presence": 4.7,
+        "bass": 4.5,
+        "gain": 2.1,
+        "master": 8.9,
+        "mid": 6.9,
+        "presence": 4.5,
         "treble": 4.7
       },
       "type": "5F1 TWEED EC"
     },
     "cab": {
       "parameters": {
-        "high_cut": 12075.6,
-        "level": -2.9,
-        "low_cut": 88.6
+        "high_cut": 11693.0,
+        "level": 5.0,
+        "low_cut": 77.3
       },
       "type": "Vox 2x12"
     },
     "dynamics": {
       "parameters": {
-        "attack": 4.4541717005146,
-        "ratio": 7.493931725368645,
-        "release": 145.98941136636245,
-        "threshold": -13.298383755878536
+        "attack": 3.967719594421587,
+        "ratio": 4.373763300567877,
+        "release": 77.59909667640267,
+        "threshold": -8.601998176430062
       },
-      "type": "Quad Compressor Pro"
+      "type": "Ducker Pro"
     },
     "eq": {
       "parameters": {
@@ -97,42 +97,43 @@
         "low_mid_freq": 500.0,
         "low_mid_gain": 0.0
       },
-      "type": "Filter Pro"
+      "type": "High Cut"
     },
     "modulation": {
       "parameters": {
-        "depth": 53.969822773153766,
-        "mix": 49.93145035249093,
-        "rate": 0.9267000299959101
+        "depth": 64.63122610629304,
+        "mix": 44.49456285825555,
+        "rate": 1.7950206086782856
       },
-      "type": "Quad Tremolo"
+      "type": "Multi Tremolo Pro"
     },
     "reverb": {
       "parameters": {
-        "decay": 2.9058772661226415,
-        "mix": 27.973963426820397,
-        "room_size": 76.02534304358694
+        "decay": 2.2076848030836267,
+        "mix": 37.15404899916139,
+        "room_size": 70.67828275390954
       },
-      "type": "Impulse Reverb Pro"
+      "type": "Cab Reverb"
     }
   },
   "intent": {
     "characteristics": [
-      "clean"
+      "clean",
+      "bright"
     ],
     "genre": "jazz",
-    "query": "Fender Twin Reverb clean tone with reverb"
+    "query": "Funk clean tone with bright Fender amp and compression"
   },
-  "query": "Fender Twin Reverb clean tone with reverb",
+  "query": "Funk clean tone with bright Fender amp and compression",
   "tone_patch": {
     "amp": {
       "enabled": true,
       "parameters": {
-        "bass": 6.5,
-        "gain": 2.9,
-        "master": 7.4,
-        "mid": 7.9,
-        "presence": 4.7,
+        "bass": 4.5,
+        "gain": 2.1,
+        "master": 8.9,
+        "mid": 6.9,
+        "presence": 4.5,
         "treble": 4.7
       },
       "type": "5F1 TWEED EC"
@@ -140,21 +141,21 @@
     "cab": {
       "enabled": true,
       "parameters": {
-        "high_cut": 12075.6,
-        "level": -2.9,
-        "low_cut": 88.6
+        "high_cut": 11693.0,
+        "level": 5.0,
+        "low_cut": 77.3
       },
       "type": "Vox 2x12"
     },
     "dynamics": {
       "enabled": true,
       "parameters": {
-        "attack": 4.4541717005146,
-        "ratio": 7.493931725368645,
-        "release": 145.98941136636245,
-        "threshold": -13.298383755878536
+        "attack": 3.967719594421587,
+        "ratio": 4.373763300567877,
+        "release": 77.59909667640267,
+        "threshold": -8.601998176430062
       },
-      "type": "Quad Compressor Pro"
+      "type": "Ducker Pro"
     },
     "eq": {
       "enabled": true,
@@ -168,25 +169,25 @@
         "low_mid_freq": 500.0,
         "low_mid_gain": 0.0
       },
-      "type": "Filter Pro"
+      "type": "High Cut"
     },
     "modulation": {
       "enabled": true,
       "parameters": {
-        "depth": 53.969822773153766,
-        "mix": 49.93145035249093,
-        "rate": 0.9267000299959101
+        "depth": 64.63122610629304,
+        "mix": 44.49456285825555,
+        "rate": 1.7950206086782856
       },
-      "type": "Quad Tremolo"
+      "type": "Multi Tremolo Pro"
     },
     "reverb": {
       "enabled": true,
       "parameters": {
-        "decay": 2.9058772661226415,
-        "mix": 27.973963426820397,
-        "room_size": 76.02534304358694
+        "decay": 2.2076848030836267,
+        "mix": 37.15404899916139,
+        "room_size": 70.67828275390954
       },
-      "type": "Impulse Reverb Pro"
+      "type": "Cab Reverb"
     }
   }
 }

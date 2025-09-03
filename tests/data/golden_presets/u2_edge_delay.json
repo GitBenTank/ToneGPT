@@ -1,0 +1,262 @@
+{
+  "blocks": [
+    {
+      "parameters": {
+        "drive": 7.0,
+        "level": 5.2,
+        "tone": 5.4
+      },
+      "type": "DRV"
+    },
+    {
+      "parameters": {
+        "drive": 7.2,
+        "level": 4.9,
+        "tone": 4.2
+      },
+      "type": "DRV"
+    },
+    {
+      "parameters": {
+        "bass": 7.7,
+        "gain": 5.7,
+        "master": 4.6,
+        "mid": 6.6,
+        "presence": 4.7,
+        "treble": 7.8
+      },
+      "type": "AMP"
+    },
+    {
+      "parameters": {
+        "high_cut": 10260.8,
+        "level": -0.8,
+        "low_cut": 73.0
+      },
+      "type": "CAB"
+    },
+    {
+      "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "mid_freq": 500.0,
+        "mid_gain": 0.0
+      },
+      "type": "EQ"
+    },
+    {
+      "parameters": {
+        "feedback": 29.2,
+        "mix": 23.9,
+        "time": 742.9
+      },
+      "type": "DLY"
+    },
+    {
+      "parameters": {
+        "decay": 2.0,
+        "mix": 24.6,
+        "room_size": 54.9
+      },
+      "type": "REV"
+    },
+    {
+      "parameters": {
+        "mix": 48.7,
+        "pitch": 1.4
+      },
+      "type": "PITCH"
+    },
+    {
+      "parameters": {
+        "attack": 2.6,
+        "ratio": 4.7,
+        "release": 9.1,
+        "threshold": -12.5
+      },
+      "type": "DYNAMICS"
+    }
+  ],
+  "description": "A rock tone, using BLUDOJAI CLEAN with FAS Drive and TS10 Pro with ADT Delay, Reverse Reverb, Dual Pitch and Expander.",
+  "gear_used": {
+    "amp": {
+      "parameters": {
+        "bass": 7.7,
+        "gain": 5.7,
+        "master": 4.6,
+        "mid": 6.6,
+        "presence": 4.7,
+        "treble": 7.8
+      },
+      "type": "BLUDOJAI CLEAN"
+    },
+    "cab": {
+      "parameters": {
+        "high_cut": 10260.8,
+        "level": -0.8,
+        "low_cut": 73.0
+      },
+      "type": "F137 2x12 Double Verb M160"
+    },
+    "delay": {
+      "parameters": {
+        "feedback": 29.17826625443203,
+        "mix": 23.88013526889769,
+        "time": 742.899499414893
+      },
+      "type": "ADT Delay"
+    },
+    "drive_1": {
+      "parameters": {
+        "drive": 7.0,
+        "level": 5.2,
+        "tone": 5.4
+      },
+      "type": "FAS Drive"
+    },
+    "drive_2": {
+      "parameters": {
+        "drive": 7.2,
+        "level": 4.9,
+        "tone": 4.2
+      },
+      "type": "TS10 Pro"
+    },
+    "dynamics": {
+      "parameters": {
+        "attack": 2.5876508959637574,
+        "ratio": 4.679721623399698,
+        "release": 181.89045425259724,
+        "threshold": -12.547658222700072
+      },
+      "type": "Expander"
+    },
+    "eq": {
+      "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "low_mid_freq": 500.0,
+        "low_mid_gain": 0.0
+      },
+      "type": "Bright Switch Pro"
+    },
+    "pitch": {
+      "parameters": {
+        "mix": 48.74078499946518,
+        "pitch": 1.3659297031513375
+      },
+      "type": "Dual Pitch"
+    },
+    "reverb": {
+      "parameters": {
+        "decay": 2.0475309865309814,
+        "mix": 24.646999746584363,
+        "room_size": 54.89382702418463
+      },
+      "type": "Reverse Reverb"
+    }
+  },
+  "intent": {
+    "characteristics": [],
+    "genre": "rock",
+    "query": "U2 Edge delay tone with dotted eighth note delay and shimmer reverb"
+  },
+  "query": "U2 Edge delay tone with dotted eighth note delay and shimmer reverb",
+  "tone_patch": {
+    "amp": {
+      "enabled": true,
+      "parameters": {
+        "bass": 7.7,
+        "gain": 5.7,
+        "master": 4.6,
+        "mid": 6.6,
+        "presence": 4.7,
+        "treble": 7.8
+      },
+      "type": "BLUDOJAI CLEAN"
+    },
+    "cab": {
+      "enabled": true,
+      "parameters": {
+        "high_cut": 10260.8,
+        "level": -0.8,
+        "low_cut": 73.0
+      },
+      "type": "F137 2x12 Double Verb M160"
+    },
+    "delay": {
+      "enabled": true,
+      "parameters": {
+        "feedback": 29.17826625443203,
+        "mix": 23.88013526889769,
+        "time": 742.899499414893
+      },
+      "type": "ADT Delay"
+    },
+    "drive_1": {
+      "enabled": true,
+      "parameters": {
+        "drive": 7.0,
+        "level": 5.2,
+        "tone": 5.4
+      },
+      "type": "FAS Drive"
+    },
+    "drive_2": {
+      "enabled": true,
+      "parameters": {
+        "drive": 7.2,
+        "level": 4.9,
+        "tone": 4.2
+      },
+      "type": "TS10 Pro"
+    },
+    "dynamics": {
+      "enabled": true,
+      "parameters": {
+        "attack": 2.5876508959637574,
+        "ratio": 4.679721623399698,
+        "release": 181.89045425259724,
+        "threshold": -12.547658222700072
+      },
+      "type": "Expander"
+    },
+    "eq": {
+      "enabled": true,
+      "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "low_mid_freq": 500.0,
+        "low_mid_gain": 0.0
+      },
+      "type": "Bright Switch Pro"
+    },
+    "pitch": {
+      "enabled": true,
+      "parameters": {
+        "mix": 48.74078499946518,
+        "pitch": 1.3659297031513375
+      },
+      "type": "Dual Pitch"
+    },
+    "reverb": {
+      "enabled": true,
+      "parameters": {
+        "decay": 2.0475309865309814,
+        "mix": 24.646999746584363,
+        "room_size": 54.89382702418463
+      },
+      "type": "Reverse Reverb"
+    }
+  }
+}

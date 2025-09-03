@@ -1,182 +1,262 @@
 {
-  "query": "Mesa Boogie Rectifier modern high gain tone",
-  "intent": {
-    "genre": "rock",
-    "characteristics": [],
-    "query": "Mesa Boogie Rectifier modern high gain tone"
-  },
-  "tone_patch": {
-    "drive_1": {
-      "enabled": true,
-      "type": "Fuzz Face Germanium Pro",
+  "blocks": [
+    {
       "parameters": {
-        "drive": 5.9,
-        "tone": 5.8,
-        "level": 3.4
-      }
+        "drive": 7.3,
+        "level": 3.0,
+        "tone": 4.4
+      },
+      "type": "DRV"
     },
-    "drive_2": {
-      "enabled": true,
-      "type": "Screamer Pro",
+    {
       "parameters": {
-        "drive": 7.7,
-        "tone": 6.4,
-        "level": 3.7
-      }
+        "drive": 5.3,
+        "level": 6.9,
+        "tone": 5.0
+      },
+      "type": "DRV"
     },
+    {
+      "parameters": {
+        "bass": 7.5,
+        "gain": 7.8,
+        "master": 5.1,
+        "mid": 6.6,
+        "presence": 5.9,
+        "treble": 5.2
+      },
+      "type": "AMP"
+    },
+    {
+      "parameters": {
+        "high_cut": 13606.9,
+        "level": 4.7,
+        "low_cut": 103.5
+      },
+      "type": "CAB"
+    },
+    {
+      "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "mid_freq": 500.0,
+        "mid_gain": 0.0
+      },
+      "type": "EQ"
+    },
+    {
+      "parameters": {
+        "feedback": 32.4,
+        "mix": 30.4,
+        "time": 289.5
+      },
+      "type": "DLY"
+    },
+    {
+      "parameters": {
+        "decay": 2.7,
+        "mix": 26.8,
+        "room_size": 51.5
+      },
+      "type": "REV"
+    },
+    {
+      "parameters": {
+        "mix": 58.8,
+        "pitch": 4.8
+      },
+      "type": "PITCH"
+    },
+    {
+      "parameters": {
+        "attack": 4.4,
+        "ratio": 4.6,
+        "release": 100.0,
+        "threshold": -18.0
+      },
+      "type": "DYNAMICS"
+    }
+  ],
+  "description": "A rock tone, using Recto1: original 2-channel Rectifier, Orange channel, Modern mode with Suhr Shiba Pro and Zen Drive Pro with Echo Delay Pro, Arena Reverb Pro, Whammy and Expander Pro.",
+  "gear_used": {
     "amp": {
-      "enabled": true,
-      "type": "Recto1: original 2-channel Rectifier, Orange channel, Modern mode",
       "parameters": {
-        "gain": 5.8,
-        "bass": 7.2,
-        "mid": 7.4,
-        "treble": 6.1,
-        "presence": 5.3,
-        "master": 4.7
-      }
+        "bass": 7.5,
+        "gain": 7.8,
+        "master": 5.1,
+        "mid": 6.6,
+        "presence": 5.9,
+        "treble": 5.2
+      },
+      "type": "Recto1: original 2-channel Rectifier, Orange channel, Modern mode"
     },
     "cab": {
-      "enabled": true,
-      "type": "Legacy 4x12 V30",
       "parameters": {
-        "low_cut": 110.2,
-        "high_cut": 12509.7,
-        "level": 2.5
-      }
+        "high_cut": 13606.9,
+        "level": 4.7,
+        "low_cut": 103.5
+      },
+      "type": "Legacy 4x12 V30"
+    },
+    "delay": {
+      "parameters": {
+        "feedback": 32.43337107257207,
+        "mix": 30.350820252678513,
+        "time": 289.54117520527825
+      },
+      "type": "Echo Delay Pro"
+    },
+    "drive_1": {
+      "parameters": {
+        "drive": 7.3,
+        "level": 3.0,
+        "tone": 4.4
+      },
+      "type": "Suhr Shiba Pro"
+    },
+    "drive_2": {
+      "parameters": {
+        "drive": 5.3,
+        "level": 6.9,
+        "tone": 5.0
+      },
+      "type": "Zen Drive Pro"
+    },
+    "dynamics": {
+      "parameters": {
+        "attack": 4.447867667505442,
+        "ratio": 4.555271417323587,
+        "release": 116.12055911068867,
+        "threshold": -18.02341346259676
+      },
+      "type": "Expander Pro"
     },
     "eq": {
-      "enabled": true,
-      "type": "High Pass Filter",
       "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
         "low_freq": 80.0,
         "low_gain": 0.0,
         "low_mid_freq": 500.0,
-        "low_mid_gain": 0.0,
-        "high_mid_freq": 2000.0,
-        "high_mid_gain": 0.0,
-        "high_freq": 8000.0,
-        "high_gain": 0.0
-      }
-    },
-    "delay": {
-      "enabled": true,
-      "type": "Quad Delay Pro",
-      "parameters": {
-        "time": 707.4973977145933,
-        "feedback": 22.149588705200312,
-        "mix": 34.63787995336808
-      }
-    },
-    "reverb": {
-      "enabled": true,
-      "type": "Studio Reverb",
-      "parameters": {
-        "room_size": 51.98111128246327,
-        "decay": 2.1315867930625902,
-        "mix": 38.96634621249005
-      }
+        "low_mid_gain": 0.0
+      },
+      "type": "Treble Control"
     },
     "pitch": {
-      "enabled": true,
-      "type": "Resonator Pitch",
       "parameters": {
-        "pitch": 8.596289348821578,
-        "mix": 57.54699625389578
-      }
+        "mix": 58.77316423616584,
+        "pitch": 4.840163158502431
+      },
+      "type": "Whammy"
     },
-    "dynamics": {
-      "enabled": true,
-      "type": "VCA Compressor",
+    "reverb": {
       "parameters": {
-        "threshold": -9.93622892056144,
-        "ratio": 4.527662587284155,
-        "attack": 7.771556767857399,
-        "release": 126.00555126103103
-      }
+        "decay": 2.728534896722007,
+        "mix": 26.83105803728008,
+        "room_size": 51.52776652552783
+      },
+      "type": "Arena Reverb Pro"
     }
   },
-  "description": "A rock tone, using Recto1: original 2-channel Rectifier, Orange channel, Modern mode with Fuzz Face Germanium Pro and Screamer Pro with Quad Delay Pro, Studio Reverb, Resonator Pitch and VCA Compressor.",
-  "gear_used": {
-    "drive_1": {
-      "type": "Fuzz Face Germanium Pro",
-      "parameters": {
-        "drive": 5.9,
-        "tone": 5.8,
-        "level": 3.4
-      }
-    },
-    "drive_2": {
-      "type": "Screamer Pro",
-      "parameters": {
-        "drive": 7.7,
-        "tone": 6.4,
-        "level": 3.7
-      }
-    },
+  "intent": {
+    "characteristics": [],
+    "genre": "rock",
+    "query": "Mesa Boogie Rectifier modern high gain tone"
+  },
+  "query": "Mesa Boogie Rectifier modern high gain tone",
+  "tone_patch": {
     "amp": {
-      "type": "Recto1: original 2-channel Rectifier, Orange channel, Modern mode",
+      "enabled": true,
       "parameters": {
-        "gain": 5.8,
-        "bass": 7.2,
-        "mid": 7.4,
-        "treble": 6.1,
-        "presence": 5.3,
-        "master": 4.7
-      }
+        "bass": 7.5,
+        "gain": 7.8,
+        "master": 5.1,
+        "mid": 6.6,
+        "presence": 5.9,
+        "treble": 5.2
+      },
+      "type": "Recto1: original 2-channel Rectifier, Orange channel, Modern mode"
     },
     "cab": {
-      "type": "Legacy 4x12 V30",
+      "enabled": true,
       "parameters": {
-        "low_cut": 110.2,
-        "high_cut": 12509.7,
-        "level": 2.5
-      }
+        "high_cut": 13606.9,
+        "level": 4.7,
+        "low_cut": 103.5
+      },
+      "type": "Legacy 4x12 V30"
+    },
+    "delay": {
+      "enabled": true,
+      "parameters": {
+        "feedback": 32.43337107257207,
+        "mix": 30.350820252678513,
+        "time": 289.54117520527825
+      },
+      "type": "Echo Delay Pro"
+    },
+    "drive_1": {
+      "enabled": true,
+      "parameters": {
+        "drive": 7.3,
+        "level": 3.0,
+        "tone": 4.4
+      },
+      "type": "Suhr Shiba Pro"
+    },
+    "drive_2": {
+      "enabled": true,
+      "parameters": {
+        "drive": 5.3,
+        "level": 6.9,
+        "tone": 5.0
+      },
+      "type": "Zen Drive Pro"
+    },
+    "dynamics": {
+      "enabled": true,
+      "parameters": {
+        "attack": 4.447867667505442,
+        "ratio": 4.555271417323587,
+        "release": 116.12055911068867,
+        "threshold": -18.02341346259676
+      },
+      "type": "Expander Pro"
     },
     "eq": {
-      "type": "High Pass Filter",
+      "enabled": true,
       "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
         "low_freq": 80.0,
         "low_gain": 0.0,
         "low_mid_freq": 500.0,
-        "low_mid_gain": 0.0,
-        "high_mid_freq": 2000.0,
-        "high_mid_gain": 0.0,
-        "high_freq": 8000.0,
-        "high_gain": 0.0
-      }
-    },
-    "delay": {
-      "type": "Quad Delay Pro",
-      "parameters": {
-        "time": 707.4973977145933,
-        "feedback": 22.149588705200312,
-        "mix": 34.63787995336808
-      }
-    },
-    "reverb": {
-      "type": "Studio Reverb",
-      "parameters": {
-        "room_size": 51.98111128246327,
-        "decay": 2.1315867930625902,
-        "mix": 38.96634621249005
-      }
+        "low_mid_gain": 0.0
+      },
+      "type": "Treble Control"
     },
     "pitch": {
-      "type": "Resonator Pitch",
+      "enabled": true,
       "parameters": {
-        "pitch": 8.596289348821578,
-        "mix": 57.54699625389578
-      }
+        "mix": 58.77316423616584,
+        "pitch": 4.840163158502431
+      },
+      "type": "Whammy"
     },
-    "dynamics": {
-      "type": "VCA Compressor",
+    "reverb": {
+      "enabled": true,
       "parameters": {
-        "threshold": -9.93622892056144,
-        "ratio": 4.527662587284155,
-        "attack": 7.771556767857399,
-        "release": 126.00555126103103
-      }
+        "decay": 2.728534896722007,
+        "mix": 26.83105803728008,
+        "room_size": 51.52776652552783
+      },
+      "type": "Arena Reverb Pro"
     }
   }
 }

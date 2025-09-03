@@ -1,0 +1,264 @@
+{
+  "blocks": [
+    {
+      "parameters": {
+        "drive": 4.5,
+        "level": 5.7,
+        "tone": 5.2
+      },
+      "type": "DRV"
+    },
+    {
+      "parameters": {
+        "drive": 4.3,
+        "level": 5.2,
+        "tone": 6.7
+      },
+      "type": "DRV"
+    },
+    {
+      "parameters": {
+        "bass": 7.0,
+        "gain": 5.8,
+        "master": 4.8,
+        "mid": 6.6,
+        "presence": 6.4,
+        "treble": 7.3
+      },
+      "type": "AMP"
+    },
+    {
+      "parameters": {
+        "high_cut": 13545.2,
+        "level": -2.0,
+        "low_cut": 155.5
+      },
+      "type": "CAB"
+    },
+    {
+      "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "mid_freq": 500.0,
+        "mid_gain": 0.0
+      },
+      "type": "EQ"
+    },
+    {
+      "parameters": {
+        "feedback": 29.4,
+        "mix": 21.7,
+        "time": 521.6
+      },
+      "type": "DLY"
+    },
+    {
+      "parameters": {
+        "decay": 1.7,
+        "mix": 28.4,
+        "room_size": 64.1
+      },
+      "type": "REV"
+    },
+    {
+      "parameters": {
+        "mix": 49.3,
+        "pitch": 2.9
+      },
+      "type": "PITCH"
+    },
+    {
+      "parameters": {
+        "attack": 1.7,
+        "ratio": 4.9,
+        "release": 100.0,
+        "threshold": -16.9
+      },
+      "type": "DYNAMICS"
+    }
+  ],
+  "description": "A rock tone, using BE V1 Fat: based on later BE-100, voice in left position, FAT switch engaged with Suhr Eclipse Reloaded and Rat Distortion with Pitch Delay, Ambience Reverb, Pitch Detune and Live Compressor Pro, featuring bright.",
+  "gear_used": {
+    "amp": {
+      "parameters": {
+        "bass": 7.0,
+        "gain": 5.8,
+        "master": 4.8,
+        "mid": 6.6,
+        "presence": 6.4,
+        "treble": 7.3
+      },
+      "type": "BE V1 Fat: based on later BE-100, voice in left position, FAT switch engaged"
+    },
+    "cab": {
+      "parameters": {
+        "high_cut": 13545.2,
+        "level": -2.0,
+        "low_cut": 155.5
+      },
+      "type": "SUPRO"
+    },
+    "delay": {
+      "parameters": {
+        "feedback": 29.408351736428532,
+        "mix": 21.711146911675307,
+        "time": 521.5676015037183
+      },
+      "type": "Pitch Delay"
+    },
+    "drive_1": {
+      "parameters": {
+        "drive": 4.5,
+        "level": 5.7,
+        "tone": 5.2
+      },
+      "type": "Suhr Eclipse Reloaded"
+    },
+    "drive_2": {
+      "parameters": {
+        "drive": 4.3,
+        "level": 5.2,
+        "tone": 6.7
+      },
+      "type": "Rat Distortion"
+    },
+    "dynamics": {
+      "parameters": {
+        "attack": 1.695731609430843,
+        "ratio": 4.932877982598007,
+        "release": 102.40461048116843,
+        "threshold": -16.920122704524886
+      },
+      "type": "Live Compressor Pro"
+    },
+    "eq": {
+      "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "low_mid_freq": 500.0,
+        "low_mid_gain": 0.0
+      },
+      "type": "Low Boost"
+    },
+    "pitch": {
+      "parameters": {
+        "mix": 49.258445971829246,
+        "pitch": 2.870942055061784
+      },
+      "type": "Pitch Detune"
+    },
+    "reverb": {
+      "parameters": {
+        "decay": 1.7139912648524585,
+        "mix": 28.411951784369442,
+        "room_size": 64.1351170145324
+      },
+      "type": "Ambience Reverb"
+    }
+  },
+  "intent": {
+    "characteristics": [
+      "bright"
+    ],
+    "genre": "rock",
+    "query": "Country twang tone with Telecaster and bright amp settings"
+  },
+  "query": "Country twang tone with Telecaster and bright amp settings",
+  "tone_patch": {
+    "amp": {
+      "enabled": true,
+      "parameters": {
+        "bass": 7.0,
+        "gain": 5.8,
+        "master": 4.8,
+        "mid": 6.6,
+        "presence": 6.4,
+        "treble": 7.3
+      },
+      "type": "BE V1 Fat: based on later BE-100, voice in left position, FAT switch engaged"
+    },
+    "cab": {
+      "enabled": true,
+      "parameters": {
+        "high_cut": 13545.2,
+        "level": -2.0,
+        "low_cut": 155.5
+      },
+      "type": "SUPRO"
+    },
+    "delay": {
+      "enabled": true,
+      "parameters": {
+        "feedback": 29.408351736428532,
+        "mix": 21.711146911675307,
+        "time": 521.5676015037183
+      },
+      "type": "Pitch Delay"
+    },
+    "drive_1": {
+      "enabled": true,
+      "parameters": {
+        "drive": 4.5,
+        "level": 5.7,
+        "tone": 5.2
+      },
+      "type": "Suhr Eclipse Reloaded"
+    },
+    "drive_2": {
+      "enabled": true,
+      "parameters": {
+        "drive": 4.3,
+        "level": 5.2,
+        "tone": 6.7
+      },
+      "type": "Rat Distortion"
+    },
+    "dynamics": {
+      "enabled": true,
+      "parameters": {
+        "attack": 1.695731609430843,
+        "ratio": 4.932877982598007,
+        "release": 102.40461048116843,
+        "threshold": -16.920122704524886
+      },
+      "type": "Live Compressor Pro"
+    },
+    "eq": {
+      "enabled": true,
+      "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "low_mid_freq": 500.0,
+        "low_mid_gain": 0.0
+      },
+      "type": "Low Boost"
+    },
+    "pitch": {
+      "enabled": true,
+      "parameters": {
+        "mix": 49.258445971829246,
+        "pitch": 2.870942055061784
+      },
+      "type": "Pitch Detune"
+    },
+    "reverb": {
+      "enabled": true,
+      "parameters": {
+        "decay": 1.7139912648524585,
+        "mix": 28.411951784369442,
+        "room_size": 64.1351170145324
+      },
+      "type": "Ambience Reverb"
+    }
+  }
+}

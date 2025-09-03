@@ -1,0 +1,47 @@
+      "block": "PITCH",
+      "featured_parameters": [
+        "pitch",
+        "mix",
+        "level",
+        "feedback",
+        "tempo_sync",
+        "low_cut",
+        "high_cut"
+      ],
+      "models": [
+        {
+          "fm9_name": "Chorus Pitch Pro",
+          "real_world": "Chorus Pitch Pro",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Harmonizer",
+          "real_world": "Harmonizer",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Harmonizer Pro",
+          "real_world": "Harmonizer Pro",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Pitch Shifter",
+          "real_world": "Pitch Shifter",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Pitch Shifter Pro",
+          "real_world": "Pitch Shifter Pro",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Virtual Capo",
+          "real_world": "Virtual Capo",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Virtual Capo Pro",
+          "real_world": "Virtual Capo Pro",
+          "aliases": []
+        }
+      ]

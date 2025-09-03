@@ -1,0 +1,29 @@
+{
+  "EQ": {
+    "low_mid_freq": "mid_freq",
+    "hi_mid_freq": "high_freq",
+    "high_mid_freq": "high_freq",
+    "lo_mid_freq": "mid_freq",
+    "lo_freq": "low_freq",
+    "hi_freq": "high_freq",
+    "lo_gain": "low_gain",
+    "hi_gain": "high_gain",
+    "lo_q": "low_q",
+    "hi_q": "high_q",
+    "low_mid_gain": "mid_gain",
+    "hi_mid_gain": "high_gain",
+    "high_mid_gain": "high_gain",
+    "lo_mid_gain": "mid_gain"
+  },
+  "DLY": {
+    "time_ms": "time",
+    "fb": "feedback",
+    "sync": "tempo_sync"
+  },
+  "REV": {
+    "pre_delay": "predelay"
+  },
+  "DRV": {
+    "tone_control": "tone"
+  }
+}

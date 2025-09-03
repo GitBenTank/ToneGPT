@@ -1,0 +1,152 @@
+      "block": "DELAY",
+      "featured_parameters": [
+        "time",
+        "feedback",
+        "mix",
+        "level",
+        "tempo_sync",
+        "low_cut",
+        "high_cut"
+      ],
+      "models": [
+        {
+          "fm9_name": "2290 W/ Modulation",
+          "real_world": "Lexicon 2290 with Modulation",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Ambient Stereo",
+          "real_world": "Ambient Stereo Delay",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Analog Mono",
+          "real_world": "Analog Mono Delay",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Analog Stereo",
+          "real_world": "Analog Stereo Delay",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Deluxe Mind Guy",
+          "real_world": "Deluxe Mind Guy Delay",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Diffused Delay",
+          "real_world": "Diffused Delay",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Digital Mono",
+          "real_world": "Digital Mono Delay",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Digital Stereo",
+          "real_world": "Digital Stereo Delay",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Dm-Two Delay",
+          "real_world": "Boss DM-2 Delay",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Dual Delay",
+          "real_world": "Dual Delay",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Dual Head Tape",
+          "real_world": "Dual Head Tape Delay",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Ducking Delay",
+          "real_world": "Ducking Delay",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Graphite Copy Delay",
+          "real_world": "Graphite Copy Delay",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Lo-Fi Tape",
+          "real_world": "Lo-Fi Tape Delay",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Mono BBD",
+          "real_world": "Mono Bucket Brigade Delay",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Mono Tape",
+          "real_world": "Mono Tape Delay",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Pan Delay",
+          "real_world": "Pan Delay",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Ping-Pong",
+          "real_world": "Ping-Pong Delay",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Reverse Delay",
+          "real_world": "Reverse Delay",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Stereo BBD",
+          "real_world": "Stereo Bucket Brigade Delay",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Stereo Mind Guy",
+          "real_world": "Stereo Mind Guy Delay",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Stereo Tape",
+          "real_world": "Stereo Tape Delay",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Stereo Trem Delay",
+          "real_world": "Stereo Tremolo Delay",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Sweep Delay",
+          "real_world": "Sweep Delay",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Vintage Digital",
+          "real_world": "Vintage Digital Delay",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Wandering Delays",
+          "real_world": "Wandering Delays",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Worn Tape",
+          "real_world": "Worn Tape Delay",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Zephyr",
+          "real_world": "Zephyr Delay",
+          "aliases": []
+        }
+      ]

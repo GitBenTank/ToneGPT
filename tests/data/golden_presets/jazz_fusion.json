@@ -1,0 +1,193 @@
+{
+  "blocks": [
+    {
+      "parameters": {
+        "bass": 5.4,
+        "gain": 1.8,
+        "master": 9.1,
+        "mid": 6.2,
+        "presence": 5.8,
+        "treble": 4.4
+      },
+      "type": "AMP"
+    },
+    {
+      "parameters": {
+        "high_cut": 14930.6,
+        "level": 5.2,
+        "low_cut": 117.8
+      },
+      "type": "CAB"
+    },
+    {
+      "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "mid_freq": 500.0,
+        "mid_gain": 0.0
+      },
+      "type": "EQ"
+    },
+    {
+      "parameters": {
+        "decay": 2.3,
+        "mix": 25.0,
+        "room_size": 57.2
+      },
+      "type": "REV"
+    },
+    {
+      "parameters": {
+        "depth": 62.6,
+        "mix": 36.6,
+        "rate": 1.7
+      },
+      "type": "MODULATION"
+    },
+    {
+      "parameters": {
+        "attack": 3.6,
+        "ratio": 7.2,
+        "release": 7.4,
+        "threshold": -11.2
+      },
+      "type": "DYNAMICS"
+    }
+  ],
+  "description": "A jazz tone, using Archean Clean: Clean channel with Shimmer Reverb, Square Tremolo and Transient Shaper Pro, featuring lead, clean.",
+  "gear_used": {
+    "amp": {
+      "parameters": {
+        "bass": 5.4,
+        "gain": 1.8,
+        "master": 9.1,
+        "mid": 6.2,
+        "presence": 5.8,
+        "treble": 4.4
+      },
+      "type": "Archean Clean: Clean channel"
+    },
+    "cab": {
+      "parameters": {
+        "high_cut": 14930.6,
+        "level": 5.2,
+        "low_cut": 117.8
+      },
+      "type": "F024 2x12 Top Boost Blue"
+    },
+    "dynamics": {
+      "parameters": {
+        "attack": 3.5644363705456796,
+        "ratio": 7.226311553831887,
+        "release": 147.73826204674543,
+        "threshold": -11.170489225153595
+      },
+      "type": "Transient Shaper Pro"
+    },
+    "eq": {
+      "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "low_mid_freq": 500.0,
+        "low_mid_gain": 0.0
+      },
+      "type": "Shelving EQ"
+    },
+    "modulation": {
+      "parameters": {
+        "depth": 62.5662151771822,
+        "mix": 36.630701087324816,
+        "rate": 1.6728635673041041
+      },
+      "type": "Square Tremolo"
+    },
+    "reverb": {
+      "parameters": {
+        "decay": 2.3405288470806447,
+        "mix": 25.030820279965837,
+        "room_size": 57.17038508512371
+      },
+      "type": "Shimmer Reverb"
+    }
+  },
+  "intent": {
+    "characteristics": [
+      "lead",
+      "clean"
+    ],
+    "genre": "jazz",
+    "query": "Jazz fusion tone with clean amp and chorus for smooth leads"
+  },
+  "query": "Jazz fusion tone with clean amp and chorus for smooth leads",
+  "tone_patch": {
+    "amp": {
+      "enabled": true,
+      "parameters": {
+        "bass": 5.4,
+        "gain": 1.8,
+        "master": 9.1,
+        "mid": 6.2,
+        "presence": 5.8,
+        "treble": 4.4
+      },
+      "type": "Archean Clean: Clean channel"
+    },
+    "cab": {
+      "enabled": true,
+      "parameters": {
+        "high_cut": 14930.6,
+        "level": 5.2,
+        "low_cut": 117.8
+      },
+      "type": "F024 2x12 Top Boost Blue"
+    },
+    "dynamics": {
+      "enabled": true,
+      "parameters": {
+        "attack": 3.5644363705456796,
+        "ratio": 7.226311553831887,
+        "release": 147.73826204674543,
+        "threshold": -11.170489225153595
+      },
+      "type": "Transient Shaper Pro"
+    },
+    "eq": {
+      "enabled": true,
+      "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "low_mid_freq": 500.0,
+        "low_mid_gain": 0.0
+      },
+      "type": "Shelving EQ"
+    },
+    "modulation": {
+      "enabled": true,
+      "parameters": {
+        "depth": 62.5662151771822,
+        "mix": 36.630701087324816,
+        "rate": 1.6728635673041041
+      },
+      "type": "Square Tremolo"
+    },
+    "reverb": {
+      "enabled": true,
+      "parameters": {
+        "decay": 2.3405288470806447,
+        "mix": 25.030820279965837,
+        "room_size": 57.17038508512371
+      },
+      "type": "Shimmer Reverb"
+    }
+  }
+}

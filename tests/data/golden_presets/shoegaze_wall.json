@@ -1,0 +1,262 @@
+{
+  "blocks": [
+    {
+      "parameters": {
+        "drive": 4.8,
+        "level": 4.1,
+        "tone": 5.8
+      },
+      "type": "DRV"
+    },
+    {
+      "parameters": {
+        "drive": 7.8,
+        "level": 6.5,
+        "tone": 6.7
+      },
+      "type": "DRV"
+    },
+    {
+      "parameters": {
+        "bass": 8.0,
+        "gain": 5.6,
+        "master": 4.2,
+        "mid": 5.7,
+        "presence": 4.5,
+        "treble": 5.3
+      },
+      "type": "AMP"
+    },
+    {
+      "parameters": {
+        "high_cut": 8425.6,
+        "level": -0.7,
+        "low_cut": 199.5
+      },
+      "type": "CAB"
+    },
+    {
+      "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "mid_freq": 500.0,
+        "mid_gain": 0.0
+      },
+      "type": "EQ"
+    },
+    {
+      "parameters": {
+        "feedback": 24.6,
+        "mix": 29.9,
+        "time": 292.6
+      },
+      "type": "DLY"
+    },
+    {
+      "parameters": {
+        "decay": 2.5,
+        "mix": 20.6,
+        "room_size": 54.2
+      },
+      "type": "REV"
+    },
+    {
+      "parameters": {
+        "mix": 58.5,
+        "pitch": 1.8
+      },
+      "type": "PITCH"
+    },
+    {
+      "parameters": {
+        "attack": 4.2,
+        "ratio": 6.1,
+        "release": 7.0,
+        "threshold": -16.4
+      },
+      "type": "DYNAMICS"
+    }
+  ],
+  "description": "A rock tone, using Red Gain channel, Aggression: tight with TS9 and Suhr Eclipse with Doubler Delay, Factory Reverb Pro, Harmonizer and Envelope Follower.",
+  "gear_used": {
+    "amp": {
+      "parameters": {
+        "bass": 8.0,
+        "gain": 5.6,
+        "master": 4.2,
+        "mid": 5.7,
+        "presence": 4.5,
+        "treble": 5.3
+      },
+      "type": "Red Gain channel, Aggression: tight"
+    },
+    "cab": {
+      "parameters": {
+        "high_cut": 8425.6,
+        "level": -0.7,
+        "low_cut": 199.5
+      },
+      "type": "F021 2x12 Double Verb R121"
+    },
+    "delay": {
+      "parameters": {
+        "feedback": 24.63129116791169,
+        "mix": 29.903997523015516,
+        "time": 292.6363358397168
+      },
+      "type": "Doubler Delay"
+    },
+    "drive_1": {
+      "parameters": {
+        "drive": 4.8,
+        "level": 4.1,
+        "tone": 5.8
+      },
+      "type": "TS9"
+    },
+    "drive_2": {
+      "parameters": {
+        "drive": 7.8,
+        "level": 6.5,
+        "tone": 6.7
+      },
+      "type": "Suhr Eclipse"
+    },
+    "dynamics": {
+      "parameters": {
+        "attack": 4.190369825186758,
+        "ratio": 6.144895342542863,
+        "release": 139.16313913625262,
+        "threshold": -16.35749813960451
+      },
+      "type": "Envelope Follower"
+    },
+    "eq": {
+      "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "low_mid_freq": 500.0,
+        "low_mid_gain": 0.0
+      },
+      "type": "Dark Switch Pro"
+    },
+    "pitch": {
+      "parameters": {
+        "mix": 58.529966858448134,
+        "pitch": 1.7679111754468018
+      },
+      "type": "Harmonizer"
+    },
+    "reverb": {
+      "parameters": {
+        "decay": 2.5021096480198444,
+        "mix": 20.568961873535955,
+        "room_size": 54.21184461758748
+      },
+      "type": "Factory Reverb Pro"
+    }
+  },
+  "intent": {
+    "characteristics": [],
+    "genre": "rock",
+    "query": "Shoegaze wall of sound with multiple delays and reverb"
+  },
+  "query": "Shoegaze wall of sound with multiple delays and reverb",
+  "tone_patch": {
+    "amp": {
+      "enabled": true,
+      "parameters": {
+        "bass": 8.0,
+        "gain": 5.6,
+        "master": 4.2,
+        "mid": 5.7,
+        "presence": 4.5,
+        "treble": 5.3
+      },
+      "type": "Red Gain channel, Aggression: tight"
+    },
+    "cab": {
+      "enabled": true,
+      "parameters": {
+        "high_cut": 8425.6,
+        "level": -0.7,
+        "low_cut": 199.5
+      },
+      "type": "F021 2x12 Double Verb R121"
+    },
+    "delay": {
+      "enabled": true,
+      "parameters": {
+        "feedback": 24.63129116791169,
+        "mix": 29.903997523015516,
+        "time": 292.6363358397168
+      },
+      "type": "Doubler Delay"
+    },
+    "drive_1": {
+      "enabled": true,
+      "parameters": {
+        "drive": 4.8,
+        "level": 4.1,
+        "tone": 5.8
+      },
+      "type": "TS9"
+    },
+    "drive_2": {
+      "enabled": true,
+      "parameters": {
+        "drive": 7.8,
+        "level": 6.5,
+        "tone": 6.7
+      },
+      "type": "Suhr Eclipse"
+    },
+    "dynamics": {
+      "enabled": true,
+      "parameters": {
+        "attack": 4.190369825186758,
+        "ratio": 6.144895342542863,
+        "release": 139.16313913625262,
+        "threshold": -16.35749813960451
+      },
+      "type": "Envelope Follower"
+    },
+    "eq": {
+      "enabled": true,
+      "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "low_mid_freq": 500.0,
+        "low_mid_gain": 0.0
+      },
+      "type": "Dark Switch Pro"
+    },
+    "pitch": {
+      "enabled": true,
+      "parameters": {
+        "mix": 58.529966858448134,
+        "pitch": 1.7679111754468018
+      },
+      "type": "Harmonizer"
+    },
+    "reverb": {
+      "enabled": true,
+      "parameters": {
+        "decay": 2.5021096480198444,
+        "mix": 20.568961873535955,
+        "room_size": 54.21184461758748
+      },
+      "type": "Factory Reverb Pro"
+    }
+  }
+}

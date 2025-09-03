@@ -1,0 +1,122 @@
+      "block": "DYNAMICS",
+      "featured_parameters": [
+        "threshold",
+        "ratio",
+        "attack",
+        "release",
+        "makeup_gain",
+        "mix",
+        "level"
+      ],
+      "models": [
+        {
+          "fm9_name": "Analog Compressor",
+          "real_world": "Analog Compressor",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Analog Sustainer",
+          "real_world": "Analog Sustainer",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Classic VCA Compressor",
+          "real_world": "Classic VCA Compressor",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Compander",
+          "real_world": "Compander",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Compressor",
+          "real_world": "Compressor",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Dynami-Comp Classic",
+          "real_world": "Dynami-Comp Classic",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Dynami-Comp Modern",
+          "real_world": "Dynami-Comp Modern",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Dynami-Comp Soft",
+          "real_world": "Dynami-Comp Soft",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Dynamics Processor",
+          "real_world": "Dynamics Processor",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Econo-Dyno-Comp",
+          "real_world": "Econo-Dyno-Comp",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Gate",
+          "real_world": "Noise Gate",
+          "aliases": []
+        },
+        {
+          "fm9_name": "JFET Pedal Compressor",
+          "real_world": "JFET Pedal Compressor",
+          "aliases": []
+        },
+        {
+          "fm9_name": "JFET Studio Compressor",
+          "real_world": "JFET Studio Compressor",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Modern VCA Compressor",
+          "real_world": "Modern VCA Compressor",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Multiband Compressor",
+          "real_world": "Multiband Compressor",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Optical Compressor",
+          "real_world": "Optical Compressor",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Quad Compressor",
+          "real_world": "Quad Compressor",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Rockguy Compressor",
+          "real_world": "Rockguy Compressor",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Vari-Mu Tube Compressor",
+          "real_world": "Vari-Mu Tube Compressor",
+          "aliases": []
+        },
+        {
+          "fm9_name": "VCA Bus Compressor",
+          "real_world": "VCA Bus Compressor",
+          "aliases": []
+        },
+        {
+          "fm9_name": "VCA FB Sustainer",
+          "real_world": "VCA Feedback Sustainer",
+          "aliases": []
+        },
+        {
+          "fm9_name": "VCA FF Sustainer",
+          "real_world": "VCA Feed-Forward Sustainer",
+          "aliases": []
+        }
+      ]

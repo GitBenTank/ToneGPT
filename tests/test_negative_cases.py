@@ -18,6 +18,7 @@ import json
 import pytest
 from pathlib import Path
 from tonegpt.core.clean_ai_tone_generator import CleanAIToneGenerator
+from tonegpt.core.canonicalize import canonicalize_preset
 
 # Test data directory
 TEST_DATA_DIR = Path(__file__).parent / "data" / "negative_tests"
@@ -46,9 +47,12 @@ class TestNegativeCases:
         # If a parameter is missing, it should raise ValueError with file+key citation
         try:
             result = generator.generate_tone_from_query(query)
+            # Canonicalize before validation
+            result = canonicalize_preset(result)
             # If we get here, all parameters were found in reference
             # This is the expected behavior for a complete reference
             assert "tone_patch" in result
+            assert "blocks" in result
         except ValueError as e:
             # If ValueError is raised, it should contain file+key citation
             error_msg = str(e)
@@ -105,6 +109,8 @@ class TestNegativeCases:
 
         try:
             result = generator.generate_tone_from_query(query)
+            # Canonicalize before validation
+            result = canonicalize_preset(result)
             # If we get here, all parameter values were valid
             assert "blocks" in result
 
@@ -163,6 +169,8 @@ class TestNegativeCases:
 
         try:
             result = generator.generate_tone_from_query(query)
+            # Canonicalize before validation
+            result = canonicalize_preset(result)
             # If we get here, all block types were found in reference
             assert "blocks" in result
         except ValueError as e:
@@ -194,13 +202,27 @@ class TestNegativeCases:
         with open(config_file, "r") as f:
             fm9_config = json.load(f)
 
+        # Canonicalize before validation
+        result = canonicalize_preset(result)
+
         # Validate that all parameters exist in reference files
-        tone_patch = result["tone_patch"]
-        for block_name, block in tone_patch.items():
-            block_type = block_name.lower()
+        blocks = result["blocks"]
+        for block in blocks:
+            block_type = block["type"].lower()
 
             # Check if block type exists in reference
-            block_ref_key = f"{block_type}_block"
+            # Map canonical block types to reference keys
+            block_ref_mapping = {
+                "drv": "drive_block",
+                "dly": "delay_block", 
+                "rev": "reverb_block",
+                "mod": "modulation_block",
+                "pitch": "pitch_block",
+                "dynamics": "dynamics_block",
+                "eq": "eq_block",
+                "utility": "utility_block"
+            }
+            block_ref_key = block_ref_mapping.get(block_type, f"{block_type}_block")
             assert (
                 block_ref_key in fm9_ref or block_type.upper() in fm9_config
             ), f"Block type {block_type} not found in FM9 reference files"
@@ -231,11 +253,25 @@ class TestNegativeCases:
         with open(config_file, "r") as f:
             fm9_config = json.load(f)
 
+        # Canonicalize before validation
+        result = canonicalize_preset(result)
+
         # Validate that no parameters are invented
-        tone_patch = result["tone_patch"]
-        for block_name, block in tone_patch.items():
-            block_type = block_name.lower()
-            block_ref_key = f"{block_type}_block"
+        blocks = result["blocks"]
+        for block in blocks:
+            block_type = block["type"].lower()
+            # Map canonical block types to reference keys
+            block_ref_mapping = {
+                "drv": "drive_block",
+                "dly": "delay_block", 
+                "rev": "reverb_block",
+                "mod": "modulation_block",
+                "pitch": "pitch_block",
+                "dynamics": "dynamics_block",
+                "eq": "eq_block",
+                "utility": "utility_block"
+            }
+            block_ref_key = block_ref_mapping.get(block_type, f"{block_type}_block")
 
             if block_ref_key in fm9_ref and "key_parameters" in fm9_ref[block_ref_key]:
                 block_ref = fm9_ref[block_ref_key]

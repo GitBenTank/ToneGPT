@@ -1,0 +1,190 @@
+{
+  "blocks": [
+    {
+      "parameters": {
+        "drive": 5.0,
+        "level": 4.9,
+        "tone": 5.6
+      },
+      "type": "DRV"
+    },
+    {
+      "parameters": {
+        "bass": 5.3,
+        "gain": 5.4,
+        "master": 7.3,
+        "mid": 6.5,
+        "presence": 3.6,
+        "treble": 5.1
+      },
+      "type": "AMP"
+    },
+    {
+      "parameters": {
+        "high_cut": 14565.2,
+        "level": 4.4,
+        "low_cut": 68.6
+      },
+      "type": "CAB"
+    },
+    {
+      "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "mid_freq": 500.0,
+        "mid_gain": 0.0
+      },
+      "type": "EQ"
+    },
+    {
+      "parameters": {
+        "decay": 1.9,
+        "mix": 39.7,
+        "room_size": 71.5
+      },
+      "type": "REV"
+    },
+    {
+      "parameters": {
+        "attack": 1.8,
+        "ratio": 2.9,
+        "release": 8.9,
+        "threshold": -7.9
+      },
+      "type": "DYNAMICS"
+    }
+  ],
+  "description": "A blues tone, using 5F1 TWEED EC with TS808 Mod with Mic Reverb and Limiter.",
+  "gear_used": {
+    "amp": {
+      "parameters": {
+        "bass": 5.3,
+        "gain": 5.4,
+        "master": 7.3,
+        "mid": 6.5,
+        "presence": 3.6,
+        "treble": 5.1
+      },
+      "type": "5F1 TWEED EC"
+    },
+    "cab": {
+      "parameters": {
+        "high_cut": 14565.2,
+        "level": 4.4,
+        "low_cut": 68.6
+      },
+      "type": "F118 2x12 SV Legend Mix"
+    },
+    "drive_1": {
+      "parameters": {
+        "drive": 5.0,
+        "level": 4.9,
+        "tone": 5.6
+      },
+      "type": "TS808 Mod"
+    },
+    "dynamics": {
+      "parameters": {
+        "attack": 1.8106221047984723,
+        "ratio": 2.867413172078802,
+        "release": 178.93524678265746,
+        "threshold": -7.9115341988080665
+      },
+      "type": "Limiter"
+    },
+    "eq": {
+      "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "low_mid_freq": 500.0,
+        "low_mid_gain": 0.0
+      },
+      "type": "Dark Control"
+    },
+    "reverb": {
+      "parameters": {
+        "decay": 1.9219708617584537,
+        "mix": 39.70866495340384,
+        "room_size": 71.50512850250315
+      },
+      "type": "Mic Reverb"
+    }
+  },
+  "intent": {
+    "characteristics": [],
+    "genre": "blues",
+    "query": "Stevie Ray Vaughan blues tone with Tube Screamer and Fender amp"
+  },
+  "query": "Stevie Ray Vaughan blues tone with Tube Screamer and Fender amp",
+  "tone_patch": {
+    "amp": {
+      "enabled": true,
+      "parameters": {
+        "bass": 5.3,
+        "gain": 5.4,
+        "master": 7.3,
+        "mid": 6.5,
+        "presence": 3.6,
+        "treble": 5.1
+      },
+      "type": "5F1 TWEED EC"
+    },
+    "cab": {
+      "enabled": true,
+      "parameters": {
+        "high_cut": 14565.2,
+        "level": 4.4,
+        "low_cut": 68.6
+      },
+      "type": "F118 2x12 SV Legend Mix"
+    },
+    "drive_1": {
+      "enabled": true,
+      "parameters": {
+        "drive": 5.0,
+        "level": 4.9,
+        "tone": 5.6
+      },
+      "type": "TS808 Mod"
+    },
+    "dynamics": {
+      "enabled": true,
+      "parameters": {
+        "attack": 1.8106221047984723,
+        "ratio": 2.867413172078802,
+        "release": 178.93524678265746,
+        "threshold": -7.9115341988080665
+      },
+      "type": "Limiter"
+    },
+    "eq": {
+      "enabled": true,
+      "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "low_mid_freq": 500.0,
+        "low_mid_gain": 0.0
+      },
+      "type": "Dark Control"
+    },
+    "reverb": {
+      "enabled": true,
+      "parameters": {
+        "decay": 1.9219708617584537,
+        "mix": 39.70866495340384,
+        "room_size": 71.50512850250315
+      },
+      "type": "Mic Reverb"
+    }
+  }
+}

@@ -1,0 +1,215 @@
+{
+  "blocks": [
+    {
+      "parameters": {
+        "bass": 5.1,
+        "gain": 7.8,
+        "master": 6.6,
+        "mid": 5.7,
+        "presence": 4.5,
+        "treble": 6.1
+      },
+      "type": "AMP"
+    },
+    {
+      "parameters": {
+        "high_cut": 10320.8,
+        "level": -2.5,
+        "low_cut": 62.0
+      },
+      "type": "CAB"
+    },
+    {
+      "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "mid_freq": 500.0,
+        "mid_gain": 0.0
+      },
+      "type": "EQ"
+    },
+    {
+      "parameters": {
+        "feedback": 24.5,
+        "mix": 26.8,
+        "time": 786.4
+      },
+      "type": "DLY"
+    },
+    {
+      "parameters": {
+        "decay": 2.4,
+        "mix": 27.2,
+        "room_size": 79.8
+      },
+      "type": "REV"
+    },
+    {
+      "parameters": {
+        "depth": 32.1,
+        "mix": 43.8,
+        "rate": 1.2
+      },
+      "type": "MODULATION"
+    },
+    {
+      "parameters": {
+        "attack": 5.9,
+        "ratio": 6.5,
+        "release": 8.1,
+        "threshold": -7.9
+      },
+      "type": "DYNAMICS"
+    }
+  ],
+  "description": "A ambient tone, using HBE V3: based on later BE-100, voice in right position with Digital Delay, Nonlinear Reverb Pro, Resonator and Multiband Compressor Pro.",
+  "gear_used": {
+    "amp": {
+      "parameters": {
+        "bass": 5.1,
+        "gain": 7.8,
+        "master": 6.6,
+        "mid": 5.7,
+        "presence": 4.5,
+        "treble": 6.1
+      },
+      "type": "HBE V3: based on later BE-100, voice in right position"
+    },
+    "cab": {
+      "parameters": {
+        "high_cut": 10320.8,
+        "level": -2.5,
+        "low_cut": 62.0
+      },
+      "type": "F141 1x12 Dlx Fn-42 Mix"
+    },
+    "delay": {
+      "parameters": {
+        "feedback": 24.481191109198836,
+        "mix": 26.77739588307748,
+        "time": 786.3621943952345
+      },
+      "type": "Digital Delay"
+    },
+    "dynamics": {
+      "parameters": {
+        "attack": 5.856736119476843,
+        "ratio": 6.535809056514448,
+        "release": 161.29755997225345,
+        "threshold": -7.919951856079599
+      },
+      "type": "Multiband Compressor Pro"
+    },
+    "eq": {
+      "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "low_mid_freq": 500.0,
+        "low_mid_gain": 0.0
+      },
+      "type": "Band Pass Filter Pro"
+    },
+    "modulation": {
+      "parameters": {
+        "depth": 32.065177569278205,
+        "mix": 43.79882944907571,
+        "rate": 1.2230741912019483
+      },
+      "type": "Resonator"
+    },
+    "reverb": {
+      "parameters": {
+        "decay": 2.4205799604796634,
+        "mix": 27.170980964324336,
+        "room_size": 79.82324005160744
+      },
+      "type": "Nonlinear Reverb Pro"
+    }
+  },
+  "intent": {
+    "characteristics": [],
+    "genre": "ambient",
+    "query": "Gilmour ambient tone with long reverb and delay for atmospheric sound"
+  },
+  "query": "Gilmour ambient tone with long reverb and delay for atmospheric sound",
+  "tone_patch": {
+    "amp": {
+      "enabled": true,
+      "parameters": {
+        "bass": 5.1,
+        "gain": 7.8,
+        "master": 6.6,
+        "mid": 5.7,
+        "presence": 4.5,
+        "treble": 6.1
+      },
+      "type": "HBE V3: based on later BE-100, voice in right position"
+    },
+    "cab": {
+      "enabled": true,
+      "parameters": {
+        "high_cut": 10320.8,
+        "level": -2.5,
+        "low_cut": 62.0
+      },
+      "type": "F141 1x12 Dlx Fn-42 Mix"
+    },
+    "delay": {
+      "enabled": true,
+      "parameters": {
+        "feedback": 24.481191109198836,
+        "mix": 26.77739588307748,
+        "time": 786.3621943952345
+      },
+      "type": "Digital Delay"
+    },
+    "dynamics": {
+      "enabled": true,
+      "parameters": {
+        "attack": 5.856736119476843,
+        "ratio": 6.535809056514448,
+        "release": 161.29755997225345,
+        "threshold": -7.919951856079599
+      },
+      "type": "Multiband Compressor Pro"
+    },
+    "eq": {
+      "enabled": true,
+      "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "low_mid_freq": 500.0,
+        "low_mid_gain": 0.0
+      },
+      "type": "Band Pass Filter Pro"
+    },
+    "modulation": {
+      "enabled": true,
+      "parameters": {
+        "depth": 32.065177569278205,
+        "mix": 43.79882944907571,
+        "rate": 1.2230741912019483
+      },
+      "type": "Resonator"
+    },
+    "reverb": {
+      "enabled": true,
+      "parameters": {
+        "decay": 2.4205799604796634,
+        "mix": 27.170980964324336,
+        "room_size": 79.82324005160744
+      },
+      "type": "Nonlinear Reverb Pro"
+    }
+  }
+}

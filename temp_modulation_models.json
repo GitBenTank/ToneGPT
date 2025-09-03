@@ -1,0 +1,202 @@
+      "block": "MODULATION",
+      "featured_parameters": [
+        "rate",
+        "depth",
+        "mix",
+        "level",
+        "tempo_sync",
+        "low_cut",
+        "high_cut"
+      ],
+      "models": [
+        {
+          "fm9_name": "4-Voice Analog",
+          "real_world": "4-Voice Analog Chorus",
+          "aliases": []
+        },
+        {
+          "fm9_name": "8-Voice Analog",
+          "real_world": "8-Voice Analog Chorus",
+          "aliases": []
+        },
+        {
+          "fm9_name": "8-Voice Stereo",
+          "real_world": "8-Voice Stereo Chorus",
+          "aliases": []
+        },
+        {
+          "fm9_name": "80's Style",
+          "real_world": "80's Style Chorus",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Analog Mono",
+          "real_world": "Analog Mono Chorus",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Analog Stereo",
+          "real_world": "Analog Stereo Chorus",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Barber Pole",
+          "real_world": "Barber Pole Phaser",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Block 90",
+          "real_world": "Block 90 Phaser",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Borg Phaser",
+          "real_world": "Borg Phaser",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Chorus",
+          "real_world": "Chorus",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Classic Vibe",
+          "real_world": "Classic Vibe Chorus",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Digital Mono",
+          "real_world": "Digital Mono Chorus",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Digital Stereo",
+          "real_world": "Digital Stereo Chorus",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Dimension 1",
+          "real_world": "Boss Dimension 1",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Dimension 2",
+          "real_world": "Boss Dimension 2",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Dimension 3",
+          "real_world": "Boss Dimension 3",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Dual Chorus",
+          "real_world": "Dual Chorus",
+          "aliases": []
+        },
+        {
+          "fm9_name": "FAS Vibe",
+          "real_world": "Fractal Audio Systems Vibe",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Flanger",
+          "real_world": "Flanger",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Japan CE-2",
+          "real_world": "Boss Japan CE-2 Chorus",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Modern Vibe",
+          "real_world": "Modern Vibe Chorus",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Mutated Twin-Phaser",
+          "real_world": "Mutated Twin-Phaser",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Naughty Rock",
+          "real_world": "Naughty Rock Phaser",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Phaser",
+          "real_world": "Phaser",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Rotary",
+          "real_world": "Rotary Speaker",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Script 45",
+          "real_world": "Script 45 Phaser",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Script 90",
+          "real_world": "Script 90 Phaser",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Stereo 8-Stage",
+          "real_world": "Stereo 8-Stage Phaser",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Stereo Tri-Chorus",
+          "real_world": "Stereo Tri-Chorus",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Stripe 90",
+          "real_world": "Stripe 90 Phaser",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Tape Chorus",
+          "real_world": "Tape Chorus",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Tape Flanger",
+          "real_world": "Tape Flanger",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Tremolo",
+          "real_world": "Tremolo",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Triangle Chorus",
+          "real_world": "Triangle Chorus",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Treadle Phaser",
+          "real_world": "Treadle Phaser",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Ultra-Super-Mega Phaser",
+          "real_world": "Ultra-Super-Mega Phaser",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Virtuoso Phaser",
+          "real_world": "Virtuoso Phaser",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Warm Stereo",
+          "real_world": "Warm Stereo Chorus",
+          "aliases": []
+        }
+      ]

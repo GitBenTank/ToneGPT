@@ -1,0 +1,112 @@
+      "block": "EQ",
+      "featured_parameters": [
+        "low_gain",
+        "low_mid_gain",
+        "high_mid_gain",
+        "high_gain",
+        "low_freq",
+        "high_freq",
+        "presence"
+      ],
+      "models": [
+        {
+          "fm9_name": "Graphic EQ",
+          "real_world": "Graphic EQ",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Parametric EQ",
+          "real_world": "Parametric EQ",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Filter",
+          "real_world": "Filter",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Graphic EQ Pro",
+          "real_world": "Graphic EQ Pro",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Parametric EQ Pro",
+          "real_world": "Parametric EQ Pro",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Filter Pro",
+          "real_world": "Filter Pro",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Presence Control",
+          "real_world": "Presence Control",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Tone Control",
+          "real_world": "Tone Control",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Bass Control",
+          "real_world": "Bass Control",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Mid Control",
+          "real_world": "Mid Control",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Treble Control",
+          "real_world": "Treble Control",
+          "aliases": []
+        },
+        {
+          "fm9_name": "High Cut",
+          "real_world": "High Cut Filter",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Low Cut",
+          "real_world": "Low Cut Filter",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Band Pass",
+          "real_world": "Band Pass Filter",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Notch",
+          "real_world": "Notch Filter",
+          "aliases": []
+        },
+        {
+          "fm9_name": "All Pass",
+          "real_world": "All Pass Filter",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Shelving EQ",
+          "real_world": "Shelving EQ",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Peaking EQ",
+          "real_world": "Peaking EQ",
+          "aliases": []
+        },
+        {
+          "fm9_name": "High Shelf",
+          "real_world": "High Shelf EQ",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Low Shelf",
+          "real_world": "Low Shelf EQ",
+          "aliases": []
+        }
+      ]

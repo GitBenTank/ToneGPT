@@ -1,182 +1,262 @@
 {
-  "query": "Vox AC30 crunch tone with overdrive",
-  "intent": {
-    "genre": "rock",
-    "characteristics": [],
-    "query": "Vox AC30 crunch tone with overdrive"
-  },
-  "tone_patch": {
-    "drive_1": {
-      "enabled": true,
-      "type": "HM-2",
+  "blocks": [
+    {
       "parameters": {
-        "drive": 4.3,
-        "tone": 4.4,
-        "level": 5.4
-      }
+        "drive": 4.9,
+        "level": 5.0,
+        "tone": 6.3
+      },
+      "type": "DRV"
     },
-    "drive_2": {
-      "enabled": true,
-      "type": "Suhr Shiba Reloaded",
+    {
       "parameters": {
-        "drive": 7.0,
-        "tone": 5.9,
-        "level": 5.3
-      }
+        "drive": 4.5,
+        "level": 3.1,
+        "tone": 5.7
+      },
+      "type": "DRV"
     },
+    {
+      "parameters": {
+        "bass": 6.9,
+        "gain": 7.5,
+        "master": 4.9,
+        "mid": 5.8,
+        "presence": 4.8,
+        "treble": 7.2
+      },
+      "type": "AMP"
+    },
+    {
+      "parameters": {
+        "high_cut": 10055.8,
+        "level": 3.2,
+        "low_cut": 78.1
+      },
+      "type": "CAB"
+    },
+    {
+      "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "mid_freq": 500.0,
+        "mid_gain": 0.0
+      },
+      "type": "EQ"
+    },
+    {
+      "parameters": {
+        "feedback": 35.6,
+        "mix": 32.7,
+        "time": 484.3
+      },
+      "type": "DLY"
+    },
+    {
+      "parameters": {
+        "decay": 2.8,
+        "mix": 22.1,
+        "room_size": 55.2
+      },
+      "type": "REV"
+    },
+    {
+      "parameters": {
+        "mix": 61.6,
+        "pitch": 6.7
+      },
+      "type": "PITCH"
+    },
+    {
+      "parameters": {
+        "attack": 2.7,
+        "ratio": 6.4,
+        "release": 100.0,
+        "threshold": -10.3
+      },
+      "type": "DYNAMICS"
+    }
+  ],
+  "description": "A rock tone, using 5F1 TWEED with DS-1 Pro and OD-2 with Echo Delay Pro, Factory Reverb Pro, Diatonic Harmony and De-Esser.",
+  "gear_used": {
     "amp": {
-      "enabled": true,
-      "type": "RECTO2 ORANGE MODERN",
       "parameters": {
-        "gain": 5.8,
-        "bass": 5.7,
-        "mid": 6.9,
-        "treble": 5.6,
-        "presence": 5.2,
-        "master": 6.7
-      }
+        "bass": 6.9,
+        "gain": 7.5,
+        "master": 4.9,
+        "mid": 5.8,
+        "presence": 4.8,
+        "treble": 7.2
+      },
+      "type": "5F1 TWEED"
     },
     "cab": {
-      "enabled": true,
-      "type": "F131 4x12 TV Mix #1",
       "parameters": {
-        "low_cut": 128.9,
-        "high_cut": 8051.0,
-        "level": 5.5
-      }
+        "high_cut": 10055.8,
+        "level": 3.2,
+        "low_cut": 78.1
+      },
+      "type": "Bass Cabinets"
+    },
+    "delay": {
+      "parameters": {
+        "feedback": 35.60603806105044,
+        "mix": 32.708484852249704,
+        "time": 484.3300805104001
+      },
+      "type": "Echo Delay Pro"
+    },
+    "drive_1": {
+      "parameters": {
+        "drive": 4.9,
+        "level": 5.0,
+        "tone": 6.3
+      },
+      "type": "DS-1 Pro"
+    },
+    "drive_2": {
+      "parameters": {
+        "drive": 4.5,
+        "level": 3.1,
+        "tone": 5.7
+      },
+      "type": "OD-2"
+    },
+    "dynamics": {
+      "parameters": {
+        "attack": 2.65008997410686,
+        "ratio": 6.410941466400972,
+        "release": 100.09718316427023,
+        "threshold": -10.326259769050159
+      },
+      "type": "De-Esser"
     },
     "eq": {
-      "enabled": true,
-      "type": "Mid Cut",
       "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
         "low_freq": 80.0,
         "low_gain": 0.0,
         "low_mid_freq": 500.0,
-        "low_mid_gain": 0.0,
-        "high_mid_freq": 2000.0,
-        "high_mid_gain": 0.0,
-        "high_freq": 8000.0,
-        "high_gain": 0.0
-      }
-    },
-    "delay": {
-      "enabled": true,
-      "type": "Digital Delay Pro",
-      "parameters": {
-        "time": 516.1989163923688,
-        "feedback": 32.62104425869197,
-        "mix": 23.549283425870673
-      }
-    },
-    "reverb": {
-      "enabled": true,
-      "type": "Convolution Reverb Pro",
-      "parameters": {
-        "room_size": 79.99012093767499,
-        "decay": 1.9860340231386566,
-        "mix": 27.84131645403641
-      }
+        "low_mid_gain": 0.0
+      },
+      "type": "Graphic EQ"
     },
     "pitch": {
-      "enabled": true,
-      "type": "Micro Pitch",
       "parameters": {
-        "pitch": 3.330172757294447,
-        "mix": 37.58148968662669
-      }
+        "mix": 61.574443115187066,
+        "pitch": 6.737552259765238
+      },
+      "type": "Diatonic Harmony"
     },
-    "dynamics": {
-      "enabled": true,
-      "type": "Gate",
+    "reverb": {
       "parameters": {
-        "threshold": -15.559481183170007,
-        "ratio": 5.7069789470651004,
-        "attack": 9.996618735355362,
-        "release": 55.54282444307225
-      }
+        "decay": 2.762036798546081,
+        "mix": 22.13024685098915,
+        "room_size": 55.24986174806048
+      },
+      "type": "Factory Reverb Pro"
     }
   },
-  "description": "A rock tone, using RECTO2 ORANGE MODERN with HM-2 and Suhr Shiba Reloaded with Digital Delay Pro, Convolution Reverb Pro, Micro Pitch and Gate.",
-  "gear_used": {
-    "drive_1": {
-      "type": "HM-2",
-      "parameters": {
-        "drive": 4.3,
-        "tone": 4.4,
-        "level": 5.4
-      }
-    },
-    "drive_2": {
-      "type": "Suhr Shiba Reloaded",
-      "parameters": {
-        "drive": 7.0,
-        "tone": 5.9,
-        "level": 5.3
-      }
-    },
+  "intent": {
+    "characteristics": [],
+    "genre": "rock",
+    "query": "Vox AC30 crunch tone with overdrive"
+  },
+  "query": "Vox AC30 crunch tone with overdrive",
+  "tone_patch": {
     "amp": {
-      "type": "RECTO2 ORANGE MODERN",
+      "enabled": true,
       "parameters": {
-        "gain": 5.8,
-        "bass": 5.7,
-        "mid": 6.9,
-        "treble": 5.6,
-        "presence": 5.2,
-        "master": 6.7
-      }
+        "bass": 6.9,
+        "gain": 7.5,
+        "master": 4.9,
+        "mid": 5.8,
+        "presence": 4.8,
+        "treble": 7.2
+      },
+      "type": "5F1 TWEED"
     },
     "cab": {
-      "type": "F131 4x12 TV Mix #1",
+      "enabled": true,
       "parameters": {
-        "low_cut": 128.9,
-        "high_cut": 8051.0,
-        "level": 5.5
-      }
+        "high_cut": 10055.8,
+        "level": 3.2,
+        "low_cut": 78.1
+      },
+      "type": "Bass Cabinets"
+    },
+    "delay": {
+      "enabled": true,
+      "parameters": {
+        "feedback": 35.60603806105044,
+        "mix": 32.708484852249704,
+        "time": 484.3300805104001
+      },
+      "type": "Echo Delay Pro"
+    },
+    "drive_1": {
+      "enabled": true,
+      "parameters": {
+        "drive": 4.9,
+        "level": 5.0,
+        "tone": 6.3
+      },
+      "type": "DS-1 Pro"
+    },
+    "drive_2": {
+      "enabled": true,
+      "parameters": {
+        "drive": 4.5,
+        "level": 3.1,
+        "tone": 5.7
+      },
+      "type": "OD-2"
+    },
+    "dynamics": {
+      "enabled": true,
+      "parameters": {
+        "attack": 2.65008997410686,
+        "ratio": 6.410941466400972,
+        "release": 100.09718316427023,
+        "threshold": -10.326259769050159
+      },
+      "type": "De-Esser"
     },
     "eq": {
-      "type": "Mid Cut",
+      "enabled": true,
       "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
         "low_freq": 80.0,
         "low_gain": 0.0,
         "low_mid_freq": 500.0,
-        "low_mid_gain": 0.0,
-        "high_mid_freq": 2000.0,
-        "high_mid_gain": 0.0,
-        "high_freq": 8000.0,
-        "high_gain": 0.0
-      }
-    },
-    "delay": {
-      "type": "Digital Delay Pro",
-      "parameters": {
-        "time": 516.1989163923688,
-        "feedback": 32.62104425869197,
-        "mix": 23.549283425870673
-      }
-    },
-    "reverb": {
-      "type": "Convolution Reverb Pro",
-      "parameters": {
-        "room_size": 79.99012093767499,
-        "decay": 1.9860340231386566,
-        "mix": 27.84131645403641
-      }
+        "low_mid_gain": 0.0
+      },
+      "type": "Graphic EQ"
     },
     "pitch": {
-      "type": "Micro Pitch",
+      "enabled": true,
       "parameters": {
-        "pitch": 3.330172757294447,
-        "mix": 37.58148968662669
-      }
+        "mix": 61.574443115187066,
+        "pitch": 6.737552259765238
+      },
+      "type": "Diatonic Harmony"
     },
-    "dynamics": {
-      "type": "Gate",
+    "reverb": {
+      "enabled": true,
       "parameters": {
-        "threshold": -15.559481183170007,
-        "ratio": 5.7069789470651004,
-        "attack": 9.996618735355362,
-        "release": 55.54282444307225
-      }
+        "decay": 2.762036798546081,
+        "mix": 22.13024685098915,
+        "room_size": 55.24986174806048
+      },
+      "type": "Factory Reverb Pro"
     }
   }
 }

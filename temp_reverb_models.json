@@ -1,0 +1,122 @@
+      "block": "REVERB",
+      "featured_parameters": [
+        "room_size",
+        "decay_time",
+        "pre_delay",
+        "mix",
+        "level",
+        "low_cut",
+        "high_cut"
+      ],
+      "models": [
+        {
+          "fm9_name": "Ambient",
+          "real_world": "Ambient Reverb",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Arena",
+          "real_world": "Arena Reverb",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Cave",
+          "real_world": "Cave Reverb",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Chamber",
+          "real_world": "Chamber Reverb",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Concert Hall",
+          "real_world": "Concert Hall Reverb",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Echo",
+          "real_world": "Echo Reverb",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Gated",
+          "real_world": "Gated Reverb",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Hall",
+          "real_world": "Hall Reverb",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Large Hall",
+          "real_world": "Large Hall Reverb",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Medium Hall",
+          "real_world": "Medium Hall Reverb",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Medium Room",
+          "real_world": "Medium Room Reverb",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Plate",
+          "real_world": "Plate Reverb",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Rich Hall",
+          "real_world": "Rich Hall Reverb",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Rich Plate",
+          "real_world": "Rich Plate Reverb",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Room",
+          "real_world": "Room Reverb",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Small Hall",
+          "real_world": "Small Hall Reverb",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Small Room",
+          "real_world": "Small Room Reverb",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Spring",
+          "real_world": "Spring Reverb",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Studio",
+          "real_world": "Studio Reverb",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Tank",
+          "real_world": "Tank Reverb",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Tiled Room",
+          "real_world": "Tiled Room Reverb",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Wood Room",
+          "real_world": "Wood Room Reverb",
+          "aliases": []
+        }
+      ]

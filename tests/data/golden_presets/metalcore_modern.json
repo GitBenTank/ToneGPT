@@ -1,0 +1,262 @@
+{
+  "blocks": [
+    {
+      "parameters": {
+        "drive": 8.7,
+        "level": 6.0,
+        "tone": 6.9
+      },
+      "type": "DRV"
+    },
+    {
+      "parameters": {
+        "drive": 8.3,
+        "level": 5.1,
+        "tone": 7.1
+      },
+      "type": "DRV"
+    },
+    {
+      "parameters": {
+        "bass": 7.2,
+        "gain": 7.8,
+        "master": 4.2,
+        "mid": 4.6,
+        "presence": 6.2,
+        "treble": 6.2
+      },
+      "type": "AMP"
+    },
+    {
+      "parameters": {
+        "high_cut": 10307.7,
+        "level": -2.1,
+        "low_cut": 112.9
+      },
+      "type": "CAB"
+    },
+    {
+      "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "mid_freq": 500.0,
+        "mid_gain": 0.0
+      },
+      "type": "EQ"
+    },
+    {
+      "parameters": {
+        "feedback": 32.2,
+        "mix": 25.1,
+        "time": 419.2
+      },
+      "type": "DLY"
+    },
+    {
+      "parameters": {
+        "decay": 2.6,
+        "mix": 21.8,
+        "room_size": 79.1
+      },
+      "type": "REV"
+    },
+    {
+      "parameters": {
+        "mix": 60.1,
+        "pitch": -7.9
+      },
+      "type": "PITCH"
+    },
+    {
+      "parameters": {
+        "attack": 4.0,
+        "ratio": 7.3,
+        "release": 7.2,
+        "threshold": -8.6
+      },
+      "type": "DYNAMICS"
+    }
+  ],
+  "description": "A metal tone, using BRIT 800 STUDIO 20 with Rat Pro and Rat 2 Pro with Quad Delay Pro, Tunnel Reverb Pro, Dual Pitch and Bus Compressor Pro.",
+  "gear_used": {
+    "amp": {
+      "parameters": {
+        "bass": 7.2,
+        "gain": 7.8,
+        "master": 4.2,
+        "mid": 4.6,
+        "presence": 6.2,
+        "treble": 6.2
+      },
+      "type": "BRIT 800 STUDIO 20"
+    },
+    "cab": {
+      "parameters": {
+        "high_cut": 10307.7,
+        "level": -2.1,
+        "low_cut": 112.9
+      },
+      "type": "F055 4x12 Pre-Rola 75 M160"
+    },
+    "delay": {
+      "parameters": {
+        "feedback": 32.208785837990106,
+        "mix": 25.128808993458904,
+        "time": 419.18422134081374
+      },
+      "type": "Quad Delay Pro"
+    },
+    "drive_1": {
+      "parameters": {
+        "drive": 8.7,
+        "level": 6.0,
+        "tone": 6.9
+      },
+      "type": "Rat Pro"
+    },
+    "drive_2": {
+      "parameters": {
+        "drive": 8.3,
+        "level": 5.1,
+        "tone": 7.1
+      },
+      "type": "Rat 2 Pro"
+    },
+    "dynamics": {
+      "parameters": {
+        "attack": 4.003051523662513,
+        "ratio": 7.334955909030148,
+        "release": 143.50016641797845,
+        "threshold": -8.574528579181077
+      },
+      "type": "Bus Compressor Pro"
+    },
+    "eq": {
+      "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "low_mid_freq": 500.0,
+        "low_mid_gain": 0.0
+      },
+      "type": "Dark Control"
+    },
+    "pitch": {
+      "parameters": {
+        "mix": 60.08882011143186,
+        "pitch": -7.859963494013215
+      },
+      "type": "Dual Pitch"
+    },
+    "reverb": {
+      "parameters": {
+        "decay": 2.5617681012539055,
+        "mix": 21.793100649554287,
+        "room_size": 79.0875623154713
+      },
+      "type": "Tunnel Reverb Pro"
+    }
+  },
+  "intent": {
+    "characteristics": [],
+    "genre": "metal",
+    "query": "Modern metalcore tone with high gain amp and tight bass response"
+  },
+  "query": "Modern metalcore tone with high gain amp and tight bass response",
+  "tone_patch": {
+    "amp": {
+      "enabled": true,
+      "parameters": {
+        "bass": 7.2,
+        "gain": 7.8,
+        "master": 4.2,
+        "mid": 4.6,
+        "presence": 6.2,
+        "treble": 6.2
+      },
+      "type": "BRIT 800 STUDIO 20"
+    },
+    "cab": {
+      "enabled": true,
+      "parameters": {
+        "high_cut": 10307.7,
+        "level": -2.1,
+        "low_cut": 112.9
+      },
+      "type": "F055 4x12 Pre-Rola 75 M160"
+    },
+    "delay": {
+      "enabled": true,
+      "parameters": {
+        "feedback": 32.208785837990106,
+        "mix": 25.128808993458904,
+        "time": 419.18422134081374
+      },
+      "type": "Quad Delay Pro"
+    },
+    "drive_1": {
+      "enabled": true,
+      "parameters": {
+        "drive": 8.7,
+        "level": 6.0,
+        "tone": 6.9
+      },
+      "type": "Rat Pro"
+    },
+    "drive_2": {
+      "enabled": true,
+      "parameters": {
+        "drive": 8.3,
+        "level": 5.1,
+        "tone": 7.1
+      },
+      "type": "Rat 2 Pro"
+    },
+    "dynamics": {
+      "enabled": true,
+      "parameters": {
+        "attack": 4.003051523662513,
+        "ratio": 7.334955909030148,
+        "release": 143.50016641797845,
+        "threshold": -8.574528579181077
+      },
+      "type": "Bus Compressor Pro"
+    },
+    "eq": {
+      "enabled": true,
+      "parameters": {
+        "high_freq": 8000.0,
+        "high_gain": 0.0,
+        "high_mid_freq": 2000.0,
+        "high_mid_gain": 0.0,
+        "low_freq": 80.0,
+        "low_gain": 0.0,
+        "low_mid_freq": 500.0,
+        "low_mid_gain": 0.0
+      },
+      "type": "Dark Control"
+    },
+    "pitch": {
+      "enabled": true,
+      "parameters": {
+        "mix": 60.08882011143186,
+        "pitch": -7.859963494013215
+      },
+      "type": "Dual Pitch"
+    },
+    "reverb": {
+      "enabled": true,
+      "parameters": {
+        "decay": 2.5617681012539055,
+        "mix": 21.793100649554287,
+        "room_size": 79.0875623154713
+      },
+      "type": "Tunnel Reverb Pro"
+    }
+  }
+}

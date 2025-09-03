@@ -1,0 +1,142 @@
+      "block": "UTILITY",
+      "featured_parameters": [
+        "level",
+        "pan",
+        "balance",
+        "low_cut",
+        "high_cut",
+        "phase",
+        "invert"
+      ],
+      "models": [
+        {
+          "fm9_name": "Looper",
+          "real_world": "Looper",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Tuner",
+          "real_world": "Tuner",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Mixer",
+          "real_world": "Mixer",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Send/Return",
+          "real_world": "Send/Return",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Shunt",
+          "real_world": "Shunt",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Volume",
+          "real_world": "Volume Control",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Pan",
+          "real_world": "Pan Control",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Balance",
+          "real_world": "Balance Control",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Filter",
+          "real_world": "Filter",
+          "aliases": []
+        },
+        {
+          "fm9_name": "EQ",
+          "real_world": "EQ",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Gate",
+          "real_world": "Gate",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Compressor",
+          "real_world": "Compressor",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Expander",
+          "real_world": "Expander",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Limiter",
+          "real_world": "Limiter",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Noise Gate",
+          "real_world": "Noise Gate",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Mute",
+          "real_world": "Mute",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Invert",
+          "real_world": "Phase Invert",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Phase",
+          "real_world": "Phase Control",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Stereo Width",
+          "real_world": "Stereo Width Control",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Mono",
+          "real_world": "Mono Sum",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Stereo",
+          "real_world": "Stereo",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Split",
+          "real_world": "Split",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Merge",
+          "real_world": "Merge",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Crossfade",
+          "real_world": "Crossfade",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Fade In",
+          "real_world": "Fade In",
+          "aliases": []
+        },
+        {
+          "fm9_name": "Fade Out",
+          "real_world": "Fade Out",
+          "aliases": []
+        }
+      ]
