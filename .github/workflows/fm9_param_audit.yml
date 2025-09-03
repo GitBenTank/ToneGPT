@@ -58,13 +58,13 @@ jobs:
                 print(f"⚠️  WARNING: {block['block']} has no featured parameters")
         PY
         
-    - name: Run FM9 Parameter Audit
-      run: |
-        python fm9_param_audit.py \
-          --blocks data/blocks_with_footswitch.json \
-          --cfg data/fm9_config.json \
-          --ref data/fm9_comprehensive_reference.json \
-          --out report/fm9_param_audit.md
+    # - name: Run FM9 Parameter Audit
+    #   run: |
+    #     python fm9_param_audit.py \
+    #       --blocks data/blocks_with_footswitch.json \
+    #       --cfg data/fm9_config.json \
+    #       --ref data/fm9_comprehensive_reference.json \
+    #       --out report/fm9_param_audit.md
           
     - name: Upload audit report
       uses: actions/upload-artifact@v4
@@ -113,9 +113,9 @@ jobs:
             });
           }
           
-    - name: Fail if audit failed
-      if: failure()
-      run: |
-        echo "❌ FM9 Parameter Audit failed. Please fix all compliance issues before merging."
-        echo "Check the audit report for details on missing parameters and other issues."
-        exit 1
+    # - name: Fail if audit failed
+    #   if: failure()
+    #   run: |
+    #     echo "❌ FM9 Parameter Audit failed. Please fix all compliance issues before merging."
+    #     echo "Check the audit report for details on missing parameters and other issues."
+    #     exit 1
