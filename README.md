@@ -2,7 +2,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red.svg)](https://streamlit.io/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-Proprietary-red.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Beta%20Testing-yellow.svg)](https://github.com/GitBenTank/ToneGPT)
 [![AI](https://img.shields.io/badge/AI-Powered%20Generation-purple.svg)](https://github.com/GitBenTank/ToneGPT)
 
