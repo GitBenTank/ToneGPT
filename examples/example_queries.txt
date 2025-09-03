@@ -1,0 +1,23 @@
+# ToneGPT AI - Example Queries
+
+## Basic Amp Tones
+- "Marshall Plexi"
+- "Fender Twin Reverb"
+- "Mesa Boogie Rectifier"
+- "Vox AC30"
+
+## With Effects
+- "Marshall Plexi with Tube Screamer"
+- "Fender Twin with reverb and delay"
+- "Mesa Rectifier with chorus"
+
+## Genre-Specific
+- "SRV-style blues"
+- "Modern metal"
+- "Clean jazz"
+- "Country twang"
+
+## Complex Combinations
+- "Marshall Plexi with Tube Screamer and reverb"
+- "Fender Twin with chorus, delay, and reverb"
+- "Mesa Rectifier with overdrive and delay"

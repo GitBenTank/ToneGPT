@@ -51,7 +51,7 @@ class EnhancedAIToneGenerator(CleanAIToneGenerator):
         # Check cache first
         cached_result = self._get_from_cache(query)
         if cached_result:
-            return cached_result
+                return cached_result
 
         # Generate using parent class
         result = super().generate_tone_from_query(query)
@@ -66,8 +66,8 @@ class EnhancedAIToneGenerator(CleanAIToneGenerator):
         
         # Save to cache
         self._save_to_cache(query, result)
-        
-        return result
+
+            return result
 
     def analyze_tone_complexity(self, tone_patch: Dict[str, Any]) -> Dict[str, Any]:
         """
@@ -90,7 +90,7 @@ class EnhancedAIToneGenerator(CleanAIToneGenerator):
         
         # Calculate complexity score
         complexity_score = len(enabled_blocks) + len(effect_types)
-        
+
         return {
             "total_blocks": len(enabled_blocks),
             "effect_types": len(effect_types),
@@ -102,7 +102,7 @@ class EnhancedAIToneGenerator(CleanAIToneGenerator):
         """Get cache statistics"""
         total_requests = self._cache_hits + self._cache_misses
         hit_rate = (self._cache_hits / total_requests * 100) if total_requests > 0 else 0
-        
+
         return {
             "cache_size": len(self._cache),
             "cache_hits": self._cache_hits,
