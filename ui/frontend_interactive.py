@@ -453,6 +453,74 @@ def main():
         initial_sidebar_state="expanded"
     )
     
+    # Add mobile-responsive CSS
+    st.markdown("""
+    <style>
+    /* Mobile Responsive Design */
+    @media (max-width: 768px) {
+        .main .block-container {
+            padding: 1rem 0.5rem;
+        }
+        
+        .stTabs [data-baseweb="tab-list"] {
+            gap: 0.5rem;
+        }
+        
+        .stTabs [data-baseweb="tab"] {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .stSelectbox > div > div {
+            font-size: 0.9rem;
+        }
+        
+        .stSlider > div > div {
+            font-size: 0.9rem;
+        }
+        
+        .stButton > button {
+            width: 100%;
+            font-size: 0.9rem;
+        }
+        
+        .stTextInput > div > div > input {
+            font-size: 0.9rem;
+        }
+        
+        .stTextArea > div > div > textarea {
+            font-size: 0.9rem;
+        }
+        
+        /* Make sidebar more compact on mobile */
+        .css-1d391kg {
+            padding: 0.5rem;
+        }
+        
+        /* Adjust column spacing */
+        .stColumns {
+            gap: 0.5rem;
+        }
+        
+        /* Make knobs more touch-friendly */
+        .stSlider > div > div > div {
+            height: 2rem;
+        }
+    }
+    
+    /* Tablet adjustments */
+    @media (max-width: 1024px) and (min-width: 769px) {
+        .main .block-container {
+            padding: 1.5rem 1rem;
+        }
+        
+        .stTabs [data-baseweb="tab"] {
+            padding: 0.75rem 1.5rem;
+        }
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
     # Custom CSS for compact, professional styling
     st.markdown("""
     <style>
