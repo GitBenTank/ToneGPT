@@ -1624,22 +1624,24 @@ class CleanAIToneGenerator:
         genre = structure.get("genre", "rock")
         query = structure.get("query", "").lower()
 
-        # Try to match specific cab requests
+        # Try to match specific cab requests using the full FM9 cab models
         selected_cab = None
 
         if "marshall" in query or "4x12" in query:
-            marshall_cabs = self.gear_mapping["cabs"]["marshall_4x12"]
-            available_marshall = [
-                cab for cab in marshall_cabs if cab in self.cab_models
+            marshall_cabs = [
+                cab for cab in self.cab_models
+                if any(word in cab.lower() for word in ["marshall", "4x12", "v30"])
             ]
-            if available_marshall:
-                selected_cab = random.choice(available_marshall)
+            if marshall_cabs:
+                selected_cab = random.choice(marshall_cabs)
 
         elif "mesa" in query or "boogie" in query:
-            mesa_cabs = self.gear_mapping["cabs"]["mesa_4x12"]
-            available_mesa = [cab for cab in mesa_cabs if cab in self.cab_models]
-            if available_mesa:
-                selected_cab = random.choice(available_mesa)
+            mesa_cabs = [
+                cab for cab in self.cab_models
+                if any(word in cab.lower() for word in ["mesa", "boogie", "4x12", "v30"])
+            ]
+            if mesa_cabs:
+                selected_cab = random.choice(mesa_cabs)
 
         # If no specific match, select based on genre
         if not selected_cab:
