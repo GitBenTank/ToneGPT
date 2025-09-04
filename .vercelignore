@@ -1,0 +1,64 @@
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Documentation and PDFs (too large for Vercel)
+*.pdf
+docs/
+screenshots/
+report/
+
+# Test files
+tests/
+test_*.py
+
+# Temporary files
+temp_*.json
+*.backup*
+
+# Large data files that aren't needed for deployment
+dyna_cabs_fm9_1p07.syx
+fm9_dsp_rel_9p00.syx
+fm9_usb_rel_1p03.syx
+fm9_firmware_9p00.zip
+
+# Development scripts
+fm9_*.py
+setup_*.sh
+sync_*.sh
+launch_*.sh
+justfile
+
+# License backups
+LICENSE_*
+README_*
+
+# Examples
+examples/
+
+# Website directory (if not using for deployment)
+website/

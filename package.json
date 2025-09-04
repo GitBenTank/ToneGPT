@@ -1,0 +1,23 @@
+{
+  "name": "tonegpt",
+  "version": "1.0.0",
+  "description": "AI-Powered FM9 Tone Generation System",
+  "main": "streamlit_app.py",
+  "scripts": {
+    "start": "streamlit run streamlit_app.py --server.port $PORT --server.address 0.0.0.0",
+    "dev": "streamlit run streamlit_app.py --server.port 8501"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "guitar",
+    "tone",
+    "fm9",
+    "fractal",
+    "ai",
+    "streamlit"
+  ],
+  "author": "Ben Tankersley",
+  "license": "PROPRIETARY"
+}
