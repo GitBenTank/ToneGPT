@@ -102,6 +102,7 @@ class CleanAIToneGenerator:
 
     def __init__(self):
         self.blocks_data = self._load_blocks_data()
+        self.fm9_model_map = self._load_fm9_model_map()
         self.amp_models = self._load_amp_models()
         self.cab_models = self._load_cab_models()
         self.drive_models = self._load_drive_models()
@@ -120,9 +121,38 @@ class CleanAIToneGenerator:
         except Exception as e:
             print(f"⚠️ Error loading blocks data: {e}")
             return {}
+    
+    def _load_fm9_model_map(self) -> Dict[str, List[str]]:
+        """Load actual FM9 model names from CSV file"""
+        import csv
+        model_map = {}
+        
+        try:
+            with open("data/fm9_model_map.csv", "r") as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    block_type = row["block"]
+                    fm9_name = row["fm9_name"]
+                    
+                    if block_type not in model_map:
+                        model_map[block_type] = []
+                    model_map[block_type].append(fm9_name)
+            
+            print(f"🔧 Loaded FM9 model map with {len(model_map)} block types")
+            return model_map
+        except Exception as e:
+            print(f"⚠️ Error loading FM9 model map: {e}")
+            return {}
 
     def _load_amp_models(self) -> List[str]:
         """Load available amp models from real FM9 data"""
+        # Use actual FM9 model names from CSV
+        if "AMP" in self.fm9_model_map:
+            amp_names = self.fm9_model_map["AMP"]
+            print(f"🔧 Loaded {len(amp_names)} real FM9 amp models from CSV")
+            return amp_names
+        
+        # Fallback to blocks data
         amp_blocks = [
             block for block in self.blocks_data if block.get("category") == "amp"
         ]
@@ -136,6 +166,13 @@ class CleanAIToneGenerator:
 
     def _load_cab_models(self) -> List[str]:
         """Load available cab models from real FM9 data"""
+        # Use actual FM9 model names from CSV
+        if "CAB" in self.fm9_model_map:
+            cab_names = self.fm9_model_map["CAB"]
+            print(f"🔧 Loaded {len(cab_names)} real FM9 cab models from CSV")
+            return cab_names
+        
+        # Fallback to blocks data
         cab_blocks = [
             block for block in self.blocks_data if block.get("category") == "cab"
         ]
@@ -148,10 +185,15 @@ class CleanAIToneGenerator:
         return []
 
     def _load_drive_models(self) -> List[str]:
-        """Load available drive models from real FM9 data - prioritize blocks_featured.json"""
-        drive_names = []
+        """Load available drive models from real FM9 data"""
+        # Use actual FM9 model names from CSV
+        if "DRV" in self.fm9_model_map:
+            drive_names = self.fm9_model_map["DRV"]
+            print(f"🔧 Loaded {len(drive_names)} real FM9 drive models from CSV")
+            return drive_names
         
-        # First try to load from blocks_featured.json (real FM9 names)
+        # Fallback to blocks_featured.json
+        drive_names = []
         try:
             with open("data/blocks_featured.json", "r") as f:
                 featured_data = json.load(f)
@@ -168,7 +210,7 @@ class CleanAIToneGenerator:
         except Exception as e:
             print(f"Warning: Could not load featured drive models: {e}")
         
-        # Fallback to blocks_data if blocks_featured.json fails
+        # Final fallback to blocks_data
         if not drive_names:
             drive_blocks = [
                 block for block in self.blocks_data if block.get("category") == "drive"
@@ -177,10 +219,8 @@ class CleanAIToneGenerator:
                 drive_names = [
                     block.get("name", "") for block in drive_blocks if block.get("name")
                 ]
-        
-        print(
-            f"🔧 Loaded {len(drive_names)} real drive models from FM9 blocks data"
-        )
+
+        print(f"🔧 Loaded {len(drive_names)} real drive models from FM9 blocks data")
         return drive_names
 
     def _load_effect_models(self) -> Dict[str, List[str]]:
