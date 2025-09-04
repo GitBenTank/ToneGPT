@@ -654,6 +654,7 @@ def main():
                 st.session_state.last_query = query
         
         # Load system stats
+        generator = None
         try:
             generator = CleanAIToneGenerator()
             total_blocks = len(generator.blocks_data)
@@ -677,27 +678,28 @@ def main():
         st.metric("🎛️ Effect Models", f"{total_effects:,}")
         
         # Show sample FM9 model names
-        st.markdown("---")
-        st.markdown("**🎸 Sample Amp Models:**")
-        sample_amps = generator.amp_models[:5] if 'generator' in locals() else []
-        for amp in sample_amps:
-            st.markdown(f"• {amp}")
-        if len(sample_amps) > 0:
-            st.markdown(f"*... and {total_amps - len(sample_amps)} more*")
-        
-        st.markdown("**⚡ Sample Drive Models:**")
-        sample_drives = generator.drive_models[:5] if 'generator' in locals() else []
-        for drive in sample_drives:
-            st.markdown(f"• {drive}")
-        if len(sample_drives) > 0:
-            st.markdown(f"*... and {total_drives - len(sample_drives)} more*")
-        
-        st.markdown("**📦 Sample Cab Models:**")
-        sample_cabs = generator.cab_models[:5] if 'generator' in locals() else []
-        for cab in sample_cabs:
-            st.markdown(f"• {cab}")
-        if len(sample_cabs) > 0:
-            st.markdown(f"*... and {total_cabs - len(sample_cabs)} more*")
+        if generator is not None:
+            st.markdown("---")
+            st.markdown("**🎸 Sample Amp Models:**")
+            sample_amps = generator.amp_models[:5]
+            for amp in sample_amps:
+                st.markdown(f"• {amp}")
+            if len(sample_amps) > 0:
+                st.markdown(f"*... and {total_amps - len(sample_amps)} more*")
+            
+            st.markdown("**⚡ Sample Drive Models:**")
+            sample_drives = generator.drive_models[:5]
+            for drive in sample_drives:
+                st.markdown(f"• {drive}")
+            if len(sample_drives) > 0:
+                st.markdown(f"*... and {total_drives - len(sample_drives)} more*")
+            
+            st.markdown("**📦 Sample Cab Models:**")
+            sample_cabs = generator.cab_models[:5]
+            for cab in sample_cabs:
+                st.markdown(f"• {cab}")
+            if len(sample_cabs) > 0:
+                st.markdown(f"*... and {total_cabs - len(sample_cabs)} more*")
         
         # Additional cool stats
         st.markdown("#### 🎯 Quick Stats")
