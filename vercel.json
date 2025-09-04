@@ -2,20 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "streamlit_app.py",
-      "use": "@vercel/python"
+      "src": "index.html",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "streamlit_app.py"
+      "dest": "/index.html"
     }
-  ],
-  "env": {
-    "STREAMLIT_SERVER_PORT": "8501",
-    "STREAMLIT_SERVER_ADDRESS": "0.0.0.0",
-    "STREAMLIT_SERVER_HEADLESS": "true",
-    "STREAMLIT_BROWSER_GATHER_USAGE_STATS": "false"
-  }
+  ]
 }
