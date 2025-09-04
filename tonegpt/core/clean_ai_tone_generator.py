@@ -146,82 +146,164 @@ class CleanAIToneGenerator:
 
     def _load_amp_models(self) -> List[str]:
         """Load available amp models from real FM9 data"""
-        # Use actual FM9 model names from CSV
+        # Try multiple data sources in order of preference (realistic FM9 counts)
+        data_sources = [
+            ("data/blocks_featured.json", "blocks featured (limited to 329 amps)"),
+            ("data/amps_list.json", "amps list (156 amps)"),
+            ("data/fm9_comprehensive_reference.json", "comprehensive reference (counts only)"),
+        ]
+        
+        for file_path, description in data_sources:
+            try:
+                with open(file_path, "r") as f:
+                    data = json.load(f)
+                
+                # Extract amp names based on file structure
+                if isinstance(data, list):
+                    amp_names = [item.get("name", "") for item in data if item.get("name")]
+                elif isinstance(data, dict) and "blocks" in data:
+                    # Handle blocks_featured.json format
+                    blocks = data.get("blocks", [])
+                    for block_data in blocks:
+                        if block_data.get("block") == "AMP":
+                            featured_models = block_data.get("models", [])
+                            amp_names = [model.get("fm9_name") for model in featured_models if model.get("fm9_name")]
+                            if amp_names:
+                                # Limit to realistic FM9 amp count (329) to avoid inflated numbers
+                                if len(amp_names) > 329:
+                                    amp_names = amp_names[:329]
+                                    print(f"🔧 Loaded {len(amp_names)} {description} (limited to realistic FM9 count)")
+                                else:
+                                    print(f"🔧 Loaded {len(amp_names)} {description}")
+                                return amp_names
+                elif isinstance(data, dict) and "amp_block" in data:
+                    # Handle comprehensive reference format - this only has counts, not names
+                    # Skip this source as it doesn't contain actual model names
+                    continue
+                else:
+                    amp_names = []
+                
+                if amp_names:
+                    print(f"🔧 Loaded {len(amp_names)} {description}")
+                    return amp_names
+                    
+            except Exception as e:
+                print(f"⚠️ Error loading {description}: {e}")
+                continue
+        
+        # Fallback to CSV (limited data)
         if "AMP" in self.fm9_model_map:
             amp_names = self.fm9_model_map["AMP"]
-            print(f"🔧 Loaded {len(amp_names)} real FM9 amp models from CSV")
+            print(f"⚠️ Fallback: Loaded {len(amp_names)} real FM9 amp models from CSV")
             return amp_names
         
-        # Fallback to blocks data
-        amp_blocks = [
-            block for block in self.blocks_data if block.get("category") == "amp"
-        ]
-        if amp_blocks:
-            amp_names = [
-                block.get("name", "") for block in amp_blocks if block.get("name")
-            ]
-            print(f"🔧 Loaded {len(amp_names)} real amp models from FM9 blocks data")
-            return amp_names
-        return []
+        # Ultimate fallback
+        print("⚠️ Using hardcoded fallback amp models")
+        return ["Brit 800", "Twin Reverb", "Recto1 Red", "AC-30", "Deluxe Reverb"]
 
     def _load_cab_models(self) -> List[str]:
         """Load available cab models from real FM9 data"""
-        # Use actual FM9 model names from CSV
+        # Try multiple data sources in order of preference (realistic FM9 counts)
+        data_sources = [
+            ("data/blocks_featured.json", "blocks featured (226 cabs)"),
+            ("data/fm9_comprehensive_reference.json", "comprehensive reference (226 cabs)"),
+            ("data/cabs_list.json", "cabs list (40 cabs)"),
+        ]
+        
+        for file_path, description in data_sources:
+            try:
+                with open(file_path, "r") as f:
+                    data = json.load(f)
+                
+                # Extract cab names based on file structure
+                if isinstance(data, list):
+                    # Handle simple string arrays (like cabs_list.json)
+                    if data and isinstance(data[0], str):
+                        cab_names = [item.strip() for item in data if item.strip()]
+                    else:
+                        # Handle object arrays with name property
+                        cab_names = [item.get("name", "") for item in data if item.get("name")]
+                elif isinstance(data, dict) and "blocks" in data:
+                    # Handle blocks_featured.json format
+                    blocks = data.get("blocks", [])
+                    for block_data in blocks:
+                        if block_data.get("block") == "CAB":
+                            featured_models = block_data.get("models", [])
+                            cab_names = [model.get("fm9_name") for model in featured_models if model.get("fm9_name")]
+                            if cab_names:
+                                print(f"🔧 Loaded {len(cab_names)} {description}")
+                                return cab_names
+                elif isinstance(data, dict) and "cab_block" in data:
+                    # Handle comprehensive reference format - this only has counts, not names
+                    # Skip this source as it doesn't contain actual model names
+                    continue
+                else:
+                    cab_names = []
+                
+                if cab_names:
+                    print(f"🔧 Loaded {len(cab_names)} {description}")
+                    return cab_names
+                    
+            except Exception as e:
+                print(f"⚠️ Error loading {description}: {e}")
+                continue
+        
+        # Fallback to CSV (limited data)
         if "CAB" in self.fm9_model_map:
             cab_names = self.fm9_model_map["CAB"]
-            print(f"🔧 Loaded {len(cab_names)} real FM9 cab models from CSV")
+            print(f"⚠️ Fallback: Loaded {len(cab_names)} real FM9 cab models from CSV")
             return cab_names
         
-        # Fallback to blocks data
-        cab_blocks = [
-            block for block in self.blocks_data if block.get("category") == "cab"
-        ]
-        if cab_blocks:
-            cab_names = [
-                block.get("name", "") for block in cab_blocks if block.get("name")
-            ]
-            print(f"🔧 Loaded {len(cab_names)} real cab models from FM9 blocks data")
-            return cab_names
-        return []
+        # Ultimate fallback
+        print("⚠️ Using hardcoded fallback cab models")
+        return ["Marshall 4x12", "Fender 4x10", "Mesa Boogie", "Vox AC30"]
 
     def _load_drive_models(self) -> List[str]:
         """Load available drive models from real FM9 data"""
-        # Use actual FM9 model names from CSV
+        # Try multiple data sources in order of preference (realistic FM9 counts)
+        data_sources = [
+            ("data/blocks_featured.json", "comprehensive blocks featured"),
+            ("data/fm9_comprehensive_reference.json", "comprehensive reference"),
+        ]
+        
+        for file_path, description in data_sources:
+            try:
+                with open(file_path, "r") as f:
+                    data = json.load(f)
+                
+                if file_path == "data/blocks_featured.json":
+                    # Extract drive models from blocks_featured.json
+                    blocks = data.get("blocks", [])
+                    for block_data in blocks:
+                        if block_data.get("block") == "DRIVE":
+                            featured_models = block_data.get("models", [])
+                            drive_names = [model.get("fm9_name") for model in featured_models if model.get("fm9_name")]
+                            if drive_names:
+                                print(f"🔧 Loaded {len(drive_names)} {description}")
+                                return drive_names
+                
+                elif file_path == "data/fm9_comprehensive_reference.json":
+                    # Extract drive models from comprehensive reference
+                    drive_data = data.get("drive_block", {})
+                    if "models" in drive_data and isinstance(drive_data["models"], list):
+                        drive_names = [model.get("name", "") for model in drive_data["models"] if model.get("name")]
+                        if drive_names:
+                            print(f"🔧 Loaded {len(drive_names)} {description}")
+                            return drive_names
+                            
+            except Exception as e:
+                print(f"⚠️ Error loading {description}: {e}")
+                continue
+        
+        # Fallback to CSV (limited data)
         if "DRV" in self.fm9_model_map:
             drive_names = self.fm9_model_map["DRV"]
-            print(f"🔧 Loaded {len(drive_names)} real FM9 drive models from CSV")
+            print(f"⚠️ Fallback: Loaded {len(drive_names)} real FM9 drive models from CSV")
             return drive_names
         
-        # Fallback to blocks_featured.json
-        drive_names = []
-        try:
-            with open("data/blocks_featured.json", "r") as f:
-                featured_data = json.load(f)
-            
-            blocks = featured_data.get("blocks", [])
-            for block_data in blocks:
-                if block_data.get("block") == "DRIVE":
-                    featured_models = block_data.get("models", [])
-                    for model in featured_models:
-                        fm9_name = model.get("fm9_name")
-                        if fm9_name:
-                            drive_names.append(fm9_name)
-                    break
-        except Exception as e:
-            print(f"Warning: Could not load featured drive models: {e}")
-        
-        # Final fallback to blocks_data
-        if not drive_names:
-            drive_blocks = [
-                block for block in self.blocks_data if block.get("category") == "drive"
-            ]
-            if drive_blocks:
-                drive_names = [
-                    block.get("name", "") for block in drive_blocks if block.get("name")
-                ]
-
-        print(f"🔧 Loaded {len(drive_names)} real drive models from FM9 blocks data")
-        return drive_names
+        # Ultimate fallback
+        print("⚠️ Using hardcoded fallback drive models")
+        return ["TS9", "Klon", "Rat", "DS1", "BB Pre"]
 
     def _load_effect_models(self) -> Dict[str, List[str]]:
         """Load available effect models by category from both sources"""
