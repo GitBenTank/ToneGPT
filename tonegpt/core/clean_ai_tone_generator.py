@@ -592,6 +592,9 @@ class CleanAIToneGenerator:
         elif any(word in query_lower for word in ["van halen", "eddie van halen", "eddie"]):
             # Van Halen: Marshall Plexi 1959 + MXR Phase 90
             artist_gear = {"amp_type": "marshall_plexi_1959", "drive_type": "phase_90", "genre": "rock"}
+        elif any(word in query_lower for word in ["zakk wylde", "zakk", "wylde", "ozzy osbourne"]):
+            # Zakk Wylde: Marshall JCM800 + Boss SD-1 + 4x12 V30 cabs
+            artist_gear = {"amp_type": "marshall_jcm800", "drive_type": "boss_sd1", "genre": "metal"}
         elif any(word in query_lower for word in ["slash", "guns n roses", "gnr"]):
             # Slash: Marshall JCM800 + Boss SD-1 Super Overdrive
             artist_gear = {"amp_type": "marshall_jcm800", "drive_type": "boss_sd1", "genre": "rock"}
