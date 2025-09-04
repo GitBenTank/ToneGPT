@@ -169,12 +169,8 @@ class CleanAIToneGenerator:
                             featured_models = block_data.get("models", [])
                             amp_names = [model.get("fm9_name") for model in featured_models if model.get("fm9_name")]
                             if amp_names:
-                                # Limit to realistic FM9 amp count (329) to avoid inflated numbers
-                                if len(amp_names) > 329:
-                                    amp_names = amp_names[:329]
-                                    print(f"🔧 Loaded {len(amp_names)} {description} (limited to realistic FM9 count)")
-                                else:
-                                    print(f"🔧 Loaded {len(amp_names)} {description}")
+                                # Use all available amp models from blocks_featured.json
+                                print(f"🔧 Loaded {len(amp_names)} {description}")
                                 return amp_names
                 elif isinstance(data, dict) and "amp_block" in data:
                     # Handle comprehensive reference format - this only has counts, not names
