@@ -146,9 +146,10 @@ class CleanAIToneGenerator:
 
     def _load_amp_models(self) -> List[str]:
         """Load available amp models from real FM9 data"""
-        # Try multiple data sources in order of preference (realistic FM9 counts)
+        # Try multiple data sources in order of preference (comprehensive FM9 data)
         data_sources = [
-            ("data/blocks_featured.json", "blocks featured (limited to 329 amps)"),
+            ("tonegpt/core/blocks_with_footswitch.json", "blocks with footswitch (786 amps)"),
+            ("data/blocks_featured.json", "blocks featured (786 amps)"),
             ("data/amps_list.json", "amps list (156 amps)"),
             ("data/fm9_comprehensive_reference.json", "comprehensive reference (counts only)"),
         ]
@@ -160,7 +161,13 @@ class CleanAIToneGenerator:
                 
                 # Extract amp names based on file structure
                 if isinstance(data, list):
-                    amp_names = [item.get("name", "") for item in data if item.get("name")]
+                    # Handle blocks_with_footswitch.json format (list of blocks)
+                    if data and "category" in data[0]:
+                        # blocks_with_footswitch.json format
+                        amp_names = [item.get("name", "") for item in data if item.get("category") == "amp"]
+                    else:
+                        # Simple list format
+                        amp_names = [item.get("name", "") for item in data if item.get("name")]
                 elif isinstance(data, dict) and "blocks" in data:
                     # Handle blocks_featured.json format
                     blocks = data.get("blocks", [])
@@ -199,8 +206,9 @@ class CleanAIToneGenerator:
 
     def _load_cab_models(self) -> List[str]:
         """Load available cab models from real FM9 data"""
-        # Try multiple data sources in order of preference (realistic FM9 counts)
+        # Try multiple data sources in order of preference (comprehensive FM9 data)
         data_sources = [
+            ("tonegpt/core/blocks_with_footswitch.json", "blocks with footswitch (226 cabs)"),
             ("data/blocks_featured.json", "blocks featured (226 cabs)"),
             ("data/fm9_comprehensive_reference.json", "comprehensive reference (226 cabs)"),
             ("data/cabs_list.json", "cabs list (40 cabs)"),
@@ -213,8 +221,12 @@ class CleanAIToneGenerator:
                 
                 # Extract cab names based on file structure
                 if isinstance(data, list):
-                    # Handle simple string arrays (like cabs_list.json)
-                    if data and isinstance(data[0], str):
+                    # Handle blocks_with_footswitch.json format (list of blocks)
+                    if data and "category" in data[0]:
+                        # blocks_with_footswitch.json format
+                        cab_names = [item.get("name", "") for item in data if item.get("category") == "cab"]
+                    elif data and isinstance(data[0], str):
+                        # Handle simple string arrays (like cabs_list.json)
                         cab_names = [item.strip() for item in data if item.strip()]
                     else:
                         # Handle object arrays with name property
@@ -256,9 +268,10 @@ class CleanAIToneGenerator:
 
     def _load_drive_models(self) -> List[str]:
         """Load available drive models from real FM9 data"""
-        # Try multiple data sources in order of preference (realistic FM9 counts)
+        # Try multiple data sources in order of preference (comprehensive FM9 data)
         data_sources = [
-            ("data/blocks_featured.json", "comprehensive blocks featured"),
+            ("tonegpt/core/blocks_with_footswitch.json", "blocks with footswitch (79 drives)"),
+            ("data/blocks_featured.json", "comprehensive blocks featured (77 drives)"),
             ("data/fm9_comprehensive_reference.json", "comprehensive reference"),
         ]
         
@@ -267,7 +280,13 @@ class CleanAIToneGenerator:
                 with open(file_path, "r") as f:
                     data = json.load(f)
                 
-                if file_path == "data/blocks_featured.json":
+                if file_path == "tonegpt/core/blocks_with_footswitch.json":
+                    # Extract drive models from blocks_with_footswitch.json
+                    drive_names = [item.get("name", "") for item in data if item.get("category") == "drive"]
+                    if drive_names:
+                        print(f"🔧 Loaded {len(drive_names)} {description}")
+                        return drive_names
+                elif file_path == "data/blocks_featured.json":
                     # Extract drive models from blocks_featured.json
                     blocks = data.get("blocks", [])
                     for block_data in blocks:
