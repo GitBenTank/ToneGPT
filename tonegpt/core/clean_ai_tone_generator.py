@@ -26,6 +26,7 @@ from typing import Dict, List, Any
 from tonegpt.config import BLOCKS_FILE
 from tonegpt.core.canonicalize import canonicalize_preset
 from tonegpt.core.validate_and_clamp import enforce_ref_ranges
+from tonegpt.core.blocks_guide_integration import BlocksGuideIntegration
 
 
 def _seed_from_query(query: str) -> None:
@@ -110,6 +111,9 @@ class CleanAIToneGenerator:
 
         # Real-world gear mapping for accurate modeling
         self.gear_mapping = self._load_gear_mapping()
+        
+        # Blocks guide integration for intelligent parameter selection
+        self.blocks_guide = BlocksGuideIntegration()
 
     def _load_blocks_data(self) -> Dict:
         """Load comprehensive FM9 blocks data"""
@@ -324,7 +328,7 @@ class CleanAIToneGenerator:
         if "DRV" in self.fm9_model_map:
             drive_names = self.fm9_model_map["DRV"]
             print(f"⚠️ Fallback: Loaded {len(drive_names)} real FM9 drive models from CSV")
-            return drive_names
+        return drive_names
         
         # Ultimate fallback
         print("⚠️ Using hardcoded fallback drive models")
@@ -536,6 +540,9 @@ class CleanAIToneGenerator:
 
             # Generate specific parameters
             tone_patch = self._generate_tone_patch(tone_structure)
+            
+            # Enhance with blocks guide knowledge for intelligent parameter selection
+            tone_patch = self.blocks_guide.enhance_tone_with_guidance(tone_patch, query)
 
             # Generate description
             description = self._generate_tone_description(tone_patch, intent)
@@ -694,26 +701,26 @@ class CleanAIToneGenerator:
         }
 
     def _generate_tone_structure(self, intent: Dict) -> Dict:
-        """Generate the basic structure of the tone"""
+        """Generate the basic structure of the tone with genre-specific logic"""
         genre = intent.get("genre", "rock")
         artist_gear = intent.get("artist_gear")
         query = intent.get("query", "")
 
-        # Determine which blocks to enable based on genre
+        # Use blocks guide integration to determine which effects to include
         structure = {
             "genre": genre,
             "artist_gear": artist_gear,
             "query": query,
-            "drive_1_enabled": genre in ["metal", "rock", "blues"],
-            "drive_2_enabled": genre in ["metal", "rock"],
+            "drive_1_enabled": self.blocks_guide.should_include_effect(genre, "drive"),
+            "drive_2_enabled": genre == "metal",  # Metal often uses 2 drives
             "amp_enabled": True,
             "cab_enabled": True,
-            "eq_enabled": True,
-            "delay_enabled": genre in ["ambient", "rock", "metal"],
-            "reverb_enabled": True,
-            "modulation_enabled": genre in ["ambient", "funk", "jazz"],
-            "pitch_enabled": genre in ["metal", "rock"],
-            "dynamics_enabled": True,
+            "eq_enabled": self.blocks_guide.should_include_effect(genre, "eq"),
+            "delay_enabled": self.blocks_guide.should_include_effect(genre, "delay"),
+            "reverb_enabled": self.blocks_guide.should_include_effect(genre, "reverb"),
+            "modulation_enabled": self.blocks_guide.should_include_effect(genre, "modulation"),
+            "pitch_enabled": self.blocks_guide.should_include_effect(genre, "pitch"),
+            "dynamics_enabled": self.blocks_guide.should_include_effect(genre, "dynamics"),
             "utility_enabled": False,
         }
 
@@ -1027,37 +1034,33 @@ class CleanAIToneGenerator:
                     else random.choice(self.amp_models)
                 )
             else:
-                selected_amp = random.choice(self.amp_models)
+                # Use genre-appropriate amp selection
+                appropriate_amps = self.blocks_guide.get_genre_appropriate_effects(genre, "amp", self.amp_models)
+                selected_amp = (
+                    random.choice(appropriate_amps) if appropriate_amps else random.choice(self.amp_models)
+                )
 
-        # Generate realistic parameters based on genre
-        if genre == "metal":
-            gain = random.uniform(7.5, 9.5)
-            bass = random.uniform(6.0, 8.0)
-            mid = random.uniform(3.0, 5.0)  # Scooped mids
-            treble = random.uniform(6.0, 8.0)
-            presence = random.uniform(6.0, 8.0)
-            master = random.uniform(2.0, 6.0)
-        elif genre == "blues":
-            gain = random.uniform(4.0, 7.0)
-            bass = random.uniform(5.0, 7.0)
-            mid = random.uniform(6.0, 8.0)  # Boosted mids
-            treble = random.uniform(5.0, 7.0)
-            presence = random.uniform(3.0, 7.0)
-            master = random.uniform(4.0, 8.0)
-        elif genre == "jazz":
-            gain = random.uniform(1.0, 3.5)
-            bass = random.uniform(4.0, 7.0)
-            mid = random.uniform(5.0, 8.0)
-            treble = random.uniform(3.0, 6.0)
-            presence = random.uniform(2.0, 6.0)
-            master = random.uniform(7.0, 10.0)
-        else:  # rock
-            gain = random.uniform(5.0, 8.0)
-            bass = random.uniform(5.0, 8.0)
-            mid = random.uniform(5.0, 8.0)
-            treble = random.uniform(5.0, 8.0)
-            presence = random.uniform(4.0, 7.0)
-            master = random.uniform(3.0, 7.0)
+        # Generate intelligent parameters using blocks guide knowledge
+        amp_type_for_params = "generic"
+        if "marshall" in selected_amp.lower() and "jcm" in selected_amp.lower():
+            amp_type_for_params = "marshall_jcm800"
+        elif "marshall" in selected_amp.lower() and "plexi" in selected_amp.lower():
+            amp_type_for_params = "marshall_plexi"
+        elif "mesa" in selected_amp.lower() and "mark" in selected_amp.lower():
+            amp_type_for_params = "mesa_mark_iic"
+        elif "fender" in selected_amp.lower() and "twin" in selected_amp.lower():
+            amp_type_for_params = "fender_twin"
+        
+        # Get intelligent parameters from blocks guide
+        intelligent_params = self.blocks_guide.get_amp_parameters(amp_type_for_params, genre)
+        
+        # Use intelligent parameters or fallback to genre-based ranges
+        gain = intelligent_params.get("gain", random.uniform(5.0, 8.0))
+        bass = intelligent_params.get("bass", random.uniform(5.0, 8.0))
+        mid = intelligent_params.get("mid", random.uniform(5.0, 8.0))
+        treble = intelligent_params.get("treble", random.uniform(5.0, 8.0))
+        presence = intelligent_params.get("presence", random.uniform(4.0, 7.0))
+        master = intelligent_params.get("master_volume", random.uniform(3.0, 7.0))
 
         return {
             "enabled": True,
@@ -1581,36 +1584,29 @@ class CleanAIToneGenerator:
                     if blues_drives
                     else random.choice(self.drive_models)
                 )
-            elif genre == "metal":
-                metal_drives = [
-                    drive
-                    for drive in self.drive_models
-                    if any(
-                        word in drive.lower()
-                        for word in ["rat", "distortion", "fuzz", "boost"]
-                    )
-                ]
-                selected_drive = (
-                    random.choice(metal_drives)
-                    if metal_drives
-                    else random.choice(self.drive_models)
-                )
             else:
-                selected_drive = random.choice(self.drive_models)
+                # Use genre-appropriate drive selection
+                appropriate_drives = self.blocks_guide.get_genre_appropriate_effects(genre, "drive", self.drive_models)
+                selected_drive = (
+                    random.choice(appropriate_drives) if appropriate_drives else random.choice(self.drive_models)
+                )
 
-        # Generate realistic parameters
-        if genre == "metal":
-            drive = random.uniform(7.0, 10.0)
-            tone = random.uniform(5.0, 8.0)
-            level = random.uniform(3.0, 8.0)
-        elif genre == "blues":
-            drive = random.uniform(3.0, 7.0)
-            tone = random.uniform(4.0, 7.0)
-            level = random.uniform(4.0, 8.0)
-        else:  # rock
-            drive = random.uniform(4.0, 8.0)
-            tone = random.uniform(4.0, 7.0)
-            level = random.uniform(3.0, 7.0)
+        # Generate intelligent parameters using blocks guide knowledge
+        drive_type_for_params = "generic"
+        if "sd1" in selected_drive.lower() or "super overdrive" in selected_drive.lower():
+            drive_type_for_params = "boss_sd1"
+        elif "tube screamer" in selected_drive.lower() or "ts808" in selected_drive.lower() or "ts9" in selected_drive.lower():
+            drive_type_for_params = "tube_screamer_808"
+        elif "klon" in selected_drive.lower() or "centaur" in selected_drive.lower():
+            drive_type_for_params = "klon_centaur"
+        
+        # Get intelligent parameters from blocks guide
+        intelligent_params = self.blocks_guide.get_drive_parameters(drive_type_for_params, structure.get("amp_type", ""))
+        
+        # Use intelligent parameters or fallback to genre-based ranges
+        drive = intelligent_params.get("drive", random.uniform(4.0, 8.0))
+        tone = intelligent_params.get("tone", random.uniform(4.0, 7.0))
+        level = intelligent_params.get("level", random.uniform(3.0, 7.0))
 
         # Handle clean tones (no drive)
         if selected_drive == "NO_DRIVE_INTENTIONAL":
@@ -1701,7 +1697,11 @@ class CleanAIToneGenerator:
                     else random.choice(self.cab_models)
                 )
             else:
-                selected_cab = random.choice(self.cab_models)
+                # Use genre-appropriate cab selection
+                appropriate_cabs = self.blocks_guide.get_genre_appropriate_effects(genre, "cab", self.cab_models)
+                selected_cab = (
+                    random.choice(appropriate_cabs) if appropriate_cabs else random.choice(self.cab_models)
+                )
 
         # Generate realistic parameters
         low_cut = random.uniform(60.0, 200.0)
@@ -1720,9 +1720,35 @@ class CleanAIToneGenerator:
         }
 
     def _generate_eq_block(self, structure: Dict) -> Dict:
-        """Generate an EQ block"""
+        """Generate an EQ block with genre-appropriate selection"""
         eq_models = self.effect_models.get("eq", [])
-        selected_eq = random.choice(eq_models) if eq_models else "Parametric EQ"
+        genre = structure.get("genre", "rock")
+        
+        # Get genre-appropriate EQ models
+        appropriate_eqs = self.blocks_guide.get_genre_appropriate_effects(genre, "eq", eq_models)
+        selected_eq = (
+            random.choice(appropriate_eqs) if appropriate_eqs else "Parametric EQ"
+        )
+
+        # Genre-specific EQ parameters
+        if genre == "metal":
+            # Mid-scoop for metal
+            low_gain = random.uniform(1.0, 3.0)
+            low_mid_gain = random.uniform(-4.0, -1.0)
+            high_mid_gain = random.uniform(-3.0, -1.0)
+            high_gain = random.uniform(1.0, 3.0)
+        elif genre == "blues":
+            # Mid-boost for blues
+            low_gain = random.uniform(-1.0, 1.0)
+            low_mid_gain = random.uniform(1.0, 3.0)
+            high_mid_gain = random.uniform(0.0, 2.0)
+            high_gain = random.uniform(-1.0, 1.0)
+        else:
+            # Balanced for other genres
+            low_gain = random.uniform(-1.0, 1.0)
+            low_mid_gain = random.uniform(-1.0, 1.0)
+            high_mid_gain = random.uniform(-1.0, 1.0)
+            high_gain = random.uniform(-1.0, 1.0)
 
         return {
             "enabled": True,
@@ -1730,57 +1756,112 @@ class CleanAIToneGenerator:
             "real_world": self._get_real_world_name(selected_eq),
             "parameters": {
                 "low_freq": 80.0,
-                "low_gain": 0.0,
+                "low_gain": round(low_gain, 1),
                 "low_mid_freq": 500.0,
-                "low_mid_gain": 0.0,
+                "low_mid_gain": round(low_mid_gain, 1),
                 "high_mid_freq": 2000.0,
-                "high_mid_gain": 0.0,
+                "high_mid_gain": round(high_mid_gain, 1),
                 "high_freq": 8000.0,
-                "high_gain": 0.0,
+                "high_gain": round(high_gain, 1),
             },
         }
 
     def _generate_delay_block(self, structure: Dict) -> Dict:
-        """Generate a delay block"""
+        """Generate a delay block with genre-appropriate selection"""
         delay_models = self.effect_models.get("delay", [])
+        genre = structure.get("genre", "rock")
+        
+        # Get genre-appropriate delay models
+        appropriate_delays = self.blocks_guide.get_genre_appropriate_effects(genre, "delay", delay_models)
         selected_delay = (
-            random.choice(delay_models) if delay_models else "Digital Delay"
+            random.choice(appropriate_delays) if appropriate_delays else "Digital Delay"
         )
+
+        # Genre-specific parameters
+        if genre == "metal":
+            # Shorter, tighter delays for metal
+            time_range = (200.0, 400.0)
+            feedback_range = (15.0, 25.0)
+            mix_range = (10.0, 20.0)
+        elif genre == "blues":
+            # Medium delays for blues
+            time_range = (300.0, 600.0)
+            feedback_range = (20.0, 35.0)
+            mix_range = (15.0, 30.0)
+        else:
+            # Default ranges
+            time_range = (200.0, 800.0)
+            feedback_range = (20.0, 40.0)
+            mix_range = (15.0, 35.0)
 
         return {
             "enabled": True,
             "type": selected_delay,
             "real_world": self._get_real_world_name(selected_delay),
             "parameters": {
-                "time": random.uniform(200.0, 800.0),
-                "feedback": random.uniform(20.0, 40.0),
-                "mix": random.uniform(15.0, 35.0),
+                "time": random.uniform(*time_range),
+                "feedback": random.uniform(*feedback_range),
+                "mix": random.uniform(*mix_range),
             },
         }
 
     def _generate_reverb_block(self, structure: Dict) -> Dict:
-        """Generate a reverb block"""
+        """Generate a reverb block with genre-appropriate selection"""
         reverb_models = self.effect_models.get("reverb", [])
+        genre = structure.get("genre", "rock")
+        
+        # Get genre-appropriate reverb models
+        appropriate_reverbs = self.blocks_guide.get_genre_appropriate_effects(genre, "reverb", reverb_models)
         selected_reverb = (
-            random.choice(reverb_models) if reverb_models else "Room Reverb"
+            random.choice(appropriate_reverbs) if appropriate_reverbs else "Room Reverb"
         )
+
+        # Genre-specific parameters
+        if genre == "metal":
+            # Subtle, tight reverb for metal
+            room_size_range = (30.0, 50.0)
+            decay_range = (1.0, 2.0)
+            mix_range = (10.0, 20.0)
+        elif genre == "blues":
+            # Medium reverb for blues
+            room_size_range = (40.0, 70.0)
+            decay_range = (1.5, 2.5)
+            mix_range = (15.0, 30.0)
+        else:
+            # Default ranges
+            room_size_range = (50.0, 80.0)
+            decay_range = (1.5, 3.0)
+            mix_range = (20.0, 40.0)
 
         return {
             "enabled": True,
             "type": selected_reverb,
             "real_world": self._get_real_world_name(selected_reverb),
             "parameters": {
-                "room_size": random.uniform(50.0, 80.0),
-                "decay": random.uniform(1.5, 3.0),
-                "mix": random.uniform(20.0, 40.0),
+                "room_size": random.uniform(*room_size_range),
+                "decay": random.uniform(*decay_range),
+                "mix": random.uniform(*mix_range),
             },
         }
 
     def _generate_modulation_block(self, structure: Dict) -> Dict:
-        """Generate a modulation block"""
+        """Generate a modulation block with genre-appropriate selection"""
         modulation_models = self.effect_models.get("modulation", [])
+        genre = structure.get("genre", "rock")
+        
+        # Check if modulation should be included for this genre
+        if not self.blocks_guide.should_include_effect(genre, "modulation"):
+            return {
+                "enabled": False,
+                "type": "None",
+                "real_world": "None",
+                "parameters": {},
+            }
+        
+        # Get genre-appropriate modulation models
+        appropriate_mods = self.blocks_guide.get_genre_appropriate_effects(genre, "modulation", modulation_models)
         selected_mod = (
-            random.choice(modulation_models) if modulation_models else "Chorus"
+            random.choice(appropriate_mods) if appropriate_mods else "Chorus"
         )
 
         return {
@@ -1795,10 +1876,23 @@ class CleanAIToneGenerator:
         }
 
     def _generate_pitch_block(self, structure: Dict) -> Dict:
-        """Generate a pitch block"""
+        """Generate a pitch block with genre-appropriate selection"""
         pitch_models = self.effect_models.get("pitch", [])
+        genre = structure.get("genre", "rock")
+        
+        # Check if pitch should be included for this genre
+        if not self.blocks_guide.should_include_effect(genre, "pitch"):
+            return {
+                "enabled": False,
+                "type": "None",
+                "real_world": "None",
+                "parameters": {},
+            }
+        
+        # Get genre-appropriate pitch models
+        appropriate_pitch = self.blocks_guide.get_genre_appropriate_effects(genre, "pitch", pitch_models)
         selected_pitch = (
-            random.choice(pitch_models) if pitch_models else "Pitch Shifter"
+            random.choice(appropriate_pitch) if appropriate_pitch else "Pitch Shifter"
         )
 
         return {
@@ -1812,21 +1906,45 @@ class CleanAIToneGenerator:
         }
 
     def _generate_dynamics_block(self, structure: Dict) -> Dict:
-        """Generate a dynamics block"""
+        """Generate a dynamics block with genre-appropriate selection"""
         dynamics_models = self.effect_models.get("dynamics", [])
+        genre = structure.get("genre", "rock")
+        
+        # Get genre-appropriate dynamics models
+        appropriate_dynamics = self.blocks_guide.get_genre_appropriate_effects(genre, "dynamics", dynamics_models)
         selected_dynamics = (
-            random.choice(dynamics_models) if dynamics_models else "Compressor"
+            random.choice(appropriate_dynamics) if appropriate_dynamics else "Compressor"
         )
+
+        # Genre-specific parameters
+        if genre == "metal":
+            # Tighter compression for metal
+            threshold_range = (-15.0, -8.0)
+            ratio_range = (3.0, 6.0)
+            attack_range = (1.0, 5.0)
+            release_range = (50.0, 150.0)
+        elif genre == "blues":
+            # More musical compression for blues
+            threshold_range = (-20.0, -10.0)
+            ratio_range = (2.0, 4.0)
+            attack_range = (3.0, 8.0)
+            release_range = (100.0, 250.0)
+        else:
+            # Default ranges
+            threshold_range = (-20.0, -5.0)
+            ratio_range = (2.0, 8.0)
+            attack_range = (1.0, 10.0)
+            release_range = (50.0, 200.0)
 
         return {
             "enabled": True,
             "type": selected_dynamics,
             "real_world": self._get_real_world_name(selected_dynamics),
             "parameters": {
-                "threshold": random.uniform(-20.0, -5.0),
-                "ratio": random.uniform(2.0, 8.0),
-                "attack": random.uniform(1.0, 10.0),
-                "release": random.uniform(50.0, 200.0),
+                "threshold": random.uniform(*threshold_range),
+                "ratio": random.uniform(*ratio_range),
+                "attack": random.uniform(*attack_range),
+                "release": random.uniform(*release_range),
             },
         }
 

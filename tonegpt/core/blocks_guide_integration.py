@@ -354,3 +354,194 @@ class BlocksGuideIntegration:
             tone_patch["cab"]["parameters"].update(enhanced_params)
         
         return tone_patch
+    
+    def get_genre_appropriate_effects(self, genre: str, effect_type: str, available_models: List[str]) -> List[str]:
+        """Get genre-appropriate effects from available models"""
+        genre_guidance = {
+            "metal": {
+                "drive": {
+                    "recommended": ["Tube Screamer Pro", "TS808", "TS9", "Super Overdrive", "SD-1"],
+                    "avoid": ["Distortion+ Pro", "Rat Distortion", "Fuzz", "Big Muff", "Octave Fuzz"]
+                },
+                "amp": {
+                    "recommended": ["Brit 800 Mod", "Recto 2", "5150", "HBE", "Mesa Mark IIC+", "Modern High Gain"],
+                    "avoid": ["Class-A", "Twin Reverb", "Deluxe Reverb", "AC30"]
+                },
+                "cab": {
+                    "recommended": ["4x12 V30", "4x12 EV", "Mesa Oversized", "Marshall 4x12", "V30"],
+                    "avoid": ["1x12", "2x10", "Jensen"]
+                },
+                "eq": {
+                    "recommended": ["Graphic EQ", "Parametric EQ", "5 Band EQ", "10 Band EQ"],
+                    "avoid": ["Shelving EQ", "Tone Control"]
+                },
+                "delay": {
+                    "recommended": ["Analog Delay", "Dual Delay", "Digital Delay", "Tape Delay"],
+                    "avoid": ["Filter Delay", "Reverse Delay", "Ping Pong Delay"]
+                },
+                "reverb": {
+                    "recommended": ["Studio Reverb", "Room Reverb", "Plate Reverb"],
+                    "avoid": ["Spring Reverb", "Hall Reverb", "Cathedral Reverb"]
+                },
+                "pitch": {
+                    "recommended": [],  # No pitch effects for standard metal
+                    "avoid": ["Ring Modulator", "Pitch Shifter", "Harmonizer", "Whammy"]
+                },
+                "dynamics": {
+                    "recommended": ["Vintage Compressor", "Maximizer", "Compressor", "Opto Compressor"],
+                    "avoid": ["De-Esser", "Gate", "Noise Gate"]
+                },
+                "modulation": {
+                    "recommended": [],  # No modulation for standard metal
+                    "avoid": ["Chorus", "Flanger", "Phaser", "Tremolo", "Vibrato"]
+                }
+            },
+            "blues": {
+                "drive": {
+                    "recommended": ["Tube Screamer", "TS808", "TS9", "Fuzz Face", "Big Muff"],
+                    "avoid": ["High Gain Distortion", "Metal Distortion"]
+                },
+                "amp": {
+                    "recommended": ["Fender Twin", "Marshall Plexi", "Deluxe Reverb", "AC30"],
+                    "avoid": ["High Gain", "Modern", "5150"]
+                },
+                "cab": {
+                    "recommended": ["2x12", "4x12", "1x12", "Jensen"],
+                    "avoid": ["V30", "High Gain"]
+                },
+                "eq": {
+                    "recommended": ["Graphic EQ", "Parametric EQ"],
+                    "avoid": []
+                },
+                "delay": {
+                    "recommended": ["Analog Delay", "Tape Delay", "Digital Delay"],
+                    "avoid": ["Reverse Delay", "Ping Pong Delay"]
+                },
+                "reverb": {
+                    "recommended": ["Spring Reverb", "Plate Reverb", "Room Reverb"],
+                    "avoid": ["Cathedral Reverb", "Hall Reverb"]
+                },
+                "pitch": {
+                    "recommended": [],
+                    "avoid": ["Ring Modulator", "Harmonizer"]
+                },
+                "dynamics": {
+                    "recommended": ["Vintage Compressor", "Opto Compressor"],
+                    "avoid": ["Maximizer", "Gate"]
+                },
+                "modulation": {
+                    "recommended": ["Chorus", "Vibrato"],
+                    "avoid": ["Flanger", "Phaser"]
+                }
+            },
+            "country": {
+                "drive": {
+                    "recommended": ["Clean Boost", "Micro Boost", "Tube Screamer"],
+                    "avoid": ["High Gain", "Fuzz", "Distortion"]
+                },
+                "amp": {
+                    "recommended": ["Fender Twin", "Deluxe Reverb", "AC30"],
+                    "avoid": ["High Gain", "Marshall", "Mesa"]
+                },
+                "cab": {
+                    "recommended": ["1x12", "2x12", "Jensen"],
+                    "avoid": ["4x12", "V30"]
+                },
+                "eq": {
+                    "recommended": ["Graphic EQ", "Parametric EQ"],
+                    "avoid": []
+                },
+                "delay": {
+                    "recommended": ["Analog Delay", "Digital Delay"],
+                    "avoid": ["Reverse Delay", "Ping Pong Delay"]
+                },
+                "reverb": {
+                    "recommended": ["Spring Reverb", "Room Reverb"],
+                    "avoid": ["Cathedral Reverb", "Hall Reverb"]
+                },
+                "pitch": {
+                    "recommended": [],
+                    "avoid": ["Ring Modulator", "Harmonizer"]
+                },
+                "dynamics": {
+                    "recommended": ["Vintage Compressor", "Opto Compressor"],
+                    "avoid": ["Maximizer", "Gate"]
+                },
+                "modulation": {
+                    "recommended": ["Chorus", "Tremolo"],
+                    "avoid": ["Flanger", "Phaser"]
+                }
+            }
+        }
+        
+        if genre not in genre_guidance or effect_type not in genre_guidance[genre]:
+            return available_models
+        
+        guidance = genre_guidance[genre][effect_type]
+        recommended = guidance.get("recommended", [])
+        avoid = guidance.get("avoid", [])
+        
+        # Filter available models based on recommendations
+        appropriate_models = []
+        
+        # First, try to find recommended models
+        for model in available_models:
+            model_lower = model.lower()
+            for rec in recommended:
+                if rec.lower() in model_lower or model_lower in rec.lower():
+                    appropriate_models.append(model)
+                    break
+        
+        # If no recommended models found, use all available except avoided ones
+        if not appropriate_models:
+            for model in available_models:
+                model_lower = model.lower()
+                should_avoid = False
+                for avoid_model in avoid:
+                    if avoid_model.lower() in model_lower or model_lower in avoid_model.lower():
+                        should_avoid = True
+                        break
+                if not should_avoid:
+                    appropriate_models.append(model)
+        
+        return appropriate_models if appropriate_models else available_models
+    
+    def should_include_effect(self, genre: str, effect_type: str) -> bool:
+        """Determine if an effect should be included for a given genre"""
+        genre_rules = {
+            "metal": {
+                "drive": True,  # Usually 1-2 drives
+                "amp": True,
+                "cab": True,
+                "eq": True,  # Important for mid-scoop
+                "delay": True,  # For leads only
+                "reverb": True,  # Subtle
+                "pitch": False,  # Rarely used
+                "dynamics": True,  # Compressor important
+                "modulation": False  # Rarely used
+            },
+            "blues": {
+                "drive": True,
+                "amp": True,
+                "cab": True,
+                "eq": True,
+                "delay": True,
+                "reverb": True,
+                "pitch": False,
+                "dynamics": True,
+                "modulation": True  # Chorus common
+            },
+            "country": {
+                "drive": True,  # Usually just clean boost
+                "amp": True,
+                "cab": True,
+                "eq": True,
+                "delay": True,
+                "reverb": True,
+                "pitch": False,
+                "dynamics": True,
+                "modulation": True  # Tremolo common
+            }
+        }
+        
+        return genre_rules.get(genre, {}).get(effect_type, True)
